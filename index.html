@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stripe Hero</title>
+  <title>Stripe Hero – Live Counter + Marquee</title>
   <style>
     * {
       margin: 0;
@@ -18,19 +18,19 @@
       overflow-x: hidden;
     }
 
-    /* Hero Section */
+    /* ========== HERO ========== */
     .hero {
       position: relative;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 80px 24px 60px;
+      padding: 80px 24px 40px;
       background: #ffffff;
       overflow: hidden;
     }
 
-    /* Abstract gradient shape on the right */
+    /* Abstract gradient shape */
     .hero-gradient {
       position: absolute;
       top: -10%;
@@ -52,7 +52,6 @@
         #fde68a 100%
       );
       border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-      filter: blur(0px);
       transform: rotate(-12deg) scale(1.1);
       opacity: 0.95;
       z-index: 0;
@@ -60,7 +59,6 @@
       -webkit-mask-image: linear-gradient(to left, black 40%, transparent 85%);
     }
 
-    /* Soft white fade over the gradient for text readability */
     .hero-gradient::after {
       content: "";
       position: absolute;
@@ -81,18 +79,37 @@
       margin-left: max(24px, calc((100vw - 1200px) / 2));
     }
 
-    /* GDP ticker */
+    /* Live GDP / volume ticker */
     .gdp-ticker {
       font-size: 14px;
       font-weight: 500;
       color: #425466;
       margin-bottom: 28px;
       letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .gdp-ticker span {
+    .gdp-ticker .live-amount {
       color: #0a2540;
       font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      min-width: 90px;
+      display: inline-block;
+    }
+
+    .gdp-ticker .live-dot {
+      width: 6px;
+      height: 6px;
+      background: #00d66f;
+      border-radius: 50%;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
     }
 
     /* Headline */
@@ -102,14 +119,12 @@
       line-height: 1.15;
       letter-spacing: -0.025em;
       color: #0a2540;
-      margin-bottom: 0;
     }
 
     .hero h1 .highlight {
-      color: #635bff; /* Stripe blurple */
+      color: #635bff;
     }
 
-    /* Subheadline */
     .hero p {
       font-size: clamp(20px, 2.8vw, 28px);
       font-weight: 400;
@@ -169,53 +184,61 @@
       border-color: #d6d9de;
     }
 
-    .btn-secondary img {
-      width: 18px;
-      height: 18px;
-    }
-
-    /* Logo bar */
-    .logo-bar {
+    /* ========== MARQUEE ========== */
+    .marquee-section {
       position: relative;
       z-index: 1;
-      margin-top: 80px;
-      padding-top: 32px;
+      margin-top: 72px;
+      padding: 28px 0 20px;
       border-top: 1px solid #e6e8eb;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .marquee-track {
       display: flex;
-      flex-wrap: wrap;
+      width: max-content;
+      animation: marquee 45s linear infinite;
+    }
+
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .marquee-content {
+      display: flex;
       align-items: center;
-      justify-content: flex-start;
-      gap: 40px 48px;
-      max-width: 1100px;
-      margin-left: max(24px, calc((100vw - 1200px) / 2));
-      margin-right: auto;
+      gap: 56px;
+      padding-right: 56px;
     }
 
-    .logo-bar span,
-    .logo-bar img {
-      height: 22px;
-      opacity: 0.75;
-      filter: grayscale(100%);
+    .logo-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+      color: #0a2540;
+      opacity: 0.78;
       transition: opacity 0.2s;
-    }
-
-    .logo-bar span {
       font-size: 15px;
       font-weight: 600;
-      letter-spacing: 0.02em;
-      color: #0a2540;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      letter-spacing: -0.01em;
     }
 
-    .logo-bar .anthropic { font-weight: 700; letter-spacing: 0.04em; }
-    .logo-bar .brightwheel { color: #ff6b35; filter: none; opacity: 1; }
-    .logo-bar .cursor { font-weight: 700; }
-    .logo-bar .openai { font-weight: 600; }
-    .logo-bar .amazon { font-weight: 700; color: #000; }
-    .logo-bar .nvidia { color: #76b900; filter: none; opacity: 1; font-weight: 700; }
-    .logo-bar .ford { font-weight: 700; font-style: italic; letter-spacing: 0.05em; }
+    .logo-item:hover {
+      opacity: 1;
+    }
+
+    .logo-item svg {
+      flex-shrink: 0;
+      height: 22px;
+      width: auto;
+    }
 
     /* Responsive */
     @media (max-width: 900px) {
@@ -224,106 +247,340 @@
         right: -30%;
         opacity: 0.7;
       }
-      
       .hero-content {
         margin-left: 0;
         max-width: 100%;
-      }
-
-      .logo-bar {
-        margin-left: 0;
-        gap: 28px 32px;
       }
     }
 
     @media (max-width: 600px) {
       .hero {
-        padding: 60px 20px 40px;
+        padding: 60px 20px 30px;
       }
-
       .hero h1 {
         font-size: 32px;
       }
-
       .hero p {
         font-size: 18px;
       }
-
-      .logo-bar {
-        gap: 24px;
+      .marquee-content {
+        gap: 40px;
+        padding-right: 40px;
       }
     }
   </style>
 </head>
 <body>
 
-  <section class="hero">
-    <!-- Abstract colorful shape -->
-    <div class="hero-gradient" aria-hidden="true"></div>
+<section class="hero">
+  <div class="hero-gradient" aria-hidden="true"></div>
 
-    <div class="hero-content">
-      <div class="gdp-ticker">
-        Global GDP running on Stripe: <span>1.75077874%</span>
-      </div>
-
-      <h1>
-        Financial infrastructure to grow <span class="highlight">your revenue</span>.
-      </h1>
-
-      <p>
-        Accept payments, handle business <span class="highlight">banking,</span><sup>1</sup> and
-        implement custom revenue models—from <span class="highlight">your</span>
-        first transaction to your billionth.
-      </p>
-
-      <div class="cta-row">
-        <a href="#" class="btn btn-primary">
-          Get started
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-
-        <a href="#" class="btn btn-secondary">
-          <!-- Google "G" icon -->
-          <svg width="18" height="18" viewBox="0 0 18 18">
-            <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/>
-            <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.96-2.184l-2.908-2.258c-.806.54-1.837.86-3.052.86-2.347 0-4.332-1.584-5.043-3.712H.957v2.332C2.438 15.983 5.482 18 9 18z"/>
-            <path fill="#FBBC05" d="M3.957 10.706c-.18-.54-.282-1.117-.282-1.706s.102-1.166.282-1.706V4.962H.957C.348 6.175 0 7.55 0 9s.348 2.825.957 4.038l3-2.332z"/>
-            <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.962L3.957 7.294C4.668 5.163 6.653 3.58 9 3.58z"/>
-          </svg>
-          Sign up with Google
-        </a>
-      </div>
+  <div class="hero-content">
+    <!-- LIVE COUNTER -->
+    <div class="gdp-ticker">
+      <span class="live-dot"></span>
+      Global volume running on Stripe:
+      <span class="live-amount" id="liveCounter">$29</span>
     </div>
 
-    <!-- Company logos -->
-    <div class="logo-bar">
-      <span class="anthropic">ANTHROPIC</span>
-      <span class="brightwheel">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-right:4px">
-          <circle cx="12" cy="12" r="10" fill="#FF6B35"/>
-          <path d="M8 12l3 3 5-6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <h1>
+      Financial infrastructure to grow <span class="highlight">your revenue</span>.
+    </h1>
+
+    <p>
+      Accept payments, handle business <span class="highlight">banking,</span><sup>1</sup> and
+      implement custom revenue models—from <span class="highlight">your</span>
+      first transaction to your billionth.
+    </p>
+
+    <div class="cta-row">
+      <a href="#" class="btn btn-primary">
+        Get started
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        brightwheel
-      </span>
-      <span class="cursor">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px">
-          <path d="M4 4l7 16 2-7 7-2L4 4z"/>
+      </a>
+
+      <a href="#" class="btn btn-secondary">
+        <svg width="18" height="18" viewBox="0 0 18 18">
+          <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/>
+          <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.96-2.184l-2.908-2.258c-.806.54-1.837.86-3.052.86-2.347 0-4.332-1.584-5.043-3.712H.957v2.332C2.438 15.983 5.482 18 9 18z"/>
+          <path fill="#FBBC05" d="M3.957 10.706c-.18-.54-.282-1.117-.282-1.706s.102-1.166.282-1.706V4.962H.957C.348 6.175 0 7.55 0 9s.348 2.825.957 4.038l3-2.332z"/>
+          <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.962L3.957 7.294C4.668 5.163 6.653 3.58 9 3.58z"/>
         </svg>
-        CURSOR
-      </span>
-      <span class="openai">OpenAI</span>
-      <span class="amazon">amazon</span>
-      <span class="nvidia">
-        <svg width="18" height="14" viewBox="0 0 24 18" fill="#76B900" style="margin-right:3px">
-          <path d="M12 0L0 18h4.5L12 4.5 19.5 18H24L12 0z"/>
-        </svg>
-        NVIDIA
-      </span>
-      <span class="ford">Ford</span>
+        Sign up with Google
+      </a>
     </div>
-  </section>
+  </div>
+
+  <!-- INFINITE MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <!-- First set -->
+      <div class="marquee-content">
+        <!-- OpenAI -->
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.76a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.762a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.787a4.471 4.471 0 0 1-.676 8.105v-5.677a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.784-2.762a.776.776 0 0 0-.785 0L9.409 9.25V6.918a.074.074 0 0 1 .032-.063l4.81-2.777a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08-4.778 2.758a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.602 1.5v2.999l-2.597 1.5-2.607-1.5z"/>
+          </svg>
+          OpenAI
+        </div>
+
+        <!-- Anthropic / Claude -->
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="#D97757">
+            <path d="M12 2L9.5 8.5 3 9.5 8 14 6.5 20.5 12 17l5.5 3.5L16 14l5-4.5-6.5-1L12 2z"/>
+          </svg>
+          Anthropic
+        </div>
+
+        <!-- Microsoft -->
+        <div class="logo-item">
+          <svg viewBox="0 0 23 23" width="20" height="20">
+            <rect x="1" y="1" width="10" height="10" fill="#f25022"/>
+            <rect x="12" y="1" width="10" height="10" fill="#7fba00"/>
+            <rect x="1" y="12" width="10" height="10" fill="#00a4ef"/>
+            <rect x="12" y="12" width="10" height="10" fill="#ffb900"/>
+          </svg>
+          Microsoft
+        </div>
+
+        <!-- X (Twitter) -->
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          X
+        </div>
+
+        <!-- Shopify -->
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="#95BF47">
+            <path d="M15.337 23.979l7.216-1.568s-2.604-17.633-2.635-17.829c-.029-.195-.185-.307-.37-.322-.185-.016-3.66-.282-3.66-.282s-2.416-2.353-2.677-2.599c-.09-.085-.185-.1-.28-.1l-1.38.1s.1-2.5.1-2.5-1.85 0-2.04.05c-.19.05-2.3.75-2.3.75l-.4-1.05s-1.85.65-2.15.85c-.3.2-.55.65-.55.65l-5.05 20.4 13.4 2.55zm-2.15-19.4l1.55.1v.25l-1.55-.35zm-1.9.35l.1 1.55-1.55-.15.05-1.4zm-.25 2.4l1.9.15 4.4.4-1.35 11.15-5.85-1.15 1.9-10.55zm8.05 12.55l-4.55.95 1.25-9.9 3.3 8.95z"/>
+          </svg>
+          Shopify
+        </div>
+
+        <!-- Walmart -->
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="#0071DC">
+            <path d="M12 2l1.5 4.5h4.7l-3.8 2.8 1.5 4.5-3.9-2.8-3.9 2.8 1.5-4.5-3.8-2.8h4.7z"/>
+          </svg>
+          Walmart
+        </div>
+
+        <!-- Best Buy -->
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="#0046BE">
+            <circle cx="12" cy="12" r="10" fill="#0046BE"/>
+            <text x="12" y="16" text-anchor="middle" fill="white" font-size="10" font-weight="700" font-family="Arial">BB</text>
+          </svg>
+          Best Buy
+        </div>
+
+        <!-- Nike -->
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="28" height="16" fill="currentColor">
+            <path d="M24 7.8L6.4 15.6c-2.2 1-4.3.5-5.5-1.1C-.3 12.8.2 10.6 2.4 9.6L24 0v7.8z"/>
+          </svg>
+          Nike
+        </div>
+
+        <!-- H&M -->
+        <div class="logo-item">
+          <svg viewBox="0 0 40 24" width="36" height="20" fill="#E50010">
+            <text x="0" y="18" font-size="18" font-weight="800" font-family="Arial Black, Arial">H&M</text>
+          </svg>
+        </div>
+
+        <!-- DoorDash -->
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="#FF3008">
+            <path d="M23.07 8.61c-.3-1.57-1.63-2.7-3.25-2.7h-2.4c-.2 0-.37.14-.4.33l-.7 4.2c-.04.25.15.47.4.47h1.5c.9 0 1.66.7 1.75 1.58.1 1.02-.7 1.9-1.72 1.9H7.3c-.9 0-1.66-.7-1.75-1.58-.1-1.02.7-1.9 1.72-1.9h4.2c.25 0 .45-.22.4-.47l-.7-4.2c-.04-.2-.2-.33-.4-.33H3.25C1.63 5.91.3 7.04 0 8.61c-.35 1.85.9 3.55 2.75 3.55h.15l-.4 2.4c-.15.9.55 1.7 1.45 1.7h16.1c.9 0 1.6-.8 1.45-1.7l-.4-2.4h.15c1.85 0 3.1-1.7 2.75-3.55z"/>
+          </svg>
+          DoorDash
+        </div>
+
+        <!-- Walt Disney -->
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path d="M16.8 8.5c-.4-1.5-1.5-2.6-3-3.1 1.1-.7 1.8-1.9 1.8-3.3 0-.2 0-.3-.1-.5-.8.3-1.5.9-1.9 1.6-.5-.8-1.3-1.4-2.2-1.7 0 .2-.1.3-.1.5 0 1.4.7 2.6 1.8 3.3-1.5.5-2.6 1.6-3 3.1-.1.3 0 .6.2.8.5-.3 1-.5 1.6-.5.9 0 1.7.4 2.3 1.1.6-.7 1.4-1.1 2.3-1.1.6 0 1.1.2 1.6.5.2-.2.3-.5.2-.8zM12 14.5c-2.5 0-4.5 1.8-4.5 4s2 4 4.5 4 4.5-1.8 4.5-4-2-4-4.5-4z"/>
+          </svg>
+          Disney
+        </div>
+
+        <!-- Canva -->
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="#00C4CC">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+          </svg>
+          Canva
+        </div>
+
+        <!-- IBM -->
+        <div class="logo-item">
+          <svg viewBox="0 0 32 16" width="36" height="16" fill="#054ADA">
+            <text x="0" y="13" font-size="14" font-weight="700" font-family="Arial">IBM</text>
+          </svg>
+        </div>
+
+        <!-- Dell -->
+        <div class="logo-item">
+          <svg viewBox="0 0 40 16" width="40" height="16" fill="#007DB8">
+            <text x="0" y="13" font-size="14" font-weight="700" font-family="Arial">Dell</text>
+          </svg>
+        </div>
+
+        <!-- Ford -->
+        <div class="logo-item">
+          <svg viewBox="0 0 48 18" width="48" height="18" fill="#003478">
+            <ellipse cx="24" cy="9" rx="22" ry="8" fill="none" stroke="#003478" stroke-width="1.5"/>
+            <text x="24" y="13" text-anchor="middle" font-size="11" font-weight="700" font-family="Arial" fill="#003478">Ford</text>
+          </svg>
+        </div>
+
+        <!-- General Motors -->
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="#0170AD">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#0170AD" stroke-width="2"/>
+            <text x="12" y="16" text-anchor="middle" font-size="9" font-weight="700" fill="#0170AD">GM</text>
+          </svg>
+          General Motors
+        </div>
+      </div>
+
+      <!-- Duplicate set for seamless loop -->
+      <div class="marquee-content">
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.76a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.762a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.787a4.471 4.471 0 0 1-.676 8.105v-5.677a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.784-2.762a.776.776 0 0 0-.785 0L9.409 9.25V6.918a.074.074 0 0 1 .032-.063l4.81-2.777a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08-4.778 2.758a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.602 1.5v2.999l-2.597 1.5-2.607-1.5z"/>
+          </svg>
+          OpenAI
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="#D97757">
+            <path d="M12 2L9.5 8.5 3 9.5 8 14 6.5 20.5 12 17l5.5 3.5L16 14l5-4.5-6.5-1L12 2z"/>
+          </svg>
+          Anthropic
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 23 23" width="20" height="20">
+            <rect x="1" y="1" width="10" height="10" fill="#f25022"/>
+            <rect x="12" y="1" width="10" height="10" fill="#7fba00"/>
+            <rect x="1" y="12" width="10" height="10" fill="#00a4ef"/>
+            <rect x="12" y="12" width="10" height="10" fill="#ffb900"/>
+          </svg>
+          Microsoft
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          X
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="#95BF47">
+            <path d="M15.337 23.979l7.216-1.568s-2.604-17.633-2.635-17.829c-.029-.195-.185-.307-.37-.322-.185-.016-3.66-.282-3.66-.282s-2.416-2.353-2.677-2.599c-.09-.085-.185-.1-.28-.1l-1.38.1s.1-2.5.1-2.5-1.85 0-2.04.05c-.19.05-2.3.75-2.3.75l-.4-1.05s-1.85.65-2.15.85c-.3.2-.55.65-.55.65l-5.05 20.4 13.4 2.55zm-2.15-19.4l1.55.1v.25l-1.55-.35zm-1.9.35l.1 1.55-1.55-.15.05-1.4zm-.25 2.4l1.9.15 4.4.4-1.35 11.15-5.85-1.15 1.9-10.55zm8.05 12.55l-4.55.95 1.25-9.9 3.3 8.95z"/>
+          </svg>
+          Shopify
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="#0071DC">
+            <path d="M12 2l1.5 4.5h4.7l-3.8 2.8 1.5 4.5-3.9-2.8-3.9 2.8 1.5-4.5-3.8-2.8h4.7z"/>
+          </svg>
+          Walmart
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="#0046BE">
+            <circle cx="12" cy="12" r="10" fill="#0046BE"/>
+            <text x="12" y="16" text-anchor="middle" fill="white" font-size="10" font-weight="700" font-family="Arial">BB</text>
+          </svg>
+          Best Buy
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="28" height="16" fill="currentColor">
+            <path d="M24 7.8L6.4 15.6c-2.2 1-4.3.5-5.5-1.1C-.3 12.8.2 10.6 2.4 9.6L24 0v7.8z"/>
+          </svg>
+          Nike
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 40 24" width="36" height="20" fill="#E50010">
+            <text x="0" y="18" font-size="18" font-weight="800" font-family="Arial Black, Arial">H&M</text>
+          </svg>
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="#FF3008">
+            <path d="M23.07 8.61c-.3-1.57-1.63-2.7-3.25-2.7h-2.4c-.2 0-.37.14-.4.33l-.7 4.2c-.04.25.15.47.4.47h1.5c.9 0 1.66.7 1.75 1.58.1 1.02-.7 1.9-1.72 1.9H7.3c-.9 0-1.66-.7-1.75-1.58-.1-1.02.7-1.9 1.72-1.9h4.2c.25 0 .45-.22.4-.47l-.7-4.2c-.04-.2-.2-.33-.4-.33H3.25C1.63 5.91.3 7.04 0 8.61c-.35 1.85.9 3.55 2.75 3.55h.15l-.4 2.4c-.15.9.55 1.7 1.45 1.7h16.1c.9 0 1.6-.8 1.45-1.7l-.4-2.4h.15c1.85 0 3.1-1.7 2.75-3.55z"/>
+          </svg>
+          DoorDash
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path d="M16.8 8.5c-.4-1.5-1.5-2.6-3-3.1 1.1-.7 1.8-1.9 1.8-3.3 0-.2 0-.3-.1-.5-.8.3-1.5.9-1.9 1.6-.5-.8-1.3-1.4-2.2-1.7 0 .2-.1.3-.1.5 0 1.4.7 2.6 1.8 3.3-1.5.5-2.6 1.6-3 3.1-.1.3 0 .6.2.8.5-.3 1-.5 1.6-.5.9 0 1.7.4 2.3 1.1.6-.7 1.4-1.1 2.3-1.1.6 0 1.1.2 1.6.5.2-.2.3-.5.2-.8zM12 14.5c-2.5 0-4.5 1.8-4.5 4s2 4 4.5 4 4.5-1.8 4.5-4-2-4-4.5-4z"/>
+          </svg>
+          Disney
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="#00C4CC">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+          </svg>
+          Canva
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 32 16" width="36" height="16" fill="#054ADA">
+            <text x="0" y="13" font-size="14" font-weight="700" font-family="Arial">IBM</text>
+          </svg>
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 40 16" width="40" height="16" fill="#007DB8">
+            <text x="0" y="13" font-size="14" font-weight="700" font-family="Arial">Dell</text>
+          </svg>
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 48 18" width="48" height="18" fill="#003478">
+            <ellipse cx="24" cy="9" rx="22" ry="8" fill="none" stroke="#003478" stroke-width="1.5"/>
+            <text x="24" y="13" text-anchor="middle" font-size="11" font-weight="700" font-family="Arial" fill="#003478">Ford</text>
+          </svg>
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="#0170AD">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#0170AD" stroke-width="2"/>
+            <text x="12" y="16" text-anchor="middle" font-size="9" font-weight="700" fill="#0170AD">GM</text>
+          </svg>
+          General Motors
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Live counter that starts at $29 and adds $29 at random intervals
+  (function () {
+    const el = document.getElementById('liveCounter');
+    let value = 29;
+
+    function format(n) {
+      return '$' + n.toLocaleString('en-US');
+    }
+
+    function tick() {
+      value += 29;
+      el.textContent = format(value);
+
+      // Random delay: mostly slow (1.2–3.5s), occasionally fast bursts (150–450ms)
+      const isBurst = Math.random() < 0.22;
+      const delay = isBurst
+        ? 150 + Math.random() * 300
+        : 1200 + Math.random() * 2300;
+
+      setTimeout(tick, delay);
+    }
+
+    // Start after a short initial delay
+    setTimeout(tick, 1800);
+  })();
+</script>
 
 </body>
 </html>

@@ -1,272 +1,329 @@
-<!-- ========== HOSTCUT HERO — STRIPE-STYLE (ready to paste) ========== -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stripe Hero</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<style>
-  :root {
-    --ink: #14120e;
-    --paper: #f4f0e8;
-    --card: #fffdf8;
-    --muted: #6f675c;
-    --orange: #f15a22;
-    --line: #e4dccf;
-    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-    --font-serif: "Instrument Serif", Georgia, ui-serif, serif;
-  }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #ffffff;
+      color: #0a2540;
+      overflow-x: hidden;
+    }
 
-  .hero {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--font-sans);
-    padding: 5.5rem 0 0;
-  }
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 24px 60px;
+      background: #ffffff;
+      overflow: hidden;
+    }
 
-  .hero-inner {
-    max-width: 42rem;          /* tighter central content like Stripe */
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
+    /* Abstract gradient shape on the right */
+    .hero-gradient {
+      position: absolute;
+      top: -10%;
+      right: -15%;
+      width: 70%;
+      height: 130%;
+      background: linear-gradient(
+        135deg,
+        #7dd3fc 0%,
+        #38bdf8 8%,
+        #818cf8 18%,
+        #a78bfa 28%,
+        #c084fc 38%,
+        #e879f9 48%,
+        #f472b6 58%,
+        #fb7185 68%,
+        #fb923c 78%,
+        #fbbf24 88%,
+        #fde68a 100%
+      );
+      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+      filter: blur(0px);
+      transform: rotate(-12deg) scale(1.1);
+      opacity: 0.95;
+      z-index: 0;
+      mask-image: linear-gradient(to left, black 40%, transparent 85%);
+      -webkit-mask-image: linear-gradient(to left, black 40%, transparent 85%);
+    }
 
-  /* Eyebrow / live counter — left aligned like Stripe */
-  .hero-stat {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.35rem 0.6rem;
-    margin: 0 0 1.75rem;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--muted);
-    letter-spacing: 0.01em;
-  }
-  .hero-stat-value {
-    font-variant-numeric: tabular-nums;
-    font-weight: 600;
-    color: var(--ink);
-  }
+    /* Soft white fade over the gradient for text readability */
+    .hero-gradient::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.92) 0%,
+        rgba(255, 255, 255, 0.7) 25%,
+        rgba(255, 255, 255, 0.15) 55%,
+        transparent 75%
+      );
+    }
 
-  /* Main headline */
-  .hero-title {
-    margin: 0;
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: clamp(2.75rem, 6.2vw, 4.6rem);
-    line-height: 1.02;
-    letter-spacing: -0.03em;
-    color: var(--ink);
-    max-width: 16ch;
-  }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin-left: max(24px, calc((100vw - 1200px) / 2));
+    }
 
-  /* Supporting text */
-  .hero-lead {
-    margin: 1.5rem 0 0;
-    max-width: 36rem;
-    font-size: 1.125rem;
-    line-height: 1.65;
-    color: var(--muted);
-  }
-  @media (min-width: 768px) {
-    .hero-lead { font-size: 1.1875rem; }
-  }
+    /* GDP ticker */
+    .gdp-ticker {
+      font-size: 14px;
+      font-weight: 500;
+      color: #425466;
+      margin-bottom: 28px;
+      letter-spacing: -0.01em;
+    }
 
-  /* Buttons — fully rounded */
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 2.25rem;
-  }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    min-height: 3rem;
-    padding: 0 1.5rem;
-    border-radius: 999px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: transform 150ms ease, filter 150ms ease, border-color 150ms ease;
-  }
-  .btn:active { transform: scale(0.97); }
-  .btn-primary {
-    background: var(--orange);
-    color: var(--paper);
-  }
-  .btn-primary:hover { filter: brightness(1.08); }
-  .btn-ghost {
-    background: var(--card);
-    color: var(--ink);
-    border: 1px solid var(--line);
-  }
-  .btn-ghost:hover {
-    border-color: color-mix(in srgb, var(--ink) 28%, transparent);
-  }
+    .gdp-ticker span {
+      color: #0a2540;
+      font-variant-numeric: tabular-nums;
+    }
 
-  /* Logo marquee */
-  .brand-marquee {
-    margin-top: 5.5rem;
-    padding-bottom: 3.5rem;
-    overflow: hidden;
-  }
-  .brand-marquee-label {
-    max-width: 72rem;
-    margin: 0 auto 1.35rem;
-    padding: 0 1.5rem;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: color-mix(in srgb, var(--muted) 78%, transparent);
-  }
-  .brand-track-wrap {
-    overflow: hidden;
-    mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
-  }
-  .brand-track {
-    display: flex;
-    width: max-content;
-    animation: brand-scroll 60s linear infinite;
-  }
-  .brand-group {
-    display: flex;
-    align-items: center;
-    gap: 3.75rem;
-    padding-right: 3.75rem;
-  }
-  .brand-logo {
-    height: 28px;
-    width: auto;
-    object-fit: contain;
-    opacity: 0.78;
-    filter: grayscale(0.15);
-    transition: opacity 180ms ease, filter 180ms ease;
-  }
-  .brand-logo:hover {
-    opacity: 1;
-    filter: grayscale(0);
-  }
+    /* Headline */
+    .hero h1 {
+      font-size: clamp(36px, 5.2vw, 52px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: #0a2540;
+      margin-bottom: 0;
+    }
 
-  @keyframes brand-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
+    .hero h1 .highlight {
+      color: #635bff; /* Stripe blurple */
+    }
 
-  @media (prefers-reduced-motion: reduce) {
-    .brand-track { animation: none; }
-  }
+    /* Subheadline */
+    .hero p {
+      font-size: clamp(20px, 2.8vw, 28px);
+      font-weight: 400;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      color: #425466;
+      margin-top: 8px;
+      max-width: 620px;
+    }
 
-  /* Mobile */
-  @media (max-width: 720px) {
-    .hero { padding-top: 4rem; }
-    .hero-title { max-width: none; font-size: clamp(2.6rem, 11vw, 3.4rem); }
-    .hero-actions { flex-direction: column; }
-    .hero-actions .btn { width: 100%; }
-    .brand-group { gap: 2.75rem; padding-right: 2.75rem; }
-    .brand-logo { height: 24px; }
-  }
-</style>
+    .hero p .highlight {
+      color: #635bff;
+    }
 
-<section class="hero">
-  <div class="hero-inner">
-    <!-- Stripe-style eyebrow -->
-    <p class="hero-stat">
-      <span>Hosting fees cancelled by HostCut</span>
-      <span class="hero-stat-value" id="savingsCounter">$29</span>
-    </p>
+    /* Buttons */
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 36px;
+    }
 
-    <!-- Headline (placeholder Stripe copy for now) -->
-    <h1 class="hero-title">
-      Financial infrastructure to grow your revenue.
-    </h1>
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      height: 44px;
+      padding: 0 18px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      cursor: pointer;
+      border: none;
+    }
 
-    <!-- Supporting text (placeholder) -->
-    <p class="hero-lead">
-      Accept payments, handle business banking,<sup>1</sup> and implement custom revenue models—from your first transaction to your billionth.
-    </p>
+    .btn-primary {
+      background: #635bff;
+      color: #ffffff;
+    }
 
-    <!-- Buttons -->
-    <div class="hero-actions">
-      <a href="#offers" class="btn btn-primary">
-        See the offer
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      <a href="#process" class="btn btn-ghost">How it works</a>
-    </div>
-  </div>
+    .btn-primary:hover {
+      background: #0a2540;
+    }
 
-  <!-- Logo trust marquee -->
-  <div class="brand-marquee">
-    <p class="brand-marquee-label">These businesses trust Cloudflare’s network</p>
+    .btn-secondary {
+      background: #ffffff;
+      color: #0a2540;
+      border: 1px solid #e6e8eb;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.03);
+    }
 
-    <div class="brand-track-wrap">
-      <div class="brand-track">
-        <div class="brand-group">
-          <img class="brand-logo" src="https://logo.clearbit.com/openai.com" alt="OpenAI" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/anthropic.com" alt="Anthropic" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/microsoft.com" alt="Microsoft" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/x.com" alt="X" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/shopify.com" alt="Shopify" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/walmart.com" alt="Walmart" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/bestbuy.com" alt="Best Buy" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/nike.com" alt="Nike" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/hm.com" alt="H&M" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/doordash.com" alt="DoorDash" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/disney.com" alt="Disney" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/canva.com" alt="Canva" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/ibm.com" alt="IBM" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/dell.com" alt="Dell" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/ford.com" alt="Ford" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/gm.com" alt="General Motors" height="28">
-        </div>
-        <!-- duplicate for seamless loop -->
-        <div class="brand-group" aria-hidden="true">
-          <img class="brand-logo" src="https://logo.clearbit.com/openai.com" alt="" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/anthropic.com" alt="" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/microsoft.com" alt="" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/x.com" alt="" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/shopify.com" alt="" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/walmart.com" alt="" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/bestbuy.com" alt="" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/nike.com" alt="" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/hm.com" alt="" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/doordash.com" alt="" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/disney.com" alt="" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/canva.com" alt="" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/ibm.com" alt="" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/dell.com" alt="" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/ford.com" alt="" height="28">
-          <img class="brand-logo" src="https://logo.clearbit.com/gm.com" alt="" height="28">
-        </div>
+    .btn-secondary:hover {
+      background: #f6f9fc;
+      border-color: #d6d9de;
+    }
+
+    .btn-secondary img {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Logo bar */
+    .logo-bar {
+      position: relative;
+      z-index: 1;
+      margin-top: 80px;
+      padding-top: 32px;
+      border-top: 1px solid #e6e8eb;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 40px 48px;
+      max-width: 1100px;
+      margin-left: max(24px, calc((100vw - 1200px) / 2));
+      margin-right: auto;
+    }
+
+    .logo-bar span,
+    .logo-bar img {
+      height: 22px;
+      opacity: 0.75;
+      filter: grayscale(100%);
+      transition: opacity 0.2s;
+    }
+
+    .logo-bar span {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #0a2540;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .logo-bar .anthropic { font-weight: 700; letter-spacing: 0.04em; }
+    .logo-bar .brightwheel { color: #ff6b35; filter: none; opacity: 1; }
+    .logo-bar .cursor { font-weight: 700; }
+    .logo-bar .openai { font-weight: 600; }
+    .logo-bar .amazon { font-weight: 700; color: #000; }
+    .logo-bar .nvidia { color: #76b900; filter: none; opacity: 1; font-weight: 700; }
+    .logo-bar .ford { font-weight: 700; font-style: italic; letter-spacing: 0.05em; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-gradient {
+        width: 100%;
+        right: -30%;
+        opacity: 0.7;
+      }
+      
+      .hero-content {
+        margin-left: 0;
+        max-width: 100%;
+      }
+
+      .logo-bar {
+        margin-left: 0;
+        gap: 28px 32px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 60px 20px 40px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .logo-bar {
+        gap: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <!-- Abstract colorful shape -->
+    <div class="hero-gradient" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <div class="gdp-ticker">
+        Global GDP running on Stripe: <span>1.75077874%</span>
+      </div>
+
+      <h1>
+        Financial infrastructure to grow <span class="highlight">your revenue</span>.
+      </h1>
+
+      <p>
+        Accept payments, handle business <span class="highlight">banking,</span><sup>1</sup> and
+        implement custom revenue models—from <span class="highlight">your</span>
+        first transaction to your billionth.
+      </p>
+
+      <div class="cta-row">
+        <a href="#" class="btn btn-primary">
+          Get started
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <a href="#" class="btn btn-secondary">
+          <!-- Google "G" icon -->
+          <svg width="18" height="18" viewBox="0 0 18 18">
+            <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/>
+            <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.96-2.184l-2.908-2.258c-.806.54-1.837.86-3.052.86-2.347 0-4.332-1.584-5.043-3.712H.957v2.332C2.438 15.983 5.482 18 9 18z"/>
+            <path fill="#FBBC05" d="M3.957 10.706c-.18-.54-.282-1.117-.282-1.706s.102-1.166.282-1.706V4.962H.957C.348 6.175 0 7.55 0 9s.348 2.825.957 4.038l3-2.332z"/>
+            <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.962L3.957 7.294C4.668 5.163 6.653 3.58 9 3.58z"/>
+          </svg>
+          Sign up with Google
+        </a>
       </div>
     </div>
-  </div>
-</section>
 
-<script>
-  // Live $ counter — starts at $29 and adds $29 at random intervals
-  (function () {
-    const el = document.getElementById("savingsCounter");
-    if (!el) return;
+    <!-- Company logos -->
+    <div class="logo-bar">
+      <span class="anthropic">ANTHROPIC</span>
+      <span class="brightwheel">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-right:4px">
+          <circle cx="12" cy="12" r="10" fill="#FF6B35"/>
+          <path d="M8 12l3 3 5-6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        brightwheel
+      </span>
+      <span class="cursor">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px">
+          <path d="M4 4l7 16 2-7 7-2L4 4z"/>
+        </svg>
+        CURSOR
+      </span>
+      <span class="openai">OpenAI</span>
+      <span class="amazon">amazon</span>
+      <span class="nvidia">
+        <svg width="18" height="14" viewBox="0 0 24 18" fill="#76B900" style="margin-right:3px">
+          <path d="M12 0L0 18h4.5L12 4.5 19.5 18H24L12 0z"/>
+        </svg>
+        NVIDIA
+      </span>
+      <span class="ford">Ford</span>
+    </div>
+  </section>
 
-    let value = 29;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    function format(n) {
-      return "$" + n.toLocaleString("en-US");
-    }
-
-    function tick() {
-      value += 29;
-      el.textContent = format(value);
-      const delay = reduced ? 4200 : 700 + Math.random() * 2800;
-      setTimeout(tick, delay);
-    }
-
-    setTimeout(tick, reduced ? 1600 : 1100);
-  })();
-</script>
-<!-- ========== END HERO ========== -->
+</body>
+</html>

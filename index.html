@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stripe Hero – Live Counter + Official Logos</title>
+  <title>Stripe Hero – Live Counter + Official Favicons</title>
   <style>
     * {
       margin: 0;
@@ -210,8 +210,8 @@
     .marquee-content {
       display: flex;
       align-items: center;
-      gap: 52px;
-      padding-right: 52px;
+      gap: 48px;
+      padding-right: 48px;
     }
 
     .logo-item {
@@ -220,7 +220,7 @@
       gap: 10px;
       white-space: nowrap;
       color: #0a2540;
-      opacity: 0.85;
+      opacity: 0.9;
       transition: opacity 0.2s;
       font-size: 15px;
       font-weight: 600;
@@ -232,20 +232,13 @@
     }
 
     .logo-item img {
+      width: 24px;
       height: 24px;
-      width: auto;
-      display: block;
-      filter: grayscale(0%);
+      border-radius: 4px;
+      object-fit: contain;
+      flex-shrink: 0;
+      background: #fff;
     }
-
-    /* Make some logos a bit larger/smaller for visual balance */
-    .logo-item img.openai    { height: 22px; }
-    .logo-item img.anthropic { height: 22px; }
-    .logo-item img.x         { height: 18px; }
-    .logo-item img.nike      { height: 18px; }
-    .logo-item img.hm        { height: 20px; }
-    .logo-item img.disney    { height: 22px; }
-    .logo-item img.ford      { height: 20px; }
 
     @media (max-width: 900px) {
       .hero-gradient {
@@ -270,8 +263,8 @@
         font-size: 18px;
       }
       .marquee-content {
-        gap: 40px;
-        padding-right: 40px;
+        gap: 36px;
+        padding-right: 36px;
       }
     }
   </style>
@@ -319,141 +312,141 @@
     </div>
   </div>
 
-  <!-- INFINITE MARQUEE WITH OFFICIAL LOGOS -->
+  <!-- INFINITE MARQUEE – Google Favicons (guaranteed to load) -->
   <div class="marquee-section">
     <div class="marquee-track">
       <!-- First set -->
       <div class="marquee-content">
         <div class="logo-item">
-          <img class="openai" src="https://cdn.simpleicons.org/openai/000000" alt="OpenAI" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI" width="24" height="24">
           OpenAI
         </div>
         <div class="logo-item">
-          <img class="anthropic" src="https://cdn.simpleicons.org/anthropic/D97757" alt="Anthropic" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic" width="24" height="24">
           Anthropic
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/microsoft/00A4EF" alt="Microsoft" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft" width="24" height="24">
           Microsoft
         </div>
         <div class="logo-item">
-          <img class="x" src="https://cdn.simpleicons.org/x/000000" alt="X" height="18">
+          <img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="X" width="24" height="24">
           X
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/shopify/95BF47" alt="Shopify" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify" width="24" height="24">
           Shopify
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/walmart/0071DC" alt="Walmart" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=walmart.com&sz=64" alt="Walmart" width="24" height="24">
           Walmart
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/bestbuy/0046BE" alt="Best Buy" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=bestbuy.com&sz=64" alt="Best Buy" width="24" height="24">
           Best Buy
         </div>
         <div class="logo-item">
-          <img class="nike" src="https://cdn.simpleicons.org/nike/000000" alt="Nike" height="18">
+          <img src="https://www.google.com/s2/favicons?domain=nike.com&sz=64" alt="Nike" width="24" height="24">
           Nike
         </div>
         <div class="logo-item">
-          <img class="hm" src="https://cdn.simpleicons.org/hm/E50010" alt="H&M" height="20">
+          <img src="https://www.google.com/s2/favicons?domain=hm.com&sz=64" alt="H&M" width="24" height="24">
           H&M
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/doordash/FF3008" alt="DoorDash" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=64" alt="DoorDash" width="24" height="24">
           DoorDash
         </div>
         <div class="logo-item">
-          <img class="disney" src="https://cdn.simpleicons.org/disney/000000" alt="Disney" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney" width="24" height="24">
           Disney
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/canva/00C4CC" alt="Canva" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva" width="24" height="24">
           Canva
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/ibm/054ADA" alt="IBM" height="20">
+          <img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM" width="24" height="24">
           IBM
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/dell/007DB8" alt="Dell" height="20">
+          <img src="https://www.google.com/s2/favicons?domain=dell.com&sz=64" alt="Dell" width="24" height="24">
           Dell
         </div>
         <div class="logo-item">
-          <img class="ford" src="https://cdn.simpleicons.org/ford/003478" alt="Ford" height="20">
+          <img src="https://www.google.com/s2/favicons?domain=ford.com&sz=64" alt="Ford" width="24" height="24">
           Ford
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/generalmotors/0170AD" alt="General Motors" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="General Motors" width="24" height="24">
           General Motors
         </div>
       </div>
 
-      <!-- Duplicate set for seamless infinite loop -->
+      <!-- Duplicate set for seamless infinite scroll -->
       <div class="marquee-content">
         <div class="logo-item">
-          <img class="openai" src="https://cdn.simpleicons.org/openai/000000" alt="OpenAI" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI" width="24" height="24">
           OpenAI
         </div>
         <div class="logo-item">
-          <img class="anthropic" src="https://cdn.simpleicons.org/anthropic/D97757" alt="Anthropic" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic" width="24" height="24">
           Anthropic
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/microsoft/00A4EF" alt="Microsoft" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft" width="24" height="24">
           Microsoft
         </div>
         <div class="logo-item">
-          <img class="x" src="https://cdn.simpleicons.org/x/000000" alt="X" height="18">
+          <img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="X" width="24" height="24">
           X
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/shopify/95BF47" alt="Shopify" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify" width="24" height="24">
           Shopify
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/walmart/0071DC" alt="Walmart" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=walmart.com&sz=64" alt="Walmart" width="24" height="24">
           Walmart
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/bestbuy/0046BE" alt="Best Buy" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=bestbuy.com&sz=64" alt="Best Buy" width="24" height="24">
           Best Buy
         </div>
         <div class="logo-item">
-          <img class="nike" src="https://cdn.simpleicons.org/nike/000000" alt="Nike" height="18">
+          <img src="https://www.google.com/s2/favicons?domain=nike.com&sz=64" alt="Nike" width="24" height="24">
           Nike
         </div>
         <div class="logo-item">
-          <img class="hm" src="https://cdn.simpleicons.org/hm/E50010" alt="H&M" height="20">
+          <img src="https://www.google.com/s2/favicons?domain=hm.com&sz=64" alt="H&M" width="24" height="24">
           H&M
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/doordash/FF3008" alt="DoorDash" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=64" alt="DoorDash" width="24" height="24">
           DoorDash
         </div>
         <div class="logo-item">
-          <img class="disney" src="https://cdn.simpleicons.org/disney/000000" alt="Disney" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney" width="24" height="24">
           Disney
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/canva/00C4CC" alt="Canva" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva" width="24" height="24">
           Canva
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/ibm/054ADA" alt="IBM" height="20">
+          <img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM" width="24" height="24">
           IBM
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/dell/007DB8" alt="Dell" height="20">
+          <img src="https://www.google.com/s2/favicons?domain=dell.com&sz=64" alt="Dell" width="24" height="24">
           Dell
         </div>
         <div class="logo-item">
-          <img class="ford" src="https://cdn.simpleicons.org/ford/003478" alt="Ford" height="20">
+          <img src="https://www.google.com/s2/favicons?domain=ford.com&sz=64" alt="Ford" width="24" height="24">
           Ford
         </div>
         <div class="logo-item">
-          <img src="https://cdn.simpleicons.org/generalmotors/0170AD" alt="General Motors" height="22">
+          <img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="General Motors" width="24" height="24">
           General Motors
         </div>
       </div>
@@ -462,7 +455,7 @@
 </section>
 
 <script>
-  // Live counter: starts at $29 and adds $29 at random intervals
+  // Live counter that starts at $29 and adds $29 at random intervals
   (function () {
     const el = document.getElementById('liveCounter');
     let value = 29;
@@ -475,7 +468,6 @@
       value += 29;
       el.textContent = format(value);
 
-      // Random timing – mostly slow, occasional fast bursts
       const isBurst = Math.random() < 0.22;
       const delay = isBurst
         ? 150 + Math.random() * 300

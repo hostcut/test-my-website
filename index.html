@@ -1,54 +1,66 @@
-<!-- ========== HOSTCUT HERO (Stripe-inspired) ========== -->
+<!-- ========== HOSTCUT HERO — FULL READY-TO-PASTE BLOCK ========== -->
 <style>
-  /* Hero layout */
+  /* HostCut color scheme (from original design) */
+  :root {
+    --ink: #14120e;
+    --paper: #f4f0e8;
+    --card: #fffdf8;
+    --muted: #6f675c;
+    --orange: #f15a22;
+    --line: #e4dccf;
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-serif: "Instrument Serif", Georgia, ui-serif, serif;
+  }
+
+  /* Hero */
   .hero {
-    padding: 5.5rem 0 4.5rem;
-    text-align: left;
+    padding: 5.5rem 0 4rem;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
   }
   @media (min-width: 768px) {
-    .hero { padding: 7.5rem 0 5.5rem; }
+    .hero { padding: 7.5rem 0 5rem; }
   }
 
   .hero-inner {
-    max-width: 42rem;
+    max-width: 42rem;          /* tighter, more central like Stripe */
     margin-inline: auto;
+    padding-inline: 1.25rem;
   }
 
-  /* Stripe-style eyebrow + live counter */
+  /* Eyebrow + live counter */
   .hero-stat {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 0.5rem 0.75rem;
+    gap: 0.4rem 0.7rem;
     margin: 0 0 1.75rem;
     font-size: 0.8125rem;
     font-weight: 500;
     letter-spacing: 0.01em;
     color: var(--muted);
   }
-  .hero-stat-label {
-    color: var(--muted);
-  }
   .hero-stat-value {
     font-variant-numeric: tabular-nums;
     font-weight: 600;
     color: var(--ink);
-    letter-spacing: -0.01em;
   }
 
   .hero-title {
     margin: 0;
-    max-width: 18ch;
+    max-width: 16ch;
     font-family: var(--font-serif);
     font-weight: 400;
-    font-size: clamp(2.6rem, 6.2vw, 4.75rem);
-    line-height: 0.98;
+    font-size: clamp(2.75rem, 6.5vw, 4.85rem);
+    line-height: 0.96;
     letter-spacing: -0.03em;
+    color: var(--ink);
   }
 
   .hero-lead {
     margin: 1.5rem 0 0;
-    max-width: 36rem;
+    max-width: 34rem;
     font-size: 1.125rem;
     line-height: 1.65;
     color: var(--muted);
@@ -63,45 +75,72 @@
     gap: 0.75rem;
     margin-top: 2.25rem;
   }
-  .hero-actions .btn {
+
+  /* Buttons — fully rounded */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     min-height: 3rem;
     padding: 0 1.5rem;
     border-radius: 999px;
     font-size: 0.875rem;
     font-weight: 600;
+    text-decoration: none;
+    transition: transform 150ms ease, filter 150ms ease, border-color 150ms ease;
+  }
+  .btn:active { transform: scale(0.97); }
+
+  .btn-primary {
+    background: var(--orange);
+    color: var(--paper);
+  }
+  .btn-primary:hover { filter: brightness(1.08); }
+
+  .btn-ghost {
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink);
+  }
+  .btn-ghost:hover {
+    border-color: color-mix(in srgb, var(--ink) 30%, transparent);
   }
 
-  /* Brand trust marquee */
+  /* Brand marquee */
   .brand-marquee {
-    padding: 0 0 3.5rem;
+    padding: 0 0 3.75rem;
+    background: var(--paper);
     overflow: hidden;
   }
   .brand-marquee-label {
-    margin: 0 0 1.25rem;
+    max-width: 72rem;
+    margin: 0 auto 1.25rem;
+    padding-inline: 1.25rem;
     font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--muted) 85%, transparent);
+    color: color-mix(in srgb, var(--muted) 80%, transparent);
   }
 
   .brand-track-wrap {
     overflow: hidden;
-    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
   }
 
   .brand-track {
     display: flex;
     width: max-content;
-    animation: brand-scroll 55s linear infinite;
+    animation: brand-scroll 58s linear infinite;
   }
 
   .brand-group {
     display: flex;
     align-items: center;
-    gap: 3.25rem;
-    padding-right: 3.25rem;
+    gap: 3.5rem;
+    padding-right: 3.5rem;
   }
 
   .brand {
@@ -109,12 +148,12 @@
     font-size: 1.05rem;
     font-weight: 600;
     letter-spacing: -0.02em;
-    opacity: 0.72;
-    transition: opacity 180ms ease;
+    opacity: 0.78;
+    transition: opacity 160ms ease;
   }
   .brand:hover { opacity: 1; }
 
-  /* Brand colors */
+  /* Brand recognition through color + weight */
   .brand.openai     { color: #111; font-weight: 700; }
   .brand.anthropic  { color: #d97757; }
   .brand.microsoft  { color: #00a4ef; }
@@ -122,7 +161,7 @@
   .brand.shopify    { color: #96bf48; }
   .brand.walmart    { color: #0071ce; font-weight: 700; }
   .brand.bestbuy    { color: #0046be; }
-  .brand.nike       { color: #111; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.95rem; }
+  .brand.nike       { color: #111; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.95rem; }
   .brand.hm         { color: #e50010; font-weight: 700; letter-spacing: 0.06em; }
   .brand.doordash   { color: #ff3008; font-weight: 700; }
   .brand.disney     { color: #113ccf; font-weight: 700; }
@@ -143,24 +182,27 @@
 
   /* Mobile */
   @media (max-width: 720px) {
-    .hero { padding: 3.75rem 0 3.25rem; }
+    .hero { padding: 3.75rem 0 3rem; }
     .hero-inner { max-width: none; }
-    .hero-title { max-width: none; font-size: clamp(2.7rem, 11vw, 3.4rem); }
+    .hero-title {
+      max-width: none;
+      font-size: clamp(2.7rem, 11.5vw, 3.5rem);
+    }
     .hero-actions { flex-direction: column; }
     .hero-actions .btn { width: 100%; justify-content: center; }
-    .brand-group { gap: 2.25rem; padding-right: 2.25rem; }
+    .brand-group { gap: 2.4rem; padding-right: 2.4rem; }
     .brand { font-size: 0.95rem; }
   }
 </style>
 
 <section class="hero">
-  <div class="container hero-inner">
+  <div class="hero-inner">
     <p class="hero-stat">
-      <span class="hero-stat-label">Hosting fees cancelled by HostCut</span>
+      <span>Hosting fees cancelled by HostCut</span>
       <span class="hero-stat-value" id="savingsCounter">$29</span>
     </p>
 
-    <h1 class="display-xl hero-title">
+    <h1 class="hero-title">
       Website infrastructure<br>
       without the monthly rent.
     </h1>
@@ -172,7 +214,7 @@
     <div class="hero-actions">
       <a href="#offers" class="btn btn-primary">
         See the offer
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <a href="#process" class="btn btn-ghost">How it works</a>
     </div>
@@ -180,9 +222,8 @@
 </section>
 
 <section class="brand-marquee" aria-label="Companies that trust Cloudflare">
-  <div class="container">
-    <p class="brand-marquee-label">These businesses trust Cloudflare’s network</p>
-  </div>
+  <p class="brand-marquee-label">These businesses trust Cloudflare’s network</p>
+
   <div class="brand-track-wrap">
     <div class="brand-track">
       <div class="brand-group">
@@ -203,6 +244,7 @@
         <span class="brand ford">Ford</span>
         <span class="brand gm">General Motors</span>
       </div>
+      <!-- duplicate for seamless loop -->
       <div class="brand-group" aria-hidden="true">
         <span class="brand openai">OpenAI</span>
         <span class="brand anthropic">Anthropic</span>
@@ -226,13 +268,13 @@
 </section>
 
 <script>
-  // Live savings counter – starts at $29 and keeps adding $29 at random intervals
+  // Live counter – starts at $29 and adds $29 at random intervals
   (function () {
-    var el = document.getElementById("savingsCounter");
+    const el = document.getElementById("savingsCounter");
     if (!el) return;
 
-    var value = 29;
-    var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let value = 29;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     function format(n) {
       return "$" + n.toLocaleString("en-US");
@@ -241,14 +283,11 @@
     function tick() {
       value += 29;
       el.textContent = format(value);
-
-      // Random timing: some fast, some slow
-      var delay = prefersReduced ? 4000 : 700 + Math.random() * 2700;
+      const delay = reduced ? 4200 : 750 + Math.random() * 2800;
       setTimeout(tick, delay);
     }
 
-    // Start after a short pause
-    setTimeout(tick, prefersReduced ? 2000 : 1400);
+    setTimeout(tick, reduced ? 1800 : 1200);
   })();
 </script>
 <!-- ========== END HERO ========== -->

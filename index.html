@@ -1,1377 +1,254 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HostCut — Free Cloudflare Hosting + Protection</title>
-  <meta name="description" content="Stop paying monthly hosting or website-builder fees. HostCut moves your small-business site to free Cloudflare Pages and configures real protection." />
-  <meta name="theme-color" content="#14120e" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --ink: #14120e;
-      --paper: #f4f0e8;
-      --card: #fffdf8;
-      --muted: #6f675c;
-      --orange: #f15a22;
-      --line: #e4dccf;
-      --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-      --font-serif: "Instrument Serif", Georgia, ui-serif, serif;
-      --header-h: 4rem;
-    }
+<!-- ========== HOSTCUT HERO (Stripe-inspired) ========== -->
+<style>
+  /* Hero layout */
+  .hero {
+    padding: 5.5rem 0 4.5rem;
+    text-align: left;
+  }
+  @media (min-width: 768px) {
+    .hero { padding: 7.5rem 0 5.5rem; }
+  }
 
-    *, *::before, *::after { box-sizing: border-box; }
-    html {
-      scroll-behavior: smooth;
-      -webkit-font-smoothing: antialiased;
-      scroll-padding-top: calc(var(--header-h) + 0.75rem);
-    }
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--font-sans);
-      line-height: 1.5;
-    }
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
-    button {
-      font: inherit;
-      cursor: pointer;
-      border: 0;
-      background: none;
-      color: inherit;
-    }
-    h1, h2, h3 { text-wrap: balance; margin: 0; }
-    p { text-wrap: pretty; margin: 0; }
-    ul, ol { margin: 0; padding: 0; list-style: none; }
-    ::selection { background: var(--orange); color: var(--paper); }
-    :focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+  .hero-inner {
+    max-width: 42rem;
+    margin-inline: auto;
+  }
 
-    .container { width: min(72rem, 100%); margin-inline: auto; padding-inline: 1.25rem; }
-    .display-xl {
-      font-family: var(--font-serif);
-      font-weight: 400;
-      font-size: clamp(2.6rem, 6.5vw, 5.75rem);
-      line-height: 0.95;
-      letter-spacing: -0.03em;
-    }
-    .display-lg {
-      font-family: var(--font-serif);
-      font-weight: 400;
-      font-size: clamp(2.15rem, 4.4vw, 3.75rem);
-      line-height: 0.98;
-      letter-spacing: -0.03em;
-    }
-    .eyebrow {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--orange);
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      min-height: 3rem;
-      padding: 0 1.25rem;
-      border-radius: 999px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      transition: transform 150ms ease, filter 150ms ease, border-color 150ms ease;
-    }
-    .btn:active { transform: scale(0.96); }
-    .btn-primary { background: var(--orange); color: var(--paper); }
-    .btn-primary:hover { filter: brightness(1.1); }
-    .btn-ghost {
-      border: 1px solid var(--line);
-      background: var(--card);
-    }
-    .btn-ghost:hover { border-color: color-mix(in srgb, var(--ink) 30%, transparent); }
-    .btn-dark {
-      background: var(--ink);
-      color: var(--paper);
-    }
+  /* Stripe-style eyebrow + live counter */
+  .hero-stat {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 0.75rem;
+    margin: 0 0 1.75rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--muted);
+  }
+  .hero-stat-label {
+    color: var(--muted);
+  }
+  .hero-stat-value {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
 
-    /* Header */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      border-bottom: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
-      background: color-mix(in srgb, var(--paper) 85%, transparent);
-      backdrop-filter: blur(16px);
-    }
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: var(--header-h);
-    }
-    .brand { display: flex; align-items: center; gap: 0.7rem; }
-    .brand-mark {
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      width: 2.25rem;
-      height: 2.25rem;
-      border-radius: 0.4rem;
-      background: #ffffff;
-      color: var(--ink);
-      line-height: 0;
-      box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent);
-    }
-    .brand-mark svg {
-      width: 1.4rem;
-      height: 1.4rem;
-      display: block;
-    }
-    .brand > span:last-child {
-      display: flex;
-      flex-direction: column;
-      gap: 0.05rem;
-      line-height: 1.15;
-    }
-    .brand strong {
-      display: block;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-    }
-    .brand > span:last-child > span {
-      display: block;
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: var(--muted);
-      letter-spacing: 0.02em;
-    }
-    .nav-desktop {
-      display: none;
-      align-items: center;
-      gap: 1.75rem;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--muted);
-    }
-    .nav-desktop a:hover { color: var(--ink); }
-    .header-cta { display: none; }
-    .menu-toggle {
-      display: grid;
-      place-items: center;
-      width: 2.75rem;
-      height: 2.75rem;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      flex-shrink: 0;
-      line-height: 0;
-    }
-    .menu-toggle svg {
-      display: block;
-      width: 18px;
-      height: 18px;
-    }
-    .mobile-nav {
-      display: none;
-      border-top: 1px solid var(--line);
-      background: var(--paper);
-      padding: 0.75rem 1.25rem 1rem;
-    }
-    .mobile-nav.open { display: block; }
-    .mobile-nav a {
-      display: block;
-      padding: 0.75rem 0.75rem;
-      border-radius: 0.75rem;
-      font-size: 1rem;
-      font-weight: 500;
-    }
+  .hero-title {
+    margin: 0;
+    max-width: 18ch;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(2.6rem, 6.2vw, 4.75rem);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+  }
 
-    @media (min-width: 768px) {
-      .nav-desktop { display: flex; }
-      .header-cta { display: inline-flex; }
-      .menu-toggle { display: none; }
-      .mobile-nav { display: none !important; }
-    }
+  .hero-lead {
+    margin: 1.5rem 0 0;
+    max-width: 36rem;
+    font-size: 1.125rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+  @media (min-width: 768px) {
+    .hero-lead { font-size: 1.1875rem; }
+  }
 
-    /* Hero */
-    .hero {
-      padding: 4.25rem 0 3.5rem;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    @media (min-width: 768px) {
-      .hero { padding: 6.5rem 0 5rem; }
-    }
-    @media (min-width: 1100px) {
-      .hero { padding: 7.5rem 0 5.5rem; }
-    }
-    .hero .eyebrow {
-      margin-inline: auto;
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-    }
-    .hero h1 {
-      margin-top: 1.25rem;
-      max-width: min(20ch, 100%);
-      width: 100%;
-      margin-inline: auto;
-    }
-    .hero .lead {
-      margin-top: 1.5rem;
-      max-width: 42rem;
-      width: 100%;
-      margin-inline: auto;
-      font-size: 1.125rem;
-      line-height: 1.7;
-      color: var(--muted);
-    }
-    @media (min-width: 768px) {
-      .hero .lead { font-size: 1.1875rem; }
-    }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.75rem;
-      margin-top: 2.25rem;
-      width: 100%;
-      max-width: 32rem;
-    }
-    .hero-actions .btn {
-      flex: 1 1 11rem;
-      min-width: 11rem;
-      padding: 0 1.5rem;
-      min-height: 3rem;
-      font-size: 0.875rem;
-    }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2.25rem;
+  }
+  .hero-actions .btn {
+    min-height: 3rem;
+    padding: 0 1.5rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
 
-    /* Typewriter cursor (temporary) */
-    .type-cursor {
-      display: inline-block;
-      width: 0.08em;
-      height: 0.9em;
-      background: var(--orange);
-      margin-left: 1px;
-      vertical-align: -0.05em;
-      animation: blink 0.85s step-end infinite;
-    }
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
-    .type-cursor.done { display: none; }
+  /* Brand trust marquee */
+  .brand-marquee {
+    padding: 0 0 3.5rem;
+    overflow: hidden;
+  }
+  .brand-marquee-label {
+    margin: 0 0 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--muted) 85%, transparent);
+  }
 
-    /* Marquee */
-    .marquee {
-      overflow: hidden;
-      background: var(--ink);
-      color: var(--paper);
-      padding: 1rem 0;
-    }
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marquee-right 42s linear infinite;
-    }
-    .marquee-group {
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      padding-right: 2.5rem;
-    }
-    .marquee-group span {
-      white-space: nowrap;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #e8dfd2;
-    }
-    .marquee-group b { color: var(--orange); font-weight: 700; }
-    .marquee-dot { margin: 0 1.5rem; color: var(--orange); }
-    @keyframes marquee-right {
-      from { transform: translateX(-50%); }
-      to { transform: translateX(0); }
-    }
+  .brand-track-wrap {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
 
-    /* Sections */
-    .section { padding: 6rem 0; }
-    @media (min-width: 768px) { .section { padding: 8rem 0; } }
-    .section-lead {
-      margin-top: 1.25rem;
-      max-width: 42rem;
-      font-size: 1.125rem;
-      color: var(--muted);
-    }
-    .problem-grid {
-      display: grid;
-      gap: 2.5rem;
-      margin-top: 3.5rem;
-    }
-    @media (min-width: 768px) {
-      .problem-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .problem-card {
-      border-top: 1px solid color-mix(in srgb, var(--ink) 15%, transparent);
-      padding-top: 1.5rem;
-    }
-    .problem-card .num {
-      font-family: var(--font-serif);
-      font-size: 2.25rem;
-      color: var(--orange);
-    }
-    .problem-card h3 { margin-top: 1rem; font-size: 1.25rem; font-weight: 600; }
-    .problem-card p { margin-top: 0.75rem; color: var(--muted); }
+  .brand-track {
+    display: flex;
+    width: max-content;
+    animation: brand-scroll 55s linear infinite;
+  }
 
-    /* Bleed images */
-    .bleed {
-      position: relative;
-      display: grid;
-      align-items: end;
-      min-height: 70vh;
-      overflow: hidden;
-      background: var(--ink);
-    }
-    .bleed-img, .bleed-photo {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .bleed-photo {
-      animation: drift 38s ease-in-out infinite alternate;
-    }
-    @keyframes drift {
-      from { transform: scale(1); }
-      to { transform: scale(1.06); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .bleed-photo { animation: none; }
-    }
-    .bleed-side::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background: linear-gradient(90deg, rgb(20 18 14 / 0.78) 0%, rgb(20 18 14 / 0.35) 48%, rgb(20 18 14 / 0.05) 100%);
-    }
-    .bleed-bottom::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background: linear-gradient(180deg, rgb(20 18 14 / 0.05) 10%, rgb(20 18 14 / 0.78) 78%);
-    }
-    .bleed-copy { position: relative; z-index: 1; }
-    .bleed-card {
-      margin: 1.25rem;
-      max-width: 28rem;
-      border-radius: 1.5rem;
-      background: var(--paper);
-      padding: 1.75rem;
-      color: var(--ink);
-      position: relative;
-    }
-    @media (min-width: 768px) {
-      .bleed-card { margin: 2.5rem; }
-      .bleed { min-height: 78vh; }
-    }
+  .brand-group {
+    display: flex;
+    align-items: center;
+    gap: 3.25rem;
+    padding-right: 3.25rem;
+  }
 
-    /* Offers */
-    .offers-grid {
-      display: grid;
-      gap: 1.25rem;
-      margin-top: 3rem;
-    }
-    @media (min-width: 1024px) {
-      .offers-grid { grid-template-columns: 1fr 1fr; }
-    }
-    .offer {
-      display: flex;
-      flex-direction: column;
-      border-radius: 1.5rem;
-      padding: 2rem;
-    }
-    @media (min-width: 768px) { .offer { padding: 2.5rem; } }
-    .offer-dark { background: var(--ink); color: var(--paper); }
-    .offer-light {
-      border: 1px solid var(--line);
-      background: var(--card);
-    }
-    .offer h3 {
-      margin-top: 1rem;
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 400;
-    }
-    .offer .desc {
-      margin-top: 1rem;
-      color: color-mix(in srgb, currentColor 75%, transparent);
-    }
-    .offer-list {
-      margin-top: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      flex: 1;
-      font-size: 0.875rem;
-    }
-    .offer-list li { display: flex; gap: 0.75rem; }
-    .offer-list svg { flex-shrink: 0; margin-top: 0.125rem; color: var(--orange); }
-    .offer-price {
-      margin-top: 2rem;
-      font-family: var(--font-serif);
-      font-size: 3rem;
-      line-height: 1;
-    }
-    .offer-price span {
-      font-family: var(--font-sans);
-      font-size: 1rem;
-      font-weight: 500;
-      opacity: 0.6;
-    }
-    .offer-note { margin-top: 0.5rem; font-size: 0.875rem; opacity: 0.7; }
-    .offer .btn { margin-top: 1.5rem; width: 100%; }
-    .compare {
-      margin-top: 1.25rem;
-      display: grid;
-      gap: 1px;
-      overflow: hidden;
-      border-radius: 1.5rem;
-      border: 1px solid var(--line);
-      background: var(--line);
-    }
-    @media (min-width: 768px) {
-      .compare { grid-template-columns: repeat(3, 1fr); }
-    }
-    .compare > div {
-      background: var(--card);
-      padding: 1.75rem 1.5rem;
-    }
-    .compare .label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .compare .num {
-      margin-top: 0.5rem;
-      font-family: var(--font-serif);
-      font-size: 3rem;
-      line-height: 1;
-    }
+  .brand {
+    white-space: nowrap;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    opacity: 0.72;
+    transition: opacity 180ms ease;
+  }
+  .brand:hover { opacity: 1; }
 
-    /* Setup cards */
-    .setup-grid {
-      display: grid;
-      gap: 1rem;
-      margin-top: 3rem;
-    }
-    @media (min-width: 768px) {
-      .setup-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 1024px) {
-      .setup-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .setup-card {
-      border-radius: 1.5rem;
-      border: 1px solid var(--line);
-      background: var(--card);
-      padding: 1.5rem;
-    }
-    .setup-icon {
-      display: grid;
-      place-items: center;
-      width: 2.75rem;
-      height: 2.75rem;
-      border-radius: 1rem;
-      background: color-mix(in srgb, var(--orange) 10%, transparent);
-      color: var(--orange);
-    }
-    .setup-card h3 { margin-top: 1.25rem; font-size: 1.125rem; font-weight: 600; }
-    .setup-card p { margin-top: 0.5rem; font-size: 0.875rem; line-height: 1.6; color: var(--muted); }
+  /* Brand colors */
+  .brand.openai     { color: #111; font-weight: 700; }
+  .brand.anthropic  { color: #d97757; }
+  .brand.microsoft  { color: #00a4ef; }
+  .brand.x          { color: #0f0f0f; font-weight: 700; letter-spacing: -0.04em; }
+  .brand.shopify    { color: #96bf48; }
+  .brand.walmart    { color: #0071ce; font-weight: 700; }
+  .brand.bestbuy    { color: #0046be; }
+  .brand.nike       { color: #111; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.95rem; }
+  .brand.hm         { color: #e50010; font-weight: 700; letter-spacing: 0.06em; }
+  .brand.doordash   { color: #ff3008; font-weight: 700; }
+  .brand.disney     { color: #113ccf; font-weight: 700; }
+  .brand.canva      { color: #00c4cc; font-weight: 700; }
+  .brand.ibm        { color: #054ada; }
+  .brand.dell       { color: #007db8; }
+  .brand.ford       { color: #003478; font-weight: 700; }
+  .brand.gm         { color: #0170ad; }
 
-    /* Process */
-    .process { background: var(--ink); color: var(--paper); }
-    .process .section-lead { color: color-mix(in srgb, var(--paper) 70%, transparent); }
-    .process-grid {
-      display: grid;
-      gap: 2rem;
-      margin-top: 3.5rem;
-    }
-    @media (min-width: 768px) {
-      .process-grid { grid-template-columns: repeat(4, 1fr); }
-    }
-    .process-step {
-      border-top: 1px solid color-mix(in srgb, var(--paper) 15%, transparent);
-      padding-top: 1.25rem;
-    }
-    .process-step .num {
-      font-family: var(--font-serif);
-      font-size: 1.875rem;
-      color: var(--orange);
-    }
-    .process-step h3 { margin-top: 1rem; font-size: 1.125rem; font-weight: 600; }
-    .process-step p {
-      margin-top: 0.5rem;
-      font-size: 0.875rem;
-      line-height: 1.6;
-      color: color-mix(in srgb, var(--paper) 65%, transparent);
-    }
-    .process-note {
-      margin-top: 2.5rem;
-      border-radius: 1.5rem;
-      background: color-mix(in srgb, var(--paper) 10%, transparent);
-      padding: 1.25rem 1.5rem;
-      font-size: 0.875rem;
-      line-height: 1.6;
-      color: color-mix(in srgb, var(--paper) 75%, transparent);
-    }
-    .process-note strong { color: var(--paper); }
+  @keyframes brand-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
 
-    /* FAQ */
-    .faq-wrap { max-width: 48rem; margin-inline: auto; }
-    .faq-list { margin-top: 2.5rem; border-top: 1px solid var(--line); }
-    .faq-item { border-bottom: 1px solid var(--line); }
-    .faq-q {
-      display: flex;
-      width: 100%;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      padding: 1.25rem 0;
-      text-align: left;
-      font-size: 1.125rem;
-      font-weight: 600;
-    }
-    .faq-icon {
-      display: grid;
-      place-items: center;
-      width: 2rem;
-      height: 2rem;
-      flex-shrink: 0;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      transition: transform 200ms ease;
-    }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-a {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 240ms ease;
-    }
-    .faq-item.open .faq-a { grid-template-rows: 1fr; }
-    .faq-a > div { overflow: hidden; }
-    .faq-a p {
-      padding-bottom: 1.5rem;
-      color: var(--muted);
-    }
+  @media (prefers-reduced-motion: reduce) {
+    .brand-track { animation: none; }
+  }
 
-    /* CTA bleed */
-    .cta-bleed .bleed-copy {
-      width: 100%;
-      max-width: 48rem;
-      margin-inline: auto;
-      padding: 6rem 1.5rem;
-      text-align: center;
-    }
-    @media (min-width: 768px) {
-      .cta-bleed .bleed-copy { padding: 8rem 1.5rem; }
-    }
-    .cta-bleed h2 { color: var(--paper); }
-    .cta-bleed p {
-      margin-top: 1.25rem;
-      max-width: 36rem;
-      margin-inline: auto;
-      font-size: 1.125rem;
-      color: color-mix(in srgb, var(--paper) 80%, transparent);
-    }
-    .cta-bleed .btn { margin-top: 2rem; }
-    .cta-bleed .sub {
-      margin-top: 1.5rem;
-      font-size: 0.875rem;
-      color: color-mix(in srgb, var(--paper) 60%, transparent);
-    }
+  /* Mobile */
+  @media (max-width: 720px) {
+    .hero { padding: 3.75rem 0 3.25rem; }
+    .hero-inner { max-width: none; }
+    .hero-title { max-width: none; font-size: clamp(2.7rem, 11vw, 3.4rem); }
+    .hero-actions { flex-direction: column; }
+    .hero-actions .btn { width: 100%; justify-content: center; }
+    .brand-group { gap: 2.25rem; padding-right: 2.25rem; }
+    .brand { font-size: 0.95rem; }
+  }
+</style>
 
-    /* Footer */
-    .site-footer {
-      border-top: 1px solid color-mix(in srgb, var(--paper) 10%, transparent);
-      background: var(--ink);
-      color: color-mix(in srgb, var(--paper) 70%, transparent);
-    }
-    .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 2rem 1.25rem;
-    }
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      color: var(--paper);
-    }
-    .footer-brand .brand-mark {
-      width: 2rem;
-      height: 2rem;
-      border-radius: 0.35rem;
-      background: #ffffff;
-      color: var(--ink);
-      box-shadow: 0 0 0 1px color-mix(in srgb, var(--paper) 25%, transparent);
-    }
-    .footer-brand .brand-mark svg { width: 1.25rem; height: 1.25rem; }
+<section class="hero">
+  <div class="container hero-inner">
+    <p class="hero-stat">
+      <span class="hero-stat-label">Hosting fees cancelled by HostCut</span>
+      <span class="hero-stat-value" id="savingsCounter">$29</span>
+    </p>
 
-    .spin-word {
-      display: inline-block;
-      min-width: 3.2ch;
-      transition: opacity 200ms ease, transform 200ms ease;
-      font-style: italic;
-      color: var(--orange);
-    }
-    .spin-word:not(.on) {
-      opacity: 0;
-      transform: translateY(-8px);
-    }
+    <h1 class="display-xl hero-title">
+      Website infrastructure<br>
+      without the monthly rent.
+    </h1>
 
-    .italic { font-style: italic; }
-    .text-orange { color: var(--orange); }
+    <p class="hero-lead">
+      Migrate your small-business site to free Cloudflare Pages. Keep full ownership of the code in a private GitHub repo, turn on real bot &amp; security protection, and cancel the builder or shared-hosting bill for good.
+    </p>
 
-    /* The Cut section — all white text */
-    .bleed-side .eyebrow,
-    .bleed-side .display-lg,
-    .bleed-side p {
-      color: #ffffff !important;
-    }
-    .bleed-side .text-orange {
-      color: #ffffff !important;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .marquee-track, .spin-word, .type-cursor {
-        animation: none !important;
-        transition: none !important;
-      }
-    }
-
-    /* ---------- Mobile / condensed screens ---------- */
-    @media (max-width: 720px) {
-      .container { padding-inline: 1rem; }
-      .display-xl {
-        font-size: clamp(2.9rem, 12.5vw, 3.65rem);
-        line-height: 1.02;
-      }
-      .display-lg {
-        font-size: clamp(2.2rem, 9.4vw, 2.85rem);
-        line-height: 1.05;
-      }
-      .lead { font-size: 1.05rem; }
-      .hero { padding-top: 3rem; padding-bottom: 3rem; }
-      .hero h1 { max-width: none; }
-      .hero .lead { max-width: none; font-size: 1.08rem; }
-      .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: none; }
-      .hero-actions .btn { width: 100%; justify-content: center; flex: none; }
-
-      .site-header { padding-block: 0; }
-      .header-inner { height: var(--header-h); }
-      .header-cta { display: none; }
-      .nav-desktop { display: none !important; }
-      .menu-toggle {
-        display: grid !important;
-        place-items: center;
-        width: 2.75rem;
-        height: 2.75rem;
-        margin: 0;
-        padding: 0;
-      }
-
-      .problem-grid { grid-template-columns: 1fr; }
-      .section { padding-block: 3.5rem; }
-      .section-lead { font-size: 1rem; }
-
-      .bleed { min-height: 28rem; }
-      .bleed-copy { padding: 1.25rem !important; }
-
-      /* ---- Built for the shop card — reworked for left-origin expand ---- */
-      .bleed-card {
-        margin: 0 1rem 1.25rem;
-        max-width: calc(100% - 2rem);
-        padding: 1.25rem 1.35rem;
-        background: color-mix(in srgb, var(--paper) 94%, transparent);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        box-shadow: 0 8px 28px rgb(20 18 14 / 0.18);
-        max-height: 22rem;
-        overflow: hidden;
-        transform-origin: left bottom;
-        transition:
-          max-height 0.4s cubic-bezier(0.33, 1, 0.68, 1),
-          width 0.4s cubic-bezier(0.33, 1, 0.68, 1),
-          max-width 0.4s cubic-bezier(0.33, 1, 0.68, 1),
-          padding 0.38s cubic-bezier(0.33, 1, 0.68, 1),
-          border-radius 0.35s cubic-bezier(0.33, 1, 0.68, 1),
-          margin 0.4s cubic-bezier(0.33, 1, 0.68, 1),
-          background 0.3s ease,
-          box-shadow 0.3s ease;
-      }
-      .bleed-bottom {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        min-height: 32rem;
-      }
-      .bleed-bottom .bleed-photo {
-        object-position: center 30%;
-      }
-      .bleed-bottom::before {
-        background: linear-gradient(180deg, rgb(20 18 14 / 0.05) 35%, rgb(20 18 14 / 0.55) 100%);
-      }
-      .bleed-bottom .bleed-card p:nth-of-type(2) {
-        font-size: 1.5rem !important;
-        line-height: 1.15 !important;
-      }
-
-      /* X button — top right when open */
-      .bleed-card-collapse-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        top: 0.7rem;
-        right: 0.7rem;
-        width: 1.75rem;
-        height: 1.75rem;
-        border-radius: 0.4rem;
-        background: color-mix(in srgb, var(--ink) 8%, transparent);
-        border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
-        color: var(--ink);
-        z-index: 2;
-        line-height: 0;
-        padding: 0;
-        transition: background 150ms ease;
-      }
-      .bleed-card-collapse-btn:hover,
-      .bleed-card-collapse-btn:focus-visible {
-        background: color-mix(in srgb, var(--ink) 14%, transparent);
-      }
-      .bleed-card-collapse-btn svg {
-        width: 12px;
-        height: 12px;
-        display: block;
-        flex-shrink: 0;
-      }
-
-      /* Collapsed state — box on bottom-left, + perfectly centered */
-      .bleed-card.collapsed {
-        width: 2.75rem;
-        height: 2.75rem;
-        min-height: 2.75rem;
-        max-width: 2.75rem;
-        max-height: 2.75rem;
-        padding: 0;
-        margin: 0 0 1.25rem 1rem; /* left side */
-        border-radius: 0.5rem;
-        overflow: hidden;
-        background: color-mix(in srgb, var(--paper) 92%, transparent);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: 0 6px 20px rgb(20 18 14 / 0.22);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .bleed-card.collapsed > *:not(.bleed-card-collapse-btn) {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        position: absolute;
-        width: 0;
-        height: 0;
-        overflow: hidden;
-      }
-      .bleed-card.collapsed .bleed-card-collapse-btn {
-        position: static;
-        width: 2.75rem;
-        height: 2.75rem;
-        border-radius: 0.5rem;
-        background: transparent;
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
-        padding: 0;
-      }
-      .bleed-card.collapsed .bleed-card-collapse-btn svg {
-        width: 15px;
-        height: 15px;
-        display: block;
-      }
-
-      /* Center text in "What you actually get" cards on mobile */
-      .setup-card {
-        text-align: center;
-      }
-      .setup-icon {
-        margin-inline: auto;
-      }
-
-      .offers-grid { grid-template-columns: 1fr; }
-      .process-grid { grid-template-columns: 1fr; }
-      .faq-list { gap: 0.5rem; }
-      .faq-q { font-size: 1rem; padding: 1rem; }
-      .faq-a { padding: 0 1rem 1rem; font-size: 0.95rem; }
-
-      .marquee { padding: 0.85rem 0; }
-      .marquee-group { gap: 1.5rem; font-size: 0.9rem; }
-
-      .footer-inner { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-    }
-
-    @media (min-width: 721px) {
-      .bleed-card-collapse-btn { display: none !important; }
-    }
-
-    @media (max-width: 420px) {
-      .brand > span:last-child > span { display: none; }
-    }
-
-    .process.section {
-      padding-top: 0;
-    }
-    .process .marquee-process-top {
-      width: 100%;
-      max-width: none;
-      margin: 0;
-      border-radius: 0;
-      border: none;
-      border-bottom: 1px solid color-mix(in srgb, var(--paper) 8%, transparent);
-    }
-    .process .marquee-process-top .marquee-track {
-      animation-duration: 48s;
-    }
-    .process > .container {
-      padding-top: 4rem;
-    }
-    @media (max-width: 720px) {
-      .process > .container { padding-top: 2.75rem; }
-    }
-
-    /* Extra scroll padding so process marquee is fully visible under sticky header */
-    #process {
-      scroll-margin-top: calc(var(--header-h) + 0.5rem);
-    }
-    #problem,
-    #offers,
-    #setup,
-    #faq {
-      scroll-margin-top: calc(var(--header-h) + 0.5rem);
-    }
-
-  </style>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#top" class="brand">
-        <span class="brand-mark" aria-hidden="true">
-          <!-- New logo: H (Q1), dashed cut (Q2→Q3), C (Q4) — equal size, no overlap, no edge touch -->
-          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <!-- H — top-left quadrant -->
-            <path fill="currentColor" d="M4.2 4.2h2.5v9.2h5.6V4.2h2.5v15.6h-2.5v-4.3H6.7v4.3H4.2V4.2Z"/>
-            <!-- C — bottom-right quadrant -->
-            <path fill="currentColor" d="M20.8 16.2c-3.35 0-5.7 2.35-5.7 5.55 0 3.25 2.35 5.6 5.7 5.6 1.85 0 3.35-.65 4.4-1.85l-1.75-1.55c-.65.75-1.5 1.15-2.65 1.15-1.85 0-3.15-1.4-3.15-3.35s1.3-3.35 3.15-3.35c1.15 0 2 .4 2.65 1.15l1.75-1.55c-1.05-1.2-2.55-1.85-4.4-1.85Z"/>
-            <!-- Dashed cut line: top-right → bottom-left, through center, not touching edges or letters -->
-            <path d="M27.2 5.8 L4.8 26.2" stroke="#f15a22" stroke-width="1.55" stroke-linecap="round" stroke-dasharray="2.6 2.3"/>
-          </svg>
-        </span>
-        <span>
-          <strong>HostCut</strong>
-          <span>Hosting &amp; protection</span>
-        </span>
+    <div class="hero-actions">
+      <a href="#offers" class="btn btn-primary">
+        See the offer
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <nav class="nav-desktop" aria-label="Primary">
-        <a href="#problem">The problem</a>
-        <a href="#offers">Services</a>
-        <a href="#process">Process</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-      <a href="#offers" class="btn btn-primary header-cta">View services</a>
-      <button type="button" class="menu-toggle" id="menuBtn" aria-expanded="false" aria-label="Open menu">
-        <svg id="menuIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
+      <a href="#process" class="btn btn-ghost">How it works</a>
     </div>
-    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
-      <a href="#problem">The problem</a>
-      <a href="#offers">Services</a>
-      <a href="#setup">What you get</a>
-      <a href="#process">Process</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-  </header>
+  </div>
+</section>
 
-  <main id="top">
-    <section class="hero container">
-      <p class="eyebrow">Website hosting</p>
-      <h1 class="display-xl">
-        Stop paying rent<br />
-        <span class="italic text-orange" id="typeTarget"></span><span class="type-cursor" id="typeCursor"></span>
-      </h1>
-      <p class="lead">
-        Migrate your small-business site onto free Cloudflare Pages. Keep your code in a private GitHub repo you own, and real bot and security protection is turned on. Or protect your host by adding an enterprise shield.
-      </p>
-      <div class="hero-actions">
-        <a href="#offers" class="btn btn-primary">
-          Compare services
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a href="#process" class="btn btn-ghost">See how it works</a>
+<section class="brand-marquee" aria-label="Companies that trust Cloudflare">
+  <div class="container">
+    <p class="brand-marquee-label">These businesses trust Cloudflare’s network</p>
+  </div>
+  <div class="brand-track-wrap">
+    <div class="brand-track">
+      <div class="brand-group">
+        <span class="brand openai">OpenAI</span>
+        <span class="brand anthropic">Anthropic</span>
+        <span class="brand microsoft">Microsoft</span>
+        <span class="brand x">X</span>
+        <span class="brand shopify">Shopify</span>
+        <span class="brand walmart">Walmart</span>
+        <span class="brand bestbuy">Best Buy</span>
+        <span class="brand nike">Nike</span>
+        <span class="brand hm">H&amp;M</span>
+        <span class="brand doordash">DoorDash</span>
+        <span class="brand disney">Disney</span>
+        <span class="brand canva">Canva</span>
+        <span class="brand ibm">IBM</span>
+        <span class="brand dell">Dell</span>
+        <span class="brand ford">Ford</span>
+        <span class="brand gm">General Motors</span>
       </div>
-    </section>
-
-    <section id="problem" class="section container">
-      <p class="eyebrow">The reality</p>
-      <h2 class="display-lg" style="max-width:56rem;margin-top:1rem">
-        Most small business sites pay every month for something that can be <span class="spin-word on" id="spinWord">free.</span>
-      </h2>
-      <p class="section-lead">
-        Website builders and shared hosting charge ongoing fees. At the same time the open internet throws bots, scrapers, and scanners at every site. You end up paying for hosting that is both expensive and under-protected.
-      </p>
-      <div class="problem-grid">
-        <article class="problem-card">
-          <p class="num">01</p>
-          <h3>Monthly fees that never stop</h3>
-          <p>Squarespace, Wix, WordPress hosting, and most managed platforms bill you every month or year whether traffic is high or low. The site itself rarely needs that much paid infrastructure.</p>
-        </article>
-        <article class="problem-card">
-          <p class="num">02</p>
-          <h3>Bad traffic still reaches the server</h3>
-          <p>Even on paid hosts, forms get spam, scanners probe for openings, and AI crawlers hit everything. The free Cloudflare layer can stop most of the junk before it even reaches your site.</p>
-        </article>
-        <article class="problem-card">
-          <p class="num">03</p>
-          <h3>You don’t need the complexity</h3>
-          <p>A typical local-service or company brochure site is perfectly happy as a modern static site on free global hosting. Paying for a full CMS or shared server is just overkill.</p>
-        </article>
-      </div>
-    </section>
-
-    
-
-    <figure class="bleed bleed-bottom" id="shopBleed">
-      <img class="bleed-photo" src="https://images.pexels.com/photos/19093452/pexels-photo-19093452.jpeg" alt="A sunlit bakery storefront with a laptop open on the counter" width="1792" height="1008" />
-      <figcaption class="bleed-copy bleed-card" id="shopCard">
-        <button type="button" class="bleed-card-collapse-btn" id="shopCollapseBtn" aria-label="Hide text card" title="Hide text to view image">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        </button>
-        <p class="eyebrow">Built for the shop</p>
-        <p style="margin-top:0.75rem;font-family:var(--font-serif);font-size:2.25rem;line-height:1">The storefront stays. The monthly bill does not.</p>
-        <p style="margin-top:0.75rem;color:var(--muted)">Trades, studios, and local companies. A fast brochure site with a form — not a server you rent forever.</p>
-      </figcaption>
-    </figure>
-
-    <section id="offers" class="section container">
-      <p class="eyebrow">Two clear options</p>
-      <h2 class="display-lg" style="max-width:48rem;margin-top:1rem">Choose the path that fits your situation.</h2>
-      <p class="section-lead">
-        Most clients now take the full move (zero ongoing hosting cost). The lighter protection-only service remains available if you prefer to keep your current host for now.
-      </p>
-
-      <div class="offers-grid">
-        <article class="offer offer-dark">
-          <p class="eyebrow">Strongest offer</p>
-          <h3>Free hosting + redesign</h3>
-          <p class="desc">We rebuild or carefully port your site to a private GitHub repository and deploy it on Cloudflare Pages. You stop paying hosting or website-builder fees forever.</p>
-          <ul class="offer-list">
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Modern, fast static (or lightly dynamic) site on Cloudflare Pages</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Private GitHub repo — you own the code</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Full Cloudflare free-plan security, bot controls &amp; Always Online</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Custom domain pointed and protected</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> No monthly hosting or builder subscription after hand-off</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Clean hand-off: you keep both the GitHub and Cloudflare accounts</li>
-          </ul>
-          <p class="offer-price">From $200 <span>one-time</span></p>
-          <p class="offer-note">Exact scope depends on current site complexity. Most simple service sites land in the $200–$500 range.</p>
-          <a href="#process" class="btn btn-primary">How the move works</a>
-        </article>
-
-        <article class="offer offer-light">
-          <p class="eyebrow">Keep current host</p>
-          <h3>Cloudflare protection only</h3>
-          <p class="desc">We leave your existing site and host exactly where they are. We only add a properly configured Cloudflare layer in front for filtering and resilience.</p>
-          <ul class="offer-list">
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Custom security rules, rate limiting, response rules</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Bot Fight Mode + AI crawler controls</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Always Online and basic caching</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Security headers and cleanup</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Everything under your own Cloudflare account</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> No redesign, no host change</li>
-          </ul>
-          <p class="offer-price" style="color:var(--ink)">$49 <span>one-time</span></p>
-          <p class="offer-note">Optional $4/mo monitoring available after setup.</p>
-          <a href="#setup" class="btn btn-ghost">What we configure</a>
-        </article>
-      </div>
-
-      <div class="compare">
-        <div>
-          <p class="label">Typical builder</p>
-          <p class="num">$29</p>
-          <p style="margin-top:0.25rem;font-size:0.875rem;color:var(--muted)">/mo, every month</p>
-        </div>
-        <div>
-          <p class="label">Three years of that</p>
-          <p class="num">$1,044</p>
-          <p style="margin-top:0.25rem;font-size:0.875rem;color:var(--muted)">before you change a thing</p>
-        </div>
-        <div>
-          <p class="label">After HostCut</p>
-          <p class="num">$0</p>
-          <p style="margin-top:0.25rem;font-size:0.875rem;color:var(--muted)">/mo hosting, once the move is done</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="bleed bleed-side">
-      <img class="bleed-photo" src="https://images.pexels.com/photos/40688232/pexels-photo-40688232.jpeg" alt="A molten orange ribbon of light cutting through dark glass fibers" width="1792" height="1008" />
-      <div class="bleed-copy" style="max-width:48rem;padding:6rem 1.5rem">
-        <p class="eyebrow">The cut</p>
-        <h2 class="display-lg" style="margin-top:1rem;color:var(--paper)">
-          Same edge network.<br />
-          <span class="italic text-orange">None of the rent.</span>
-        </h2>
-        <p style="margin-top:1.25rem;max-width:36rem;font-size:1.125rem;color:color-mix(in srgb, var(--paper) 80%, transparent)">
-          Your site is files, served from Cloudflare’s network. Not a shared server with a subscription attached.
-        </p>
-      </div>
-    </section>
-
-    <section id="setup" class="section container">
-      <p class="eyebrow">What you actually get</p>
-      <h2 class="display-lg" style="max-width:48rem;margin-top:1rem">Protection is included either way. Free hosting is the real upgrade.</h2>
-      <p class="section-lead">
-        Whether you take the full move or just the protection layer, the Cloudflare free plan is configured properly — not left on defaults.
-      </p>
-      <div class="setup-grid">
-        <article class="setup-card">
-          <span class="setup-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-          <h3>Custom security rules</h3>
-          <p>Blocks for sensitive paths, common exploit scans, bad user-agents, and high-risk sources.</p>
-        </article>
-        <article class="setup-card">
-          <span class="setup-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
-          <h3>Rate limiting &amp; forms</h3>
-          <p>Stops rapid-fire requests against contact forms and key pages so bots cannot overwhelm them.</p>
-        </article>
-        <article class="setup-card">
-          <span class="setup-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
-          <h3>Bot &amp; AI controls</h3>
-          <p>Bot Fight Mode plus policies that allow useful search crawlers while restricting aggressive training bots.</p>
-        </article>
-        <article class="setup-card">
-          <span class="setup-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
-          <h3>Always Online</h3>
-          <p>Cloudflare can still show a cached version of the site if the origin has a temporary problem.</p>
-        </article>
-        <article class="setup-card">
-          <span class="setup-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></span>
-          <h3>GitHub + Pages</h3>
-          <p>Clean repository, automated deploys from the main branch, and a production URL on Cloudflare Pages.</p>
-        </article>
-        <article class="setup-card">
-          <span class="setup-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></span>
-          <h3>You own everything</h3>
-          <p>Cloudflare account, GitHub repo, and domain stay in your name. We only work as invited collaborators.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="process" class="process section">
-      <div class="marquee marquee-process-top" aria-hidden="true">
-      <div class="marquee-track">
-        <div class="marquee-group">
-          <span><b>$0</b> hosting fees after the move<span class="marquee-dot">·</span></span>
-          <span>Private GitHub repository<span class="marquee-dot">·</span></span>
-          <span><b>Cloudflare Pages</b> free tier<span class="marquee-dot">·</span></span>
-          <span>Full bot &amp; security rules<span class="marquee-dot">·</span></span>
-          <span>Always Online active<span class="marquee-dot">·</span></span>
-          <span>No more Squarespace or Wix bills<span class="marquee-dot">·</span></span>
-          <span>You keep full ownership<span class="marquee-dot">·</span></span>
-          <span>Fast global CDN<span class="marquee-dot">·</span></span>
-          <span><b>One-time</b> project, then it is yours<span class="marquee-dot">·</span></span>
-          <span>Fortune 500 uses this network<span class="marquee-dot">·</span></span>
-        </div>
-        <div class="marquee-group" aria-hidden="true">
-          <span><b>$0</b> hosting fees after the move<span class="marquee-dot">·</span></span>
-          <span>Private GitHub repository<span class="marquee-dot">·</span></span>
-          <span><b>Cloudflare Pages</b> free tier<span class="marquee-dot">·</span></span>
-          <span>Full bot &amp; security rules<span class="marquee-dot">·</span></span>
-          <span>Always Online active<span class="marquee-dot">·</span></span>
-          <span>No more Squarespace or Wix bills<span class="marquee-dot">·</span></span>
-          <span>You keep full ownership<span class="marquee-dot">·</span></span>
-          <span>Fast global CDN<span class="marquee-dot">·</span></span>
-          <span><b>One-time</b> project, then it is yours<span class="marquee-dot">·</span></span>
-          <span>Fortune 500 uses this network<span class="marquee-dot">·</span></span>
-        </div>
+      <div class="brand-group" aria-hidden="true">
+        <span class="brand openai">OpenAI</span>
+        <span class="brand anthropic">Anthropic</span>
+        <span class="brand microsoft">Microsoft</span>
+        <span class="brand x">X</span>
+        <span class="brand shopify">Shopify</span>
+        <span class="brand walmart">Walmart</span>
+        <span class="brand bestbuy">Best Buy</span>
+        <span class="brand nike">Nike</span>
+        <span class="brand hm">H&amp;M</span>
+        <span class="brand doordash">DoorDash</span>
+        <span class="brand disney">Disney</span>
+        <span class="brand canva">Canva</span>
+        <span class="brand ibm">IBM</span>
+        <span class="brand dell">Dell</span>
+        <span class="brand ford">Ford</span>
+        <span class="brand gm">General Motors</span>
       </div>
     </div>
+  </div>
+</section>
 
-      <div class="container">
-        <p class="eyebrow">How the full move works</p>
-        <h2 class="display-lg" style="max-width:48rem;margin-top:1rem">Four clear steps. You keep ownership the entire time.</h2>
-        <p class="section-lead">The goal is a clean hand-off so you never depend on us for day-to-day operation of the site.</p>
-        <ol class="process-grid">
-          <li class="process-step">
-            <p class="num">01</p>
-            <h3>Review &amp; scope</h3>
-            <p>We look at your current site, forms, and any special requirements. You get a fixed quote for the redesign or careful port.</p>
-          </li>
-          <li class="process-step">
-            <p class="num">02</p>
-            <h3>Rebuild on GitHub</h3>
-            <p>We create a private repository under your GitHub account (or transfer it to you) and build a modern, fast version of the site.</p>
-          </li>
-          <li class="process-step">
-            <p class="num">03</p>
-            <h3>Deploy to Cloudflare Pages</h3>
-            <p>The site goes live on Cloudflare Pages. We connect your domain, enable the free security layer, and apply the full rule set.</p>
-          </li>
-          <li class="process-step">
-            <p class="num">04</p>
-            <h3>Hand-off &amp; cancel old host</h3>
-            <p>You confirm everything works. Then you can cancel the old Squarespace, Wix, WordPress, or shared-hosting subscription. You keep both accounts.</p>
-          </li>
-        </ol>
-        <p class="process-note">
-          <strong>Protection-only path:</strong> If you prefer to stay on your current host, the process is simpler — create a free Cloudflare account, invite us, we update DNS and apply the security configuration, then hand everything back to you.
-        </p>
+<script>
+  // Live savings counter – starts at $29 and keeps adding $29 at random intervals
+  (function () {
+    var el = document.getElementById("savingsCounter");
+    if (!el) return;
 
-        
+    var value = 29;
+    var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      </div>
-    </section>
+    function format(n) {
+      return "$" + n.toLocaleString("en-US");
+    }
 
-    <section id="faq" class="section">
-      <div class="container faq-wrap">
-        <p class="eyebrow">Common questions</p>
-        <h2 class="display-lg" style="margin-top:1rem">Straightforward answers.</h2>
-        <p class="section-lead">These are the questions that come up most often before someone decides to move.</p>
-        <div class="faq-list" id="faqList">
-          <div class="faq-item open">
-            <button type="button" class="faq-q" aria-expanded="true">
-              Can I still edit the site later?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>Yes. Updating text, images, and pages is straightforward. You (or anyone you trust) can edit the files directly, or simply ask an AI to make the changes and push them live. Updating content is usually easier than working inside the clunky editors of Squarespace or Wix. Changing the overall look is a bit more involved than dragging boxes around in a website builder, but still very doable. Many clients just message us or use AI when they want design tweaks. This is the small trade-off for no longer paying $20–$45 every month — you gain full ownership and zero ongoing fees while still being able to update the site whenever you need.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              Will this hurt my Google ranking?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>Usually the opposite happens. Moving to Cloudflare Pages almost always makes the site load significantly faster. Google has openly stated that site speed is a ranking factor, so a faster site tends to help visibility rather than hurt it. We also keep all your existing content and set up proper redirects, so you don’t lose any current rankings in the process. Most sites either stay the same or improve after the move.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              Will my site go offline during the move?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>No. We build and fully test the new version on a private preview link that Cloudflare Pages automatically provides. Your current site stays live the entire time. Once everything looks good and you’ve approved it, we switch the domain over — usually with zero downtime. Visitors never see a broken or offline site.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              What if my site relies on a form to capture leads?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>No problem at all — this is very common. We replace the old form with a new one that still sends every submission straight to your email (and optionally into a simple dashboard). You keep receiving leads exactly as you do now. The form continues to work the same way from the visitor’s perspective, just without the monthly hosting cost attached.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              Who is this service actually for?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>It works best for ordinary small-business and local-service sites: trades, professional services, simple company sites, and brochure-style websites that mainly explain what you do and let people get in touch. If you want to stop paying monthly hosting or builder fees, you’re happy with a modern static or lightly interactive site, and you prefer to own the code and the Cloudflare account, it’s a strong fit. It is not designed for heavy custom applications, large multi-location platforms, membership sites with complex user accounts, or anything that truly needs a full server-side CMS and database.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              Is there risk to site migration?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>The practical risks are low for the type of sites we work with. We build and test everything on a preview domain first, so nothing goes live until you approve it. Your original site stays online the whole time. You keep full ownership of the GitHub repository and Cloudflare account from day one. The main trade-off is that editing the overall design is a bit less “drag-and-drop” than a traditional website builder — but content updates remain simple, and most clients find the savings and ownership worth it.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              Do I still own everything after the project?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>Yes — completely. The private GitHub repository, the Cloudflare account, and your domain all stay in your name. We only work as invited collaborators during the project. Once we hand everything over, you can manage the site yourself, invite someone else, or come back to us later if you want help with updates. There is no lock-in and no ongoing dependency on us.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              What is GitHub and why is it used?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>GitHub is simply a secure place to store the files that make up your website. In this setup we create a private repository under your own account, which means you fully own the code. Cloudflare Pages then automatically builds and serves the site from that repository. You never have to interact with GitHub if you don’t want to — it just acts as the reliable, private home for your site’s files so you’re never locked into a website builder or hosting company.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              What's Cloudflare Pages?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>Cloudflare Pages is a modern hosting platform built specifically for fast, static (or lightly dynamic) websites. Instead of running on a traditional shared server that you pay for every month, your site is stored as files and delivered through Cloudflare’s global network. This is what allows the hosting itself to be free while still being extremely fast and reliable. You keep full ownership of the site through a private GitHub repository, and Cloudflare simply serves it to visitors worldwide.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              Who trusts Cloudflare?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>Roughly 45% of Fortune 500 companies rely on Cloudflare’s network. It is one of the largest and most trusted content delivery and security platforms on the internet. When we move your site, we configure the same free security layer that sits in front of those large companies — including bot protection, rate limiting, custom security rules, and Always Online. Your site benefits from enterprise-grade filtering and performance without any monthly cost.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              What’s the likelihood Cloudflare ends their free plan?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>Low. Cloudflare has publicly and repeatedly committed to keeping a strong free tier. Their CEO has stated versions of “as long as I’m CEO” when asked about it. The free plan is part of their core business strategy — it helps them fill network capacity, gather security data, and attract future paying customers. For simple static sites (exactly what we build), the free plan is especially generous, with unlimited bandwidth for static files. Like any platform, limits can gradually change over time, but the free tier for this use case has remained very usable for years and shows no signs of disappearing.</p></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
+    function tick() {
+      value += 29;
+      el.textContent = format(value);
 
-    <section class="bleed bleed-bottom cta-bleed">
-      <img class="bleed-photo" src="https://images.pexels.com/photos/11196384/pexels-photo-11196384.png" alt="A coastal city at night, street grids glowing like a network" width="1792" height="1008" />
-      <div class="bleed-copy">
-        <h2 class="display-lg">
-          Ditch the hosting fees.<br />
-          Keep the protection.
-        </h2>
-        <p>
-          Most clients now choose the full move to Cloudflare Pages because the math is simple: one-time project cost versus years of monthly fees.
-        </p>
-        <a href="#offers" class="btn btn-primary">
-          Compare the two options
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <p class="sub">Reply to the message you received, or reach out, and we can look at your company and current setup.</p>
-      </div>
-    </section>
-  </main>
+      // Random timing: some fast, some slow
+      var delay = prefersReduced ? 4000 : 700 + Math.random() * 2700;
+      setTimeout(tick, delay);
+    }
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <path fill="currentColor" d="M4.2 4.2h2.5v9.2h5.6V4.2h2.5v15.6h-2.5v-4.3H6.7v4.3H4.2V4.2Z"/>
-            <path fill="currentColor" d="M20.8 16.2c-3.35 0-5.7 2.35-5.7 5.55 0 3.25 2.35 5.6 5.7 5.6 1.85 0 3.35-.65 4.4-1.85l-1.75-1.55c-.65.75-1.5 1.15-2.65 1.15-1.85 0-3.15-1.4-3.15-3.35s1.3-3.35 3.15-3.35c1.15 0 2 .4 2.65 1.15l1.75-1.55c-1.05-1.2-2.55-1.85-4.4-1.85Z"/>
-            <path d="M27.2 5.8 L4.8 26.2" stroke="#f15a22" stroke-width="1.55" stroke-linecap="round" stroke-dasharray="2.6 2.3"/>
-          </svg>
-        </span>
-        <strong>HostCut</strong>
-      </div>
-      <p style="font-size:0.875rem">Cloudflare hosting and protection for small-business websites</p>
-    </div>
-  </footer>
-
-  <script>
-    (function () {
-      // Mobile menu
-      var btn = document.getElementById("menuBtn");
-      var nav = document.getElementById("mobileNav");
-      btn.addEventListener("click", function () {
-        var open = nav.classList.toggle("open");
-        btn.setAttribute("aria-expanded", open ? "true" : "false");
-        btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-      });
-      nav.querySelectorAll("a").forEach(function (a) {
-        a.addEventListener("click", function () {
-          nav.classList.remove("open");
-          btn.setAttribute("aria-expanded", "false");
-        });
-      });
-
-      // Spinning word
-      var words = ["free.", "$0.", "zip.", "nil."];
-      var el = document.getElementById("spinWord");
-      var wi = 0;
-      if (el && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        setInterval(function () {
-          el.classList.remove("on");
-          setTimeout(function () {
-            wi = (wi + 1) % words.length;
-            el.textContent = words[wi];
-            el.classList.add("on");
-          }, 200);
-        }, 2400);
-      }
-
-      // FAQ accordion
-      document.querySelectorAll(".faq-q").forEach(function (q) {
-        q.addEventListener("click", function () {
-          var item = q.closest(".faq-item");
-          var wasOpen = item.classList.contains("open");
-          document.querySelectorAll(".faq-item").forEach(function (it) {
-            it.classList.remove("open");
-            it.querySelector(".faq-q").setAttribute("aria-expanded", "false");
-          });
-          if (!wasOpen) {
-            item.classList.add("open");
-            q.setAttribute("aria-expanded", "true");
-          }
-        });
-      });
-
-      // Mobile "Built for the shop" card collapse / expand
-      var shopCard = document.getElementById("shopCard");
-      var shopBtn = document.getElementById("shopCollapseBtn");
-      if (shopCard && shopBtn) {
-        shopBtn.addEventListener("click", function (e) {
-          e.stopPropagation();
-          var collapsed = shopCard.classList.toggle("collapsed");
-          if (collapsed) {
-            shopBtn.setAttribute("aria-label", "Show text card");
-            shopBtn.setAttribute("title", "Show text");
-            shopBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
-          } else {
-            shopBtn.setAttribute("aria-label", "Hide text card");
-            shopBtn.setAttribute("title", "Hide text to view image");
-            shopBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>';
-          }
-        });
-      }
-
-      // Typewriter effect — only on "on your website." (faster)
-      (function () {
-        var target = document.getElementById("typeTarget");
-        var cursor = document.getElementById("typeCursor");
-        if (!target || !cursor) return;
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          target.textContent = "on your website.";
-          cursor.classList.add("done");
-          return;
-        }
-        var full = "on your website.";
-        var i = 0;
-        target.textContent = "";
-        function type() {
-          if (i < full.length) {
-            target.textContent += full.charAt(i);
-            i++;
-            setTimeout(type, 28 + Math.random() * 18);
-          } else {
-            cursor.classList.add("done");
-          }
-        }
-        setTimeout(type, 350);
-      })();
-
-    })();
-  </script>
-</body>
-</html>
+    // Start after a short pause
+    setTimeout(tick, prefersReduced ? 2000 : 1400);
+  })();
+</script>
+<!-- ========== END HERO ========== -->

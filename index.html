@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stripe Hero – Solid Cream Paper</title>
+  <title>Stripe Hero – Refined Spacing</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@
       justify-content: center;
       align-items: center;
       padding: 100px 40px 60px;
-      background: #f4f0e8;          /* solid cream paper */
+      background: #f4f0e8;
       overflow: hidden;
       text-align: center;
     }
@@ -45,7 +45,7 @@
       margin: 0 auto;
     }
 
-    /* Live counter */
+    /* Live counter – tighter spacing */
     .gdp-ticker {
       font-family: 'Inter', sans-serif;
       font-size: 15px;
@@ -56,15 +56,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;                    /* reduced gap */
     }
 
     .gdp-ticker .live-amount {
       color: #14120e;
       font-variant-numeric: tabular-nums;
       font-weight: 600;
-      min-width: 90px;
       display: inline-block;
+      margin-left: 2px;            /* tiny extra breathing room after the colon */
     }
 
     .gdp-ticker .live-dot {
@@ -167,10 +167,10 @@
       margin-top: 90px;
       padding: 36px 0;
       overflow: hidden;
-      background: #f4f0e8;          /* same cream – seamless */
+      background: #f4f0e8;
     }
 
-    /* Soft fade edges so logos gently appear/disappear */
+    /* Soft fade edges */
     .marquee-section::before,
     .marquee-section::after {
       content: "";
@@ -195,7 +195,7 @@
     .marquee-track {
       display: flex;
       width: max-content;
-      animation: marquee 55s linear infinite;
+      animation: marquee 60s linear infinite;   /* slightly slower for more spacing feel */
     }
 
     .marquee-track:hover {
@@ -210,8 +210,8 @@
     .marquee-content {
       display: flex;
       align-items: center;
-      gap: 56px;
-      padding-right: 56px;
+      gap: 72px;                    /* increased distance between brands */
+      padding-right: 72px;
     }
 
     .logo-item {
@@ -225,7 +225,7 @@
       font-family: 'Inter', sans-serif;
       font-size: 15px;
       font-weight: 500;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.04em;       /* slightly more space between letters */
       cursor: default;
       user-select: none;
     }
@@ -258,8 +258,8 @@
       }
 
       .marquee-content {
-        gap: 40px;
-        padding-right: 40px;
+        gap: 52px;
+        padding-right: 52px;
       }
 
       .marquee-section::before,
@@ -272,8 +272,6 @@
 <body>
 
 <section class="hero">
-  <!-- No gradient – pure cream paper -->
-
   <div class="hero-content">
     <div class="gdp-ticker">
       <span class="live-dot"></span>
@@ -311,7 +309,6 @@
     </div>
   </div>
 
-  <!-- Seamless marquee -->
   <div class="marquee-section">
     <div class="marquee-track">
       <div class="marquee-content">

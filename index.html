@@ -1,381 +1,1525 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stripe Hero – Refined Spacing</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hostcut — Cut your business expenses</title>
+  <meta name="description" content="Eliminate monthly website hosting fees for local businesses. Clean modern sites. You keep ownership. Easy updates when you need them." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/hostcut/my-website-images/main/icon-hostcut.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --white: #ffffff;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --ink-soft: #334155;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --blue: #0038B8;
+      --blue-dark: #002a8a;
+      --blue-soft: #e8eef8;
+      --blue-glow: rgba(0, 56, 184, 0.12);
+      --radius: 1rem;
+      --radius-lg: 1.5rem;
+      --shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
+      --shadow-lg: 0 4px 12px rgba(15, 23, 42, 0.05), 0 20px 40px rgba(15, 23, 42, 0.08);
+      --font: "Inter", ui-sans-serif, system-ui, sans-serif;
+      --serif: "Instrument Serif", Georgia, ui-serif, serif;
+      --header-h: 4.25rem;
     }
 
+    *, *::before, *::after { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      scroll-padding-top: calc(var(--header-h) + 1rem);
+    }
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #f4f0e8;
-      color: #14120e;
-      overflow-x: hidden;
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font);
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: 0;
+      background: none;
+      color: inherit;
+    }
+    h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
+    p { margin: 0; text-wrap: pretty; }
+    ul, ol { margin: 0; padding: 0; list-style: none; }
+    ::selection { background: var(--blue); color: white; }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+    .container {
+      width: min(72rem, 100%);
+      margin-inline: auto;
+      padding-inline: 1.5rem;
     }
 
-    /* ========== HERO ========== */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    /* Typography */
+    .display {
+      font-family: var(--serif);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+    .display-xl { font-size: clamp(2.6rem, 6vw, 4.5rem); }
+    .display-lg { font-size: clamp(2.1rem, 4.2vw, 3.25rem); }
+    .eyebrow {
+      display: inline-flex;
       align-items: center;
-      padding: 100px 40px 60px;
-      background: #f4f0e8;
-      overflow: hidden;
-      text-align: center;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    /* Live counter – tighter spacing */
-    .gdp-ticker {
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      color: #5c564e;
-      margin-bottom: 32px;
-      letter-spacing: -0.01em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;                    /* reduced gap */
-    }
-
-    .gdp-ticker .live-amount {
-      color: #14120e;
-      font-variant-numeric: tabular-nums;
+      gap: 0.5rem;
+      font-size: 0.75rem;
       font-weight: 600;
-      display: inline-block;
-      margin-left: 2px;            /* tiny extra breathing room after the colon */
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue-dark);
     }
-
-    .gdp-ticker .live-dot {
-      width: 7px;
-      height: 7px;
-      background: #f15a22;
-      border-radius: 50%;
-      animation: pulse 1.6s ease-in-out infinite;
+    .eyebrow::before {
+      content: "";
+      width: 1.25rem;
+      height: 2px;
+      background: var(--blue);
+      border-radius: 1px;
     }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
+    .hero .eyebrow::before {
+      content: none;
+      width: 0;
     }
-
-    /* Big serif heading */
-    .hero h1 {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: clamp(48px, 7vw, 72px);
-      font-weight: 400;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      color: #14120e;
-      margin-bottom: 12px;
+    .hero .eyebrow {
+      gap: 0;
     }
-
-    .hero h1 .highlight {
-      font-style: italic;
-      color: #f15a22;
+    .lead {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--muted);
     }
-
-    .hero p {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(18px, 2.4vw, 22px);
-      font-weight: 400;
-      line-height: 1.45;
-      letter-spacing: -0.01em;
-      color: #3d3934;
-      margin: 0 auto;
-      max-width: 720px;
-    }
-
-    .hero p .highlight {
-      color: #f15a22;
-      font-weight: 500;
+    @media (min-width: 768px) {
+      .lead { font-size: 1.2rem; }
     }
 
     /* Buttons */
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 40px;
-      justify-content: center;
-    }
-
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      height: 48px;
-      padding: 0 22px;
-      border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.18s ease;
-      cursor: pointer;
-      border: none;
+      gap: 0.5rem;
+      min-height: 3.15rem;
+      padding: 0 1.5rem;
+      border-radius: 999px;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
     }
-
+    .btn:active { transform: scale(0.97); }
     .btn-primary {
-      background: #f15a22;
-      color: #ffffff;
+      background: var(--blue);
+      color: white;
+      box-shadow: 0 4px 14px rgba(0, 56, 184, 0.35);
     }
-
     .btn-primary:hover {
-      background: #d94e1a;
-      transform: translateY(-1px);
+      background: var(--blue-dark);
+      box-shadow: 0 6px 20px rgba(0, 56, 184, 0.4);
+    }
+    .btn-ghost {
+      background: var(--white);
+      border: 1px solid var(--line);
+      color: var(--ink);
+    }
+    .btn-ghost:hover {
+      border-color: #cbd5e1;
+      background: #f8fafc;
+    }
+    .btn-dark {
+      background: var(--ink);
+      color: white;
+    }
+    .btn-dark:hover { background: #1e293b; }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: var(--header-h);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .brand-mark {
+      width: 2.35rem;
+      height: 2.35rem;
+      border-radius: 0.65rem;
+      background: linear-gradient(135deg, #0038B8 0%, #002a8a 100%);
+      color: white;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 2px 8px rgba(0, 56, 184, 0.3);
+    }
+    .brand-mark svg { width: 1.3rem; height: 1.3rem; }
+    .brand strong {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .nav-desktop {
+      display: none;
+      align-items: center;
+      gap: 2rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .nav-desktop a:hover { color: var(--ink); }
+    .header-cta { display: none; }
+    .menu-toggle {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+    }
+    .menu-toggle svg { width: 18px; height: 18px; }
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      padding: 0.75rem 1.25rem 1.25rem;
+      box-shadow: var(--shadow);
+    }
+    .mobile-nav.open { display: block; }
+    .mobile-nav a {
+      display: block;
+      padding: 0.85rem 0.75rem;
+      font-weight: 500;
+      border-radius: 0.5rem;
+    }
+    .mobile-nav a:hover { background: var(--bg); }
+
+    @media (min-width: 900px) {
+      .nav-desktop { display: flex; }
+      .header-cta { display: inline-flex; }
+      .menu-toggle { display: none; }
+      .mobile-nav { display: none !important; }
     }
 
-    .btn-secondary {
-      background: transparent;
-      color: #14120e;
-      border: 1.5px solid #d4cfc5;
-    }
-
-    .btn-secondary:hover {
-      background: #ebe6dc;
-      border-color: #c5bfb3;
-    }
-
-    /* ========== FULL-WIDTH MARQUEE ========== */
-    .marquee-section {
+    /* Hero */
+    .hero {
+      padding: 4.5rem 0 5rem;
+      text-align: center;
       position: relative;
-      z-index: 1;
-      width: 100%;
-      margin-top: 90px;
-      padding: 36px 0;
       overflow: hidden;
-      background: #f4f0e8;
     }
-
-    /* Soft fade edges */
-    .marquee-section::before,
-    .marquee-section::after {
+    .hero::before {
       content: "";
       position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 140px;
-      z-index: 2;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, var(--blue-glow), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(0, 56, 184, 0.06), transparent);
       pointer-events: none;
     }
-
-    .marquee-section::before {
-      left: 0;
-      background: linear-gradient(to right, #f4f0e8 0%, transparent 100%);
+    .hero .container { position: relative; }
+    .hero .eyebrow { margin-bottom: 1.25rem; justify-content: center; }
+    .hero h1 {
+      max-width: 22ch;          /* widened from 16ch to prevent the wrap glitch */
+      margin-inline: auto;
+      color: var(--ink);
     }
-
-    .marquee-section::after {
-      right: 0;
-      background: linear-gradient(to left, #f4f0e8 0%, transparent 100%);
+    .hero .lead {
+      max-width: 36rem;
+      margin: 1.5rem auto 0;
     }
-
-    .marquee-track {
+    .hero-actions {
       display: flex;
-      width: max-content;
-      animation: marquee 60s linear infinite;   /* slightly slower for more spacing feel */
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.85rem;
+      margin-top: 2.5rem;
+    }
+    .hero-actions .btn {
+      min-width: 11.5rem;
+    }
+    @media (min-width: 768px) {
+      .hero-actions .btn {
+        min-width: 13.5rem;
+        padding-left: 1.85rem;
+        padding-right: 1.85rem;
+      }
+    }
+    .hero-note {
+      margin-top: 1.75rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    .hero-note strong { color: var(--ink-soft); font-weight: 600; }
+
+    /* ===== CUT IT ANIMATION (LOOPING) ===== */
+    .cut-it {
+      position: relative;
+      display: inline-block;
+      color: var(--blue);
+      font-style: normal;
+      white-space: nowrap; /* helps prevent the brief wrap */
     }
 
-    .marquee-track:hover {
-      animation-play-state: paused;
+    .cut-it .cut-text {
+      position: relative;
+      display: inline-block;
     }
 
-    @keyframes marquee {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .marquee-content {
-      display: flex;
-      align-items: center;
-      gap: 72px;                    /* increased distance between brands */
-      padding-right: 72px;
-    }
-
-    .logo-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      white-space: nowrap;
-      color: #14120e;
-      opacity: 0.8;
-      transition: opacity 0.2s;
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: 0.04em;       /* slightly more space between letters */
-      cursor: default;
-      user-select: none;
-    }
-
-    .logo-item:hover {
+    .cut-it .blade {
+      position: absolute;
+      top: 50%;
+      left: -8%;
+      width: 116%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, #ff2d55 15%, #ff2d55 85%, transparent 100%);
+      transform: translateY(-50%) scaleX(0);
+      transform-origin: left center;
+      z-index: 5;
+      border-radius: 2px;
+      pointer-events: none;
       opacity: 1;
     }
 
-    .logo-item img {
-      width: 26px;
-      height: 26px;
-      border-radius: 5px;
-      object-fit: contain;
-      flex-shrink: 0;
-      background: #fff;
-      pointer-events: none;
+    .cut-it .top {
+      display: block;
+      clip-path: polygon(0 0, 100% 0, 100% 51%, 0 51%);
     }
 
-    @media (max-width: 768px) {
-      .hero {
-        padding: 80px 24px 50px;
-      }
+    .cut-it .bottom {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      clip-path: polygon(0 49%, 100% 49%, 100% 100%, 0 100%);
+    }
 
-      .hero h1 {
-        font-size: 42px;
-      }
+    /* Continuous loop */
+    .cut-it.animate .blade {
+      animation: blade-slash 3.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    }
 
-      .hero p {
-        font-size: 17px;
-      }
+    .cut-it.animate .top {
+      animation: cut-top 3.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    }
 
-      .marquee-content {
-        gap: 52px;
-        padding-right: 52px;
-      }
+    .cut-it.animate .bottom {
+      animation: cut-bottom 3.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    }
 
-      .marquee-section::before,
-      .marquee-section::after {
-        width: 70px;
+    @keyframes blade-slash {
+      0%   { transform: translateY(-50%) scaleX(0); opacity: 1; }
+      12%  { transform: translateY(-50%) scaleX(1); opacity: 1; }
+      55%  { transform: translateY(-50%) scaleX(1); opacity: 1; }
+      70%  { transform: translateY(-50%) scaleX(1); opacity: 0; }
+      100% { transform: translateY(-50%) scaleX(0); opacity: 0; }
+    }
+
+    @keyframes cut-top {
+      0%   { transform: translateY(0) rotate(0); }
+      18%  { transform: translateY(-10px) rotate(-0.8deg); }
+      55%  { transform: translateY(-10px) rotate(-0.8deg); }
+      75%  { transform: translateY(0) rotate(0); }
+      100% { transform: translateY(0) rotate(0); }
+    }
+
+    @keyframes cut-bottom {
+      0%   { transform: translateY(0) rotate(0); }
+      18%  { transform: translateY(10px) rotate(0.8deg); }
+      55%  { transform: translateY(10px) rotate(0.8deg); }
+      75%  { transform: translateY(0) rotate(0); }
+      100% { transform: translateY(0) rotate(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cut-it .blade,
+      .cut-it .top,
+      .cut-it .bottom {
+        animation: none !important;
       }
+      .cut-it .top,
+      .cut-it .bottom {
+        transform: none !important;
+      }
+    }
+
+    /* Sections */
+    .section {
+      padding: 5.5rem 0;
+    }
+    @media (min-width: 768px) {
+      .section { padding: 7rem 0; }
+    }
+    .section-header {
+      max-width: 40rem;
+      margin-bottom: 3rem;
+    }
+    .section-header.center {
+      text-align: center;
+      margin-inline: auto;
+    }
+    .section-header .eyebrow { margin-bottom: 0.85rem; }
+    .section-header h2 { margin-bottom: 1rem; }
+    .section-header .lead { margin-top: 0; }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Problem grid */
+    .problem-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+    @media (min-width: 768px) {
+      .problem-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .problem-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+    .problem-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+    .problem-num {
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+    }
+    .problem-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .problem-card p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* Offer block */
+    .offer-block {
+      background: var(--ink);
+      color: white;
+      border-radius: 1.75rem;
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (min-width: 768px) {
+      .offer-block { padding: 3.25rem; }
+    }
+    .offer-block::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      right: -20%;
+      width: 60%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(0, 56, 184, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+    .offer-block .eyebrow { color: #7ba3e8; }
+    .offer-block .eyebrow::before { background: #7ba3e8; }
+    .offer-block h2 {
+      color: white;
+      margin: 0.75rem 0 1rem;
+      max-width: 18ch;
+    }
+    .offer-block .desc {
+      color: #94a3b8;
+      font-size: 1.05rem;
+      max-width: 36rem;
+      line-height: 1.7;
+    }
+    .offer-list {
+      display: grid;
+      gap: 0.85rem;
+      margin: 2rem 0;
+    }
+    @media (min-width: 640px) {
+      .offer-list { grid-template-columns: 1fr 1fr; }
+    }
+    .offer-list li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      font-size: 0.95rem;
+      color: #e2e8f0;
+    }
+    .offer-list svg {
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+      color: #7ba3e8;
+    }
+    .offer-price-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.75rem 1.25rem;
+      margin-top: 0.5rem;
+    }
+    .offer-price {
+      font-family: var(--serif);
+      font-size: 3rem;
+      line-height: 1;
+    }
+    .offer-price span {
+      font-family: var(--font);
+      font-size: 1rem;
+      font-weight: 500;
+      color: #94a3b8;
+      margin-left: 0.35rem;
+    }
+    .offer-note {
+      font-size: 0.875rem;
+      color: #94a3b8;
+      max-width: 32rem;
+      line-height: 1.6;
+    }
+
+    /* Compare strip */
+    .compare {
+      display: grid;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+    @media (min-width: 640px) {
+      .compare { grid-template-columns: repeat(3, 1fr); }
+    }
+    .compare > div {
+      background: var(--white);
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+    }
+    .compare .label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .compare .num {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      margin-top: 0.35rem;
+      line-height: 1;
+    }
+    .compare .sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+
+    /* Look-at / Services grid */
+    .look-grid {
+      display: grid;
+      gap: 1rem;
+    }
+    @media (min-width: 640px) {
+      .look-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .look-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .look-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+    .look-card:hover {
+      border-color: #b3c7e8;
+      box-shadow: 0 0 0 3px var(--blue-glow);
+    }
+    .look-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.75rem;
+      background: var(--blue-soft);
+      color: var(--blue-dark);
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+    }
+    .look-icon svg { width: 1.25rem; height: 1.25rem; }
+    .look-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .look-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .pricing-note {
+      margin-top: 2.5rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--blue-soft);
+      border: 1px solid #b3c7e8;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      text-align: center;
+    }
+    .pricing-note strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* Process */
+    .process-section {
+      background: var(--white);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .process-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+    @media (min-width: 768px) {
+      .process-grid { grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    }
+    .process-step {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.5rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+    .process-step:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+    .process-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 0.85rem;
+    }
+    .process-step h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .process-step p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .process-note {
+      margin-top: 2.5rem;
+      padding: 1.5rem 1.75rem;
+      background: var(--blue-soft);
+      border-radius: var(--radius);
+      border: 1px solid #b3c7e8;
+    }
+    .process-note strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+      color: var(--ink);
+    }
+    .process-note p {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+    }
+
+    /* Contact / Form section */
+    .contact-section {
+      background: linear-gradient(180deg, var(--bg) 0%, #eef3f9 100%);
+    }
+    .contact-grid {
+      display: grid;
+      gap: 2.5rem;
+    }
+    @media (min-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr 1.1fr;
+        gap: 3.5rem;
+        align-items: start;
+      }
+    }
+    .contact-info h2 {
+      margin-bottom: 1rem;
+    }
+    .contact-info .lead {
+      margin-bottom: 1.75rem;
+    }
+    .contact-points {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-point {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+    }
+    .contact-point svg {
+      width: 20px;
+      height: 20px;
+      color: var(--blue);
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+    .contact-point p {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+    .contact-point strong {
+      display: block;
+      color: var(--ink);
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+    }
+    @media (min-width: 640px) {
+      .form-card { padding: 2.25rem; }
+    }
+    .form-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    .form-card .form-intro {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+    }
+    .form-group {
+      margin-bottom: 1.15rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 0.75rem;
+      background: var(--bg);
+      font: inherit;
+      font-size: 0.95rem;
+      color: var(--ink);
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-glow);
+      background: var(--white);
+    }
+    .form-group textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+    .form-row {
+      display: grid;
+      gap: 1.15rem;
+    }
+    @media (min-width: 520px) {
+      .form-row { grid-template-columns: 1fr 1fr; }
+    }
+    .form-submit {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+    .form-note {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .form-success.visible {
+      display: block;
+    }
+    .form-success svg {
+      width: 48px;
+      height: 48px;
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+    .form-success h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.5rem;
+    }
+    .form-success p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .form-card.submitted .form-fields {
+      display: none;
+    }
+    .form-card.submitted .form-success {
+      display: block;
+    }
+
+    /* FAQ */
+    .faq-list {
+      max-width: 44rem;
+      margin-inline: auto;
+      border-top: 1px solid var(--line);
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+    }
+    .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      padding: 1.35rem 0;
+      text-align: left;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .faq-icon {
+      width: 1.85rem;
+      height: 1.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: transform 220ms ease, background 220ms ease, border-color 220ms ease;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: var(--blue-soft);
+      border-color: #7ba3e8;
+      color: var(--blue-dark);
+    }
+    .faq-a {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 280ms ease;
+    }
+    .faq-item.open .faq-a { grid-template-rows: 1fr; }
+    .faq-a > div { overflow: hidden; }
+    .faq-a p {
+      padding-bottom: 1.35rem;
+      color: var(--muted);
+      font-size: 0.975rem;
+      line-height: 1.7;
+    }
+
+    /* Final CTA */
+    .final-cta {
+      padding: 5.5rem 0 6rem;
+      text-align: center;
+      background: var(--white);
+      border-top: 1px solid var(--line);
+    }
+    .final-cta h2 {
+      max-width: 18ch;
+      margin-inline: auto;
+    }
+    .final-cta .lead {
+      max-width: 32rem;
+      margin: 1.25rem auto 0;
+    }
+    .final-cta .btn {
+      margin-top: 2rem;
+    }
+    .final-cta .sub {
+      margin-top: 1.25rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--ink);
+      color: #94a3b8;
+      padding: 2.25rem 0;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: white;
+      font-weight: 600;
+    }
+    .footer-brand .brand-mark {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 0.5rem;
+      background: linear-gradient(135deg, #0038B8 0%, #002a8a 100%);
+      box-shadow: none;
+    }
+    .footer-brand .brand-mark svg { width: 1.1rem; height: 1.1rem; }
+
+    /* Mobile refinements */
+    @media (max-width: 640px) {
+      .container { padding-inline: 1.15rem; }
+      .hero { padding: 3.25rem 0 3.75rem; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .btn { width: 100%; }
+      .section { padding: 4rem 0; }
+      .offer-block { padding: 2rem 1.5rem; border-radius: 1.25rem; }
+      .offer-price { font-size: 2.5rem; }
+      .final-cta { padding: 4rem 0 4.5rem; }
+      .form-card { padding: 1.5rem; }
+      .process-step { padding: 1.5rem 1.25rem; }
+
+      .display-xl { font-size: clamp(2.9rem, 9.5vw, 3.6rem); }
+      .display-lg { font-size: clamp(2.35rem, 7.5vw, 2.9rem); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
 <body>
-
-<section class="hero">
-  <div class="hero-content">
-    <div class="gdp-ticker">
-      <span class="live-dot"></span>
-      Global volume running on Stripe:
-      <span class="live-amount" id="liveCounter">$29</span>
-    </div>
-
-    <h1>
-      Financial infrastructure to grow <span class="highlight">your revenue</span>.
-    </h1>
-
-    <p>
-      Accept payments, handle business <span class="highlight">banking,</span><sup>1</sup> and
-      implement custom revenue models—from <span class="highlight">your</span>
-      first transaction to your billionth.
-    </p>
-
-    <div class="cta-row">
-      <a href="#" class="btn btn-primary">
-        Get started
-        <svg width="13" height="13" viewBox="0 0 12 12" fill="none">
-          <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect x="3" y="3" width="26" height="26" rx="7" stroke="white" stroke-width="1.8" opacity="0.9"/>
+            <path d="M9 23 L23 9" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M20.5 9.5 L23 9 L22.5 11.5" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M11.5 22.5 L9 23 L9.5 20.5" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span>
+          <strong>Hostcut</strong>
+          <span style="display:block;font-size:0.7rem;font-weight:500;color:var(--muted);margin-top:0;line-height:1.15">Cut it. Cut it. Cut it.</span>
+        </span>
       </a>
-
-      <a href="#" class="btn btn-secondary">
-        <svg width="18" height="18" viewBox="0 0 18 18">
-          <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/>
-          <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.96-2.184l-2.908-2.258c-.806.54-1.837.86-3.052.86-2.347 0-4.332-1.584-5.043-3.712H.957v2.332C2.438 15.983 5.482 18 9 18z"/>
-          <path fill="#FBBC05" d="M3.957 10.706c-.18-.54-.282-1.117-.282-1.706s.102-1.166.282-1.706V4.962H.957C.348 6.175 0 7.55 0 9s.348 2.825.957 4.038l3-2.332z"/>
-          <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.962L3.957 7.294C4.668 5.163 6.653 3.58 9 3.58z"/>
-        </svg>
-        Sign up with Google
-      </a>
+      <nav class="nav-desktop" aria-label="Primary">
+        <a href="#problem">The problem</a>
+        <a href="#offer">The offer</a>
+        <a href="#process">How it works</a>
+        <a href="#updates">Request updates</a>
+      </nav>
+      <a href="#offer" class="btn btn-primary header-cta">See the offer</a>
+      <button type="button" class="menu-toggle" id="menuBtn" aria-expanded="false" aria-label="Open menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
     </div>
-  </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+      <a href="#problem">The problem</a>
+      <a href="#offer">The offer</a>
+      <a href="#process">How it works</a>
+      <a href="#updates">Request updates</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </header>
 
-  <div class="marquee-section">
-    <div class="marquee-track">
-      <div class="marquee-content">
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI"> OpenAI</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic"> Anthropic</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft"> Microsoft</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="X"> X</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify"> Shopify</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=walmart.com&sz=64" alt="Walmart"> Walmart</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=bestbuy.com&sz=64" alt="Best Buy"> Best Buy</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=nike.com&sz=64" alt="Nike"> Nike</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=hm.com&sz=64" alt="H&M"> H&M</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=64" alt="DoorDash"> DoorDash</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney"> Disney</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva"> Canva</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM"> IBM</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=dell.com&sz=64" alt="Dell"> Dell</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ford.com&sz=64" alt="Ford"> Ford</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="General Motors"> General Motors</div>
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow reveal">Simple site. Cut it to $0.</p>
+        <h1 class="display display-xl reveal reveal-delay-1">
+          Your website bill is way too high you need to
+          <span class="cut-it" id="cutIt">
+            <span class="blade" aria-hidden="true"></span>
+            <span class="cut-text top">cut it</span>
+            <span class="cut-text bottom">cut it</span>
+          </span>.
+        </h1>
+        <p class="lead reveal reveal-delay-2">
+          Trade work comes from word of mouth, not SEO. So why keep paying monthly for a website you barely need? A simple site that explains what you do and lets people contact you is enough. Get a cleaner site or move it exactly, and the monthly bill ends permanently.
+        </p>
+        <div class="hero-actions">
+          <a href="#offer" class="btn btn-primary">
+            See the offer
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#process" class="btn btn-ghost">How it works</a>
+        </div>
+        <p class="hero-note reveal reveal-delay-4">One-time project. <strong>No monthly hosting fees.</strong></p>
       </div>
+    </section>
 
-      <div class="marquee-content">
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI"> OpenAI</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic"> Anthropic</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft"> Microsoft</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="X"> X</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify"> Shopify</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=walmart.com&sz=64" alt="Walmart"> Walmart</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=bestbuy.com&sz=64" alt="Best Buy"> Best Buy</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=nike.com&sz=64" alt="Nike"> Nike</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=hm.com&sz=64" alt="H&M"> H&M</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=64" alt="DoorDash"> DoorDash</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney"> Disney</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva"> Canva</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM"> IBM</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=dell.com&sz=64" alt="Dell"> Dell</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ford.com&sz=64" alt="Ford"> Ford</div>
-        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="General Motors"> General Motors</div>
+    <!-- PROBLEM -->
+    <section id="problem" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="eyebrow">Your Google presence stays</p>
+          <h2 class="display display-lg">Moving the site does not mean disappearing from <span style="font-style:normal"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></span>.</h2>
+          <p class="lead">Your existing content is kept, proper redirects are set up, and the new version is almost always faster — something Google actually rewards. The rankings and search presence you’ve already built stay intact. Nothing gets thrown away.</p>
+        </div>
+        <div class="problem-grid">
+          <article class="problem-card reveal">
+            <p class="problem-num">01</p>
+            <h3>What stays the same</h3>
+            <p>Your domain, content, and Google presence stay intact. We keep your existing pages and set up proper redirects so nothing disappears.</p>
+          </article>
+          <article class="problem-card reveal reveal-delay-1">
+            <p class="problem-num">02</p>
+            <h3>What gets better</h3>
+            <p>The new site is faster and fully owned by you. We also add stronger protection so the site is safer by default — without any technical work on your end.</p>
+          </article>
+          <article class="problem-card reveal reveal-delay-2">
+            <p class="problem-num">03</p>
+            <h3>The monthly bill ends</h3>
+            <p>Moving off Squarespace, Wix, or similar platforms is a one-time project. Most trade sites start at just $30. After the move, hosting fees drop to $0.</p>
+          </article>
+        </div>
       </div>
+    </section>
+
+    <!-- OFFER -->
+    <section id="offer" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="offer-block reveal">
+          <p class="eyebrow">What you get</p>
+          <h2 class="display display-lg">Say sayonara to your monthly website bill.</h2>
+          <p class="desc">We move your site off Squarespace, Wix or similar platforms onto free modern hosting. You keep ownership. The monthly fee stops.</p>
+          
+          <ul class="offer-list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+              Modern, fast site on free hosting
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+              You own the code and the accounts
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+              Real protection included
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+              Domain pointed and protected
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+              Two free updates after launch
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+              Clean hand-off — no lock-in
+            </li>
+          </ul>
+
+          <div class="offer-price-row">
+            <p class="offer-price">From $30 <span>one-time</span></p>
+          </div>
+          <p class="offer-note">Final price depends on site size and complexity. The one-time cost pays for itself within a year. A 50% deposit is required to begin.</p>
+        </div>
+
+        <div class="compare reveal">
+          <div>
+            <p class="label">Typical builder</p>
+            <p class="num">$29</p>
+            <p class="sub">/mo, every month</p>
+          </div>
+          <div>
+            <p class="label">Three years of that</p>
+            <p class="num">$1,044</p>
+            <p class="sub">before you change a thing</p>
+          </div>
+          <div>
+            <p class="label">After Hostcut</p>
+            <p class="num" style="color:var(--blue)">$0</p>
+            <p class="sub">/mo hosting, once the move is done</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process" class="section process-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="eyebrow">How the initial move works</p>
+          <h2 class="display display-lg">Four clear steps. You keep ownership the entire time.</h2>
+          <p class="lead">The goal is a clean hand-off so you never depend on us for day-to-day operation of the site.</p>
+        </div>
+        <ol class="process-grid">
+          <li class="process-step reveal">
+            <p class="process-num">01</p>
+            <h3>Scope &amp; quote</h3>
+            <p>We review your current site and agree a fixed one-time price. No monthly fees, no surprises.</p>
+          </li>
+          <li class="process-step reveal reveal-delay-1">
+            <p class="process-num">02</p>
+            <h3>Rebuild &amp; preview</h3>
+            <p>We rebuild a clean version of the site and test everything on a private preview link before anything goes live.</p>
+          </li>
+          <li class="process-step reveal reveal-delay-2">
+            <p class="process-num">03</p>
+            <h3>Go live &amp; protect</h3>
+            <p>Your domain is pointed to the new setup. Protection is configured. Your original site stays live until you approve the switch.</p>
+          </li>
+          <li class="process-step reveal reveal-delay-3">
+            <p class="process-num">04</p>
+            <h3>Hand-off &amp; cancel</h3>
+            <p>You confirm everything works. Then you can cancel the old Squarespace, Wix or hosting subscription. You keep both accounts.</p>
+          </li>
+        </ol>
+
+        <div class="process-note reveal">
+          <strong>Nothing is final until you say it is</strong>
+          <p>Your current site stays live the entire time. We only switch the domain once you’ve reviewed and approved the new version on a private link.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AFTER THE MOVE / SERVICES -->
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="eyebrow">After the move</p>
+          <h2 class="display display-lg">Need changes later? We’ve got you.</h2>
+          <p class="lead">Once your site is live and the monthly bill is gone, most clients only need occasional updates. Here’s what we commonly help with.</p>
+        </div>
+        <div class="look-grid">
+          <article class="look-card reveal">
+            <div class="look-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            </div>
+            <h3>Content edits</h3>
+            <p>Update text, swap photos, change phone numbers, adjust service descriptions — quick, low-cost changes when something needs refreshing.</p>
+          </article>
+          <article class="look-card reveal reveal-delay-1">
+            <div class="look-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+            </div>
+            <h3>New pages</h3>
+            <p>Add a services page, about page, gallery, or anything else you need. We keep the design consistent with the rest of your site.</p>
+          </article>
+          <article class="look-card reveal reveal-delay-2">
+            <div class="look-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18"/><path d="M3 12h18"/><path d="M8 8l8 8"/><path d="M16 8l-8 8"/></svg>
+            </div>
+            <h3>Full overhaul</h3>
+            <p>Ready for a complete redesign or major restructuring? We can rebuild the whole thing while keeping your domain and ownership intact.</p>
+          </article>
+          <article class="look-card reveal">
+            <div class="look-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            </div>
+            <h3>Layout tweaks</h3>
+            <p>Move sections around, improve mobile spacing, or adjust the order of content so the site works better for your customers.</p>
+          </article>
+          <article class="look-card reveal reveal-delay-1">
+            <div class="look-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+            </div>
+            <h3>Form &amp; contact fixes</h3>
+            <p>Update where leads go, change the form fields, or make sure submissions still land in the right inbox.</p>
+          </article>
+          <article class="look-card reveal reveal-delay-2">
+            <div class="look-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <h3>Quick turnaround</h3>
+            <p>Most small content edits are handled within a few business days. Larger requests get a clear timeline before any work starts.</p>
+          </article>
+        </div>
+
+        <p class="pricing-note reveal">
+          <strong>Typical pricing:</strong> Content edits ~$29 · New page ~$29 · Layout tweaks from $49.<br>
+        </p>
+      </div>
+    </section>
+
+    <!-- EXISTING CLIENTS / UPDATES FORM -->
+    <section id="updates" class="section contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <p class="eyebrow">Future & Existing clients</p>
+            <h2 class="display display-lg">Tell us what you need updated.</h2>
+            <p class="lead">Content changes, new pages, layout tweaks, or a full overhaul — just tell us what you need.</p>
+            <div class="contact-points">
+              <div class="contact-point">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+                <p><strong>Content edits</strong>Text, photos, phone numbers, service details.</p>
+              </div>
+              <div class="contact-point">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+                <p><strong>New pages</strong>Services, about, gallery, or any extra page you need.</p>
+              </div>
+              <div class="contact-point">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+                <p><strong>Design or layout tweaks</strong>Reorder sections, improve mobile, adjust spacing.</p>
+              </div>
+              <div class="contact-point">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+                <p><strong>Full overhaul</strong>Complete redesign while keeping your domain and ownership.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-card reveal reveal-delay-1" id="formCard">
+            <div class="form-fields">
+              <h3>Request updates</h3>
+              <p class="form-intro">Share a few details and we’ll take a look.</p>
+              <form action="https://api.web3forms.com/submit" method="POST" id="auditForm">
+                <input type="hidden" name="access_key" value="81e3fcc4-e389-484d-9cb2-2d5ac528c777" />
+                <input type="hidden" name="subject" value="New Update Request — Hostcut" />
+                <input type="hidden" name="from_name" value="Hostcut Website" />
+                <input type="checkbox" name="botcheck" style="display:none" />
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="name">Your name</label>
+                    <input type="text" id="name" name="name" required placeholder="John Smith" />
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="john@company.com" />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="company">Company name</label>
+                    <input type="text" id="company" name="company" placeholder="ABC Heating &amp; Cooling" />
+                  </div>
+                  <div class="form-group">
+                    <label for="phone">Phone (optional)</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="website">Current website URL</label>
+                  <input type="text" id="website" name="website" placeholder="www.yourcompany.com" />
+                </div>
+
+                <div class="form-group">
+                  <label for="request_type">What do you need?</label>
+                  <select id="request_type" name="request_type" required>
+                    <option value="">Select one…</option>
+                    <option value="Content edits">Content edits (text, photos, details)</option>
+                    <option value="New page">Add a new page</option>
+                    <option value="Layout tweaks">Design or layout tweaks</option>
+                    <option value="Full overhaul">Complete site overhaul / redesign</option>
+                    <option value="Other">Something else</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Tell us more about what you need</label>
+                  <textarea id="message" name="message" placeholder="Describe the changes, new content, or goals…" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary form-submit" id="submitBtn">
+                  Submit update request
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+                <p class="form-note">Confirmation typically within 1 business day.</p>
+              </form>
+            </div>
+
+            <div class="form-success" id="formSuccess">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+              <h3>Request received</h3>
+              <p>Thanks — we’ll review what you need and get back to you shortly, usually within one business day.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="section-header center reveal">
+          <p class="eyebrow">Common questions</p>
+          <h2 class="display display-lg">Straightforward answers.</h2>
+        </div>
+        <div class="faq-list" id="faqList">
+          <div class="faq-item open">
+            <button type="button" class="faq-q" aria-expanded="true">
+              Can I still edit the site later?
+              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="faq-a"><div><p>Yes. Updating text, images and pages is straightforward. You can make small changes yourself, or simply send us a request through the form above. Most content updates are handled quickly.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false">
+              Will this hurt my Google ranking?
+              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="faq-a"><div><p>Usually the opposite happens. The new setup almost always makes the site load significantly faster. Google has openly stated that site speed is a ranking factor. We also keep all your existing content and set up proper redirects, so you don’t lose current rankings.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false">
+              Will my site go offline during the move?
+              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="faq-a"><div><p>No. We build and fully test the new version on a private preview link. Your current site stays live the entire time. Once everything looks good and you’ve approved it, we switch the domain over — usually with zero downtime.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false">
+              What if my site relies on a form to capture leads?
+              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="faq-a"><div><p>No problem at all — this is very common. We replace the old form with a new one that still sends every submission straight to your email. You keep receiving leads exactly as you do now.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false">
+              Who is this service actually for?
+              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="faq-a"><div><p>It works best for ordinary small-business and local-service sites: HVAC, electrical, plumbing, trades, professional services and brochure-style websites that mainly explain what you do and let people get in touch. If you want to stop paying monthly hosting or builder fees and prefer to own the site, it’s a strong fit.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false">
+              Do I still own everything after the project?
+              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="faq-a"><div><p>Yes — completely. The accounts and your domain stay in your name. We only work as invited collaborators during the project. Once we hand everything over, you can manage the site yourself or come back to us later if you want help with updates. There is no lock-in.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false">
+              How do I request changes after the site is live?
+              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="faq-a"><div><p>Just use the form on this page. Select the type of work you need (content edits, new page, full overhaul, etc.), describe what you want, and we’ll reply with a clear plan and price — usually within one business day.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false">
+              How long does the full move usually take?
+              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="faq-a"><div><p>Most straightforward brochure sites are ready for review within a couple of weeks once we have the materials and a clear scope. More involved redesigns take longer. You’ll always see and approve the new version on a private link before anything goes live on your domain.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false">
+              What happens to my old Squarespace or Wix account?
+              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="faq-a"><div><p>You cancel it when you’re ready. We make sure the new site is live and working first. Many clients keep the old account active for a short overlap period just for peace of mind, then cancel once they’re comfortable.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+      <div class="container">
+        <h2 class="display display-lg reveal">Already made the move?<br />Need something updated?</h2>
+        <p class="lead reveal reveal-delay-1">Content changes, new pages, or a full redesign — just tell us what you need and we’ll take care of it.</p>
+        <a href="#updates" class="btn btn-primary reveal reveal-delay-2">
+          Request updates
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <p class="sub reveal reveal-delay-3">Usually replied within one business day.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect x="3" y="3" width="26" height="26" rx="7" stroke="white" stroke-width="1.8" opacity="0.9"/>
+            <path d="M9 23 L23 9" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M20.5 9.5 L23 9 L22.5 11.5" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M11.5 22.5 L9 23 L9.5 20.5" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        Hostcut — Cut it. Cut it. Cut it.
+      </div>
+      <p style="font-size:0.875rem">Your website bill is way too high you need to cut.</p>
     </div>
-  </div>
-</section>
+  </footer>
 
-<script>
-  (function () {
-    const el = document.getElementById('liveCounter');
-    let value = 29;
+  <script>
+    (function () {
+      // Mobile menu
+      var btn = document.getElementById("menuBtn");
+      var nav = document.getElementById("mobileNav");
+      if (btn && nav) {
+        btn.addEventListener("click", function () {
+          var open = nav.classList.toggle("open");
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+          btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        });
+        nav.querySelectorAll("a").forEach(function (a) {
+          a.addEventListener("click", function () {
+            nav.classList.remove("open");
+            btn.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
 
-    function format(n) {
-      return '$' + n.toLocaleString('en-US');
-    }
+      // FAQ accordion
+      document.querySelectorAll(".faq-q").forEach(function (q) {
+        q.addEventListener("click", function () {
+          var item = q.closest(".faq-item");
+          var wasOpen = item.classList.contains("open");
+          document.querySelectorAll(".faq-item").forEach(function (it) {
+            it.classList.remove("open");
+            it.querySelector(".faq-q").setAttribute("aria-expanded", "false");
+          });
+          if (!wasOpen) {
+            item.classList.add("open");
+            q.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
 
-    function tick() {
-      value += 29;
-      el.textContent = format(value);
+      // Scroll reveal + start looping cut animation
+      var reveals = document.querySelectorAll(".reveal");
+      var cutIt = document.getElementById("cutIt");
 
-      const isBurst = Math.random() < 0.22;
-      const delay = isBurst
-        ? 150 + Math.random() * 300
-        : 1200 + Math.random() * 2300;
+      if ("IntersectionObserver" in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
 
-      setTimeout(tick, delay);
-    }
+              // Start the continuous cut animation when the hero h1 becomes visible
+              if (entry.target.classList.contains("reveal-delay-1") && cutIt) {
+                setTimeout(function () {
+                  cutIt.classList.add("animate");
+                }, 400);
+              }
 
-    setTimeout(tick, 1800);
-  })();
-</script>
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
 
+        reveals.forEach(function (el) { observer.observe(el); });
+      } else {
+        reveals.forEach(function (el) { el.classList.add("visible"); });
+        if (cutIt) cutIt.classList.add("animate");
+      }
+
+      // Web3Forms submit handler
+      var form = document.getElementById("auditForm");
+      var formCard = document.getElementById("formCard");
+      var submitBtn = document.getElementById("submitBtn");
+      if (form) {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Sending…";
+
+          var formData = new FormData(form);
+          fetch(form.action, {
+            method: "POST",
+            body: formData
+          })
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            if (data.success) {
+              formCard.classList.add("submitted");
+            } else {
+              alert("Something went wrong. Please try again or email us directly at hostcut@hostcut.com.");
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = 'Submit update request <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+            }
+          })
+          .catch(function () {
+            alert("Something went wrong. Please try again or email us directly at hostcut@hostcut.com.");
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Submit update request <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+          });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

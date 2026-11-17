@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stripe Hero – Live Counter + Official Favicons</title>
+  <title>Stripe Hero – Centered + Cream Paper</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
@@ -12,9 +18,9 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: #ffffff;
-      color: #0a2540;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f4f0e8;
+      color: #14120e;
       overflow-x: hidden;
     }
 
@@ -25,73 +31,61 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 80px 24px 40px;
-      background: #ffffff;
+      align-items: center;
+      padding: 100px 40px 60px;
+      background: #f4f0e8;
       overflow: hidden;
+      text-align: center;
     }
 
+    /* Soft gradient wash on the right */
     .hero-gradient {
       position: absolute;
-      top: -10%;
-      right: -15%;
-      width: 70%;
-      height: 130%;
+      top: -15%;
+      right: -20%;
+      width: 75%;
+      height: 140%;
       background: linear-gradient(
         135deg,
-        #7dd3fc 0%,
-        #38bdf8 8%,
-        #818cf8 18%,
-        #a78bfa 28%,
-        #c084fc 38%,
-        #e879f9 48%,
-        #f472b6 58%,
-        #fb7185 68%,
-        #fb923c 78%,
-        #fbbf24 88%,
-        #fde68a 100%
+        #fbbf24 0%,
+        #f97316 15%,
+        #f15a22 30%,
+        #ea580c 45%,
+        #c2410c 60%,
+        #9a3412 80%,
+        transparent 100%
       );
-      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-      transform: rotate(-12deg) scale(1.1);
-      opacity: 0.95;
+      border-radius: 45% 55% 60% 40% / 50% 45% 55% 50%;
+      transform: rotate(-8deg) scale(1.15);
+      opacity: 0.18;
       z-index: 0;
-      mask-image: linear-gradient(to left, black 40%, transparent 85%);
-      -webkit-mask-image: linear-gradient(to left, black 40%, transparent 85%);
-    }
-
-    .hero-gradient::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0.92) 0%,
-        rgba(255, 255, 255, 0.7) 25%,
-        rgba(255, 255, 255, 0.15) 55%,
-        transparent 75%
-      );
+      filter: blur(40px);
     }
 
     .hero-content {
       position: relative;
       z-index: 1;
-      max-width: 680px;
-      margin-left: max(24px, calc((100vw - 1200px) / 2));
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
     }
 
     /* Live counter */
     .gdp-ticker {
-      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
       font-weight: 500;
-      color: #425466;
-      margin-bottom: 28px;
+      color: #5c564e;
+      margin-bottom: 32px;
       letter-spacing: -0.01em;
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
+      gap: 8px;
     }
 
     .gdp-ticker .live-amount {
-      color: #0a2540;
+      color: #14120e;
       font-variant-numeric: tabular-nums;
       font-weight: 600;
       min-width: 90px;
@@ -99,103 +93,135 @@
     }
 
     .gdp-ticker .live-dot {
-      width: 6px;
-      height: 6px;
-      background: #00d66f;
+      width: 7px;
+      height: 7px;
+      background: #f15a22;
       border-radius: 50%;
       animation: pulse 1.6s ease-in-out infinite;
     }
 
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.45; transform: scale(0.85); }
+      50% { opacity: 0.4; transform: scale(0.8); }
     }
 
+    /* Big serif heading */
     .hero h1 {
-      font-size: clamp(36px, 5.2vw, 52px);
-      font-weight: 600;
-      line-height: 1.15;
-      letter-spacing: -0.025em;
-      color: #0a2540;
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(48px, 7vw, 72px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #14120e;
+      margin-bottom: 12px;
     }
 
     .hero h1 .highlight {
-      color: #635bff;
+      font-style: italic;
+      color: #f15a22;
     }
 
     .hero p {
-      font-size: clamp(20px, 2.8vw, 28px);
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(18px, 2.4vw, 22px);
       font-weight: 400;
-      line-height: 1.35;
-      letter-spacing: -0.02em;
-      color: #425466;
-      margin-top: 8px;
-      max-width: 620px;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      color: #3d3934;
+      margin: 0 auto;
+      max-width: 720px;
     }
 
     .hero p .highlight {
-      color: #635bff;
+      color: #f15a22;
+      font-weight: 500;
     }
 
+    /* Buttons */
     .cta-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 36px;
+      gap: 14px;
+      margin-top: 40px;
+      justify-content: center;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      height: 44px;
-      padding: 0 18px;
-      border-radius: 6px;
+      gap: 8px;
+      height: 48px;
+      padding: 0 22px;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
       font-size: 15px;
       font-weight: 500;
       text-decoration: none;
-      transition: all 0.15s ease;
+      transition: all 0.18s ease;
       cursor: pointer;
       border: none;
     }
 
     .btn-primary {
-      background: #635bff;
+      background: #f15a22;
       color: #ffffff;
     }
 
     .btn-primary:hover {
-      background: #0a2540;
+      background: #d94e1a;
+      transform: translateY(-1px);
     }
 
     .btn-secondary {
-      background: #ffffff;
-      color: #0a2540;
-      border: 1px solid #e6e8eb;
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.03);
+      background: transparent;
+      color: #14120e;
+      border: 1.5px solid #d4cfc5;
     }
 
     .btn-secondary:hover {
-      background: #f6f9fc;
-      border-color: #d6d9de;
+      background: #ebe6dc;
+      border-color: #c5bfb3;
     }
 
-    /* ========== MARQUEE ========== */
+    /* ========== FULL-WIDTH MARQUEE ========== */
     .marquee-section {
       position: relative;
       z-index: 1;
-      margin-top: 72px;
-      padding: 28px 0 20px;
-      border-top: 1px solid #e6e8eb;
+      width: 100%;
+      margin-top: 90px;
+      padding: 32px 0;
+      border-top: 1px solid #e0dbd2;
       overflow: hidden;
-      background: #ffffff;
+      background: #f4f0e8;
+    }
+
+    /* Fade edges so logos appear/disappear smoothly */
+    .marquee-section::before,
+    .marquee-section::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .marquee-section::before {
+      left: 0;
+      background: linear-gradient(to right, #f4f0e8 20%, transparent);
+    }
+
+    .marquee-section::after {
+      right: 0;
+      background: linear-gradient(to left, #f4f0e8 20%, transparent);
     }
 
     .marquee-track {
       display: flex;
       width: max-content;
-      animation: marquee 50s linear infinite;
+      animation: marquee 55s linear infinite;
     }
 
     .marquee-track:hover {
@@ -210,8 +236,8 @@
     .marquee-content {
       display: flex;
       align-items: center;
-      gap: 48px;
-      padding-right: 48px;
+      gap: 56px;
+      padding-right: 56px;
     }
 
     .logo-item {
@@ -219,12 +245,15 @@
       align-items: center;
       gap: 10px;
       white-space: nowrap;
-      color: #0a2540;
-      opacity: 0.9;
+      color: #14120e;
+      opacity: 0.85;
       transition: opacity 0.2s;
+      font-family: 'Inter', sans-serif;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: -0.01em;
+      cursor: default;          /* force arrow cursor */
+      user-select: none;
     }
 
     .logo-item:hover {
@@ -232,39 +261,36 @@
     }
 
     .logo-item img {
-      width: 24px;
-      height: 24px;
-      border-radius: 4px;
+      width: 26px;
+      height: 26px;
+      border-radius: 5px;
       object-fit: contain;
       flex-shrink: 0;
       background: #fff;
+      pointer-events: none;
     }
 
-    @media (max-width: 900px) {
-      .hero-gradient {
-        width: 100%;
-        right: -30%;
-        opacity: 0.7;
-      }
-      .hero-content {
-        margin-left: 0;
-        max-width: 100%;
-      }
-    }
-
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       .hero {
-        padding: 60px 20px 30px;
+        padding: 80px 24px 50px;
       }
+
       .hero h1 {
-        font-size: 32px;
+        font-size: 42px;
       }
+
       .hero p {
-        font-size: 18px;
+        font-size: 17px;
       }
+
       .marquee-content {
-        gap: 36px;
-        padding-right: 36px;
+        gap: 40px;
+        padding-right: 40px;
+      }
+
+      .marquee-section::before,
+      .marquee-section::after {
+        width: 60px;
       }
     }
   </style>
@@ -295,8 +321,8 @@
     <div class="cta-row">
       <a href="#" class="btn btn-primary">
         Get started
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-          <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg width="13" height="13" viewBox="0 0 12 12" fill="none">
+          <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
 
@@ -312,141 +338,141 @@
     </div>
   </div>
 
-  <!-- INFINITE MARQUEE – Google Favicons (guaranteed to load) -->
+  <!-- FULL-WIDTH MARQUEE -->
   <div class="marquee-section">
     <div class="marquee-track">
       <!-- First set -->
       <div class="marquee-content">
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI">
           OpenAI
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic">
           Anthropic
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft">
           Microsoft
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="X" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="X">
           X
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify">
           Shopify
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=walmart.com&sz=64" alt="Walmart" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=walmart.com&sz=64" alt="Walmart">
           Walmart
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=bestbuy.com&sz=64" alt="Best Buy" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=bestbuy.com&sz=64" alt="Best Buy">
           Best Buy
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=nike.com&sz=64" alt="Nike" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=nike.com&sz=64" alt="Nike">
           Nike
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=hm.com&sz=64" alt="H&M" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=hm.com&sz=64" alt="H&M">
           H&M
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=64" alt="DoorDash" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=64" alt="DoorDash">
           DoorDash
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney">
           Disney
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva">
           Canva
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM">
           IBM
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=dell.com&sz=64" alt="Dell" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=dell.com&sz=64" alt="Dell">
           Dell
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=ford.com&sz=64" alt="Ford" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=ford.com&sz=64" alt="Ford">
           Ford
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="General Motors" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="General Motors">
           General Motors
         </div>
       </div>
 
-      <!-- Duplicate set for seamless infinite scroll -->
+      <!-- Duplicate set -->
       <div class="marquee-content">
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI">
           OpenAI
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic">
           Anthropic
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft">
           Microsoft
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="X" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="X">
           X
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify">
           Shopify
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=walmart.com&sz=64" alt="Walmart" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=walmart.com&sz=64" alt="Walmart">
           Walmart
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=bestbuy.com&sz=64" alt="Best Buy" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=bestbuy.com&sz=64" alt="Best Buy">
           Best Buy
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=nike.com&sz=64" alt="Nike" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=nike.com&sz=64" alt="Nike">
           Nike
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=hm.com&sz=64" alt="H&M" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=hm.com&sz=64" alt="H&M">
           H&M
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=64" alt="DoorDash" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=64" alt="DoorDash">
           DoorDash
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney">
           Disney
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva">
           Canva
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM">
           IBM
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=dell.com&sz=64" alt="Dell" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=dell.com&sz=64" alt="Dell">
           Dell
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=ford.com&sz=64" alt="Ford" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=ford.com&sz=64" alt="Ford">
           Ford
         </div>
         <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="General Motors" width="24" height="24">
+          <img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="General Motors">
           General Motors
         </div>
       </div>
@@ -455,7 +481,6 @@
 </section>
 
 <script>
-  // Live counter that starts at $29 and adds $29 at random intervals
   (function () {
     const el = document.getElementById('liveCounter');
     let value = 29;

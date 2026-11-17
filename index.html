@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stripe Hero – Centered + Cream Paper</title>
+  <title>Stripe Hero – Solid Cream Paper</title>
   
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -33,33 +32,9 @@
       justify-content: center;
       align-items: center;
       padding: 100px 40px 60px;
-      background: #f4f0e8;
+      background: #f4f0e8;          /* solid cream paper */
       overflow: hidden;
       text-align: center;
-    }
-
-    /* Soft gradient wash on the right */
-    .hero-gradient {
-      position: absolute;
-      top: -15%;
-      right: -20%;
-      width: 75%;
-      height: 140%;
-      background: linear-gradient(
-        135deg,
-        #fbbf24 0%,
-        #f97316 15%,
-        #f15a22 30%,
-        #ea580c 45%,
-        #c2410c 60%,
-        #9a3412 80%,
-        transparent 100%
-      );
-      border-radius: 45% 55% 60% 40% / 50% 45% 55% 50%;
-      transform: rotate(-8deg) scale(1.15);
-      opacity: 0.18;
-      z-index: 0;
-      filter: blur(40px);
     }
 
     .hero-content {
@@ -190,32 +165,31 @@
       z-index: 1;
       width: 100%;
       margin-top: 90px;
-      padding: 32px 0;
-      border-top: 1px solid #e0dbd2;
+      padding: 36px 0;
       overflow: hidden;
-      background: #f4f0e8;
+      background: #f4f0e8;          /* same cream – seamless */
     }
 
-    /* Fade edges so logos appear/disappear smoothly */
+    /* Soft fade edges so logos gently appear/disappear */
     .marquee-section::before,
     .marquee-section::after {
       content: "";
       position: absolute;
       top: 0;
       bottom: 0;
-      width: 120px;
+      width: 140px;
       z-index: 2;
       pointer-events: none;
     }
 
     .marquee-section::before {
       left: 0;
-      background: linear-gradient(to right, #f4f0e8 20%, transparent);
+      background: linear-gradient(to right, #f4f0e8 0%, transparent 100%);
     }
 
     .marquee-section::after {
       right: 0;
-      background: linear-gradient(to left, #f4f0e8 20%, transparent);
+      background: linear-gradient(to left, #f4f0e8 0%, transparent 100%);
     }
 
     .marquee-track {
@@ -246,13 +220,13 @@
       gap: 10px;
       white-space: nowrap;
       color: #14120e;
-      opacity: 0.85;
+      opacity: 0.8;
       transition: opacity 0.2s;
       font-family: 'Inter', sans-serif;
       font-size: 15px;
       font-weight: 500;
       letter-spacing: -0.01em;
-      cursor: default;          /* force arrow cursor */
+      cursor: default;
       user-select: none;
     }
 
@@ -290,7 +264,7 @@
 
       .marquee-section::before,
       .marquee-section::after {
-        width: 60px;
+        width: 70px;
       }
     }
   </style>
@@ -298,10 +272,9 @@
 <body>
 
 <section class="hero">
-  <div class="hero-gradient" aria-hidden="true"></div>
+  <!-- No gradient – pure cream paper -->
 
   <div class="hero-content">
-    <!-- LIVE COUNTER -->
     <div class="gdp-ticker">
       <span class="live-dot"></span>
       Global volume running on Stripe:
@@ -309,13 +282,13 @@
     </div>
 
     <h1>
-      Why pay when <span class="highlight">it's free</span>?
+      Financial infrastructure to grow <span class="highlight">your revenue</span>.
     </h1>
 
     <p>
-      Never pay monthly <span class="highlight">website hosting fees</span>. 
-      Build or move your website with us and say <span class="highlight">goodbye</span>
-      to those pesky monthly fees.
+      Accept payments, handle business <span class="highlight">banking,</span><sup>1</sup> and
+      implement custom revenue models—from <span class="highlight">your</span>
+      first transaction to your billionth.
     </p>
 
     <div class="cta-row">
@@ -338,143 +311,45 @@
     </div>
   </div>
 
-  <!-- FULL-WIDTH MARQUEE -->
+  <!-- Seamless marquee -->
   <div class="marquee-section">
     <div class="marquee-track">
-      <!-- First set -->
       <div class="marquee-content">
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI">
-          OpenAI
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic">
-          Anthropic
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft">
-          Microsoft
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="X">
-          X
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify">
-          Shopify
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=walmart.com&sz=64" alt="Walmart">
-          Walmart
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=bestbuy.com&sz=64" alt="Best Buy">
-          Best Buy
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=nike.com&sz=64" alt="Nike">
-          Nike
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=hm.com&sz=64" alt="H&M">
-          H&M
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=64" alt="DoorDash">
-          DoorDash
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney">
-          Disney
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva">
-          Canva
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM">
-          IBM
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=dell.com&sz=64" alt="Dell">
-          Dell
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=ford.com&sz=64" alt="Ford">
-          Ford
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="General Motors">
-          General Motors
-        </div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI"> OpenAI</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic"> Anthropic</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft"> Microsoft</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="X"> X</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify"> Shopify</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=walmart.com&sz=64" alt="Walmart"> Walmart</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=bestbuy.com&sz=64" alt="Best Buy"> Best Buy</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=nike.com&sz=64" alt="Nike"> Nike</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=hm.com&sz=64" alt="H&M"> H&M</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=64" alt="DoorDash"> DoorDash</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney"> Disney</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva"> Canva</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM"> IBM</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=dell.com&sz=64" alt="Dell"> Dell</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ford.com&sz=64" alt="Ford"> Ford</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="General Motors"> General Motors</div>
       </div>
 
-      <!-- Duplicate set -->
       <div class="marquee-content">
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI">
-          OpenAI
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic">
-          Anthropic
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft">
-          Microsoft
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="X">
-          X
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify">
-          Shopify
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=walmart.com&sz=64" alt="Walmart">
-          Walmart
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=bestbuy.com&sz=64" alt="Best Buy">
-          Best Buy
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=nike.com&sz=64" alt="Nike">
-          Nike
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=hm.com&sz=64" alt="H&M">
-          H&M
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=64" alt="DoorDash">
-          DoorDash
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney">
-          Disney
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva">
-          Canva
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM">
-          IBM
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=dell.com&sz=64" alt="Dell">
-          Dell
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=ford.com&sz=64" alt="Ford">
-          Ford
-        </div>
-        <div class="logo-item">
-          <img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="General Motors">
-          General Motors
-        </div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI"> OpenAI</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic"> Anthropic</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft"> Microsoft</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="X"> X</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify"> Shopify</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=walmart.com&sz=64" alt="Walmart"> Walmart</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=bestbuy.com&sz=64" alt="Best Buy"> Best Buy</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=nike.com&sz=64" alt="Nike"> Nike</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=hm.com&sz=64" alt="H&M"> H&M</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=64" alt="DoorDash"> DoorDash</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney"> Disney</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva"> Canva</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM"> IBM</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=dell.com&sz=64" alt="Dell"> Dell</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ford.com&sz=64" alt="Ford"> Ford</div>
+        <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="General Motors"> General Motors</div>
       </div>
     </div>
   </div>

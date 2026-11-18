@@ -1367,13 +1367,28 @@
     /* ========== SEARCH PRESENCE (Block 5) ========== */
     .google-section {
       background: var(--paper);
-      padding: 88px 24px 96px;
+      padding: 100px 24px 108px;
     }
 
     .google-inner {
-      max-width: 920px;
+      max-width: 1100px;
       margin: 0 auto;
-      text-align: center;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    @media (min-width: 901px) {
+      .google-inner {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 56px;
+        align-items: center;
+      }
+    }
+
+    .google-copy {
+      text-align: left;
     }
 
     .google-eyebrow {
@@ -1387,21 +1402,22 @@
 
     .google-title {
       font-family: var(--font-serif);
-      font-size: clamp(28px, 4.2vw, 42px);
+      font-size: clamp(32px, 4.6vw, 48px);
       font-weight: 400;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
       color: var(--ink);
-      margin-bottom: 22px;
+      margin-bottom: 20px;
+      max-width: 14ch;
     }
 
     .statement {
-      font-size: clamp(16px, 2vw, 18.5px);
+      font-size: clamp(16px, 1.9vw, 18px);
       font-weight: 400;
       line-height: 1.65;
       color: var(--muted);
-      max-width: 640px;
-      margin: 0 auto 36px;
+      max-width: 520px;
+      margin: 0 0 28px;
     }
 
     .statement .accent {
@@ -1410,35 +1426,66 @@
     }
 
     .google-points {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      max-width: 720px;
-      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
     .google-point {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 20px 16px;
-      text-align: center;
+      border-radius: 16px;
+      padding: 22px 24px;
+      text-align: left;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      align-items: start;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .google-point:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(20, 18, 14, 0.07);
+      border-color: color-mix(in srgb, var(--orange) 20%, var(--card-border));
+    }
+
+    .gp-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--orange-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .gp-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--orange);
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .gp-body {
+      min-width: 0;
     }
 
     .gp-label {
       display: block;
-      font-size: 12px;
+      font-size: 15px;
       font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 6px;
+      color: var(--ink);
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
     }
 
     .gp-text {
       display: block;
       font-size: 14px;
-      line-height: 1.45;
+      line-height: 1.5;
       color: var(--muted);
     }
 
@@ -2024,27 +2071,33 @@
       }
 
       .google-section {
-        padding: 64px 16px 72px;
+        padding: 72px 16px 80px;
       }
 
       .google-title {
-        font-size: 26px;
-        margin-bottom: 16px;
+        font-size: 28px;
+        margin-bottom: 14px;
+        max-width: none;
       }
 
       .statement {
         font-size: 15.5px;
-        margin-bottom: 28px;
+        margin-bottom: 0;
+        max-width: none;
       }
 
       .google-points {
-        grid-template-columns: 1fr;
         gap: 12px;
       }
 
       .google-point {
-        padding: 16px 14px;
-        text-align: left;
+        padding: 18px 16px;
+        gap: 14px;
+      }
+
+      .gp-icon {
+        width: 36px;
+        height: 36px;
       }
 
       .request-section {
@@ -2270,44 +2323,66 @@
     </div>
 
     <div class="marquee-section">
-      <p class="marquee-title">Brands you trust trust Cloudflare</p>
+      <p class="marquee-title">Brands you trust use GitHub</p>
       <div class="marquee-track">
         <div class="marquee-content">
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI"> OpenAI</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic"> Anthropic</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft"> Microsoft</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="X"> X</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify"> Shopify</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=walmart.com&sz=64" alt="Walmart"> Walmart</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=bestbuy.com&sz=64" alt="Best Buy"> Best Buy</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=nike.com&sz=64" alt="Nike"> Nike</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=hm.com&sz=64" alt="H&M"> H&M</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=64" alt="DoorDash"> DoorDash</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney"> Disney</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva"> Canva</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM"> IBM</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=dell.com&sz=64" alt="Dell"> Dell</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=accenture.com&sz=64" alt="Accenture"> Accenture</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=adobe.com&sz=64" alt="Adobe"> Adobe</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=aa.com&sz=64" alt="American Airlines"> Am. Airlines</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=amd.com&sz=64" alt="AMD"> AMD</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=asos.com&sz=64" alt="ASOS"> ASOS</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=astrazeneca.com&sz=64" alt="AstraZeneca"> AstraZeneca</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=cathaypacific.com&sz=64" alt="Cathay Pacific"> Cathay Pacific</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=capitalone.com&sz=64" alt="Capital One"> Capital One</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=deutsche-boerse.com&sz=64" alt="Deutsche Börse"> Deutsche Börse</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=duolingo.com&sz=64" alt="Duolingo"> Duolingo</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ebay.com&sz=64" alt="eBay"> eBay</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ey.com&sz=64" alt="EY"> EY</div>
           <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ford.com&sz=64" alt="Ford"> Ford</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="General Motors"> General Motors</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="GM"> GM</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=hubspot.com&sz=64" alt="HubSpot"> HubSpot</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM"> IBM</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=jpmorganchase.com&sz=64" alt="JPMorgan"> JPMorgan</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=jpl.nasa.gov&sz=64" alt="NASA JPL"> NASA JPL</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=mercedes-benz.com&sz=64" alt="Mercedes-Benz"> Mercedes-Benz</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=sap.com&sz=64" alt="SAP"> SAP</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify"> Shopify</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=spotify.com&sz=64" alt="Spotify"> Spotify</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=stripe.com&sz=64" alt="Stripe"> Stripe</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=twilio.com&sz=64" alt="Twilio"> Twilio</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=uber.com&sz=64" alt="Uber"> Uber</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=wellsfargo.com&sz=64" alt="Wells Fargo"> Wells Fargo</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=3m.com&sz=64" alt="3M"> 3M</div>
         </div>
 
         <div class="marquee-content">
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI"> OpenAI</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic"> Anthropic</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft"> Microsoft</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="X"> X</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify"> Shopify</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=walmart.com&sz=64" alt="Walmart"> Walmart</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=bestbuy.com&sz=64" alt="Best Buy"> Best Buy</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=nike.com&sz=64" alt="Nike"> Nike</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=hm.com&sz=64" alt="H&M"> H&M</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=64" alt="DoorDash"> DoorDash</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney"> Disney</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva"> Canva</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM"> IBM</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=dell.com&sz=64" alt="Dell"> Dell</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=accenture.com&sz=64" alt="Accenture"> Accenture</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=adobe.com&sz=64" alt="Adobe"> Adobe</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=aa.com&sz=64" alt="American Airlines"> Am. Airlines</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=amd.com&sz=64" alt="AMD"> AMD</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=asos.com&sz=64" alt="ASOS"> ASOS</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=astrazeneca.com&sz=64" alt="AstraZeneca"> AstraZeneca</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=cathaypacific.com&sz=64" alt="Cathay Pacific"> Cathay Pacific</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=capitalone.com&sz=64" alt="Capital One"> Capital One</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=deutsche-boerse.com&sz=64" alt="Deutsche Börse"> Deutsche Börse</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=duolingo.com&sz=64" alt="Duolingo"> Duolingo</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ebay.com&sz=64" alt="eBay"> eBay</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ey.com&sz=64" alt="EY"> EY</div>
           <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ford.com&sz=64" alt="Ford"> Ford</div>
-          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="General Motors"> General Motors</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="GM"> GM</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=hubspot.com&sz=64" alt="HubSpot"> HubSpot</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM"> IBM</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=jpmorganchase.com&sz=64" alt="JPMorgan"> JPMorgan</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=jpl.nasa.gov&sz=64" alt="NASA JPL"> NASA JPL</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=mercedes-benz.com&sz=64" alt="Mercedes-Benz"> Mercedes-Benz</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=sap.com&sz=64" alt="SAP"> SAP</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify"> Shopify</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=spotify.com&sz=64" alt="Spotify"> Spotify</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=stripe.com&sz=64" alt="Stripe"> Stripe</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=twilio.com&sz=64" alt="Twilio"> Twilio</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=uber.com&sz=64" alt="Uber"> Uber</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=wellsfargo.com&sz=64" alt="Wells Fargo"> Wells Fargo</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=3m.com&sz=64" alt="3M"> 3M</div>
         </div>
       </div>
     </div>
@@ -2660,23 +2735,44 @@
   <!-- ========== BLOCK 5: SEARCH PRESENCE ========== -->
   <section class="google-section">
     <div class="google-inner">
-      <p class="google-eyebrow">Search presence</p>
-      <h2 class="google-title">Keep everything you’ve earned on <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span></h2>
-      <p class="statement">
-        <span class="accent">Moving the site</span> does not mean disappearing from search. Your existing content is kept, proper redirects are set up, and the new version is almost always faster — something Google actually rewards. The rankings and search presence you’ve already built stay intact. <span class="accent">Nothing gets thrown away.</span>
-      </p>
+      <div class="google-copy">
+        <p class="google-eyebrow">Search presence</p>
+        <h2 class="google-title">
+          Keep everything you’ve earned on
+          <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+        </h2>
+        <p class="statement">
+          <span class="accent">Moving the site</span> does not mean disappearing from search. Your existing content is kept, proper redirects are set up, and the new version is almost always faster — something Google actually rewards. The rankings and presence you’ve already built stay intact. <span class="accent">Nothing gets thrown away.</span>
+        </p>
+      </div>
+
       <div class="google-points">
         <div class="google-point">
-          <span class="gp-label">Redirects</span>
-          <span class="gp-text">301s mapped so links keep working</span>
+          <div class="gp-icon">
+            <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="gp-body">
+            <span class="gp-label">Redirects mapped</span>
+            <span class="gp-text">301 redirects so old links and bookmarks keep working after the move.</span>
+          </div>
         </div>
         <div class="google-point">
-          <span class="gp-label">Speed</span>
-          <span class="gp-text">Faster pages that search engines favor</span>
+          <div class="gp-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div class="gp-body">
+            <span class="gp-label">Faster by default</span>
+            <span class="gp-text">Lean pages on an edge network — the kind of speed search engines reward.</span>
+          </div>
         </div>
         <div class="google-point">
-          <span class="gp-label">Content</span>
-          <span class="gp-text">Your copy and structure carried over</span>
+          <div class="gp-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <div class="gp-body">
+            <span class="gp-label">Content carried over</span>
+            <span class="gp-text">Your copy, structure, and key pages come with you — nothing is thrown away.</span>
+          </div>
         </div>
       </div>
     </div>

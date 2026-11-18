@@ -97,32 +97,17 @@
 
     .hero h1 {
       font-family: var(--font-serif);
-      font-size: clamp(36px, 5vw, 52px);
+      font-size: clamp(48px, 8vw, 80px);
       font-weight: 400;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
       color: var(--ink);
       margin-bottom: 18px;
-      min-height: 2.3em;
     }
 
     .hero h1 .highlight {
       font-style: italic;
       color: var(--orange);
-    }
-
-    .hero h1 .type-cursor {
-      display: inline-block;
-      width: 2px;
-      height: 0.85em;
-      background: var(--orange);
-      margin-left: 2px;
-      vertical-align: -0.05em;
-      animation: typeBlink 0.9s step-end infinite;
-    }
-
-    @keyframes typeBlink {
-      50% { opacity: 0; }
     }
 
     .hero-lead {
@@ -519,7 +504,7 @@
 
     .features-section .section-title {
       font-family: var(--font-serif);
-      font-size: clamp(36px, 5vw, 52px);
+      font-size: clamp(38px, 5.5vw, 52px);
       font-weight: 400;
       letter-spacing: -0.02em;
       line-height: 1.15;
@@ -1082,7 +1067,7 @@
 
     .section-title {
       font-family: var(--font-serif);
-      font-size: clamp(36px, 5vw, 52px);
+      font-size: clamp(38px, 5.5vw, 52px);
       font-weight: 400;
       letter-spacing: -0.02em;
       line-height: 1.15;
@@ -1417,13 +1402,13 @@
 
     .google-title {
       font-family: var(--font-serif);
-      font-size: clamp(36px, 5vw, 52px);
+      font-size: clamp(38px, 5.2vw, 52px);
       font-weight: 400;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
       color: var(--ink);
       margin-bottom: 20px;
-      max-width: 16ch;
+      max-width: 14ch;
     }
 
     .statement {
@@ -1652,7 +1637,7 @@
 
     .process-title {
       font-family: var(--font-serif);
-      font-size: clamp(36px, 5vw, 52px);
+      font-size: clamp(38px, 5.2vw, 52px);
       font-weight: 400;
       line-height: 1.15;
       letter-spacing: -0.02em;
@@ -1868,9 +1853,8 @@
       }
 
       .hero h1 {
-        font-size: 32px;
-        line-height: 1.15;
-        min-height: 2.4em;
+        font-size: 44px;
+        line-height: 1.08;
       }
 
       .hero-lead {
@@ -2017,8 +2001,9 @@
       }
 
       .section-title {
-        font-size: 32px;
-        margin-bottom: 32px;
+        font-size: 38px;
+        margin-bottom: 28px;
+        line-height: 1.12;
       }
 
       .features-container {
@@ -2091,9 +2076,10 @@
       }
 
       .google-title {
-        font-size: 32px;
+        font-size: 38px;
         margin-bottom: 14px;
         max-width: none;
+        line-height: 1.12;
       }
 
       .statement {
@@ -2147,7 +2133,8 @@
       }
 
       .process-title {
-        font-size: 32px;
+        font-size: 38px;
+        line-height: 1.12;
       }
 
       .process-lead {
@@ -2201,7 +2188,7 @@
       }
 
       .hero h1 {
-        font-size: clamp(36px, 5vw, 52px);
+        font-size: 56px;
       }
 
       .hero-lead {
@@ -2315,9 +2302,9 @@
         Average customer saves <span class="hero-eyebrow-amount">$29</span> / month
       </p>
 
-      <h1 id="heroTypewriter" aria-label="A real website. No monthly fees.">
-        <span class="type-line" id="typeLine1"></span><br>
-        <span class="type-line highlight" id="typeLine2"></span><span class="type-cursor" id="typeCursor" aria-hidden="true"></span>
+      <h1>
+        A real website.<br>
+        <span class="highlight">No monthly fees.</span>
       </h1>
 
       <p class="hero-lead">
@@ -2991,44 +2978,6 @@
   </section>
 
   <script>
-    // Hero typewriter
-    (function () {
-      const line1 = document.getElementById('typeLine1');
-      const line2 = document.getElementById('typeLine2');
-      const cursor = document.getElementById('typeCursor');
-      if (!line1 || !line2) return;
-
-      const text1 = 'A real website.';
-      const text2 = 'No monthly fees.';
-      let i = 0;
-
-      function typeFirst() {
-        if (i <= text1.length) {
-          line1.textContent = text1.slice(0, i);
-          i++;
-          setTimeout(typeFirst, 55 + Math.random() * 35);
-        } else {
-          i = 0;
-          setTimeout(typeSecond, 280);
-        }
-      }
-
-      function typeSecond() {
-        if (i <= text2.length) {
-          line2.textContent = text2.slice(0, i);
-          i++;
-          setTimeout(typeSecond, 55 + Math.random() * 35);
-        } else if (cursor) {
-          // Soft fade of cursor after a short pause
-          setTimeout(() => {
-            cursor.style.transition = 'opacity 0.6s ease';
-            cursor.style.opacity = '0';
-          }, 1800);
-        }
-      }
-
-      setTimeout(typeFirst, 400);
-    })();
 
     // Slideshow (Block 2)
     (function () {

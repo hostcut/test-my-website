@@ -1449,76 +1449,95 @@
 
     /* ========== REQUEST UPDATES (Block 7) ========== */
     .request-section {
-      background: var(--paper);
-      padding: 80px 24px 110px;
+      background: var(--ink);
+      width: 100%;
+      margin: 0;
+      padding: 100px 24px 110px;
       display: flex;
       justify-content: center;
-    }
-
-    .request-card {
-      width: 100%;
-      max-width: 760px;
-      background: var(--ink);
-      color: #f4f0e8;
-      border-radius: 28px;
-      padding: 64px 52px;
-      text-align: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 24px 64px rgba(20, 18, 14, 0.18);
     }
 
-    .request-card::before {
+    .request-section::before {
       content: "";
       position: absolute;
-      top: -35%;
-      right: -18%;
-      width: 360px;
-      height: 360px;
-      background: radial-gradient(circle, rgba(241,90,34,0.28) 0%, transparent 68%);
+      top: -30%;
+      right: -10%;
+      width: 55vw;
+      max-width: 640px;
+      height: 55vw;
+      max-height: 640px;
+      background: radial-gradient(circle, rgba(241,90,34,0.22) 0%, transparent 68%);
       pointer-events: none;
     }
 
-    .request-card::after {
+    .request-section::after {
       content: "";
       position: absolute;
-      bottom: -30%;
-      left: -15%;
-      width: 280px;
-      height: 280px;
+      bottom: -25%;
+      left: -8%;
+      width: 45vw;
+      max-width: 480px;
+      height: 45vw;
+      max-height: 480px;
       background: radial-gradient(circle, rgba(241,90,34,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
 
-    .request-card .headline {
+    .request-inner {
+      width: 100%;
+      max-width: 820px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .request-inner .headline {
       font-family: var(--font-serif);
       font-weight: 400;
-      font-size: clamp(2rem, 4.5vw, 2.85rem);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
+      font-size: clamp(2.1rem, 4.8vw, 3.1rem);
+      line-height: 1.12;
+      letter-spacing: -0.025em;
       color: #f4f0e8;
-      max-width: 16ch;
+      max-width: 18ch;
       margin: 0 auto;
-      position: relative;
     }
 
-    .request-card .subtext {
-      margin: 1.35rem auto 0;
-      max-width: 28rem;
-      font-size: 1.05rem;
+    .request-inner .subtext {
+      margin: 1.4rem auto 0;
+      max-width: 32rem;
+      font-size: 1.08rem;
       line-height: 1.6;
       color: #b8b2a6;
-      position: relative;
     }
 
-    .request-card .updates-btn {
+    .request-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .request-option {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(244, 240, 232, 0.08);
+      border: 1px solid rgba(244, 240, 232, 0.12);
+      color: #d4cfc5;
+    }
+
+    .request-inner .updates-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      margin-top: 2rem;
-      min-height: 3.1rem;
-      padding: 0 1.75rem;
+      margin-top: 2.25rem;
+      min-height: 3.15rem;
+      padding: 0 1.85rem;
       border-radius: 999px;
       background: var(--orange);
       color: #fff;
@@ -1526,24 +1545,22 @@
       font-weight: 600;
       text-decoration: none;
       transition: filter 150ms ease, transform 150ms ease;
-      position: relative;
       border: none;
     }
 
-    .request-card .updates-btn:hover {
+    .request-inner .updates-btn:hover {
       filter: brightness(1.08);
       transform: translateY(-1px);
     }
 
-    .request-card .updates-btn:active {
+    .request-inner .updates-btn:active {
       transform: scale(0.97);
     }
 
-    .request-card .note {
-      margin-top: 1.15rem;
+    .request-inner .note {
+      margin-top: 1.2rem;
       font-size: 0.85rem;
       color: #9c968c;
-      position: relative;
     }
 
     /* ========== RESPONSIVE (mobile-first base + progressive enhancement) ========== */
@@ -1796,20 +1813,25 @@
       }
 
       .request-section {
-        padding: 56px 16px 80px;
+        padding: 64px 20px 80px;
       }
 
-      .request-card {
-        padding: 44px 24px;
-        border-radius: 22px;
+      .request-inner .headline {
+        font-size: 1.9rem;
       }
 
-      .request-card .headline {
-        font-size: 1.85rem;
-      }
-
-      .request-card .subtext {
+      .request-inner .subtext {
         font-size: 0.98rem;
+      }
+
+      .request-options {
+        gap: 8px;
+        margin-top: 1.5rem;
+      }
+
+      .request-option {
+        font-size: 12px;
+        padding: 7px 12px;
       }
     }
 
@@ -2397,8 +2419,8 @@
         </div>
 
         <div class="workflow-note">
-          <h3>Fits into your existing workflow</h3>
-          <p>No proprietary builders. Edit in plain HTML or your preferred editor. Upload once and you’re done.</p>
+          <h3>Built until it works for you</h3>
+          <p>We don’t stop at “good enough.” HostCut keeps refining your site until you’re happy with how it looks and how it works.</p>
         </div>
       </div>
 
@@ -2482,15 +2504,22 @@
 
   <!-- ========== BLOCK 7: REQUEST UPDATES ========== -->
   <section class="request-section">
-    <div class="request-card">
+    <div class="request-inner">
       <h2 class="headline">
         Already made the move?<br>
         Need something updated?
       </h2>
 
       <p class="subtext">
-        Content changes, new pages, or a full redesign — just tell us what you need and we’ll take care of it.
+        Content changes, new pages, layout tweaks, or a full redesign — tell us what you need and we’ll handle it. No platform login required on your end.
       </p>
+
+      <div class="request-options">
+        <span class="request-option">Text &amp; photos</span>
+        <span class="request-option">New pages</span>
+        <span class="request-option">Forms &amp; contact</span>
+        <span class="request-option">Full redesign</span>
+      </div>
 
       <a href="#" class="updates-btn">
         Request updates

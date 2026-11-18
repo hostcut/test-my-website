@@ -1563,6 +1563,240 @@
       color: #9c968c;
     }
 
+    /* ========== PROCESS (Block 8) ========== */
+    .process-section {
+      background: var(--paper);
+      padding: 96px 24px;
+    }
+
+    .process-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .process-header {
+      max-width: 560px;
+      margin-bottom: 56px;
+    }
+
+    .process-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 14px;
+    }
+
+    .process-title {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4.5vw, 44px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .process-lead {
+      font-size: 16.5px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 480px;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      position: relative;
+    }
+
+    @media (min-width: 601px) {
+      .process-steps {
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+    }
+
+    @media (min-width: 901px) {
+      .process-steps {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+    }
+
+    .process-step {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 28px 24px 26px;
+      position: relative;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .process-step:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(20, 18, 14, 0.07);
+      border-color: color-mix(in srgb, var(--orange) 22%, var(--card-border));
+    }
+
+    .process-num {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--orange);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+
+    .process-step h3 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .process-step p {
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    /* ========== FINAL CTA (Block 9) ========== */
+    .final-cta-section {
+      background: var(--paper);
+      padding: 24px 24px 100px;
+    }
+
+    .final-cta {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: linear-gradient(145deg, #1a1714 0%, #14120e 55%, #1c1510 100%);
+      border-radius: 28px;
+      padding: 40px 24px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .final-cta {
+        grid-template-columns: 1.4fr auto;
+        gap: 40px;
+        padding: 64px 56px;
+        text-align: left;
+        border-radius: 28px;
+      }
+
+      .final-cta h2,
+      .final-cta p {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .final-cta-actions {
+        margin: 0;
+        max-width: none;
+      }
+    }
+
+    .final-cta::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      right: -5%;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(241,90,34,0.25) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .final-cta-copy {
+      position: relative;
+      z-index: 1;
+    }
+
+    .final-cta-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 14px;
+    }
+
+    .final-cta h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #f4f0e8;
+      margin-bottom: 14px;
+      max-width: 16ch;
+    }
+
+    .final-cta p {
+      font-size: 16px;
+      line-height: 1.55;
+      color: #b8b2a6;
+      max-width: 38ch;
+    }
+
+    .final-cta-actions {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: stretch;
+      min-width: 200px;
+    }
+
+    .final-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 48px;
+      padding: 0 22px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .final-cta-btn.primary {
+      background: var(--orange);
+      color: #fff;
+    }
+
+    .final-cta-btn.primary:hover {
+      background: #d94e1a;
+      transform: translateY(-1px);
+    }
+
+    .final-cta-btn.secondary {
+      background: transparent;
+      color: #f4f0e8;
+      border: 1.5px solid rgba(244, 240, 232, 0.22);
+    }
+
+    .final-cta-btn.secondary:hover {
+      background: rgba(244, 240, 232, 0.08);
+      border-color: rgba(244, 240, 232, 0.35);
+    }
+
     /* ========== RESPONSIVE (mobile-first base + progressive enhancement) ========== */
     /* Base styles already lean mobile; tighten further for small screens */
     @media (max-width: 600px) {
@@ -1833,6 +2067,62 @@
       .request-option {
         font-size: 12px;
         padding: 7px 12px;
+      }
+
+      .process-section {
+        padding: 64px 16px 72px;
+      }
+
+      .process-header {
+        margin-bottom: 36px;
+      }
+
+      .process-title {
+        font-size: 30px;
+      }
+
+      .process-lead {
+        font-size: 15.5px;
+      }
+
+      .process-steps {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .process-step {
+        padding: 24px 20px;
+      }
+
+      .final-cta-section {
+        padding: 8px 16px 72px;
+      }
+
+      .final-cta {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 40px 24px;
+        border-radius: 22px;
+        text-align: center;
+      }
+
+      .final-cta h2 {
+        max-width: none;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .final-cta p {
+        max-width: none;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .final-cta-actions {
+        min-width: 0;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
       }
     }
 
@@ -2528,6 +2818,64 @@
       </a>
 
       <p class="note">Usually replied within one business day.</p>
+    </div>
+  </section>
+
+  <!-- ========== BLOCK 8: SIMPLE PROCESS ========== -->
+  <section class="process-section">
+    <div class="process-inner">
+      <div class="process-header">
+        <p class="process-eyebrow">How it works</p>
+        <h2 class="process-title">From conversation to live site</h2>
+        <p class="process-lead">
+          No drag-and-drop builders. No learning curve. You talk, we build, you approve — then you own it.
+        </p>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="process-num">01</div>
+          <h3>Tell us about you</h3>
+          <p>Share your business, audience, and what the site needs to do. A short call or a few notes is enough.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">02</div>
+          <h3>We design &amp; build</h3>
+          <p>Clean layout, clear copy structure, and a site that fits your trade or practice — not a generic template.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">03</div>
+          <h3>You review</h3>
+          <p>We refine until it feels right. Text, photos, contact paths — adjusted until you’re happy to go live.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">04</div>
+          <h3>Live &amp; yours</h3>
+          <p>Published on Cloudflare’s network. Files you own. No monthly platform fee attached to the hosting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BLOCK 9: FINAL CTA ========== -->
+  <section class="final-cta-section">
+    <div class="final-cta">
+      <div class="final-cta-copy">
+        <p class="final-cta-eyebrow">Get started</p>
+        <h2>Ready for a site you actually own?</h2>
+        <p>
+          One permanent website. Same edge network the big brands use. No subscription hanging over it.
+        </p>
+      </div>
+      <div class="final-cta-actions">
+        <a href="#" class="final-cta-btn primary">
+          Start a project
+          <svg width="13" height="13" viewBox="0 0 12 12" fill="none">
+            <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#" class="final-cta-btn secondary">Request updates</a>
+      </div>
     </div>
   </section>
 

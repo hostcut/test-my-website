@@ -79,27 +79,30 @@
 
     .hero-eyebrow {
       font-family: var(--font-sans);
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 500;
-      color: var(--muted);
-      margin-bottom: 28px;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--soft);
+      margin: 0 0 20px;
       text-align: center;
+      opacity: 0.85;
     }
 
     .hero-eyebrow-amount {
-      color: var(--ink);
+      color: var(--muted);
       font-weight: 600;
+      letter-spacing: 0.04em;
     }
 
     .hero h1 {
       font-family: var(--font-serif);
-      font-size: clamp(48px, 7vw, 72px);
+      font-size: clamp(42px, 6.5vw, 68px);
       font-weight: 400;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
       color: var(--ink);
-      margin-bottom: 12px;
+      margin-bottom: 18px;
     }
 
     .hero h1 .highlight {
@@ -107,31 +110,22 @@
       color: var(--orange);
     }
 
-    .hero p {
+    .hero-lead {
       font-family: var(--font-sans);
-      font-size: clamp(18px, 2.4vw, 22px);
+      font-size: clamp(16px, 2.2vw, 19px);
       font-weight: 400;
-      line-height: 1.45;
+      line-height: 1.55;
       letter-spacing: -0.01em;
-      color: #3d3934;
-      margin: 0 auto;
-      max-width: 720px;
-    }
-
-    [data-theme="dark"] .hero p {
       color: var(--muted);
-    }
-
-    .hero p .highlight {
-      color: var(--orange);
-      font-weight: 500;
+      margin: 0 auto;
+      max-width: 520px;
     }
 
     .cta-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 40px;
+      gap: 12px;
+      margin-top: 36px;
       justify-content: center;
     }
 
@@ -187,22 +181,22 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      margin-top: 56px;
-      padding: 0 0 36px;
+      margin-top: 64px;
+      padding: 0 0 32px;
       overflow: hidden;
       background: var(--paper);
     }
 
     .marquee-title {
       font-family: var(--font-sans);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--soft);
       text-align: center;
-      margin: 0 0 22px;
-      opacity: 0.75;
+      margin: 0 0 20px;
+      opacity: 0.7;
     }
 
     
@@ -1456,33 +1450,43 @@
     /* ========== REQUEST UPDATES (Block 7) ========== */
     .request-section {
       background: var(--paper);
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 24px 100px;
+      padding: 80px 24px 110px;
       display: flex;
       justify-content: center;
     }
 
     .request-card {
       width: 100%;
-      max-width: 720px;
+      max-width: 760px;
       background: var(--ink);
       color: #f4f0e8;
-      border-radius: 24px;
-      padding: 56px 48px;
+      border-radius: 28px;
+      padding: 64px 52px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 24px 64px rgba(20, 18, 14, 0.18);
     }
 
     .request-card::before {
       content: "";
       position: absolute;
-      top: -40%;
-      right: -20%;
-      width: 320px;
-      height: 320px;
-      background: radial-gradient(circle, rgba(241,90,34,0.22) 0%, transparent 70%);
+      top: -35%;
+      right: -18%;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(241,90,34,0.28) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .request-card::after {
+      content: "";
+      position: absolute;
+      bottom: -30%;
+      left: -15%;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(241,90,34,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -1551,21 +1555,23 @@
       }
 
       .hero h1 {
-        font-size: 36px;
-        line-height: 1.15;
+        font-size: 34px;
+        line-height: 1.12;
       }
 
-      .hero p {
-        font-size: 16px;
+      .hero-lead {
+        font-size: 15.5px;
         line-height: 1.5;
+        max-width: 340px;
       }
 
       .cta-row {
         flex-direction: column;
         width: 100%;
-        max-width: 320px;
+        max-width: 300px;
         margin-left: auto;
         margin-right: auto;
+        margin-top: 28px;
       }
 
       .btn {
@@ -1573,21 +1579,23 @@
       }
 
       .hero-eyebrow {
-        font-size: 13px;
-        margin-bottom: 22px;
-        padding: 0 8px;
+        font-size: 11px;
+        letter-spacing: 0.07em;
+        margin-bottom: 16px;
+        padding: 0 12px;
       }
 
       .marquee-section {
-        margin-top: 40px;
-        padding: 0 0 28px;
+        margin-top: 44px;
+        padding: 0 0 24px;
       }
 
       .marquee-title {
-        font-size: 11px;
-        letter-spacing: 0.06em;
-        margin-bottom: 16px;
+        font-size: 10px;
+        letter-spacing: 0.09em;
+        margin-bottom: 14px;
         padding: 0 16px;
+        opacity: 0.65;
       }
 
       .marquee-content {
@@ -1788,12 +1796,12 @@
       }
 
       .request-section {
-        padding: 24px 16px 72px;
+        padding: 56px 16px 80px;
       }
 
       .request-card {
-        padding: 40px 24px;
-        border-radius: 20px;
+        padding: 44px 24px;
+        border-radius: 22px;
       }
 
       .request-card .headline {
@@ -1814,7 +1822,7 @@
         font-size: 42px;
       }
 
-      .hero p {
+      .hero-lead {
         font-size: 17px;
       }
 
@@ -1922,15 +1930,16 @@
   <section class="hero">
     <div class="hero-content">
       <p class="hero-eyebrow">
-        HostCut customers save an average of <span class="hero-eyebrow-amount">$29</span> every month
+        Average customer saves <span class="hero-eyebrow-amount">$29</span> / month
       </p>
 
       <h1>
-        Why pay when it's <span class="highlight">free?</span>
+        A real website.<br>
+        <span class="highlight">No monthly fees.</span>
       </h1>
 
-      <p>
-        Never pay monthly website hosting fees. Build or move your website with us and say goodbye to those pesky monthly fees.
+      <p class="hero-lead">
+        HostCut builds and hosts a permanent site you own. Same edge network the big brands use — without the subscription.
       </p>
 
       <div class="cta-row">
@@ -1942,19 +1951,13 @@
         </a>
 
         <a href="#" class="btn btn-secondary">
-          <svg width="18" height="18" viewBox="0 0 18 18">
-            <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/>
-            <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.96-2.184l-2.908-2.258c-.806.54-1.837.86-3.052.86-2.347 0-4.332-1.584-5.043-3.712H.957v2.332C2.438 15.983 5.482 18 9 18z"/>
-            <path fill="#FBBC05" d="M3.957 10.706c-.18-.54-.282-1.117-.282-1.706s.102-1.166.282-1.706V4.962H.957C.348 6.175 0 7.55 0 9s.348 2.825.957 4.038l3-2.332z"/>
-            <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.962L3.957 7.294C4.668 5.163 6.653 3.58 9 3.58z"/>
-          </svg>
-          Sign up with Google
+          See how it works
         </a>
       </div>
     </div>
 
     <div class="marquee-section">
-      <p class="marquee-title">Brand you trust, trust Cloudflare.</p>
+      <p class="marquee-title">Brands you trust trust Cloudflare</p>
       <div class="marquee-track">
         <div class="marquee-content">
           <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI"> OpenAI</div>

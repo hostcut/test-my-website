@@ -97,17 +97,32 @@
 
     .hero h1 {
       font-family: var(--font-serif);
-      font-size: clamp(42px, 6.5vw, 68px);
+      font-size: clamp(36px, 5vw, 52px);
       font-weight: 400;
-      line-height: 1.08;
-      letter-spacing: -0.025em;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
       color: var(--ink);
       margin-bottom: 18px;
+      min-height: 2.3em;
     }
 
     .hero h1 .highlight {
       font-style: italic;
       color: var(--orange);
+    }
+
+    .hero h1 .type-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 0.85em;
+      background: var(--orange);
+      margin-left: 2px;
+      vertical-align: -0.05em;
+      animation: typeBlink 0.9s step-end infinite;
+    }
+
+    @keyframes typeBlink {
+      50% { opacity: 0; }
     }
 
     .hero-lead {
@@ -1402,13 +1417,13 @@
 
     .google-title {
       font-family: var(--font-serif);
-      font-size: clamp(32px, 4.6vw, 48px);
+      font-size: clamp(36px, 5vw, 52px);
       font-weight: 400;
-      line-height: 1.12;
-      letter-spacing: -0.025em;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
       color: var(--ink);
       margin-bottom: 20px;
-      max-width: 14ch;
+      max-width: 16ch;
     }
 
     .statement {
@@ -1637,7 +1652,7 @@
 
     .process-title {
       font-family: var(--font-serif);
-      font-size: clamp(32px, 4.5vw, 44px);
+      font-size: clamp(36px, 5vw, 52px);
       font-weight: 400;
       line-height: 1.15;
       letter-spacing: -0.02em;
@@ -1853,8 +1868,9 @@
       }
 
       .hero h1 {
-        font-size: 34px;
-        line-height: 1.12;
+        font-size: 32px;
+        line-height: 1.15;
+        min-height: 2.4em;
       }
 
       .hero-lead {
@@ -2075,7 +2091,7 @@
       }
 
       .google-title {
-        font-size: 28px;
+        font-size: 32px;
         margin-bottom: 14px;
         max-width: none;
       }
@@ -2131,7 +2147,7 @@
       }
 
       .process-title {
-        font-size: 30px;
+        font-size: 32px;
       }
 
       .process-lead {
@@ -2185,7 +2201,7 @@
       }
 
       .hero h1 {
-        font-size: 42px;
+        font-size: clamp(36px, 5vw, 52px);
       }
 
       .hero-lead {
@@ -2299,9 +2315,9 @@
         Average customer saves <span class="hero-eyebrow-amount">$29</span> / month
       </p>
 
-      <h1>
-        A real website.<br>
-        <span class="highlight">No monthly fees.</span>
+      <h1 id="heroTypewriter" aria-label="A real website. No monthly fees.">
+        <span class="type-line" id="typeLine1"></span><br>
+        <span class="type-line highlight" id="typeLine2"></span><span class="type-cursor" id="typeCursor" aria-hidden="true"></span>
       </h1>
 
       <p class="hero-lead">
@@ -2736,7 +2752,6 @@
   <section class="google-section">
     <div class="google-inner">
       <div class="google-copy">
-        <p class="google-eyebrow">Search presence</p>
         <h2 class="google-title">
           Keep everything you’ve earned on
           <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
@@ -2976,6 +2991,45 @@
   </section>
 
   <script>
+    // Hero typewriter
+    (function () {
+      const line1 = document.getElementById('typeLine1');
+      const line2 = document.getElementById('typeLine2');
+      const cursor = document.getElementById('typeCursor');
+      if (!line1 || !line2) return;
+
+      const text1 = 'A real website.';
+      const text2 = 'No monthly fees.';
+      let i = 0;
+
+      function typeFirst() {
+        if (i <= text1.length) {
+          line1.textContent = text1.slice(0, i);
+          i++;
+          setTimeout(typeFirst, 55 + Math.random() * 35);
+        } else {
+          i = 0;
+          setTimeout(typeSecond, 280);
+        }
+      }
+
+      function typeSecond() {
+        if (i <= text2.length) {
+          line2.textContent = text2.slice(0, i);
+          i++;
+          setTimeout(typeSecond, 55 + Math.random() * 35);
+        } else if (cursor) {
+          // Soft fade of cursor after a short pause
+          setTimeout(() => {
+            cursor.style.transition = 'opacity 0.6s ease';
+            cursor.style.opacity = '0';
+          }, 1800);
+        }
+      }
+
+      setTimeout(typeFirst, 400);
+    })();
+
     // Slideshow (Block 2)
     (function () {
       const slides = document.querySelectorAll('.slide');

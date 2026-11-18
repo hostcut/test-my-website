@@ -38,168 +38,517 @@
       overflow-x: hidden;
     }
 
-    /* ========== HERO / TRUST LANDING ========== */
+    /* ========== BLOCK 1: DRAMATIC HERO ========== */
     .hero-secure {
       position: relative;
-      padding: 96px 24px 80px;
-      background: var(--paper);
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 24px 88px;
+      background: linear-gradient(165deg, #12100e 0%, #1a1612 42%, #1e1610 100%);
       overflow: hidden;
+      color: #f4f0e8;
     }
 
+    /* Soft orange glow */
     .hero-secure::before {
       content: "";
       position: absolute;
-      top: -20%;
-      right: -8%;
-      width: 55vw;
-      max-width: 560px;
-      height: 55vw;
-      max-height: 560px;
-      background: radial-gradient(circle, rgba(241,90,34,0.12) 0%, transparent 68%);
+      top: -30%;
+      right: -15%;
+      width: 70vw;
+      max-width: 720px;
+      height: 70vw;
+      max-height: 720px;
+      background: radial-gradient(circle, rgba(241,90,34,0.28) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* Secondary softer glow bottom left */
+    .hero-secure::after {
+      content: "";
+      position: absolute;
+      bottom: -25%;
+      left: -10%;
+      width: 50vw;
+      max-width: 480px;
+      height: 50vw;
+      max-height: 480px;
+      background: radial-gradient(circle, rgba(241,90,34,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
 
     .hero-inner {
       position: relative;
       z-index: 1;
-      max-width: 1100px;
+      max-width: 1180px;
       margin: 0 auto;
+      width: 100%;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 48px;
+      gap: 56px;
       align-items: center;
     }
 
-    @media (min-width: 901px) {
+    @media (min-width: 960px) {
       .hero-inner {
-        grid-template-columns: 1.15fr 0.85fr;
-        gap: 64px;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 72px;
       }
     }
 
     .hero-eyebrow {
-      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--orange);
-      margin-bottom: 16px;
+      margin-bottom: 22px;
+    }
+
+    .hero-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1.5px;
+      background: var(--orange);
+      opacity: 0.85;
     }
 
     .hero-title {
       font-family: var(--font-serif);
-      font-size: clamp(40px, 5.5vw, 56px);
+      font-size: clamp(44px, 6.2vw, 68px);
       font-weight: 400;
-      line-height: 1.1;
-      letter-spacing: -0.025em;
-      color: var(--ink);
-      margin-bottom: 20px;
-      max-width: 14ch;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #f4f0e8;
+      margin-bottom: 24px;
+      max-width: 11ch;
     }
 
-    .hero-title em {
+    .hero-title .line2 {
+      display: block;
       font-style: italic;
       color: var(--orange);
     }
 
     .hero-lead {
-      font-size: clamp(16px, 1.9vw, 18px);
-      line-height: 1.6;
-      color: var(--muted);
-      max-width: 480px;
-      margin-bottom: 32px;
+      font-size: clamp(16.5px, 1.9vw, 18.5px);
+      line-height: 1.65;
+      color: #b8b2a6;
+      max-width: 440px;
+      margin-bottom: 36px;
     }
 
-    .hero-points {
+    .hero-lead strong {
+      color: #f4f0e8;
+      font-weight: 500;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px 40px;
+    }
+
+    .hero-stat {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 4px;
     }
 
-    .hero-point {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 15px;
-      color: var(--ink);
+    .hero-stat-value {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 400;
+      color: #f4f0e8;
+      letter-spacing: -0.02em;
+      line-height: 1;
     }
 
-    .hero-point .check {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--orange-soft);
+    .hero-stat-label {
+      font-size: 13px;
+      color: #9c968c;
+      letter-spacing: 0.01em;
+    }
+
+    /* Visual panel on the right */
+    .hero-visual {
+      position: relative;
       display: flex;
-      align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
+      align-items: center;
     }
 
-    .hero-point .check svg {
-      width: 12px;
-      height: 12px;
-      stroke: var(--orange);
+    .shield-frame {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 1 / 1.05;
+      background: linear-gradient(160deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid rgba(244,240,232,0.1);
+      border-radius: 28px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.35);
+    }
+
+    .shield-frame::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      right: -30%;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(241,90,34,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .shield-top {
+      position: relative;
+      z-index: 1;
+    }
+
+    .shield-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px 7px 10px;
+      background: rgba(241,90,34,0.15);
+      border: 1px solid rgba(241,90,34,0.3);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #ff8a5c;
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+    }
+
+    .shield-badge svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
       fill: none;
-      stroke-width: 2.5;
+      stroke-width: 2;
     }
 
-    /* Trust card stack */
-    .trust-stack {
+    .shield-headline {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      line-height: 1.25;
+      color: #f4f0e8;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .shield-sub {
+      font-size: 14.5px;
+      color: #a39e94;
+      line-height: 1.5;
+      max-width: 280px;
+    }
+
+    .shield-layers {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 10px;
+      margin-top: 32px;
     }
 
-    .trust-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 22px 24px;
+    .layer {
       display: flex;
       align-items: center;
-      gap: 16px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .trust-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(20, 18, 14, 0.07);
-    }
-
-    .trust-icon {
-      width: 48px;
-      height: 48px;
+      gap: 14px;
+      padding: 14px 16px;
+      background: rgba(244,240,232,0.04);
+      border: 1px solid rgba(244,240,232,0.08);
       border-radius: 12px;
-      background: var(--orange-soft);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .layer:hover {
+      background: rgba(244,240,232,0.07);
+      border-color: rgba(241,90,34,0.25);
+    }
+
+    .layer-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: rgba(241,90,34,0.12);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
     }
 
-    .trust-icon svg {
-      width: 22px;
-      height: 22px;
+    .layer-icon svg {
+      width: 16px;
+      height: 16px;
       stroke: var(--orange);
       fill: none;
       stroke-width: 1.8;
     }
 
-    .trust-body strong {
-      display: block;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 2px;
+    .layer-text {
+      flex: 1;
+      min-width: 0;
     }
 
-    .trust-body span {
+    .layer-text strong {
+      display: block;
       font-size: 13.5px;
+      font-weight: 600;
+      color: #f4f0e8;
+      margin-bottom: 1px;
+    }
+
+    .layer-text span {
+      font-size: 12.5px;
+      color: #9c968c;
+    }
+
+    .layer-status {
+      font-size: 11px;
+      font-weight: 600;
+      color: #2a9d5c;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    /* ========== NEW BLOCK: LAYERS OF PROTECTION ========== */
+    .layers-section {
+      background: var(--paper);
+      padding: 96px 24px 80px;
+    }
+
+    .layers-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .layers-header {
+      max-width: 620px;
+      margin-bottom: 52px;
+    }
+
+    .layers-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 14px;
+    }
+
+    .layers-title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 48px);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .layers-title em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .layers-lead {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 480px;
+    }
+
+    .protection-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 700px) {
+      .protection-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .protection-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+    }
+
+    .prot-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 28px 26px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.28s ease,
+                  border-color 0.28s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .prot-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 40px rgba(20, 18, 14, 0.08);
+      border-color: color-mix(in srgb, var(--orange) 22%, var(--card-border));
+    }
+
+    .prot-card::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .prot-card:hover::after {
+      opacity: 1;
+    }
+
+    .prot-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--orange-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .prot-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--orange);
+      fill: none;
+      stroke-width: 1.7;
+    }
+
+    .prot-card h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.015em;
+      margin-bottom: 6px;
+    }
+
+    .prot-card p {
+      font-size: 14.5px;
+      line-height: 1.55;
       color: var(--muted);
     }
 
-    /* ========== FEATURES BENTO (provided block, adapted) ========== */
+    .prot-tag {
+      margin-top: auto;
+      padding-top: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--orange);
+      opacity: 0.85;
+    }
+
+    /* Featured wide card */
+    .prot-card.wide {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      align-items: center;
+      gap: 32px;
+      padding: 32px 36px;
+      background: linear-gradient(135deg, #1a1714 0%, #14120e 100%);
+      border-color: #1a1714;
+      color: #f4f0e8;
+    }
+
+    @media (max-width: 699px) {
+      .prot-card.wide {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 28px 24px;
+      }
+    }
+
+    .prot-card.wide:hover {
+      border-color: #2a2420;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+    }
+
+    .prot-card.wide .prot-icon {
+      background: rgba(241,90,34,0.18);
+      flex-shrink: 0;
+    }
+
+    .prot-card.wide .prot-icon svg {
+      stroke: #ff8a5c;
+    }
+
+    .prot-card.wide h3 {
+      color: #f4f0e8;
+    }
+
+    .prot-card.wide p {
+      color: #b8b2a6;
+      max-width: 520px;
+    }
+
+    .prot-card.wide .prot-tag {
+      color: #ff8a5c;
+    }
+
+    .wide-content {
+      flex: 1;
+    }
+
+    .wide-meta {
+      display: flex;
+      gap: 28px;
+      flex-shrink: 0;
+    }
+
+    .wide-meta-item {
+      text-align: center;
+    }
+
+    .wide-meta-item strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 26px;
+      color: #f4f0e8;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .wide-meta-item span {
+      font-size: 12.5px;
+      color: #9c968c;
+    }
+
+    /* ========== BLOCK 3: CLOUDFLARE FEATURES BENTO ========== */
     .features-section {
       max-width: 1200px;
       margin: 0 auto;
@@ -472,7 +821,7 @@
       background: #faf8f4;
     }
 
-    /* ========== WHAT THIS MEANS ========== */
+    /* ========== BLOCK 4: WHAT THIS MEANS ========== */
     .means-section {
       background: var(--ink);
       color: #f4f0e8;
@@ -589,7 +938,6 @@
       color: #b8b2a6;
     }
 
-    /* Bottom assurance bar */
     .assurance-bar {
       margin-top: 48px;
       padding: 28px 32px;
@@ -648,7 +996,12 @@
       }
 
       .hero-secure {
-        padding: 72px 20px 56px;
+        min-height: auto;
+        padding: 80px 20px 64px;
+      }
+
+      .hero-title {
+        max-width: none;
       }
 
       .features-section {
@@ -678,110 +1031,236 @@
         align-items: flex-start;
         padding: 24px 22px;
       }
+
+      .layers-section {
+        padding: 72px 20px 64px;
+      }
     }
 
     @media (max-width: 600px) {
       .hero-title {
-        font-size: 36px;
-        max-width: none;
+        font-size: 40px;
       }
 
-      .trust-card {
-        padding: 18px 16px;
+      .hero-stats {
+        gap: 20px 28px;
       }
 
-      .trust-icon {
-        width: 42px;
-        height: 42px;
+      .hero-stat-value {
+        font-size: 24px;
+      }
+
+      .shield-frame {
+        max-width: 100%;
+        padding: 28px 22px;
+      }
+
+      .shield-headline {
+        font-size: 22px;
+      }
+
+      .wide-meta {
+        gap: 20px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- ========== BLOCK 1: TRUST HERO ========== -->
+  <!-- ========== BLOCK 1: DRAMATIC HERO ========== -->
   <section class="hero-secure">
     <div class="hero-inner">
       <div class="hero-copy">
         <p class="hero-eyebrow">Secure by default</p>
         <h1 class="hero-title">
-          Protection that comes<br>
-          <em>with the site</em>
+          Protection that
+          <span class="line2">comes with the site</span>
         </h1>
         <p class="hero-lead">
-          HTTPS, modern hosting, and reliable uptime are included from day one. Your site is protected without any extra setup or monthly security add-ons.
+          HTTPS, modern hosting, and reliable uptime are included from day one.
+          <strong>Your site is protected without any extra setup or monthly security add-ons.</strong>
         </p>
 
-        <div class="hero-points">
-          <div class="hero-point">
-            <span class="check">
-              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            <span>Free SSL certificate and forced HTTPS on every page</span>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-value">HTTPS</span>
+            <span class="hero-stat-label">Forced from day one</span>
           </div>
-          <div class="hero-point">
-            <span class="check">
-              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            <span>Served from Cloudflare’s global edge network</span>
+          <div class="hero-stat">
+            <span class="hero-stat-value">Edge</span>
+            <span class="hero-stat-label">Cloudflare network</span>
           </div>
-          <div class="hero-point">
-            <span class="check">
-              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            <span>DDoS mitigation and basic bot protection included</span>
-          </div>
-          <div class="hero-point">
-            <span class="check">
-              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            <span>No monthly security fees or complicated configuration</span>
+          <div class="hero-stat">
+            <span class="hero-stat-value">$0</span>
+            <span class="hero-stat-label">Security add-ons</span>
           </div>
         </div>
       </div>
 
-      <div class="trust-stack">
-        <div class="trust-card">
-          <div class="trust-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div class="hero-visual">
+        <div class="shield-frame">
+          <div class="shield-top">
+            <div class="shield-badge">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Always on
+            </div>
+            <h2 class="shield-headline">Four layers between the internet and your files</h2>
+            <p class="shield-sub">Everything below is active the moment the site goes live. No toggles to remember.</p>
           </div>
-          <div class="trust-body">
-            <strong>HTTPS everywhere</strong>
-            <span>Automatic certificate + Always Use HTTPS</span>
-          </div>
-        </div>
-        <div class="trust-card">
-          <div class="trust-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <div class="trust-body">
-            <strong>Global edge network</strong>
-            <span>Same infrastructure major brands rely on</span>
-          </div>
-        </div>
-        <div class="trust-card">
-          <div class="trust-icon">
-            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          </div>
-          <div class="trust-body">
-            <strong>Fast & resilient</strong>
-            <span>Edge caching + automatic failover paths</span>
-          </div>
-        </div>
-        <div class="trust-card">
-          <div class="trust-icon">
-            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </div>
-          <div class="trust-body">
-            <strong>Locked down by default</strong>
-            <span>No extra security product to buy or manage</span>
+
+          <div class="shield-layers">
+            <div class="layer">
+              <div class="layer-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="layer-text">
+                <strong>TLS 1.3 + certificate</strong>
+                <span>Encrypted in transit, auto-renewed</span>
+              </div>
+              <span class="layer-status">On</span>
+            </div>
+            <div class="layer">
+              <div class="layer-icon">
+                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div class="layer-text">
+                <strong>Edge delivery</strong>
+                <span>Cached &amp; served from the network</span>
+              </div>
+              <span class="layer-status">On</span>
+            </div>
+            <div class="layer">
+              <div class="layer-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div class="layer-text">
+                <strong>DDoS &amp; bot mitigation</strong>
+                <span>Absorbed before it reaches origin</span>
+              </div>
+              <span class="layer-status">On</span>
+            </div>
+            <div class="layer">
+              <div class="layer-icon">
+                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+              <div class="layer-text">
+                <strong>Origin shielding</strong>
+                <span>Traffic filtered at the edge</span>
+              </div>
+              <span class="layer-status">On</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== BLOCK 2: CLOUDFLARE SECURITY FEATURES BENTO ========== -->
+  <!-- ========== NEW BLOCK: WHAT’S INCLUDED ========== -->
+  <section class="layers-section">
+    <div class="layers-inner">
+      <div class="layers-header">
+        <p class="layers-eyebrow">Included from day one</p>
+        <h2 class="layers-title">
+          The protection most platforms<br>
+          charge for is <em>already on</em>
+        </h2>
+        <p class="layers-lead">
+          You don’t buy a security product. You get a site that lives on infrastructure built for it.
+        </p>
+      </div>
+
+      <div class="protection-grid">
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <h3>Universal SSL</h3>
+            <p>A valid certificate is issued and renewed automatically. Always Use HTTPS is enabled so every request is encrypted.</p>
+          </div>
+          <span class="prot-tag">No setup</span>
+        </div>
+
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div>
+            <h3>Edge network</h3>
+            <p>Static files are served from Cloudflare’s global network. Visitors hit a nearby edge location instead of a single distant server.</p>
+          </div>
+          <span class="prot-tag">Global by default</span>
+        </div>
+
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+          </div>
+          <div>
+            <h3>DDoS absorption</h3>
+            <p>Volumetric and protocol attacks are mitigated at the network level. Unmetered protection is part of the platform, not an upgrade.</p>
+          </div>
+          <span class="prot-tag">Always active</span>
+        </div>
+
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <h3>Bot Fight Mode</h3>
+            <p>Known malicious bots and simple automated traffic are challenged before they can reach your pages or forms.</p>
+          </div>
+          <span class="prot-tag">On by default</span>
+        </div>
+
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div>
+            <h3>Modern protocols</h3>
+            <p>TLS 1.3, HTTP/2, and HTTP/3 where available. Faster handshakes and stronger encryption without any configuration on your side.</p>
+          </div>
+          <span class="prot-tag">Latest standards</span>
+        </div>
+
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div>
+            <h3>No monthly tax</h3>
+            <p>There is no security product to subscribe to. The protections above come with the hosting — they don’t generate a separate bill.</p>
+          </div>
+          <span class="prot-tag">Included</span>
+        </div>
+
+        <!-- Wide featured card -->
+        <div class="prot-card wide">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="wide-content">
+            <h3>Same network the brands you know already use</h3>
+            <p>Your site is files on Cloudflare’s edge — not a shared server with a security plugin bolted on. The infrastructure is the protection.</p>
+          </div>
+          <div class="wide-meta">
+            <div class="wide-meta-item">
+              <strong>330+</strong>
+              <span>edge cities</span>
+            </div>
+            <div class="wide-meta-item">
+              <strong>100%</strong>
+              <span>uptime focus</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BLOCK 3: CLOUDFLARE SECURITY FEATURES BENTO ========== -->
   <section class="features-section">
     <h2 class="section-title">
       Protect, accelerate, and control<br>
@@ -790,9 +1269,7 @@
 
     <div class="bento">
 
-      <!-- Row 1: large | small -->
       <div class="row row-1">
-        <!-- 1. Smart Shield (large) -->
         <div class="card card-1">
           <div>
             <h3>Smart Shield</h3>
@@ -810,7 +1287,6 @@
           </div>
         </div>
 
-        <!-- 2. Bot Fight Mode (small) -->
         <div class="card card-2">
           <div>
             <h3>Bot Fight Mode</h3>
@@ -820,9 +1296,7 @@
         </div>
       </div>
 
-      <!-- Row 2: small | large -->
       <div class="row row-2">
-        <!-- 3. TLS 1.3 (small) -->
         <div class="card card-3">
           <div>
             <h3>TLS 1.3</h3>
@@ -831,7 +1305,6 @@
           <div class="version">1.3</div>
         </div>
 
-        <!-- 4. Smart Tiered Cache (large) -->
         <div class="card card-4">
           <div>
             <h3>Smart Tiered Cache</h3>
@@ -847,10 +1320,7 @@
         </div>
       </div>
 
-      <!-- Bottom row -->
       <div class="bottom-row">
-
-        <!-- 5. Custom Security Rules -->
         <div class="card card-5">
           <div>
             <h3>Custom Security Rules</h3>
@@ -863,7 +1333,6 @@
           </ul>
         </div>
 
-        <!-- 6. Custom Rate Limit Rules -->
         <div class="card card-6">
           <div>
             <h3>Custom Rate Limit Rules</h3>
@@ -876,7 +1345,6 @@
           </ul>
         </div>
 
-        <!-- 7. Custom Response Rules -->
         <div class="card card-7">
           <div>
             <h3>Custom Response Rules</h3>
@@ -888,12 +1356,11 @@
             <li>Serve tailored content</li>
           </ul>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ========== BLOCK 3: WHAT THIS MEANS FOR YOU ========== -->
+  <!-- ========== BLOCK 4: WHAT THIS MEANS ========== -->
   <section class="means-section">
     <div class="means-inner">
       <div class="means-header">

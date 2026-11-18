@@ -1,332 +1,1285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HostCut — Free Cloudflare Hosting + Protection</title>
-  <meta name="description" content="Stop paying monthly hosting or website-builder fees. HostCut moves your small-business site to free Cloudflare Pages and configures real protection." />
-  <meta name="theme-color" content="#14120e" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HostCut – Simple. Permanent. Yours.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --ink: #14120e;
       --paper: #f4f0e8;
-      --card: #fffdf8;
-      --muted: #6f675c;
+      --muted: #5c564e;
+      --soft: #6b6760;
       --orange: #f15a22;
-      --line: #e4dccf;
-      --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-      --font-serif: "Instrument Serif", Georgia, ui-serif, serif;
-      --header-h: 4rem;
+      --orange-soft: #fff4ef;
+      --card-bg: #ffffff;
+      --card-border: #e5e0d6;
+      --row-bg: #faf8f4;
+      --launch-bg: #faf8f4;
+      --terminal-bg: #14120e;
+      --terminal-text: #c9c3b8;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, serif;
     }
 
-    *, *::before, *::after { box-sizing: border-box; }
-    html {
-      scroll-behavior: smooth;
-      -webkit-font-smoothing: antialiased;
-      scroll-padding-top: calc(var(--header-h) + 0.75rem);
+    [data-theme="dark"] {
+      --paper: #12100e;
+      --card-bg: #1c1916;
+      --card-border: #2e2a25;
+      --ink: #f4f0e8;
+      --muted: #b8b2a6;
+      --soft: #9c968c;
+      --orange-soft: #2a1a12;
+      --row-bg: #231f1b;
+      --launch-bg: #231f1b;
+      --terminal-bg: #0a0908;
+      --terminal-text: #c9c3b8;
     }
-    body {
+
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-sans);
       background: var(--paper);
       color: var(--ink);
-      font-family: var(--font-sans);
-      line-height: 1.5;
+      overflow-x: hidden;
+      transition: background 0.3s ease, color 0.3s ease;
     }
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
-    button {
-      font: inherit;
-      cursor: pointer;
-      border: 0;
-      background: none;
-      color: inherit;
-    }
-    h1, h2, h3 { text-wrap: balance; margin: 0; }
-    p { text-wrap: pretty; margin: 0; }
-    ul, ol { margin: 0; padding: 0; list-style: none; }
-    ::selection { background: var(--orange); color: var(--paper); }
-    :focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
 
-    .container { width: min(72rem, 100%); margin-inline: auto; padding-inline: 1.25rem; }
-    .display-xl {
-      font-family: var(--font-serif);
-      font-weight: 400;
-      font-size: clamp(2.6rem, 6.5vw, 5.75rem);
-      line-height: 0.95;
-      letter-spacing: -0.03em;
+    /* ========== HERO (Block 1) ========== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 100px 40px 60px;
+      background: var(--paper);
+      overflow: hidden;
+      text-align: center;
     }
-    .display-lg {
-      font-family: var(--font-serif);
-      font-weight: 400;
-      font-size: clamp(2.15rem, 4.4vw, 3.75rem);
-      line-height: 0.98;
-      letter-spacing: -0.03em;
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
     }
-    .eyebrow {
-      font-size: 0.75rem;
+
+    .gdp-ticker {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 32px;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .gdp-ticker .live-amount {
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
       font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      display: inline-block;
+      margin-left: 2px;
+    }
+
+    .gdp-ticker .live-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(48px, 7vw, 72px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .hero h1 .highlight {
+      font-style: italic;
       color: var(--orange);
     }
+
+    .hero p {
+      font-family: var(--font-sans);
+      font-size: clamp(18px, 2.4vw, 22px);
+      font-weight: 400;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      color: #3d3934;
+      margin: 0 auto;
+      max-width: 720px;
+    }
+
+    [data-theme="dark"] .hero p {
+      color: var(--muted);
+    }
+
+    .hero p .highlight {
+      color: var(--orange);
+      font-weight: 500;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 40px;
+      justify-content: center;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      min-height: 3rem;
-      padding: 0 1.25rem;
-      border-radius: 999px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      transition: transform 150ms ease, filter 150ms ease, border-color 150ms ease;
-    }
-    .btn:active { transform: scale(0.96); }
-    .btn-primary { background: var(--orange); color: var(--paper); }
-    .btn-primary:hover { filter: brightness(1.1); }
-    .btn-ghost {
-      border: 1px solid var(--line);
-      background: var(--card);
-    }
-    .btn-ghost:hover { border-color: color-mix(in srgb, var(--ink) 30%, transparent); }
-    .btn-dark {
-      background: var(--ink);
-      color: var(--paper);
-    }
-
-    /* Header */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      border-bottom: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
-      background: color-mix(in srgb, var(--paper) 85%, transparent);
-      backdrop-filter: blur(16px);
-    }
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: var(--header-h);
-    }
-    .brand { display: flex; align-items: center; gap: 0.7rem; }
-    .brand-mark {
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      width: 2.25rem;
-      height: 2.25rem;
-      border-radius: 0.4rem;
-      background: #ffffff;
-      color: var(--ink);
-      line-height: 0;
-      box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent);
-    }
-    .brand-mark svg {
-      width: 1.4rem;
-      height: 1.4rem;
-      display: block;
-    }
-    .brand > span:last-child {
-      display: flex;
-      flex-direction: column;
-      gap: 0.05rem;
-      line-height: 1.15;
-    }
-    .brand strong {
-      display: block;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-    }
-    .brand > span:last-child > span {
-      display: block;
-      font-size: 0.7rem;
+      gap: 8px;
+      height: 48px;
+      padding: 0 22px;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 15px;
       font-weight: 500;
-      color: var(--muted);
-      letter-spacing: 0.02em;
-    }
-    .nav-desktop {
-      display: none;
-      align-items: center;
-      gap: 1.75rem;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--muted);
-    }
-    .nav-desktop a:hover { color: var(--ink); }
-    .header-cta { display: none; }
-    .menu-toggle {
-      display: grid;
-      place-items: center;
-      width: 2.75rem;
-      height: 2.75rem;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      flex-shrink: 0;
-      line-height: 0;
-    }
-    .menu-toggle svg {
-      display: block;
-      width: 18px;
-      height: 18px;
-    }
-    .mobile-nav {
-      display: none;
-      border-top: 1px solid var(--line);
-      background: var(--paper);
-      padding: 0.75rem 1.25rem 1rem;
-    }
-    .mobile-nav.open { display: block; }
-    .mobile-nav a {
-      display: block;
-      padding: 0.75rem 0.75rem;
-      border-radius: 0.75rem;
-      font-size: 1rem;
-      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.18s ease;
+      cursor: pointer;
+      border: none;
     }
 
-    @media (min-width: 768px) {
-      .nav-desktop { display: flex; }
-      .header-cta { display: inline-flex; }
-      .menu-toggle { display: none; }
-      .mobile-nav { display: none !important; }
-    }
-
-    /* Hero */
-    .hero {
-      padding: 4.25rem 0 3.5rem;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    @media (min-width: 768px) {
-      .hero { padding: 6.5rem 0 5rem; }
-    }
-    @media (min-width: 1100px) {
-      .hero { padding: 7.5rem 0 5.5rem; }
-    }
-    .hero .eyebrow {
-      margin-inline: auto;
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-    }
-    .hero h1 {
-      margin-top: 1.25rem;
-      max-width: min(20ch, 100%);
-      width: 100%;
-      margin-inline: auto;
-    }
-    .hero .lead {
-      margin-top: 1.5rem;
-      max-width: 42rem;
-      width: 100%;
-      margin-inline: auto;
-      font-size: 1.125rem;
-      line-height: 1.7;
-      color: var(--muted);
-    }
-    @media (min-width: 768px) {
-      .hero .lead { font-size: 1.1875rem; }
-    }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.75rem;
-      margin-top: 2.25rem;
-      width: 100%;
-      max-width: 32rem;
-    }
-    .hero-actions .btn {
-      flex: 1 1 11rem;
-      min-width: 11rem;
-      padding: 0 1.5rem;
-      min-height: 3rem;
-      font-size: 0.875rem;
-    }
-
-    /* Typewriter cursor (temporary) */
-    .type-cursor {
-      display: inline-block;
-      width: 0.08em;
-      height: 0.9em;
+    .btn-primary {
       background: var(--orange);
-      margin-left: 1px;
-      vertical-align: -0.05em;
-      animation: blink 0.85s step-end infinite;
+      color: #ffffff;
     }
-    @keyframes blink {
-      50% { opacity: 0; }
+
+    .btn-primary:hover {
+      background: #d94e1a;
+      transform: translateY(-1px);
     }
-    .type-cursor.done { display: none; }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid #d4cfc5;
+    }
+
+    [data-theme="dark"] .btn-secondary {
+      border-color: #3a3530;
+    }
+
+    .btn-secondary:hover {
+      background: #ebe6dc;
+      border-color: #c5bfb3;
+    }
+
+    [data-theme="dark"] .btn-secondary:hover {
+      background: #2a2622;
+      border-color: #4a4540;
+    }
 
     /* Marquee */
-    .marquee {
+    .marquee-section {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      margin-top: 90px;
+      padding: 36px 0;
       overflow: hidden;
-      background: var(--ink);
-      color: var(--paper);
-      padding: 1rem 0;
+      background: var(--paper);
     }
+
+    .marquee-section::before,
+    .marquee-section::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 140px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .marquee-section::before {
+      left: 0;
+      background: linear-gradient(to right, var(--paper) 0%, transparent 100%);
+    }
+
+    .marquee-section::after {
+      right: 0;
+      background: linear-gradient(to left, var(--paper) 0%, transparent 100%);
+    }
+
     .marquee-track {
       display: flex;
       width: max-content;
-      animation: marquee-right 42s linear infinite;
+      animation: marquee 60s linear infinite;
     }
-    .marquee-group {
+
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .marquee-content {
       display: flex;
       align-items: center;
-      gap: 2.5rem;
-      padding-right: 2.5rem;
-    }
-    .marquee-group span {
-      white-space: nowrap;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #e8dfd2;
-    }
-    .marquee-group b { color: var(--orange); font-weight: 700; }
-    .marquee-dot { margin: 0 1.5rem; color: var(--orange); }
-    @keyframes marquee-right {
-      from { transform: translateX(-50%); }
-      to { transform: translateX(0); }
+      gap: 72px;
+      padding-right: 72px;
     }
 
-    /* Sections */
-    .section { padding: 6rem 0; }
-    @media (min-width: 768px) { .section { padding: 8rem 0; } }
-    .section-lead {
-      margin-top: 1.25rem;
-      max-width: 42rem;
-      font-size: 1.125rem;
-      color: var(--muted);
+    .logo-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+      color: var(--ink);
+      opacity: 0.8;
+      transition: opacity 0.2s;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: default;
+      user-select: none;
     }
-    .problem-grid {
-      display: grid;
-      gap: 2.5rem;
-      margin-top: 3.5rem;
+
+    .logo-item:hover {
+      opacity: 1;
     }
-    @media (min-width: 768px) {
-      .problem-grid { grid-template-columns: repeat(3, 1fr); }
+
+    .logo-item img {
+      width: 26px;
+      height: 26px;
+      border-radius: 5px;
+      object-fit: contain;
+      flex-shrink: 0;
+      background: #fff;
+      pointer-events: none;
     }
-    .problem-card {
-      border-top: 1px solid color-mix(in srgb, var(--ink) 15%, transparent);
-      padding-top: 1.5rem;
+
+    /* ========== AUDIENCE SLIDESHOW (Block 2) ========== */
+    .slideshow-section {
+      background: #0f0e0c;
+      color: #f4f0e8;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px;
     }
-    .problem-card .num {
+
+    .slideshow {
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+      background: #161411;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.45);
+    }
+
+    .slides-wrapper {
+      position: relative;
+      width: 100%;
+      height: 560px;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      padding: 60px 70px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.55s ease, visibility 0.55s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .slide-visual {
+      flex: 0 0 380px;
+      height: 400px;
+      background: linear-gradient(160deg, #1e1b17 0%, #12100e 100%);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-visual::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      right: -30%;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(241,90,34,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .visual-label {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #a39e94;
+      margin-bottom: 16px;
+    }
+
+    .visual-title {
       font-family: var(--font-serif);
-      font-size: 2.25rem;
+      font-size: 24px;
+      line-height: 1.25;
+      color: #f4f0e8;
+      margin-bottom: 22px;
+    }
+
+    .visual-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .visual-points li {
+      font-size: 14.5px;
+      color: #c9c3b8;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.4;
+    }
+
+    .visual-points li::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .slide-content {
+      flex: 1;
+      padding-left: 70px;
+      max-width: 480px;
+    }
+
+    .slide-content h2 {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #f4f0e8;
+      margin-bottom: 20px;
+    }
+
+    .slide-content p {
+      font-size: 17px;
+      line-height: 1.55;
+      color: #b8b2a6;
+      margin-bottom: 36px;
+    }
+
+    .slide-content .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+      padding: 0 28px;
+      background: #f4f0e8;
+      color: #14120e;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .slide-content .btn:hover {
+      background: var(--orange);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .nav {
+      position: absolute;
+      bottom: 32px;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 10;
+    }
+
+    .dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(244,240,232,0.25);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .dot.active {
+      width: 24px;
+      border-radius: 4px;
+      background: var(--orange);
+    }
+
+    .arrows {
+      display: flex;
+      gap: 10px;
+    }
+
+    .arrow {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: #f4f0e8;
+    }
+
+    .arrow:hover {
+      background: rgba(241,90,34,0.2);
+      border-color: rgba(241,90,34,0.4);
+    }
+
+    .arrow svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ========== FEATURES GRID (Block 3) ========== */
+    .features-section {
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 80px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      z-index: 100;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .theme-toggle svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--ink);
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .theme-toggle .sun { display: none; }
+    .theme-toggle .moon { display: block; }
+
+    [data-theme="dark"] .theme-toggle .sun { display: block; }
+    [data-theme="dark"] .theme-toggle .moon { display: none; }
+
+    .features-container {
+      width: 100%;
+      max-width: 1180px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+      border-color: color-mix(in srgb, var(--orange) 25%, var(--card-border));
+    }
+
+    [data-theme="dark"] .card:hover {
+      box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+    }
+
+    .status-card {
+      grid-column: 1 / 3;
+      padding: 28px 28px 24px;
+    }
+
+    .status-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .logo-box {
+      width: 48px;
+      height: 48px;
+      background: var(--orange);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .status-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .status-row {
+      display: grid;
+      grid-template-columns: 90px 1fr 110px;
+      align-items: center;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      transition: background 0.2s ease;
+    }
+
+    .status-row:nth-child(1) {
+      background: var(--orange-soft);
+    }
+
+    .status-row:nth-child(2),
+    .status-row:nth-child(3),
+    .status-row:nth-child(4) {
+      background: var(--row-bg);
+    }
+
+    .version {
+      font-weight: 600;
       color: var(--orange);
     }
-    .problem-card h3 { margin-top: 1rem; font-size: 1.25rem; font-weight: 600; }
-    .problem-card p { margin-top: 0.75rem; color: var(--muted); }
 
-    /* Bleed images */
+    .updated {
+      color: var(--soft);
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      font-weight: 500;
+    }
+
+    .status.building {
+      color: var(--orange);
+    }
+
+    .status.deployed {
+      color: #2a9d5c;
+    }
+
+    .status .spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--orange);
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .status .check {
+      width: 16px;
+      height: 16px;
+      background: #2a9d5c;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 10px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .workflow-note {
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .workflow-note h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+
+    .workflow-note p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .orange-panel {
+      grid-column: 3 / 4;
+      background: var(--orange);
+      border-radius: 16px;
+      padding: 36px 28px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .orange-panel:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(241, 90, 34, 0.35);
+    }
+
+    .orange-panel .icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .orange-panel .icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: white;
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .orange-panel h2 {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .orange-panel h2 em {
+      font-style: italic;
+    }
+
+    .orange-panel p {
+      font-size: 15px;
+      line-height: 1.55;
+      opacity: 0.95;
+    }
+
+    .secure-card {
+      grid-column: 1 / 2;
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 340px;
+    }
+
+    .secure-card .icon {
+      width: 42px;
+      height: 42px;
+      background: var(--paper);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .secure-card .icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--orange);
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .secure-card h3 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    .secure-card p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .combined-card {
+      grid-column: 2 / 4;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .path-section h3 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .path-section p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .launch-section {
+      background: var(--launch-bg);
+      border-radius: 12px;
+      padding: 22px;
+      border: 1px solid var(--card-border);
+    }
+
+    .launch-header {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--soft);
+      margin-bottom: 16px;
+    }
+
+    .agent-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .agent-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--ink);
+    }
+
+    .agent-item .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--orange);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .agent-item .tag {
+      background: var(--card-bg);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--muted);
+      border: 1px solid var(--card-border);
+    }
+
+    .agent-item .arrow {
+      color: #b0aaa0;
+      font-size: 12px;
+    }
+
+    .agent-item .meta {
+      color: var(--soft);
+      font-size: 12.5px;
+    }
+
+    .loading-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--orange);
+      margin-bottom: 18px;
+    }
+
+    .loading-line .dots {
+      display: flex;
+      gap: 3px;
+    }
+
+    .loading-line .dots span {
+      width: 4px;
+      height: 4px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: bounce 1.2s infinite ease-in-out;
+    }
+
+    .loading-line .dots span:nth-child(2) { animation-delay: 0.15s; }
+    .loading-line .dots span:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes bounce {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-4px); }
+    }
+
+    .terminal {
+      background: var(--terminal-bg);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 13px;
+      color: var(--terminal-text);
+    }
+
+    .terminal .prompt {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .terminal .cursor {
+      width: 8px;
+      height: 16px;
+      background: var(--orange);
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .terminal .enter {
+      background: var(--orange);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.2s ease;
+    }
+
+    .terminal .enter:hover {
+      background: #d94e1a;
+    }
+
+    /* ========== SECURITY BENTO (Block 4) ========== */
+    .security-section {
+      background: var(--paper);
+      color: var(--ink);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px 100px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      max-width: 780px;
+      margin-bottom: 56px;
+      color: var(--ink);
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .bento {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .row {
+      display: grid;
+      gap: 20px;
+    }
+
+    .row-1 {
+      grid-template-columns: 1.45fr 1fr;
+    }
+
+    .row-2 {
+      grid-template-columns: 1fr 1.45fr;
+    }
+
+    .bento-card {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid #e5e0d6;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.3s ease;
+    }
+
+    [data-theme="dark"] .bento-card {
+      background: var(--card-bg);
+      border-color: var(--card-border);
+    }
+
+    .bento-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(20, 18, 14, 0.09);
+      border-color: #d9d2c6;
+    }
+
+    .bento-card h3 {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    .bento-card p {
+      font-size: 15.5px;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 440px;
+    }
+
+    .bento-card h3::after {
+      content: "";
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--orange);
+      margin-top: 14px;
+      border-radius: 1px;
+      transition: width 0.3s ease;
+    }
+
+    .bento-card:hover h3::after {
+      width: 48px;
+    }
+
+    .card-1 {
+      min-height: 320px;
+      justify-content: space-between;
+    }
+
+    .card-1 .meta {
+      margin-top: 40px;
+      display: flex;
+      gap: 24px;
+    }
+
+    .meta-item {
+      font-size: 13px;
+      color: #8a857c;
+    }
+
+    .meta-item strong {
+      display: block;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .card-2 {
+      min-height: 320px;
+      background: #fff8f5;
+      border-color: #f5e6de;
+    }
+
+    [data-theme="dark"] .card-2 {
+      background: var(--orange-soft);
+      border-color: #3a2a20;
+    }
+
+    .card-2:hover {
+      border-color: #efd5c8;
+    }
+
+    .card-2 .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 32px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--orange);
+    }
+
+    .card-2 .tag::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--orange);
+      border-radius: 50%;
+    }
+
+    .card-3 {
+      min-height: 300px;
+    }
+
+    .card-3 .version {
+      margin-top: auto;
+      padding-top: 36px;
+      font-family: var(--font-serif);
+      font-size: 48px;
+      font-weight: 400;
+      color: var(--orange);
+      letter-spacing: -0.03em;
+      transition: transform 0.3s ease;
+    }
+
+    .card-3:hover .version {
+      transform: scale(1.04);
+    }
+
+    .card-4 {
+      min-height: 300px;
+      background: #14120e;
+      border-color: #14120e;
+      color: #f4f0e8;
+    }
+
+    .card-4:hover {
+      border-color: #2a2622;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
+    }
+
+    .card-4 h3 {
+      color: #f4f0e8;
+    }
+
+    .card-4 h3::after {
+      background: var(--orange);
+    }
+
+    .card-4 p {
+      color: #b8b2a6;
+    }
+
+    .card-4 .locations {
+      margin-top: auto;
+      padding-top: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .location {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      background: rgba(244, 240, 232, 0.1);
+      border-radius: 6px;
+      color: #f4f0e8;
+      transition: background 0.2s ease;
+    }
+
+    .card-4:hover .location {
+      background: rgba(244, 240, 232, 0.16);
+    }
+
+    .bottom-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .card-5,
+    .card-6,
+    .card-7 {
+      min-height: 300px;
+    }
+
+    .card-5 .list,
+    .card-6 .list,
+    .card-7 .list {
+      margin-top: auto;
+      padding-top: 28px;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card-5 .list li,
+    .card-6 .list li,
+    .card-7 .list li {
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .card-5:hover .list li,
+    .card-6:hover .list li,
+    .card-7:hover .list li {
+      transform: translateX(3px);
+    }
+
+    .card-5 .list li::before,
+    .card-6 .list li::before,
+    .card-7 .list li::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .card-6 {
+      background: #fffaf7;
+      border-color: #f0e6df;
+    }
+
+    [data-theme="dark"] .card-6 {
+      background: var(--orange-soft);
+      border-color: #3a2a20;
+    }
+
+    .card-6:hover {
+      border-color: #e8d5c8;
+    }
+
+    .card-7 {
+      background: #faf8f4;
+    }
+
+    [data-theme="dark"] .card-7 {
+      background: var(--row-bg);
+    }
+
+    /* ========== GOOGLE PRESENCE (Block 5) ========== */
+    .google-section {
+      background: var(--paper);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .statement {
+      max-width: 720px;
+      font-size: clamp(22px, 3.2vw, 28px);
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--muted);
+      text-align: left;
+    }
+
+    .statement .accent {
+      color: var(--orange);
+      font-weight: 500;
+    }
+
+    .g-blue   { color: #4285F4; }
+    .g-red    { color: #EA4335; }
+    .g-yellow { color: #FBBC05; }
+    .g-green  { color: #34A853; }
+
+    /* ========== THE CUT (Block 6) ========== */
     .bleed {
       position: relative;
       display: grid;
@@ -335,23 +1288,25 @@
       overflow: hidden;
       background: var(--ink);
     }
-    .bleed-img, .bleed-photo {
+
+    .bleed-photo {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-    }
-    .bleed-photo {
       animation: drift 38s ease-in-out infinite alternate;
     }
+
     @keyframes drift {
       from { transform: scale(1); }
       to { transform: scale(1.06); }
     }
+
     @media (prefers-reduced-motion: reduce) {
       .bleed-photo { animation: none; }
     }
+
     .bleed-side::before {
       content: "";
       position: absolute;
@@ -359,1019 +1314,882 @@
       z-index: 0;
       background: linear-gradient(90deg, rgb(20 18 14 / 0.78) 0%, rgb(20 18 14 / 0.35) 48%, rgb(20 18 14 / 0.05) 100%);
     }
-    .bleed-bottom::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background: linear-gradient(180deg, rgb(20 18 14 / 0.05) 10%, rgb(20 18 14 / 0.78) 78%);
-    }
-    .bleed-copy { position: relative; z-index: 1; }
-    .bleed-card {
-      margin: 1.25rem;
-      max-width: 28rem;
-      border-radius: 1.5rem;
-      background: var(--paper);
-      padding: 1.75rem;
-      color: var(--ink);
+
+    .bleed-copy {
       position: relative;
-    }
-    @media (min-width: 768px) {
-      .bleed-card { margin: 2.5rem; }
-      .bleed { min-height: 78vh; }
-    }
-
-    /* Offers */
-    .offers-grid {
-      display: grid;
-      gap: 1.25rem;
-      margin-top: 3rem;
-    }
-    @media (min-width: 1024px) {
-      .offers-grid { grid-template-columns: 1fr 1fr; }
-    }
-    .offer {
-      display: flex;
-      flex-direction: column;
-      border-radius: 1.5rem;
-      padding: 2rem;
-    }
-    @media (min-width: 768px) { .offer { padding: 2.5rem; } }
-    .offer-dark { background: var(--ink); color: var(--paper); }
-    .offer-light {
-      border: 1px solid var(--line);
-      background: var(--card);
-    }
-    .offer h3 {
-      margin-top: 1rem;
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 400;
-    }
-    .offer .desc {
-      margin-top: 1rem;
-      color: color-mix(in srgb, currentColor 75%, transparent);
-    }
-    .offer-list {
-      margin-top: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      flex: 1;
-      font-size: 0.875rem;
-    }
-    .offer-list li { display: flex; gap: 0.75rem; }
-    .offer-list svg { flex-shrink: 0; margin-top: 0.125rem; color: var(--orange); }
-    .offer-price {
-      margin-top: 2rem;
-      font-family: var(--font-serif);
-      font-size: 3rem;
-      line-height: 1;
-    }
-    .offer-price span {
-      font-family: var(--font-sans);
-      font-size: 1rem;
-      font-weight: 500;
-      opacity: 0.6;
-    }
-    .offer-note { margin-top: 0.5rem; font-size: 0.875rem; opacity: 0.7; }
-    .offer .btn { margin-top: 1.5rem; width: 100%; }
-    .compare {
-      margin-top: 1.25rem;
-      display: grid;
-      gap: 1px;
-      overflow: hidden;
-      border-radius: 1.5rem;
-      border: 1px solid var(--line);
-      background: var(--line);
-    }
-    @media (min-width: 768px) {
-      .compare { grid-template-columns: repeat(3, 1fr); }
-    }
-    .compare > div {
-      background: var(--card);
-      padding: 1.75rem 1.5rem;
-    }
-    .compare .label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .compare .num {
-      margin-top: 0.5rem;
-      font-family: var(--font-serif);
-      font-size: 3rem;
-      line-height: 1;
-    }
-
-    /* Setup cards */
-    .setup-grid {
-      display: grid;
-      gap: 1rem;
-      margin-top: 3rem;
-    }
-    @media (min-width: 768px) {
-      .setup-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 1024px) {
-      .setup-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .setup-card {
-      border-radius: 1.5rem;
-      border: 1px solid var(--line);
-      background: var(--card);
-      padding: 1.5rem;
-    }
-    .setup-icon {
-      display: grid;
-      place-items: center;
-      width: 2.75rem;
-      height: 2.75rem;
-      border-radius: 1rem;
-      background: color-mix(in srgb, var(--orange) 10%, transparent);
-      color: var(--orange);
-    }
-    .setup-card h3 { margin-top: 1.25rem; font-size: 1.125rem; font-weight: 600; }
-    .setup-card p { margin-top: 0.5rem; font-size: 0.875rem; line-height: 1.6; color: var(--muted); }
-
-    /* Process */
-    .process { background: var(--ink); color: var(--paper); }
-    .process .section-lead { color: color-mix(in srgb, var(--paper) 70%, transparent); }
-    .process-grid {
-      display: grid;
-      gap: 2rem;
-      margin-top: 3.5rem;
-    }
-    @media (min-width: 768px) {
-      .process-grid { grid-template-columns: repeat(4, 1fr); }
-    }
-    .process-step {
-      border-top: 1px solid color-mix(in srgb, var(--paper) 15%, transparent);
-      padding-top: 1.25rem;
-    }
-    .process-step .num {
-      font-family: var(--font-serif);
-      font-size: 1.875rem;
-      color: var(--orange);
-    }
-    .process-step h3 { margin-top: 1rem; font-size: 1.125rem; font-weight: 600; }
-    .process-step p {
-      margin-top: 0.5rem;
-      font-size: 0.875rem;
-      line-height: 1.6;
-      color: color-mix(in srgb, var(--paper) 65%, transparent);
-    }
-    .process-note {
-      margin-top: 2.5rem;
-      border-radius: 1.5rem;
-      background: color-mix(in srgb, var(--paper) 10%, transparent);
-      padding: 1.25rem 1.5rem;
-      font-size: 0.875rem;
-      line-height: 1.6;
-      color: color-mix(in srgb, var(--paper) 75%, transparent);
-    }
-    .process-note strong { color: var(--paper); }
-
-    /* FAQ */
-    .faq-wrap { max-width: 48rem; margin-inline: auto; }
-    .faq-list { margin-top: 2.5rem; border-top: 1px solid var(--line); }
-    .faq-item { border-bottom: 1px solid var(--line); }
-    .faq-q {
-      display: flex;
-      width: 100%;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      padding: 1.25rem 0;
-      text-align: left;
-      font-size: 1.125rem;
-      font-weight: 600;
-    }
-    .faq-icon {
-      display: grid;
-      place-items: center;
-      width: 2rem;
-      height: 2rem;
-      flex-shrink: 0;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      transition: transform 200ms ease;
-    }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-a {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 240ms ease;
-    }
-    .faq-item.open .faq-a { grid-template-rows: 1fr; }
-    .faq-a > div { overflow: hidden; }
-    .faq-a p {
-      padding-bottom: 1.5rem;
-      color: var(--muted);
-    }
-
-    /* CTA bleed */
-    .cta-bleed .bleed-copy {
-      width: 100%;
+      z-index: 1;
       max-width: 48rem;
-      margin-inline: auto;
       padding: 6rem 1.5rem;
-      text-align: center;
-    }
-    @media (min-width: 768px) {
-      .cta-bleed .bleed-copy { padding: 8rem 1.5rem; }
-    }
-    .cta-bleed h2 { color: var(--paper); }
-    .cta-bleed p {
-      margin-top: 1.25rem;
-      max-width: 36rem;
-      margin-inline: auto;
-      font-size: 1.125rem;
-      color: color-mix(in srgb, var(--paper) 80%, transparent);
-    }
-    .cta-bleed .btn { margin-top: 2rem; }
-    .cta-bleed .sub {
-      margin-top: 1.5rem;
-      font-size: 0.875rem;
-      color: color-mix(in srgb, var(--paper) 60%, transparent);
     }
 
-    /* Footer */
-    .site-footer {
-      border-top: 1px solid color-mix(in srgb, var(--paper) 10%, transparent);
-      background: var(--ink);
-      color: color-mix(in srgb, var(--paper) 70%, transparent);
-    }
-    .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 2rem 1.25rem;
-    }
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      color: var(--paper);
-    }
-    .footer-brand .brand-mark {
-      width: 2rem;
-      height: 2rem;
-      border-radius: 0.35rem;
-      background: #ffffff;
-      color: var(--ink);
-      box-shadow: 0 0 0 1px color-mix(in srgb, var(--paper) 25%, transparent);
-    }
-    .footer-brand .brand-mark svg { width: 1.25rem; height: 1.25rem; }
-
-    .spin-word {
-      display: inline-block;
-      min-width: 3.2ch;
-      transition: opacity 200ms ease, transform 200ms ease;
-      font-style: italic;
-      color: var(--orange);
-    }
-    .spin-word:not(.on) {
-      opacity: 0;
-      transform: translateY(-8px);
-    }
-
-    .italic { font-style: italic; }
-    .text-orange { color: var(--orange); }
-
-    /* The Cut section — all white text */
     .bleed-side .eyebrow,
     .bleed-side .display-lg,
     .bleed-side p {
       color: #ffffff !important;
     }
-    .bleed-side .text-orange {
-      color: #ffffff !important;
+
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .marquee-track, .spin-word, .type-cursor {
-        animation: none !important;
-        transition: none !important;
-      }
+    .display-lg {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(2.15rem, 4.4vw, 3.75rem);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
     }
 
-    /* ---------- Mobile / condensed screens ---------- */
-    @media (max-width: 720px) {
-      .container { padding-inline: 1rem; }
-      .display-xl {
-        font-size: clamp(2.9rem, 12.5vw, 3.65rem);
-        line-height: 1.02;
-      }
-      .display-lg {
-        font-size: clamp(2.2rem, 9.4vw, 2.85rem);
-        line-height: 1.05;
-      }
-      .lead { font-size: 1.05rem; }
-      .hero { padding-top: 3rem; padding-bottom: 3rem; }
-      .hero h1 { max-width: none; }
-      .hero .lead { max-width: none; font-size: 1.08rem; }
-      .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: none; }
-      .hero-actions .btn { width: 100%; justify-content: center; flex: none; }
+    .italic { font-style: italic; }
+    .text-orange { color: var(--orange); }
 
-      .site-header { padding-block: 0; }
-      .header-inner { height: var(--header-h); }
-      .header-cta { display: none; }
-      .nav-desktop { display: none !important; }
-      .menu-toggle {
-        display: grid !important;
-        place-items: center;
-        width: 2.75rem;
-        height: 2.75rem;
-        margin: 0;
-        padding: 0;
+    /* ========== REQUEST UPDATES (Block 7) ========== */
+    .updates-section {
+      background: var(--paper);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .headline {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(2.4rem, 5vw, 3.5rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      max-width: 18ch;
+    }
+
+    .subtext {
+      margin-top: 1.5rem;
+      max-width: 32rem;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--soft);
+    }
+
+    .updates-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2.5rem;
+      min-height: 3.25rem;
+      padding: 0 1.75rem;
+      border-radius: 999px;
+      background: var(--orange);
+      color: var(--paper);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: filter 150ms ease, transform 150ms ease;
+    }
+
+    .updates-btn:hover {
+      filter: brightness(1.08);
+    }
+
+    .updates-btn:active {
+      transform: scale(0.97);
+    }
+
+    .note {
+      margin-top: 1.25rem;
+      font-size: 0.875rem;
+      color: var(--soft);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      .hero {
+        padding: 80px 24px 50px;
       }
 
-      .problem-grid { grid-template-columns: 1fr; }
-      .section { padding-block: 3.5rem; }
-      .section-lead { font-size: 1rem; }
-
-      .bleed { min-height: 28rem; }
-      .bleed-copy { padding: 1.25rem !important; }
-
-      /* ---- Built for the shop card — reworked for left-origin expand ---- */
-      .bleed-card {
-        margin: 0 1rem 1.25rem;
-        max-width: calc(100% - 2rem);
-        padding: 1.25rem 1.35rem;
-        background: color-mix(in srgb, var(--paper) 94%, transparent);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        box-shadow: 0 8px 28px rgb(20 18 14 / 0.18);
-        max-height: 22rem;
-        overflow: hidden;
-        transform-origin: left bottom;
-        transition:
-          max-height 0.4s cubic-bezier(0.33, 1, 0.68, 1),
-          width 0.4s cubic-bezier(0.33, 1, 0.68, 1),
-          max-width 0.4s cubic-bezier(0.33, 1, 0.68, 1),
-          padding 0.38s cubic-bezier(0.33, 1, 0.68, 1),
-          border-radius 0.35s cubic-bezier(0.33, 1, 0.68, 1),
-          margin 0.4s cubic-bezier(0.33, 1, 0.68, 1),
-          background 0.3s ease,
-          box-shadow 0.3s ease;
+      .hero h1 {
+        font-size: 42px;
       }
-      .bleed-bottom {
-        display: flex;
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .marquee-content {
+        gap: 52px;
+        padding-right: 52px;
+      }
+
+      .marquee-section::before,
+      .marquee-section::after {
+        width: 70px;
+      }
+
+      .slides-wrapper {
+        height: auto;
+        min-height: 700px;
+      }
+
+      .slide {
         flex-direction: column;
-        justify-content: flex-end;
-        min-height: 32rem;
-      }
-      .bleed-bottom .bleed-photo {
-        object-position: center 30%;
-      }
-      .bleed-bottom::before {
-        background: linear-gradient(180deg, rgb(20 18 14 / 0.05) 35%, rgb(20 18 14 / 0.55) 100%);
-      }
-      .bleed-bottom .bleed-card p:nth-of-type(2) {
-        font-size: 1.5rem !important;
-        line-height: 1.15 !important;
+        padding: 40px 28px 100px;
+        gap: 32px;
       }
 
-      /* X button — top right when open */
-      .bleed-card-collapse-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        top: 0.7rem;
-        right: 0.7rem;
-        width: 1.75rem;
-        height: 1.75rem;
-        border-radius: 0.4rem;
-        background: color-mix(in srgb, var(--ink) 8%, transparent);
-        border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
-        color: var(--ink);
-        z-index: 2;
-        line-height: 0;
-        padding: 0;
-        transition: background 150ms ease;
-      }
-      .bleed-card-collapse-btn:hover,
-      .bleed-card-collapse-btn:focus-visible {
-        background: color-mix(in srgb, var(--ink) 14%, transparent);
-      }
-      .bleed-card-collapse-btn svg {
-        width: 12px;
-        height: 12px;
-        display: block;
-        flex-shrink: 0;
+      .slide-visual {
+        flex: none;
+        width: 100%;
+        height: auto;
+        min-height: 280px;
       }
 
-      /* Collapsed state — box on bottom-left, + perfectly centered */
-      .bleed-card.collapsed {
-        width: 2.75rem;
-        height: 2.75rem;
-        min-height: 2.75rem;
-        max-width: 2.75rem;
-        max-height: 2.75rem;
-        padding: 0;
-        margin: 0 0 1.25rem 1rem; /* left side */
-        border-radius: 0.5rem;
-        overflow: hidden;
-        background: color-mix(in srgb, var(--paper) 92%, transparent);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: 0 6px 20px rgb(20 18 14 / 0.22);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .bleed-card.collapsed > *:not(.bleed-card-collapse-btn) {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        position: absolute;
-        width: 0;
-        height: 0;
-        overflow: hidden;
-      }
-      .bleed-card.collapsed .bleed-card-collapse-btn {
-        position: static;
-        width: 2.75rem;
-        height: 2.75rem;
-        border-radius: 0.5rem;
-        background: transparent;
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
-        padding: 0;
-      }
-      .bleed-card.collapsed .bleed-card-collapse-btn svg {
-        width: 15px;
-        height: 15px;
-        display: block;
-      }
-
-      /* Center text in "What you actually get" cards on mobile */
-      .setup-card {
+      .slide-content {
+        padding-left: 0;
+        max-width: 100%;
         text-align: center;
       }
-      .setup-icon {
-        margin-inline: auto;
+
+      .slide-content h2 {
+        font-size: 34px;
       }
 
-      .offers-grid { grid-template-columns: 1fr; }
-      .process-grid { grid-template-columns: 1fr; }
-      .faq-list { gap: 0.5rem; }
-      .faq-q { font-size: 1rem; padding: 1rem; }
-      .faq-a { padding: 0 1rem 1rem; font-size: 0.95rem; }
+      .nav {
+        bottom: 24px;
+        padding: 0 24px;
+      }
 
-      .marquee { padding: 0.85rem 0; }
-      .marquee-group { gap: 1.5rem; font-size: 0.9rem; }
+      .features-container {
+        grid-template-columns: 1fr;
+      }
 
-      .footer-inner { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-    }
+      .status-card,
+      .orange-panel,
+      .secure-card,
+      .combined-card {
+        grid-column: 1 / -1;
+      }
 
-    @media (min-width: 721px) {
-      .bleed-card-collapse-btn { display: none !important; }
-    }
+      .row-1,
+      .row-2 {
+        grid-template-columns: 1fr;
+      }
 
-    @media (max-width: 420px) {
-      .brand > span:last-child > span { display: none; }
-    }
+      .bottom-row {
+        grid-template-columns: 1fr;
+      }
 
-    .process.section {
-      padding-top: 0;
-    }
-    .process .marquee-process-top {
-      width: 100%;
-      max-width: none;
-      margin: 0;
-      border-radius: 0;
-      border: none;
-      border-bottom: 1px solid color-mix(in srgb, var(--paper) 8%, transparent);
-    }
-    .process .marquee-process-top .marquee-track {
-      animation-duration: 48s;
-    }
-    .process > .container {
-      padding-top: 4rem;
-    }
-    @media (max-width: 720px) {
-      .process > .container { padding-top: 2.75rem; }
+      .bleed {
+        min-height: 78vh;
+      }
     }
 
-    /* Extra scroll padding so process marquee is fully visible under sticky header */
-    #process {
-      scroll-margin-top: calc(var(--header-h) + 0.5rem);
+    @media (min-width: 768px) {
+      .bleed {
+        min-height: 78vh;
+      }
     }
-    #problem,
-    #offers,
-    #setup,
-    #faq {
-      scroll-margin-top: calc(var(--header-h) + 0.5rem);
-    }
-
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#top" class="brand">
-        <span class="brand-mark" aria-hidden="true">
-          <!-- New logo: H (Q1), dashed cut (Q2→Q3), C (Q4) — equal size, no overlap, no edge touch -->
-          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <!-- H — top-left quadrant -->
-            <path fill="currentColor" d="M4.2 4.2h2.5v9.2h5.6V4.2h2.5v15.6h-2.5v-4.3H6.7v4.3H4.2V4.2Z"/>
-            <!-- C — bottom-right quadrant -->
-            <path fill="currentColor" d="M20.8 16.2c-3.35 0-5.7 2.35-5.7 5.55 0 3.25 2.35 5.6 5.7 5.6 1.85 0 3.35-.65 4.4-1.85l-1.75-1.55c-.65.75-1.5 1.15-2.65 1.15-1.85 0-3.15-1.4-3.15-3.35s1.3-3.35 3.15-3.35c1.15 0 2 .4 2.65 1.15l1.75-1.55c-1.05-1.2-2.55-1.85-4.4-1.85Z"/>
-            <!-- Dashed cut line: top-right → bottom-left, through center, not touching edges or letters -->
-            <path d="M27.2 5.8 L4.8 26.2" stroke="#f15a22" stroke-width="1.55" stroke-linecap="round" stroke-dasharray="2.6 2.3"/>
-          </svg>
-        </span>
-        <span>
-          <strong>HostCut</strong>
-          <span>Hosting &amp; protection</span>
-        </span>
-      </a>
-      <nav class="nav-desktop" aria-label="Primary">
-        <a href="#problem">The problem</a>
-        <a href="#offers">Services</a>
-        <a href="#process">Process</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-      <a href="#offers" class="btn btn-primary header-cta">View services</a>
-      <button type="button" class="menu-toggle" id="menuBtn" aria-expanded="false" aria-label="Open menu">
-        <svg id="menuIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
-    </div>
-    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
-      <a href="#problem">The problem</a>
-      <a href="#offers">Services</a>
-      <a href="#setup">What you get</a>
-      <a href="#process">Process</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-  </header>
 
-  <main id="top">
-    <section class="hero container">
-      <p class="eyebrow">Website hosting</p>
-      <h1 class="display-xl">
-        Stop paying rent<br />
-        <span class="italic text-orange" id="typeTarget"></span><span class="type-cursor" id="typeCursor"></span>
+  <!-- ========== BLOCK 1: HERO ========== -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="gdp-ticker">
+        <span class="live-dot"></span>
+        Global volume running on Stripe:
+        <span class="live-amount" id="liveCounter">$29</span>
+      </div>
+
+      <h1>
+        Financial infrastructure to grow <span class="highlight">your revenue</span>.
       </h1>
-      <p class="lead">
-        Migrate your small-business site onto free Cloudflare Pages. Keep your code in a private GitHub repo you own, and real bot and security protection is turned on. Or protect your host by adding an enterprise shield.
-      </p>
-      <div class="hero-actions">
-        <a href="#offers" class="btn btn-primary">
-          Compare services
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a href="#process" class="btn btn-ghost">See how it works</a>
-      </div>
-    </section>
 
-    <section id="problem" class="section container">
-      <p class="eyebrow">The reality</p>
-      <h2 class="display-lg" style="max-width:56rem;margin-top:1rem">
-        Most small business sites pay every month for something that can be <span class="spin-word on" id="spinWord">free.</span>
-      </h2>
-      <p class="section-lead">
-        Website builders and shared hosting charge ongoing fees. At the same time the open internet throws bots, scrapers, and scanners at every site. You end up paying for hosting that is both expensive and under-protected.
-      </p>
-      <div class="problem-grid">
-        <article class="problem-card">
-          <p class="num">01</p>
-          <h3>Monthly fees that never stop</h3>
-          <p>Squarespace, Wix, WordPress hosting, and most managed platforms bill you every month or year whether traffic is high or low. The site itself rarely needs that much paid infrastructure.</p>
-        </article>
-        <article class="problem-card">
-          <p class="num">02</p>
-          <h3>Bad traffic still reaches the server</h3>
-          <p>Even on paid hosts, forms get spam, scanners probe for openings, and AI crawlers hit everything. The free Cloudflare layer can stop most of the junk before it even reaches your site.</p>
-        </article>
-        <article class="problem-card">
-          <p class="num">03</p>
-          <h3>You don’t need the complexity</h3>
-          <p>A typical local-service or company brochure site is perfectly happy as a modern static site on free global hosting. Paying for a full CMS or shared server is just overkill.</p>
-        </article>
-      </div>
-    </section>
-
-    
-
-    <figure class="bleed bleed-bottom" id="shopBleed">
-      <img class="bleed-photo" src="https://images.pexels.com/photos/19093452/pexels-photo-19093452.jpeg" alt="A sunlit bakery storefront with a laptop open on the counter" width="1792" height="1008" />
-      <figcaption class="bleed-copy bleed-card" id="shopCard">
-        <button type="button" class="bleed-card-collapse-btn" id="shopCollapseBtn" aria-label="Hide text card" title="Hide text to view image">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        </button>
-        <p class="eyebrow">Built for the shop</p>
-        <p style="margin-top:0.75rem;font-family:var(--font-serif);font-size:2.25rem;line-height:1">The storefront stays. The monthly bill does not.</p>
-        <p style="margin-top:0.75rem;color:var(--muted)">Trades, studios, and local companies. A fast brochure site with a form — not a server you rent forever.</p>
-      </figcaption>
-    </figure>
-
-    <section id="offers" class="section container">
-      <p class="eyebrow">Two clear options</p>
-      <h2 class="display-lg" style="max-width:48rem;margin-top:1rem">Choose the path that fits your situation.</h2>
-      <p class="section-lead">
-        Most clients now take the full move (zero ongoing hosting cost). The lighter protection-only service remains available if you prefer to keep your current host for now.
+      <p>
+        Accept payments, handle business <span class="highlight">banking,</span><sup>1</sup> and
+        implement custom revenue models—from <span class="highlight">your</span>
+        first transaction to your billionth.
       </p>
 
-      <div class="offers-grid">
-        <article class="offer offer-dark">
-          <p class="eyebrow">Strongest offer</p>
-          <h3>Free hosting + redesign</h3>
-          <p class="desc">We rebuild or carefully port your site to a private GitHub repository and deploy it on Cloudflare Pages. You stop paying hosting or website-builder fees forever.</p>
-          <ul class="offer-list">
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Modern, fast static (or lightly dynamic) site on Cloudflare Pages</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Private GitHub repo — you own the code</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Full Cloudflare free-plan security, bot controls &amp; Always Online</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Custom domain pointed and protected</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> No monthly hosting or builder subscription after hand-off</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Clean hand-off: you keep both the GitHub and Cloudflare accounts</li>
-          </ul>
-          <p class="offer-price">From $200 <span>one-time</span></p>
-          <p class="offer-note">Exact scope depends on current site complexity. Most simple service sites land in the $200–$500 range.</p>
-          <a href="#process" class="btn btn-primary">How the move works</a>
-        </article>
-
-        <article class="offer offer-light">
-          <p class="eyebrow">Keep current host</p>
-          <h3>Cloudflare protection only</h3>
-          <p class="desc">We leave your existing site and host exactly where they are. We only add a properly configured Cloudflare layer in front for filtering and resilience.</p>
-          <ul class="offer-list">
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Custom security rules, rate limiting, response rules</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Bot Fight Mode + AI crawler controls</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Always Online and basic caching</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Security headers and cleanup</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Everything under your own Cloudflare account</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> No redesign, no host change</li>
-          </ul>
-          <p class="offer-price" style="color:var(--ink)">$49 <span>one-time</span></p>
-          <p class="offer-note">Optional $4/mo monitoring available after setup.</p>
-          <a href="#setup" class="btn btn-ghost">What we configure</a>
-        </article>
-      </div>
-
-      <div class="compare">
-        <div>
-          <p class="label">Typical builder</p>
-          <p class="num">$29</p>
-          <p style="margin-top:0.25rem;font-size:0.875rem;color:var(--muted)">/mo, every month</p>
-        </div>
-        <div>
-          <p class="label">Three years of that</p>
-          <p class="num">$1,044</p>
-          <p style="margin-top:0.25rem;font-size:0.875rem;color:var(--muted)">before you change a thing</p>
-        </div>
-        <div>
-          <p class="label">After HostCut</p>
-          <p class="num">$0</p>
-          <p style="margin-top:0.25rem;font-size:0.875rem;color:var(--muted)">/mo hosting, once the move is done</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="bleed bleed-side">
-      <img class="bleed-photo" src="https://images.pexels.com/photos/40688232/pexels-photo-40688232.jpeg" alt="A molten orange ribbon of light cutting through dark glass fibers" width="1792" height="1008" />
-      <div class="bleed-copy" style="max-width:48rem;padding:6rem 1.5rem">
-        <p class="eyebrow">The cut</p>
-        <h2 class="display-lg" style="margin-top:1rem;color:var(--paper)">
-          Same edge network.<br />
-          <span class="italic text-orange">None of the rent.</span>
-        </h2>
-        <p style="margin-top:1.25rem;max-width:36rem;font-size:1.125rem;color:color-mix(in srgb, var(--paper) 80%, transparent)">
-          Your site is files, served from Cloudflare’s network. Not a shared server with a subscription attached.
-        </p>
-      </div>
-    </section>
-
-    <section id="setup" class="section container">
-      <p class="eyebrow">What you actually get</p>
-      <h2 class="display-lg" style="max-width:48rem;margin-top:1rem">Protection is included either way. Free hosting is the real upgrade.</h2>
-      <p class="section-lead">
-        Whether you take the full move or just the protection layer, the Cloudflare free plan is configured properly — not left on defaults.
-      </p>
-      <div class="setup-grid">
-        <article class="setup-card">
-          <span class="setup-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-          <h3>Custom security rules</h3>
-          <p>Blocks for sensitive paths, common exploit scans, bad user-agents, and high-risk sources.</p>
-        </article>
-        <article class="setup-card">
-          <span class="setup-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
-          <h3>Rate limiting &amp; forms</h3>
-          <p>Stops rapid-fire requests against contact forms and key pages so bots cannot overwhelm them.</p>
-        </article>
-        <article class="setup-card">
-          <span class="setup-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
-          <h3>Bot &amp; AI controls</h3>
-          <p>Bot Fight Mode plus policies that allow useful search crawlers while restricting aggressive training bots.</p>
-        </article>
-        <article class="setup-card">
-          <span class="setup-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
-          <h3>Always Online</h3>
-          <p>Cloudflare can still show a cached version of the site if the origin has a temporary problem.</p>
-        </article>
-        <article class="setup-card">
-          <span class="setup-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></span>
-          <h3>GitHub + Pages</h3>
-          <p>Clean repository, automated deploys from the main branch, and a production URL on Cloudflare Pages.</p>
-        </article>
-        <article class="setup-card">
-          <span class="setup-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></span>
-          <h3>You own everything</h3>
-          <p>Cloudflare account, GitHub repo, and domain stay in your name. We only work as invited collaborators.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="process" class="process section">
-      <div class="marquee marquee-process-top" aria-hidden="true">
-      <div class="marquee-track">
-        <div class="marquee-group">
-          <span><b>$0</b> hosting fees after the move<span class="marquee-dot">·</span></span>
-          <span>Private GitHub repository<span class="marquee-dot">·</span></span>
-          <span><b>Cloudflare Pages</b> free tier<span class="marquee-dot">·</span></span>
-          <span>Full bot &amp; security rules<span class="marquee-dot">·</span></span>
-          <span>Always Online active<span class="marquee-dot">·</span></span>
-          <span>No more Squarespace or Wix bills<span class="marquee-dot">·</span></span>
-          <span>You keep full ownership<span class="marquee-dot">·</span></span>
-          <span>Fast global CDN<span class="marquee-dot">·</span></span>
-          <span><b>One-time</b> project, then it is yours<span class="marquee-dot">·</span></span>
-          <span>Fortune 500 uses this network<span class="marquee-dot">·</span></span>
-        </div>
-        <div class="marquee-group" aria-hidden="true">
-          <span><b>$0</b> hosting fees after the move<span class="marquee-dot">·</span></span>
-          <span>Private GitHub repository<span class="marquee-dot">·</span></span>
-          <span><b>Cloudflare Pages</b> free tier<span class="marquee-dot">·</span></span>
-          <span>Full bot &amp; security rules<span class="marquee-dot">·</span></span>
-          <span>Always Online active<span class="marquee-dot">·</span></span>
-          <span>No more Squarespace or Wix bills<span class="marquee-dot">·</span></span>
-          <span>You keep full ownership<span class="marquee-dot">·</span></span>
-          <span>Fast global CDN<span class="marquee-dot">·</span></span>
-          <span><b>One-time</b> project, then it is yours<span class="marquee-dot">·</span></span>
-          <span>Fortune 500 uses this network<span class="marquee-dot">·</span></span>
-        </div>
-      </div>
-    </div>
-
-      <div class="container">
-        <p class="eyebrow">How the full move works</p>
-        <h2 class="display-lg" style="max-width:48rem;margin-top:1rem">Four clear steps. You keep ownership the entire time.</h2>
-        <p class="section-lead">The goal is a clean hand-off so you never depend on us for day-to-day operation of the site.</p>
-        <ol class="process-grid">
-          <li class="process-step">
-            <p class="num">01</p>
-            <h3>Review &amp; scope</h3>
-            <p>We look at your current site, forms, and any special requirements. You get a fixed quote for the redesign or careful port.</p>
-          </li>
-          <li class="process-step">
-            <p class="num">02</p>
-            <h3>Rebuild on GitHub</h3>
-            <p>We create a private repository under your GitHub account (or transfer it to you) and build a modern, fast version of the site.</p>
-          </li>
-          <li class="process-step">
-            <p class="num">03</p>
-            <h3>Deploy to Cloudflare Pages</h3>
-            <p>The site goes live on Cloudflare Pages. We connect your domain, enable the free security layer, and apply the full rule set.</p>
-          </li>
-          <li class="process-step">
-            <p class="num">04</p>
-            <h3>Hand-off &amp; cancel old host</h3>
-            <p>You confirm everything works. Then you can cancel the old Squarespace, Wix, WordPress, or shared-hosting subscription. You keep both accounts.</p>
-          </li>
-        </ol>
-        <p class="process-note">
-          <strong>Protection-only path:</strong> If you prefer to stay on your current host, the process is simpler — create a free Cloudflare account, invite us, we update DNS and apply the security configuration, then hand everything back to you.
-        </p>
-
-        
-
-      </div>
-    </section>
-
-    <section id="faq" class="section">
-      <div class="container faq-wrap">
-        <p class="eyebrow">Common questions</p>
-        <h2 class="display-lg" style="margin-top:1rem">Straightforward answers.</h2>
-        <p class="section-lead">These are the questions that come up most often before someone decides to move.</p>
-        <div class="faq-list" id="faqList">
-          <div class="faq-item open">
-            <button type="button" class="faq-q" aria-expanded="true">
-              Can I still edit the site later?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>Yes. Updating text, images, and pages is straightforward. You (or anyone you trust) can edit the files directly, or simply ask an AI to make the changes and push them live. Updating content is usually easier than working inside the clunky editors of Squarespace or Wix. Changing the overall look is a bit more involved than dragging boxes around in a website builder, but still very doable. Many clients just message us or use AI when they want design tweaks. This is the small trade-off for no longer paying $20–$45 every month — you gain full ownership and zero ongoing fees while still being able to update the site whenever you need.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              Will this hurt my Google ranking?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>Usually the opposite happens. Moving to Cloudflare Pages almost always makes the site load significantly faster. Google has openly stated that site speed is a ranking factor, so a faster site tends to help visibility rather than hurt it. We also keep all your existing content and set up proper redirects, so you don’t lose any current rankings in the process. Most sites either stay the same or improve after the move.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              Will my site go offline during the move?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>No. We build and fully test the new version on a private preview link that Cloudflare Pages automatically provides. Your current site stays live the entire time. Once everything looks good and you’ve approved it, we switch the domain over — usually with zero downtime. Visitors never see a broken or offline site.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              What if my site relies on a form to capture leads?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>No problem at all — this is very common. We replace the old form with a new one that still sends every submission straight to your email (and optionally into a simple dashboard). You keep receiving leads exactly as you do now. The form continues to work the same way from the visitor’s perspective, just without the monthly hosting cost attached.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              Who is this service actually for?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>It works best for ordinary small-business and local-service sites: trades, professional services, simple company sites, and brochure-style websites that mainly explain what you do and let people get in touch. If you want to stop paying monthly hosting or builder fees, you’re happy with a modern static or lightly interactive site, and you prefer to own the code and the Cloudflare account, it’s a strong fit. It is not designed for heavy custom applications, large multi-location platforms, membership sites with complex user accounts, or anything that truly needs a full server-side CMS and database.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              Is there risk to site migration?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>The practical risks are low for the type of sites we work with. We build and test everything on a preview domain first, so nothing goes live until you approve it. Your original site stays online the whole time. You keep full ownership of the GitHub repository and Cloudflare account from day one. The main trade-off is that editing the overall design is a bit less “drag-and-drop” than a traditional website builder — but content updates remain simple, and most clients find the savings and ownership worth it.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              Do I still own everything after the project?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>Yes — completely. The private GitHub repository, the Cloudflare account, and your domain all stay in your name. We only work as invited collaborators during the project. Once we hand everything over, you can manage the site yourself, invite someone else, or come back to us later if you want help with updates. There is no lock-in and no ongoing dependency on us.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              What is GitHub and why is it used?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>GitHub is simply a secure place to store the files that make up your website. In this setup we create a private repository under your own account, which means you fully own the code. Cloudflare Pages then automatically builds and serves the site from that repository. You never have to interact with GitHub if you don’t want to — it just acts as the reliable, private home for your site’s files so you’re never locked into a website builder or hosting company.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              What's Cloudflare Pages?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>Cloudflare Pages is a modern hosting platform built specifically for fast, static (or lightly dynamic) websites. Instead of running on a traditional shared server that you pay for every month, your site is stored as files and delivered through Cloudflare’s global network. This is what allows the hosting itself to be free while still being extremely fast and reliable. You keep full ownership of the site through a private GitHub repository, and Cloudflare simply serves it to visitors worldwide.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              Who trusts Cloudflare?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>Roughly 45% of Fortune 500 companies rely on Cloudflare’s network. It is one of the largest and most trusted content delivery and security platforms on the internet. When we move your site, we configure the same free security layer that sits in front of those large companies — including bot protection, rate limiting, custom security rules, and Always Online. Your site benefits from enterprise-grade filtering and performance without any monthly cost.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-q" aria-expanded="false">
-              What’s the likelihood Cloudflare ends their free plan?
-              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="faq-a"><div><p>Low. Cloudflare has publicly and repeatedly committed to keeping a strong free tier. Their CEO has stated versions of “as long as I’m CEO” when asked about it. The free plan is part of their core business strategy — it helps them fill network capacity, gather security data, and attract future paying customers. For simple static sites (exactly what we build), the free plan is especially generous, with unlimited bandwidth for static files. Like any platform, limits can gradually change over time, but the free tier for this use case has remained very usable for years and shows no signs of disappearing.</p></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="bleed bleed-bottom cta-bleed">
-      <img class="bleed-photo" src="https://images.pexels.com/photos/11196384/pexels-photo-11196384.png" alt="A coastal city at night, street grids glowing like a network" width="1792" height="1008" />
-      <div class="bleed-copy">
-        <h2 class="display-lg">
-          Ditch the hosting fees.<br />
-          Keep the protection.
-        </h2>
-        <p>
-          Most clients now choose the full move to Cloudflare Pages because the math is simple: one-time project cost versus years of monthly fees.
-        </p>
-        <a href="#offers" class="btn btn-primary">
-          Compare the two options
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <p class="sub">Reply to the message you received, or reach out, and we can look at your company and current setup.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <path fill="currentColor" d="M4.2 4.2h2.5v9.2h5.6V4.2h2.5v15.6h-2.5v-4.3H6.7v4.3H4.2V4.2Z"/>
-            <path fill="currentColor" d="M20.8 16.2c-3.35 0-5.7 2.35-5.7 5.55 0 3.25 2.35 5.6 5.7 5.6 1.85 0 3.35-.65 4.4-1.85l-1.75-1.55c-.65.75-1.5 1.15-2.65 1.15-1.85 0-3.15-1.4-3.15-3.35s1.3-3.35 3.15-3.35c1.15 0 2 .4 2.65 1.15l1.75-1.55c-1.05-1.2-2.55-1.85-4.4-1.85Z"/>
-            <path d="M27.2 5.8 L4.8 26.2" stroke="#f15a22" stroke-width="1.55" stroke-linecap="round" stroke-dasharray="2.6 2.3"/>
+      <div class="cta-row">
+        <a href="#" class="btn btn-primary">
+          Get started
+          <svg width="13" height="13" viewBox="0 0 12 12" fill="none">
+            <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </span>
-        <strong>HostCut</strong>
+        </a>
+
+        <a href="#" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 18 18">
+            <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/>
+            <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.96-2.184l-2.908-2.258c-.806.54-1.837.86-3.052.86-2.347 0-4.332-1.584-5.043-3.712H.957v2.332C2.438 15.983 5.482 18 9 18z"/>
+            <path fill="#FBBC05" d="M3.957 10.706c-.18-.54-.282-1.117-.282-1.706s.102-1.166.282-1.706V4.962H.957C.348 6.175 0 7.55 0 9s.348 2.825.957 4.038l3-2.332z"/>
+            <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.962L3.957 7.294C4.668 5.163 6.653 3.58 9 3.58z"/>
+          </svg>
+          Sign up with Google
+        </a>
       </div>
-      <p style="font-size:0.875rem">Cloudflare hosting and protection for small-business websites</p>
     </div>
-  </footer>
+
+    <div class="marquee-section">
+      <div class="marquee-track">
+        <div class="marquee-content">
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI"> OpenAI</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic"> Anthropic</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft"> Microsoft</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="X"> X</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify"> Shopify</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=walmart.com&sz=64" alt="Walmart"> Walmart</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=bestbuy.com&sz=64" alt="Best Buy"> Best Buy</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=nike.com&sz=64" alt="Nike"> Nike</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=hm.com&sz=64" alt="H&M"> H&M</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=64" alt="DoorDash"> DoorDash</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney"> Disney</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva"> Canva</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM"> IBM</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=dell.com&sz=64" alt="Dell"> Dell</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ford.com&sz=64" alt="Ford"> Ford</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="General Motors"> General Motors</div>
+        </div>
+
+        <div class="marquee-content">
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="OpenAI"> OpenAI</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic"> Anthropic</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="Microsoft"> Microsoft</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="X"> X</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify"> Shopify</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=walmart.com&sz=64" alt="Walmart"> Walmart</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=bestbuy.com&sz=64" alt="Best Buy"> Best Buy</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=nike.com&sz=64" alt="Nike"> Nike</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=hm.com&sz=64" alt="H&M"> H&M</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=doordash.com&sz=64" alt="DoorDash"> DoorDash</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney"> Disney</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva"> Canva</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM"> IBM</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=dell.com&sz=64" alt="Dell"> Dell</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=ford.com&sz=64" alt="Ford"> Ford</div>
+          <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=gm.com&sz=64" alt="General Motors"> General Motors</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BLOCK 2: AUDIENCE SLIDESHOW ========== -->
+  <section class="slideshow-section">
+    <div class="slideshow">
+      <div class="slides-wrapper">
+
+        <!-- SLIDE 1 -->
+        <div class="slide active">
+          <div class="slide-visual">
+            <div>
+              <div class="visual-label">Primary audience</div>
+              <div class="visual-title">Solo Professionals & Practitioners</div>
+            </div>
+            <ul class="visual-points">
+              <li>Coaches, therapists, designers, lawyers</li>
+              <li>Photographers, tutors, personal trainers</li>
+              <li>Need credibility and clear contact path</li>
+              <li>About, services, and simple booking</li>
+              <li>No monthly platform fees required</li>
+            </ul>
+          </div>
+          <div class="slide-content">
+            <h2>Show who you are and what you offer</h2>
+            <p>A clean, professional presence that builds trust instantly — without monthly fees or complicated tools.</p>
+            <a href="#" class="btn">See example sites</a>
+          </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide">
+          <div class="slide-visual">
+            <div>
+              <div class="visual-label">Primary audience</div>
+              <div class="visual-title">Local Trades & Service Businesses</div>
+            </div>
+            <ul class="visual-points">
+              <li>HVAC, plumbing, electrical, roofing</li>
+              <li>Landscaping, cleaning, auto repair</li>
+              <li>Services, service area, and reviews</li>
+              <li>Phone number and contact form</li>
+              <li>Classic brochure-style website</li>
+            </ul>
+          </div>
+          <div class="slide-content">
+            <h2>Classic brochure sites that convert</h2>
+            <p>Clear services, service area, trust signals, and an easy way for customers to call or request a quote.</p>
+            <a href="#" class="btn">View trade examples</a>
+          </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide">
+          <div class="slide-visual">
+            <div>
+              <div class="visual-label">Primary audience</div>
+              <div class="visual-title">Local Shops & Small Retail</div>
+            </div>
+            <ul class="visual-points">
+              <li>Bookstores, boutiques, gift shops</li>
+              <li>Galleries and specialty stores</li>
+              <li>Story, atmosphere, and location</li>
+              <li>Hours and light product highlights</li>
+              <li>No full e-commerce complexity</li>
+            </ul>
+          </div>
+          <div class="slide-content">
+            <h2>Tell the story of your shop</h2>
+            <p>Focus on atmosphere, location, and what makes your store special — without the complexity of full e-commerce.</p>
+            <a href="#" class="btn">Explore retail sites</a>
+          </div>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide">
+          <div class="slide-visual">
+            <div>
+              <div class="visual-label">Primary audience</div>
+              <div class="visual-title">Restaurants & Cafés</div>
+            </div>
+            <ul class="visual-points">
+              <li>Menu, story, hours, and location</li>
+              <li>Links to DoorDash, Uber Eats, Toast</li>
+              <li>No complex ordering systems needed</li>
+              <li>Simple and effective digital home</li>
+              <li>Focus on atmosphere and discovery</li>
+            </ul>
+          </div>
+          <div class="slide-content">
+            <h2>Menu, hours, and easy ordering links</h2>
+            <p>A beautiful digital home that points guests to the platforms you already use — simple and effective.</p>
+            <a href="#" class="btn">See restaurant examples</a>
+          </div>
+        </div>
+
+        <!-- SLIDE 5 -->
+        <div class="slide">
+          <div class="slide-visual">
+            <div>
+              <div class="visual-label">Primary audience</div>
+              <div class="visual-title">Personal & Creator Pages</div>
+            </div>
+            <ul class="visual-points">
+              <li>Clean “home base” for creators</li>
+              <li>Links to Instagram, YouTube, booking</li>
+              <li>More polished than a link-in-bio tool</li>
+              <li>Simple to maintain over time</li>
+              <li>Professional first impression</li>
+            </ul>
+          </div>
+          <div class="slide-content">
+            <h2>A polished home for your online presence</h2>
+            <p>More intentional than a Linktree, still simple to maintain. Perfect for creators and independent professionals.</p>
+            <a href="#" class="btn">View creator sites</a>
+          </div>
+        </div>
+
+        <!-- SLIDE 6 -->
+        <div class="slide">
+          <div class="slide-visual">
+            <div>
+              <div class="visual-label">Secondary fit</div>
+              <div class="visual-title">Small Professional Firms</div>
+            </div>
+            <ul class="visual-points">
+              <li>Teams of 2–10 people</li>
+              <li>Clean company presence</li>
+              <li>Services, team, and contact</li>
+              <li>Professional and credible look</li>
+              <li>Easy to keep up to date</li>
+            </ul>
+          </div>
+          <div class="slide-content">
+            <h2>Professional sites for small teams</h2>
+            <p>When a full agency site is overkill but a social profile isn’t enough. Clean, credible, and easy to keep current.</p>
+            <a href="#" class="btn">See firm examples</a>
+          </div>
+        </div>
+
+        <!-- SLIDE 7 -->
+        <div class="slide">
+          <div class="slide-visual">
+            <div>
+              <div class="visual-label">Secondary fit</div>
+              <div class="visual-title">Nonprofits & Community Groups</div>
+            </div>
+            <ul class="visual-points">
+              <li>Mostly static information</li>
+              <li>Mission, events, and contact</li>
+              <li>No complex features required</li>
+              <li>Clear way to get involved</li>
+              <li>Simple long-term presence</li>
+            </ul>
+          </div>
+          <div class="slide-content">
+            <h2>Clear information for your community</h2>
+            <p>Share your mission, upcoming events, and how people can get involved — without ongoing platform fees.</p>
+            <a href="#" class="btn">View nonprofit sites</a>
+          </div>
+        </div>
+
+        <!-- SLIDE 8 -->
+        <div class="slide">
+          <div class="slide-visual">
+            <div>
+              <div class="visual-label">Secondary fit</div>
+              <div class="visual-title">Side Projects & Personal Brands</div>
+            </div>
+            <ul class="visual-points">
+              <li>Better than a social profile</li>
+              <li>Simple, intentional presence</li>
+              <li>Easy to maintain over time</li>
+              <li>Professional first impression</li>
+              <li>No monthly builder fees</li>
+            </ul>
+          </div>
+          <div class="slide-content">
+            <h2>Something better than a social profile</h2>
+            <p>For side projects and personal brands that deserve a proper home — without the overhead of a full website platform.</p>
+            <a href="#" class="btn">Explore examples</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation -->
+      <div class="nav">
+        <div class="dots" id="dots">
+          <div class="dot active" data-index="0"></div>
+          <div class="dot" data-index="1"></div>
+          <div class="dot" data-index="2"></div>
+          <div class="dot" data-index="3"></div>
+          <div class="dot" data-index="4"></div>
+          <div class="dot" data-index="5"></div>
+          <div class="dot" data-index="6"></div>
+          <div class="dot" data-index="7"></div>
+        </div>
+
+        <div class="arrows">
+          <button class="arrow" id="prev" aria-label="Previous slide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          <button class="arrow" id="next" aria-label="Next slide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BLOCK 3: FEATURES GRID ========== -->
+  <section class="features-section">
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <svg class="moon" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <svg class="sun" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5"/>
+        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+    </button>
+
+    <div class="features-container">
+
+      <!-- 1. TOP LEFT – Status -->
+      <div class="card status-card">
+        <div class="status-header">
+          <div class="logo-box">H</div>
+        </div>
+
+        <div class="status-list">
+          <div class="status-row">
+            <span class="version">v1.04</span>
+            <span class="updated">Updated 11.17.26, 09:22</span>
+            <span class="status building">
+              Building
+              <span class="spinner"></span>
+            </span>
+          </div>
+          <div class="status-row">
+            <span class="version">v1.03</span>
+            <span class="updated">Updated 11.17.26, 09:22</span>
+            <span class="status deployed">
+              Live
+              <span class="check">✓</span>
+            </span>
+          </div>
+          <div class="status-row">
+            <span class="version">v1.02</span>
+            <span class="updated">Updated 11.16.26, 14:08</span>
+            <span class="status deployed">
+              Live
+              <span class="check">✓</span>
+            </span>
+          </div>
+          <div class="status-row">
+            <span class="version">v1.01</span>
+            <span class="updated">Updated 11.15.26, 11:40</span>
+            <span class="status deployed">
+              Live
+              <span class="check">✓</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="workflow-note">
+          <h3>Fits into your existing workflow</h3>
+          <p>No proprietary builders. Edit in plain HTML or your preferred editor. Upload once and you’re done.</p>
+        </div>
+      </div>
+
+      <!-- 2. TOP RIGHT – Orange -->
+      <div class="orange-panel">
+        <div class="icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </div>
+        <h2>One permanent site.<br><em>Zero</em> monthly fees.</h2>
+        <p>Whether you’re a coach, plumber, café, or creator — HostCut gives you a professional website that you own outright. No subscriptions. No lock-in.</p>
+      </div>
+
+      <!-- 3. BOTTOM LEFT – Secure -->
+      <div class="card secure-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Secure by default</h3>
+        <p>HTTPS, modern hosting, and reliable uptime are included from day one. Your site is protected without any extra setup or monthly security add-ons.</p>
+      </div>
+
+      <!-- 4. BOTTOM RIGHT – Combined -->
+      <div class="card combined-card">
+        <div class="path-section">
+          <h3>Fast path to a real website</h3>
+          <p>No learning a new platform. No monthly builder fees. Get a polished, professional site that looks intentional — then stop paying for it every month.</p>
+        </div>
+
+        <div class="launch-section">
+          <div class="launch-header">Preparing your site…</div>
+
+          <div class="agent-list">
+            <div class="agent-item">
+              <span class="dot"></span>
+              <span class="tag">content</span>
+              <span class="arrow">→</span>
+              <span>Writing about section</span>
+              <span class="meta">• ready</span>
+            </div>
+            <div class="agent-item">
+              <span class="dot"></span>
+              <span class="tag">services</span>
+              <span class="arrow">→</span>
+              <span>Structuring offerings</span>
+              <span class="meta">• ready</span>
+            </div>
+            <div class="agent-item">
+              <span class="dot"></span>
+              <span class="tag">contact</span>
+              <span class="arrow">→</span>
+              <span>Adding form + phone</span>
+              <span class="meta">• ready</span>
+            </div>
+          </div>
+
+          <div class="loading-line">
+            <span class="dots"><span></span><span></span><span></span></span>
+            Finalizing layout…
+          </div>
+
+          <div class="terminal">
+            <div class="prompt">
+              <span>></span>
+              <span class="cursor"></span>
+            </div>
+            <button class="enter">Launch ↵</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== BLOCK 4: SECURITY BENTO ========== -->
+  <section class="security-section">
+    <h2 class="section-title">
+      Protect, accelerate, and control<br>
+      every request to your <em>origin</em>
+    </h2>
+
+    <div class="bento">
+
+      <!-- Row 1: large | small -->
+      <div class="row row-1">
+        <!-- 1. Smart Shield (large) -->
+        <div class="bento-card card-1">
+          <div>
+            <h3>Smart Shield</h3>
+            <p>Protect your origin server, improve content availability, and reduce network latency by intelligently shielding traffic at the edge.</p>
+          </div>
+          <div class="meta">
+            <div class="meta-item">
+              <strong>99.99%</strong>
+              origin uptime
+            </div>
+            <div class="meta-item">
+              <strong>−40%</strong>
+              origin load
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Bot Fight Mode (small) -->
+        <div class="bento-card card-2">
+          <div>
+            <h3>Bot Fight Mode</h3>
+            <p>Automatically detect and mitigate malicious bots before they reach your application — no complex configuration required.</p>
+          </div>
+          <div class="tag">Active protection</div>
+        </div>
+      </div>
+
+      <!-- Row 2: small | large -->
+      <div class="row row-2">
+        <!-- 3. TLS 1.3 (small) -->
+        <div class="bento-card card-3">
+          <div>
+            <h3>TLS 1.3</h3>
+            <p>Enable the latest version of the TLS protocol for stronger encryption, faster handshakes, and improved overall performance.</p>
+          </div>
+          <div class="version">1.3</div>
+        </div>
+
+        <!-- 4. Smart Tiered Cache (large) -->
+        <div class="bento-card card-4">
+          <div>
+            <h3>Smart Tiered Cache</h3>
+            <p>Dynamically identify the optimal data centers closest to your origin to maximize cache hit ratios and reduce origin load.</p>
+          </div>
+          <div class="locations">
+            <span class="location">SFO</span>
+            <span class="location">LHR</span>
+            <span class="location">FRA</span>
+            <span class="location">NRT</span>
+            <span class="location">SYD</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom row -->
+      <div class="bottom-row">
+
+        <!-- 5. Custom Security Rules -->
+        <div class="bento-card card-5">
+          <div>
+            <h3>Custom Security Rules</h3>
+            <p>Create precise rules based on IP, country, URI, headers, and more to block, challenge, or allow traffic exactly how you need.</p>
+          </div>
+          <ul class="list">
+            <li>Block known bad ASNs</li>
+            <li>Challenge high-risk regions</li>
+            <li>Protect sensitive paths</li>
+          </ul>
+        </div>
+
+        <!-- 6. Custom Rate Limit Rules -->
+        <div class="bento-card card-6">
+          <div>
+            <h3>Custom Rate Limit Rules</h3>
+            <p>Define granular rate limits by path, method, IP, or header to stop abuse and protect critical endpoints.</p>
+          </div>
+          <ul class="list">
+            <li>Path-based thresholds</li>
+            <li>Method-specific limits</li>
+            <li>IP + header combinations</li>
+          </ul>
+        </div>
+
+        <!-- 7. Custom Response Rules -->
+        <div class="bento-card card-7">
+          <div>
+            <h3>Custom Response Rules</h3>
+            <p>Return custom status codes, headers, or content when a rule matches — full control over how threats are handled.</p>
+          </div>
+          <ul class="list">
+            <li>Custom status codes</li>
+            <li>Inject response headers</li>
+            <li>Serve tailored content</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BLOCK 5: GOOGLE PRESENCE ========== -->
+  <section class="google-section">
+    <p class="statement">
+      <span class="accent">Moving the site</span> does not mean disappearing from <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>. Your existing content is kept, proper redirects are set up, and the new version is almost always faster — something <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span> actually rewards. The rankings and search presence you’ve already built stay intact. <span class="accent">Nothing gets thrown away.</span>
+    </p>
+  </section>
+
+  <!-- ========== BLOCK 6: THE CUT ========== -->
+  <section class="bleed bleed-side">
+    <img class="bleed-photo" src="https://images.pexels.com/photos/40688232/pexels-photo-40688232.jpeg" alt="A molten orange ribbon of light cutting through dark glass fibers" width="1792" height="1008" />
+    <div class="bleed-copy">
+      <p class="eyebrow">The cut</p>
+      <h2 class="display-lg" style="margin-top:1rem">
+        Same edge network.<br />
+        <span class="italic text-orange">None of the rent.</span>
+      </h2>
+      <p style="margin-top:1.25rem;max-width:36rem;font-size:1.125rem">
+        Your site is files, served from Cloudflare’s network. Not a shared server with a subscription attached.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== BLOCK 7: REQUEST UPDATES ========== -->
+  <section class="updates-section">
+    <h2 class="headline">
+      Already made the move?<br>
+      Need something updated?
+    </h2>
+
+    <p class="subtext">
+      Content changes, new pages, or a full redesign — just<br>
+      tell us what you need and we’ll take care of it.
+    </p>
+
+    <a href="#" class="updates-btn">
+      Request updates
+      <span aria-hidden="true">→</span>
+    </a>
+
+    <p class="note">Usually replied within one business day.</p>
+  </section>
 
   <script>
+    // Live counter (Block 1)
     (function () {
-      // Mobile menu
-      var btn = document.getElementById("menuBtn");
-      var nav = document.getElementById("mobileNav");
-      btn.addEventListener("click", function () {
-        var open = nav.classList.toggle("open");
-        btn.setAttribute("aria-expanded", open ? "true" : "false");
-        btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-      });
-      nav.querySelectorAll("a").forEach(function (a) {
-        a.addEventListener("click", function () {
-          nav.classList.remove("open");
-          btn.setAttribute("aria-expanded", "false");
-        });
-      });
+      const el = document.getElementById('liveCounter');
+      let value = 29;
 
-      // Spinning word
-      var words = ["free.", "$0.", "zip.", "nil."];
-      var el = document.getElementById("spinWord");
-      var wi = 0;
-      if (el && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        setInterval(function () {
-          el.classList.remove("on");
-          setTimeout(function () {
-            wi = (wi + 1) % words.length;
-            el.textContent = words[wi];
-            el.classList.add("on");
-          }, 200);
-        }, 2400);
+      function format(n) {
+        return '$' + n.toLocaleString('en-US');
       }
 
-      // FAQ accordion
-      document.querySelectorAll(".faq-q").forEach(function (q) {
-        q.addEventListener("click", function () {
-          var item = q.closest(".faq-item");
-          var wasOpen = item.classList.contains("open");
-          document.querySelectorAll(".faq-item").forEach(function (it) {
-            it.classList.remove("open");
-            it.querySelector(".faq-q").setAttribute("aria-expanded", "false");
-          });
-          if (!wasOpen) {
-            item.classList.add("open");
-            q.setAttribute("aria-expanded", "true");
-          }
+      function tick() {
+        value += 29;
+        el.textContent = format(value);
+
+        const isBurst = Math.random() < 0.22;
+        const delay = isBurst
+          ? 150 + Math.random() * 300
+          : 1200 + Math.random() * 2300;
+
+        setTimeout(tick, delay);
+      }
+
+      setTimeout(tick, 1800);
+    })();
+
+    // Slideshow (Block 2)
+    (function () {
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.dot');
+      const prevBtn = document.getElementById('prev');
+      const nextBtn = document.getElementById('next');
+      let current = 0;
+      let autoplay;
+
+      function goToSlide(index) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+
+        current = (index + slides.length) % slides.length;
+
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      function next() {
+        goToSlide(current + 1);
+      }
+
+      function prev() {
+        goToSlide(current - 1);
+      }
+
+      nextBtn.addEventListener('click', () => {
+        next();
+        resetAutoplay();
+      });
+
+      prevBtn.addEventListener('click', () => {
+        prev();
+        resetAutoplay();
+      });
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          goToSlide(parseInt(dot.dataset.index));
+          resetAutoplay();
         });
       });
 
-      // Mobile "Built for the shop" card collapse / expand
-      var shopCard = document.getElementById("shopCard");
-      var shopBtn = document.getElementById("shopCollapseBtn");
-      if (shopCard && shopBtn) {
-        shopBtn.addEventListener("click", function (e) {
-          e.stopPropagation();
-          var collapsed = shopCard.classList.toggle("collapsed");
-          if (collapsed) {
-            shopBtn.setAttribute("aria-label", "Show text card");
-            shopBtn.setAttribute("title", "Show text");
-            shopBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
-          } else {
-            shopBtn.setAttribute("aria-label", "Hide text card");
-            shopBtn.setAttribute("title", "Hide text to view image");
-            shopBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>';
-          }
-        });
+      function startAutoplay() {
+        autoplay = setInterval(next, 6000);
       }
 
-      // Typewriter effect — only on "on your website." (faster)
-      (function () {
-        var target = document.getElementById("typeTarget");
-        var cursor = document.getElementById("typeCursor");
-        if (!target || !cursor) return;
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          target.textContent = "on your website.";
-          cursor.classList.add("done");
-          return;
-        }
-        var full = "on your website.";
-        var i = 0;
-        target.textContent = "";
-        function type() {
-          if (i < full.length) {
-            target.textContent += full.charAt(i);
-            i++;
-            setTimeout(type, 28 + Math.random() * 18);
-          } else {
-            cursor.classList.add("done");
-          }
-        }
-        setTimeout(type, 350);
-      })();
+      function resetAutoplay() {
+        clearInterval(autoplay);
+        startAutoplay();
+      }
 
+      startAutoplay();
+    })();
+
+    // Theme toggle (Block 3)
+    (function () {
+      const toggle = document.getElementById('themeToggle');
+      const html = document.documentElement;
+
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        html.setAttribute('data-theme', 'dark');
+      }
+
+      toggle.addEventListener('click', () => {
+        const isDark = html.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+          html.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+        } else {
+          html.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
     })();
   </script>
+
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Own a real website. Stop renting one. – HostCut</title>
+  <title>Secure by default – HostCut</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,50 +24,56 @@
       --font-serif: 'Instrument Serif', Georgia, serif;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: var(--font-sans);
       background: var(--paper);
       color: var(--ink);
-      overflow-x: hidden;
       line-height: 1.5;
+      overflow-x: hidden;
     }
 
-    /* ========== HERO ========== */
-    .hero {
+    /* ========== BLOCK 1: DRAMATIC HERO ========== */
+    .hero-secure {
       position: relative;
       min-height: 92vh;
       display: flex;
       align-items: center;
-      padding: 100px 24px 80px;
-      background: #14120e;
-      color: #f4f0e8;
+      padding: 100px 24px 88px;
+      background: linear-gradient(165deg, #12100e 0%, #1a1612 42%, #1e1610 100%);
       overflow: hidden;
+      color: #f4f0e8;
     }
 
-    .hero::before {
+    /* Soft orange glow */
+    .hero-secure::before {
       content: "";
       position: absolute;
-      top: -20%;
+      top: -30%;
       right: -15%;
       width: 70vw;
-      max-width: 780px;
+      max-width: 720px;
       height: 70vw;
-      max-height: 780px;
-      background: radial-gradient(circle, rgba(241,90,34,0.28) 0%, transparent 68%);
+      max-height: 720px;
+      background: radial-gradient(circle, rgba(241,90,34,0.28) 0%, transparent 65%);
       pointer-events: none;
     }
 
-    .hero::after {
+    /* Secondary softer glow bottom left */
+    .hero-secure::after {
       content: "";
       position: absolute;
       bottom: -25%;
       left: -10%;
       width: 50vw;
-      max-width: 520px;
+      max-width: 480px;
       height: 50vw;
-      max-height: 520px;
+      max-height: 480px;
       background: radial-gradient(circle, rgba(241,90,34,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
@@ -75,24 +81,610 @@
     .hero-inner {
       position: relative;
       z-index: 1;
-      max-width: 780px;
+      max-width: 1180px;
       margin: 0 auto;
-      text-align: center;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    @media (min-width: 960px) {
+      .hero-inner {
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 72px;
+      }
     }
 
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 22px;
+    }
+
+    .hero-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1.5px;
+      background: var(--orange);
+      opacity: 0.85;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(44px, 6.2vw, 68px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #f4f0e8;
+      margin-bottom: 24px;
+      max-width: 11ch;
+    }
+
+    .hero-title .line2 {
+      display: block;
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .hero-lead {
+      font-size: clamp(16.5px, 1.9vw, 18.5px);
+      line-height: 1.65;
+      color: #b8b2a6;
+      max-width: 440px;
+      margin-bottom: 36px;
+    }
+
+    .hero-lead strong {
+      color: #f4f0e8;
+      font-weight: 500;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px 40px;
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hero-stat-value {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 400;
+      color: #f4f0e8;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 13px;
+      color: #9c968c;
+      letter-spacing: 0.01em;
+    }
+
+    /* Visual panel on the right */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .shield-frame {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 1 / 1.05;
+      background: linear-gradient(160deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid rgba(244,240,232,0.1);
+      border-radius: 28px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.35);
+    }
+
+    .shield-frame::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      right: -30%;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(241,90,34,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .shield-top {
+      position: relative;
+      z-index: 1;
+    }
+
+    .shield-badge {
+      display: inline-flex;
+      align-items: center;
       gap: 8px;
+      padding: 7px 14px 7px 10px;
+      background: rgba(241,90,34,0.15);
+      border: 1px solid rgba(241,90,34,0.3);
+      border-radius: 999px;
       font-size: 12px;
+      font-weight: 600;
+      color: #ff8a5c;
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+    }
+
+    .shield-badge svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .shield-headline {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      line-height: 1.25;
+      color: #f4f0e8;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .shield-sub {
+      font-size: 14.5px;
+      color: #a39e94;
+      line-height: 1.5;
+      max-width: 280px;
+    }
+
+    .shield-layers {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    .layer {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: rgba(244,240,232,0.04);
+      border: 1px solid rgba(244,240,232,0.08);
+      border-radius: 12px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .layer:hover {
+      background: rgba(244,240,232,0.07);
+      border-color: rgba(241,90,34,0.25);
+    }
+
+    .layer-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: rgba(241,90,34,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .layer-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--orange);
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .layer-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .layer-text strong {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #f4f0e8;
+      margin-bottom: 1px;
+    }
+
+    .layer-text span {
+      font-size: 12.5px;
+      color: #9c968c;
+    }
+
+    .layer-status {
+      font-size: 11px;
+      font-weight: 600;
+      color: #2a9d5c;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    /* ========== NEW BLOCK: LAYERS OF PROTECTION ========== */
+    .layers-section {
+      background: var(--paper);
+      padding: 96px 24px 80px;
+    }
+
+    .layers-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .layers-header {
+      max-width: 620px;
+      margin-bottom: 52px;
+    }
+
+    .layers-eyebrow {
+      font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--orange);
-      margin-bottom: 28px;
+      margin-bottom: 14px;
     }
 
-    .hero-eyebrow::before {
+    .layers-title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 48px);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .layers-title em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .layers-lead {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 480px;
+    }
+
+    .protection-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 700px) {
+      .protection-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .protection-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+    }
+
+    .prot-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 28px 26px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.28s ease,
+                  border-color 0.28s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .prot-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 40px rgba(20, 18, 14, 0.08);
+      border-color: color-mix(in srgb, var(--orange) 22%, var(--card-border));
+    }
+
+    .prot-card::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .prot-card:hover::after {
+      opacity: 1;
+    }
+
+    .prot-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--orange-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .prot-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--orange);
+      fill: none;
+      stroke-width: 1.7;
+    }
+
+    .prot-card h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.015em;
+      margin-bottom: 6px;
+    }
+
+    .prot-card p {
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .prot-tag {
+      margin-top: auto;
+      padding-top: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--orange);
+      opacity: 0.85;
+    }
+
+    /* Featured wide card */
+    .prot-card.wide {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      align-items: center;
+      gap: 32px;
+      padding: 32px 36px;
+      background: linear-gradient(135deg, #1a1714 0%, #14120e 100%);
+      border-color: #1a1714;
+      color: #f4f0e8;
+    }
+
+    @media (max-width: 699px) {
+      .prot-card.wide {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 28px 24px;
+      }
+    }
+
+    .prot-card.wide:hover {
+      border-color: #2a2420;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+    }
+
+    .prot-card.wide .prot-icon {
+      background: rgba(241,90,34,0.18);
+      flex-shrink: 0;
+    }
+
+    .prot-card.wide .prot-icon svg {
+      stroke: #ff8a5c;
+    }
+
+    .prot-card.wide h3 {
+      color: #f4f0e8;
+    }
+
+    .prot-card.wide p {
+      color: #b8b2a6;
+      max-width: 520px;
+    }
+
+    .prot-card.wide .prot-tag {
+      color: #ff8a5c;
+    }
+
+    .wide-content {
+      flex: 1;
+    }
+
+    .wide-meta {
+      display: flex;
+      gap: 28px;
+      flex-shrink: 0;
+    }
+
+    .wide-meta-item {
+      text-align: center;
+    }
+
+    .wide-meta-item strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 26px;
+      color: #f4f0e8;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .wide-meta-item span {
+      font-size: 12.5px;
+      color: #9c968c;
+    }
+
+    /* ========== BLOCK 3: CLOUDFLARE FEATURES BENTO ========== */
+    .features-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px 96px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      max-width: 780px;
+      margin-bottom: 48px;
+      color: var(--ink);
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .bento {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .row {
+      display: grid;
+      gap: 20px;
+    }
+
+    .row-1 {
+      grid-template-columns: 1.45fr 1fr;
+    }
+
+    .row-2 {
+      grid-template-columns: 1fr 1.45fr;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid #e5e0d6;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(20, 18, 14, 0.09);
+      border-color: #d9d2c6;
+    }
+
+    .card h3 {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    .card p {
+      font-size: 15.5px;
+      color: #5c564e;
+      line-height: 1.55;
+      max-width: 440px;
+    }
+
+    .card h3::after {
+      content: "";
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--orange);
+      margin-top: 14px;
+      border-radius: 1px;
+      transition: width 0.3s ease;
+    }
+
+    .card:hover h3::after {
+      width: 48px;
+    }
+
+    .card-1 {
+      min-height: 320px;
+      justify-content: space-between;
+    }
+
+    .card-1 .meta {
+      margin-top: 40px;
+      display: flex;
+      gap: 24px;
+    }
+
+    .meta-item {
+      font-size: 13px;
+      color: #8a857c;
+    }
+
+    .meta-item strong {
+      display: block;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .card-2 {
+      min-height: 320px;
+      background: #fff8f5;
+      border-color: #f5e6de;
+    }
+
+    .card-2:hover {
+      border-color: #efd5c8;
+    }
+
+    .card-2 .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 32px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--orange);
+    }
+
+    .card-2 .tag::before {
       content: "";
       width: 8px;
       height: 8px;
@@ -100,1118 +692,721 @@
       border-radius: 50%;
     }
 
-    .hero h1 {
-      font-family: var(--font-serif);
-      font-size: clamp(40px, 7vw, 68px);
-      font-weight: 400;
-      line-height: 1.05;
-      letter-spacing: -0.035em;
-      margin-bottom: 24px;
-      color: #f4f0e8;
+    .card-3 {
+      min-height: 300px;
     }
 
-    .hero h1 em {
-      font-style: italic;
+    .card-3 .version {
+      margin-top: auto;
+      padding-top: 36px;
+      font-family: var(--font-serif);
+      font-size: 48px;
+      font-weight: 400;
       color: var(--orange);
+      letter-spacing: -0.03em;
+      transition: transform 0.3s ease;
     }
 
-    .hero-lead {
-      font-size: clamp(17px, 2.2vw, 20px);
-      color: #b8b2a6;
-      max-width: 540px;
-      margin: 0 auto 36px;
-      line-height: 1.6;
+    .card-3:hover .version {
+      transform: scale(1.04);
     }
 
-    .hero-stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 28px;
-      justify-content: center;
-      margin-bottom: 40px;
-    }
-
-    .hero-stat {
-      text-align: center;
-    }
-
-    .hero-stat strong {
-      display: block;
-      font-family: var(--font-serif);
-      font-size: 28px;
-      font-weight: 400;
-      color: #f4f0e8;
-      letter-spacing: -0.02em;
-    }
-
-    .hero-stat span {
-      font-size: 13px;
-      color: #9c968c;
-      letter-spacing: 0.02em;
-    }
-
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      height: 52px;
-      padding: 0 28px;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.18s ease;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--orange);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: #d94e1a;
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: #f4f0e8;
-      border: 1.5px solid rgba(244,240,232,0.22);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(244,240,232,0.08);
-      border-color: rgba(244,240,232,0.35);
-    }
-
-    /* ========== PROBLEM ========== */
-    .problem {
-      padding: 96px 24px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 16px;
-    }
-
-    .problem-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 48px;
-    }
-
-    @media (min-width: 800px) {
-      .problem-grid {
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 64px;
-        align-items: start;
-      }
-    }
-
-    .problem h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(30px, 4.5vw, 42px);
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 20px;
-    }
-
-    .problem-copy p {
-      font-size: 17px;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 16px;
-    }
-
-    .problem-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .problem-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 15.5px;
-      color: var(--ink);
-      line-height: 1.45;
-    }
-
-    .problem-list li::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      background: var(--orange);
-      border-radius: 50%;
-      margin-top: 7px;
-      flex-shrink: 0;
-    }
-
-    .cost-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 36px 32px;
-      position: sticky;
-      top: 32px;
-    }
-
-    .cost-card h3 {
-      font-family: var(--font-serif);
-      font-size: 22px;
-      font-weight: 400;
-      margin-bottom: 8px;
-    }
-
-    .cost-card .sub {
-      font-size: 14px;
-      color: var(--muted);
-      margin-bottom: 28px;
-    }
-
-    .cost-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--card-border);
-      font-size: 15px;
-    }
-
-    .cost-row:last-of-type {
-      border-bottom: none;
-    }
-
-    .cost-row .label {
-      color: var(--muted);
-    }
-
-    .cost-row .amount {
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .cost-row.highlight {
-      background: var(--orange-soft);
-      margin: 12px -16px 0;
-      padding: 16px;
-      border-radius: 12px;
-      border: none;
-    }
-
-    .cost-row.highlight .label {
-      color: var(--ink);
-      font-weight: 500;
-    }
-
-    .cost-row.highlight .amount {
-      color: var(--orange);
-      font-size: 18px;
-    }
-
-    /* ========== SOLUTION ========== */
-    .solution {
+    .card-4 {
+      min-height: 300px;
       background: #14120e;
-      color: #f4f0e8;
-      padding: 96px 24px;
-    }
-
-    .solution-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .solution-header {
-      max-width: 620px;
-      margin-bottom: 56px;
-    }
-
-    .solution-header .section-label {
-      color: var(--orange);
-    }
-
-    .solution-header h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(30px, 4.5vw, 44px);
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.12;
-      margin-bottom: 18px;
+      border-color: #14120e;
       color: #f4f0e8;
     }
 
-    .solution-header p {
-      font-size: 17px;
+    .card-4:hover {
+      border-color: #2a2622;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
+    }
+
+    .card-4 h3 {
+      color: #f4f0e8;
+    }
+
+    .card-4 h3::after {
+      background: var(--orange);
+    }
+
+    .card-4 p {
       color: #b8b2a6;
-      line-height: 1.6;
     }
 
-    .solution-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
+    .card-4 .locations {
+      margin-top: auto;
+      padding-top: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    @media (min-width: 700px) {
-      .solution-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (min-width: 1000px) {
-      .solution-grid {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-    }
-
-    .solution-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px;
-      padding: 32px 28px;
-      transition: border-color 0.25s ease, background 0.25s ease;
-    }
-
-    .solution-card:hover {
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(241,90,34,0.3);
-    }
-
-    .solution-num {
-      font-family: var(--font-serif);
-      font-size: 26px;
-      color: var(--orange);
-      margin-bottom: 16px;
-      line-height: 1;
-    }
-
-    .solution-card h3 {
-      font-family: var(--font-serif);
-      font-size: 21px;
-      font-weight: 400;
-      margin-bottom: 12px;
-      letter-spacing: -0.01em;
+    .location {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      background: rgba(244, 240, 232, 0.1);
+      border-radius: 6px;
       color: #f4f0e8;
+      transition: background 0.2s ease;
     }
 
-    .solution-card p {
-      font-size: 14.5px;
-      color: #b8b2a6;
-      line-height: 1.55;
+    .card-4:hover .location {
+      background: rgba(244, 240, 232, 0.16);
     }
 
-    /* ========== WHAT YOU GET ========== */
-    .deliverables {
-      padding: 96px 24px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .deliverables-header {
-      max-width: 580px;
-      margin-bottom: 48px;
-    }
-
-    .deliverables-header h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(30px, 4.5vw, 42px);
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 16px;
-    }
-
-    .deliverables-header p {
-      font-size: 17px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .deliverables-grid {
+    .bottom-row {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
     }
 
-    @media (min-width: 700px) {
-      .deliverables-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+    .card-5,
+    .card-6,
+    .card-7 {
+      min-height: 300px;
     }
 
-    .deliverable {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 28px 26px;
-      display: flex;
-      gap: 18px;
-      align-items: flex-start;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .deliverable:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(20,18,14,0.06);
-    }
-
-    .deliverable-icon {
-      width: 40px;
-      height: 40px;
-      background: var(--orange-soft);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: var(--orange);
-      font-weight: 600;
-      font-size: 15px;
-    }
-
-    .deliverable h3 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: var(--ink);
-    }
-
-    .deliverable p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    /* ========== DOMAIN + HOSTING ========== */
-    .hosting {
-      background: var(--row-bg);
-      padding: 88px 24px;
-    }
-
-    .hosting-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .hosting-header {
-      text-align: center;
-      max-width: 560px;
-      margin: 0 auto 48px;
-    }
-
-    .hosting-header h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(28px, 4.2vw, 38px);
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 14px;
-    }
-
-    .hosting-header p {
-      font-size: 16.5px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .hosting-cards {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-    }
-
-    @media (min-width: 800px) {
-      .hosting-cards {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .hosting-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
-      padding: 36px 32px;
-    }
-
-    .hosting-card h3 {
-      font-family: var(--font-serif);
-      font-size: 24px;
-      font-weight: 400;
-      margin-bottom: 14px;
-      letter-spacing: -0.01em;
-    }
-
-    .hosting-card p {
-      font-size: 15px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .hosting-card ul {
+    .card-5 .list,
+    .card-6 .list,
+    .card-7 .list {
+      margin-top: auto;
+      padding-top: 28px;
       list-style: none;
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
 
-    .hosting-card li {
-      font-size: 14.5px;
-      color: var(--ink);
+    .card-5 .list li,
+    .card-6 .list li,
+    .card-7 .list li {
+      font-size: 14px;
+      color: #5c564e;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 10px;
-      line-height: 1.45;
+      transition: transform 0.2s ease;
     }
 
-    .hosting-card li::before {
+    .card-5:hover .list li,
+    .card-6:hover .list li,
+    .card-7:hover .list li {
+      transform: translateX(3px);
+    }
+
+    .card-5 .list li::before,
+    .card-6 .list li::before,
+    .card-7 .list li::before {
       content: "";
       width: 6px;
       height: 6px;
       background: var(--orange);
       border-radius: 50%;
-      margin-top: 7px;
       flex-shrink: 0;
     }
 
-    .domain-recs {
-      margin-top: 32px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 28px 30px;
-      display: grid;
-      gap: 16px;
+    .card-6 {
+      background: #fffaf7;
+      border-color: #f0e6df;
     }
 
-    @media (min-width: 700px) {
-      .domain-recs {
-        grid-template-columns: 1fr auto;
-        align-items: center;
-        gap: 40px;
-      }
+    .card-6:hover {
+      border-color: #e8d5c8;
     }
 
-    .domain-recs h3 {
-      font-family: var(--font-serif);
-      font-size: 20px;
-      font-weight: 400;
-      margin-bottom: 6px;
+    .card-7 {
+      background: #faf8f4;
     }
 
-    .domain-recs p {
-      font-size: 14.5px;
-      color: var(--muted);
-      line-height: 1.5;
+    /* ========== BLOCK 4: WHAT THIS MEANS ========== */
+    .means-section {
+      background: var(--ink);
+      color: #f4f0e8;
+      padding: 96px 24px 100px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .domain-recs .recs {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--ink);
+    .means-section::before {
+      content: "";
+      position: absolute;
+      top: -25%;
+      left: -10%;
+      width: 50vw;
+      max-width: 520px;
+      height: 50vw;
+      max-height: 520px;
+      background: radial-gradient(circle, rgba(241,90,34,0.18) 0%, transparent 68%);
+      pointer-events: none;
     }
 
-    .domain-recs .recs span {
-      color: var(--orange);
-    }
-
-    .domain-recs .avoid {
-      font-size: 13px;
-      color: var(--soft);
-      margin-top: 4px;
-    }
-
-    /* ========== WHO IT'S FOR ========== */
-    .audience {
-      padding: 96px 24px;
+    .means-inner {
+      position: relative;
+      z-index: 1;
       max-width: 1100px;
       margin: 0 auto;
     }
 
-    .audience-header {
-      max-width: 560px;
+    .means-header {
+      max-width: 640px;
       margin-bottom: 48px;
     }
 
-    .audience-header h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(30px, 4.5vw, 42px);
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
+    .means-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
       margin-bottom: 14px;
     }
 
-    .audience-header p {
-      font-size: 17px;
-      color: var(--muted);
-      line-height: 1.6;
+    .means-title {
+      font-family: var(--font-serif);
+      font-size: clamp(34px, 4.8vw, 46px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #f4f0e8;
+      margin-bottom: 16px;
     }
 
-    .audience-grid {
+    .means-lead {
+      font-size: 16.5px;
+      line-height: 1.6;
+      color: #b8b2a6;
+      max-width: 520px;
+    }
+
+    .means-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 16px;
     }
 
-    @media (min-width: 700px) {
-      .audience-grid {
+    @media (min-width: 701px) {
+      .means-grid {
         grid-template-columns: 1fr 1fr;
+        gap: 18px;
       }
     }
 
-    @media (min-width: 1000px) {
-      .audience-grid {
-        grid-template-columns: 1fr 1fr 1fr;
+    @media (min-width: 1001px) {
+      .means-grid {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 18px;
       }
     }
 
-    .audience-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
+    .means-card {
+      background: rgba(244, 240, 232, 0.04);
+      border: 1px solid rgba(244, 240, 232, 0.1);
       border-radius: 16px;
       padding: 28px 24px;
-      transition: transform 0.25s ease, border-color 0.25s ease;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
     }
 
-    .audience-card:hover {
+    .means-card:hover {
+      background: rgba(244, 240, 232, 0.07);
+      border-color: rgba(241, 90, 34, 0.35);
       transform: translateY(-3px);
-      border-color: color-mix(in srgb, var(--orange) 25%, var(--card-border));
     }
 
-    .audience-card h3 {
+    .means-num {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      color: var(--orange);
+      margin-bottom: 14px;
+      line-height: 1;
+    }
+
+    .means-card h3 {
       font-family: var(--font-serif);
       font-size: 20px;
       font-weight: 400;
+      color: #f4f0e8;
       margin-bottom: 10px;
       letter-spacing: -0.01em;
     }
 
-    .audience-card p {
+    .means-card p {
       font-size: 14.5px;
-      color: var(--muted);
       line-height: 1.55;
+      color: #b8b2a6;
     }
 
-    /* ========== PROCESS ========== */
-    .process {
-      background: #14120e;
+    .assurance-bar {
+      margin-top: 48px;
+      padding: 28px 32px;
+      background: rgba(241, 90, 34, 0.12);
+      border: 1px solid rgba(241, 90, 34, 0.25);
+      border-radius: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .assurance-text {
+      font-size: 16px;
       color: #f4f0e8;
-      padding: 96px 24px;
-    }
-
-    .process-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .process-header {
       max-width: 520px;
-      margin-bottom: 56px;
+      line-height: 1.5;
     }
 
-    .process-header .section-label {
-      color: var(--orange);
+    .assurance-text strong {
+      color: #fff;
+      font-weight: 600;
     }
 
-    .process-header h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(30px, 4.5vw, 42px);
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 14px;
-      color: #f4f0e8;
+    .assurance-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 48px;
+      padding: 0 22px;
+      background: var(--orange);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.18s ease, transform 0.18s ease;
+      white-space: nowrap;
     }
 
-    .process-header p {
-      font-size: 16.5px;
-      color: #b8b2a6;
-      line-height: 1.6;
-    }
-
-    .process-steps {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-
-    @media (min-width: 700px) {
-      .process-steps {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (min-width: 1000px) {
-      .process-steps {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    .process-step {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px;
-      padding: 28px 24px;
-      transition: border-color 0.25s ease;
-    }
-
-    .process-step:hover {
-      border-color: rgba(241,90,34,0.3);
-    }
-
-    .process-num {
-      font-family: var(--font-serif);
-      font-size: 28px;
-      color: var(--orange);
-      margin-bottom: 16px;
-      line-height: 1;
-    }
-
-    .process-step h3 {
-      font-family: var(--font-serif);
-      font-size: 19px;
-      font-weight: 400;
-      margin-bottom: 10px;
-      color: #f4f0e8;
-    }
-
-    .process-step p {
-      font-size: 14px;
-      color: #b8b2a6;
-      line-height: 1.55;
-    }
-
-    /* ========== FINAL CTA ========== */
-    .final-cta {
-      padding: 96px 24px 110px;
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .final-cta h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(32px, 5vw, 48px);
-      font-weight: 400;
-      letter-spacing: -0.025em;
-      line-height: 1.12;
-      margin-bottom: 18px;
-    }
-
-    .final-cta h2 em {
-      font-style: italic;
-      color: var(--orange);
-    }
-
-    .final-cta > p {
-      font-size: 17.5px;
-      color: var(--muted);
-      max-width: 480px;
-      margin: 0 auto 36px;
-      line-height: 1.6;
-    }
-
-    .final-cta .btn {
-      margin-bottom: 16px;
-    }
-
-    .final-note {
-      font-size: 13.5px;
-      color: var(--soft);
+    .assurance-cta:hover {
+      background: #d94e1a;
+      transform: translateY(-1px);
     }
 
     /* ========== RESPONSIVE ========== */
-    @media (max-width: 600px) {
-      .hero {
+    @media (max-width: 900px) {
+      .row-1,
+      .row-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .bottom-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-secure {
         min-height: auto;
         padding: 80px 20px 64px;
       }
 
-      .hero h1 {
-        font-size: 34px;
+      .hero-title {
+        max-width: none;
+      }
+
+      .features-section {
+        padding: 24px 16px 72px;
+      }
+
+      .card {
+        padding: 28px 22px;
+        min-height: 0;
+      }
+
+      .card h3 {
+        font-size: 22px;
+      }
+
+      .card-3 .version {
+        font-size: 40px;
+        padding-top: 24px;
+      }
+
+      .means-section {
+        padding: 72px 20px 80px;
+      }
+
+      .assurance-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 22px;
+      }
+
+      .layers-section {
+        padding: 72px 20px 64px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title {
+        font-size: 40px;
       }
 
       .hero-stats {
-        gap: 20px;
+        gap: 20px 28px;
       }
 
-      .hero-stat strong {
+      .hero-stat-value {
         font-size: 24px;
       }
 
-      .cta-row {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .problem,
-      .deliverables,
-      .audience,
-      .final-cta {
-        padding: 64px 16px;
-      }
-
-      .solution,
-      .process {
-        padding: 64px 16px;
-      }
-
-      .hosting {
-        padding: 64px 16px;
-      }
-
-      .cost-card {
+      .shield-frame {
+        max-width: 100%;
         padding: 28px 22px;
-        position: static;
       }
 
-      .hosting-card {
-        padding: 28px 22px;
+      .shield-headline {
+        font-size: 22px;
+      }
+
+      .wide-meta {
+        gap: 20px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- ========== HERO ========== -->
-  <section class="hero">
+  <!-- ========== BLOCK 1: DRAMATIC HERO ========== -->
+  <section class="hero-secure">
     <div class="hero-inner">
-      <p class="hero-eyebrow">Permanent website ownership</p>
-      <h1>
-        Stop paying rent<br>
-        for a website you<br>
-        already <em>own</em>.
-      </h1>
-      <p class="hero-lead">
-        HostCut builds a mobile-first site, puts the files in a free forever GitHub repository, and serves it from Cloudflare’s edge. After launch, the only thing you keep paying for is the domain.
-      </p>
+      <div class="hero-copy">
+        <p class="hero-eyebrow">Secure by default</p>
+        <h1 class="hero-title">
+          Protection that
+          <span class="line2">comes with the site</span>
+        </h1>
+        <p class="hero-lead">
+          HTTPS, modern hosting, and reliable uptime are included from day one.
+          <strong>Your site is protected without any extra setup or monthly security add-ons.</strong>
+        </p>
 
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <strong>$0</strong>
-          <span>monthly platform fee</span>
-        </div>
-        <div class="hero-stat">
-          <strong>Mobile-first</strong>
-          <span>designed for phones</span>
-        </div>
-        <div class="hero-stat">
-          <strong>Yours</strong>
-          <span>real files, real ownership</span>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-value">HTTPS</span>
+            <span class="hero-stat-label">Forced from day one</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-value">Edge</span>
+            <span class="hero-stat-label">Cloudflare network</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-value">$0</span>
+            <span class="hero-stat-label">Security add-ons</span>
+          </div>
         </div>
       </div>
 
-      <div class="cta-row">
-        <a href="#" class="btn btn-primary">
+      <div class="hero-visual">
+        <div class="shield-frame">
+          <div class="shield-top">
+            <div class="shield-badge">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Always on
+            </div>
+            <h2 class="shield-headline">Four layers between the internet and your files</h2>
+            <p class="shield-sub">Everything below is active the moment the site goes live. No toggles to remember.</p>
+          </div>
+
+          <div class="shield-layers">
+            <div class="layer">
+              <div class="layer-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="layer-text">
+                <strong>TLS 1.3 + certificate</strong>
+                <span>Encrypted in transit, auto-renewed</span>
+              </div>
+              <span class="layer-status">On</span>
+            </div>
+            <div class="layer">
+              <div class="layer-icon">
+                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div class="layer-text">
+                <strong>Edge delivery</strong>
+                <span>Cached &amp; served from the network</span>
+              </div>
+              <span class="layer-status">On</span>
+            </div>
+            <div class="layer">
+              <div class="layer-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div class="layer-text">
+                <strong>DDoS &amp; bot mitigation</strong>
+                <span>Absorbed before it reaches origin</span>
+              </div>
+              <span class="layer-status">On</span>
+            </div>
+            <div class="layer">
+              <div class="layer-icon">
+                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+              <div class="layer-text">
+                <strong>Origin shielding</strong>
+                <span>Traffic filtered at the edge</span>
+              </div>
+              <span class="layer-status">On</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NEW BLOCK: WHAT’S INCLUDED ========== -->
+  <section class="layers-section">
+    <div class="layers-inner">
+      <div class="layers-header">
+        <p class="layers-eyebrow">Included from day one</p>
+        <h2 class="layers-title">
+          The protection most platforms<br>
+          charge for is <em>already on</em>
+        </h2>
+        <p class="layers-lead">
+          You don’t buy a security product. You get a site that lives on infrastructure built for it.
+        </p>
+      </div>
+
+      <div class="protection-grid">
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <h3>Universal SSL</h3>
+            <p>A valid certificate is issued and renewed automatically. Always Use HTTPS is enabled so every request is encrypted.</p>
+          </div>
+          <span class="prot-tag">No setup</span>
+        </div>
+
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div>
+            <h3>Edge network</h3>
+            <p>Static files are served from Cloudflare’s global network. Visitors hit a nearby edge location instead of a single distant server.</p>
+          </div>
+          <span class="prot-tag">Global by default</span>
+        </div>
+
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+          </div>
+          <div>
+            <h3>DDoS absorption</h3>
+            <p>Volumetric and protocol attacks are mitigated at the network level. Unmetered protection is part of the platform, not an upgrade.</p>
+          </div>
+          <span class="prot-tag">Always active</span>
+        </div>
+
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <h3>Bot Fight Mode</h3>
+            <p>Known malicious bots and simple automated traffic are challenged before they can reach your pages or forms.</p>
+          </div>
+          <span class="prot-tag">On by default</span>
+        </div>
+
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div>
+            <h3>Modern protocols</h3>
+            <p>TLS 1.3, HTTP/2, and HTTP/3 where available. Faster handshakes and stronger encryption without any configuration on your side.</p>
+          </div>
+          <span class="prot-tag">Latest standards</span>
+        </div>
+
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div>
+            <h3>No monthly tax</h3>
+            <p>There is no security product to subscribe to. The protections above come with the hosting — they don’t generate a separate bill.</p>
+          </div>
+          <span class="prot-tag">Included</span>
+        </div>
+
+        <!-- Wide featured card -->
+        <div class="prot-card wide">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="wide-content">
+            <h3>Same network the brands you know already use</h3>
+            <p>Your site is files on Cloudflare’s edge — not a shared server with a security plugin bolted on. The infrastructure is the protection.</p>
+          </div>
+          <div class="wide-meta">
+            <div class="wide-meta-item">
+              <strong>330+</strong>
+              <span>edge cities</span>
+            </div>
+            <div class="wide-meta-item">
+              <strong>100%</strong>
+              <span>uptime focus</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BLOCK 3: CLOUDFLARE SECURITY FEATURES BENTO ========== -->
+  <section class="features-section">
+    <h2 class="section-title">
+      Protect, accelerate, and control<br>
+      every request to your <em>origin</em>
+    </h2>
+
+    <div class="bento">
+
+      <div class="row row-1">
+        <div class="card card-1">
+          <div>
+            <h3>Smart Shield</h3>
+            <p>Protect your origin server, improve content availability, and reduce network latency by intelligently shielding traffic at the edge.</p>
+          </div>
+          <div class="meta">
+            <div class="meta-item">
+              <strong>99.99%</strong>
+              origin uptime
+            </div>
+            <div class="meta-item">
+              <strong>−40%</strong>
+              origin load
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-2">
+          <div>
+            <h3>Bot Fight Mode</h3>
+            <p>Automatically detect and mitigate malicious bots before they reach your application — no complex configuration required.</p>
+          </div>
+          <div class="tag">Active protection</div>
+        </div>
+      </div>
+
+      <div class="row row-2">
+        <div class="card card-3">
+          <div>
+            <h3>TLS 1.3</h3>
+            <p>Enable the latest version of the TLS protocol for stronger encryption, faster handshakes, and improved overall performance.</p>
+          </div>
+          <div class="version">1.3</div>
+        </div>
+
+        <div class="card card-4">
+          <div>
+            <h3>Smart Tiered Cache</h3>
+            <p>Dynamically identify the optimal data centers closest to your origin to maximize cache hit ratios and reduce origin load.</p>
+          </div>
+          <div class="locations">
+            <span class="location">SFO</span>
+            <span class="location">LHR</span>
+            <span class="location">FRA</span>
+            <span class="location">NRT</span>
+            <span class="location">SYD</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-row">
+        <div class="card card-5">
+          <div>
+            <h3>Custom Security Rules</h3>
+            <p>Create precise rules based on IP, country, URI, headers, and more to block, challenge, or allow traffic exactly how you need.</p>
+          </div>
+          <ul class="list">
+            <li>Block known bad ASNs</li>
+            <li>Challenge high-risk regions</li>
+            <li>Protect sensitive paths</li>
+          </ul>
+        </div>
+
+        <div class="card card-6">
+          <div>
+            <h3>Custom Rate Limit Rules</h3>
+            <p>Define granular rate limits by path, method, IP, or header to stop abuse and protect critical endpoints.</p>
+          </div>
+          <ul class="list">
+            <li>Path-based thresholds</li>
+            <li>Method-specific limits</li>
+            <li>IP + header combinations</li>
+          </ul>
+        </div>
+
+        <div class="card card-7">
+          <div>
+            <h3>Custom Response Rules</h3>
+            <p>Return custom status codes, headers, or content when a rule matches — full control over how threats are handled.</p>
+          </div>
+          <ul class="list">
+            <li>Custom status codes</li>
+            <li>Inject response headers</li>
+            <li>Serve tailored content</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BLOCK 4: WHAT THIS MEANS ========== -->
+  <section class="means-section">
+    <div class="means-inner">
+      <div class="means-header">
+        <p class="means-eyebrow">What this means for you</p>
+        <h2 class="means-title">Security without the subscription tax</h2>
+        <p class="means-lead">
+          Most small-business platforms charge monthly for basic protection. With HostCut your site lives on Cloudflare’s network, so the essentials are already on.
+        </p>
+      </div>
+
+      <div class="means-grid">
+        <div class="means-card">
+          <div class="means-num">01</div>
+          <h3>No security upsell</h3>
+          <p>HTTPS, edge delivery, and baseline threat protection are part of the hosting. You don’t pay extra every month just to stay encrypted.</p>
+        </div>
+        <div class="means-card">
+          <div class="means-num">02</div>
+          <h3>Nothing to configure</h3>
+          <p>Certificates renew automatically. HTTPS is forced. Bot mitigation and caching run without you logging into a control panel.</p>
+        </div>
+        <div class="means-card">
+          <div class="means-num">03</div>
+          <h3>Same network as the big brands</h3>
+          <p>Your files are served from the same global edge that companies you recognize already trust for speed and resilience.</p>
+        </div>
+        <div class="means-card">
+          <div class="means-num">04</div>
+          <h3>You still own the site</h3>
+          <p>Security is infrastructure, not a lock-in. The site remains files you own — portable, permanent, and free of platform rent.</p>
+        </div>
+      </div>
+
+      <div class="assurance-bar">
+        <p class="assurance-text">
+          <strong>Ready for a site that stays protected without the monthly fee?</strong>
+          One permanent website on the edge network. No security add-on required.
+        </p>
+        <a href="#" class="assurance-cta">
           Start a project
           <svg width="13" height="13" viewBox="0 0 12 12" fill="none">
             <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-        <a href="#how" class="btn btn-secondary">See how it works</a>
       </div>
     </div>
-  </section>
-
-  <!-- ========== PROBLEM ========== -->
-  <section class="problem">
-    <div class="problem-grid">
-      <div class="problem-copy">
-        <p class="section-label">The quiet tax</p>
-        <h2>Most people don’t need a website platform. They need a website.</h2>
-        <p>
-          You already decided a site makes sense. The annoyance is what comes after: monthly platform fees, builder subscriptions, and hosting charges that never stop — just to keep the same pages online.
-        </p>
-        <p>
-          Over a few years that “cheap” $20–30/month turns into real money. And you still don’t own the thing. You’re renting a seat on someone else’s system.
-        </p>
-        <ul class="problem-list">
-          <li>Monthly or annual fees just so the site stays live</li>
-          <li>Your content locked inside a proprietary builder</li>
-          <li>Pricing and features that can change under you</li>
-          <li>Export options that feel incomplete or awkward</li>
-          <li>A constant low-grade feeling that you’re paying rent on something that should be yours</li>
-        </ul>
-      </div>
-
-      <div class="cost-card">
-        <h3>What the rent actually costs</h3>
-        <p class="sub">Rough numbers for a typical small site over time</p>
-        <div class="cost-row">
-          <span class="label">Year 1 (platform + hosting)</span>
-          <span class="amount">$240–360</span>
-        </div>
-        <div class="cost-row">
-          <span class="label">Year 3 cumulative</span>
-          <span class="amount">$720–1,080</span>
-        </div>
-        <div class="cost-row">
-          <span class="label">Year 5 cumulative</span>
-          <span class="amount">$1,200–1,800</span>
-        </div>
-        <div class="cost-row highlight">
-          <span class="label">HostCut ongoing cost</span>
-          <span class="amount">Domain only</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SOLUTION ========== -->
-  <section class="solution" id="how">
-    <div class="solution-inner">
-      <div class="solution-header">
-        <p class="section-label">How HostCut works</p>
-        <h2>We build the site. You own the files. The hosting doesn’t bill you every month.</h2>
-        <p>
-          This is not another website builder with a freemium trap. It’s a finished, mobile-first site delivered as real files that live in a repository you control and get served from a free tier that doesn’t expire.
-        </p>
-      </div>
-
-      <div class="solution-grid">
-        <div class="solution-card">
-          <div class="solution-num">01</div>
-          <h3>Mobile-first design</h3>
-          <p>Most of your visitors are on phones. Every HostCut site is structured, spaced, and typed for small screens first, then refined for larger ones. No afterthought mobile experience.</p>
-        </div>
-        <div class="solution-card">
-          <div class="solution-num">02</div>
-          <h3>Real files you own</h3>
-          <p>You receive clean HTML, CSS, and assets — not a locked project inside a proprietary platform. The source lives in a private GitHub repository under your control.</p>
-        </div>
-        <div class="solution-card">
-          <div class="solution-num">03</div>
-          <h3>Free forever hosting</h3>
-          <p>GitHub Pages or Cloudflare Pages serves the site at no cost. There is no monthly platform fee attached to keeping the pages online. The free tier doesn’t time out.</p>
-        </div>
-        <div class="solution-card">
-          <div class="solution-num">04</div>
-          <h3>Cloudflare edge delivery</h3>
-          <p>Your pages are pushed to Cloudflare’s global network — the same infrastructure used by major brands. Fast load times, HTTPS, and solid uptime from day one.</p>
-        </div>
-        <div class="solution-card">
-          <div class="solution-num">05</div>
-          <h3>Only the domain costs money</h3>
-          <p>After launch, the only recurring cost is the domain name itself. Register it somewhere fair (Porkbun or Cloudflare Registrar) and ignore the rest.</p>
-        </div>
-        <div class="solution-card">
-          <div class="solution-num">06</div>
-          <h3>Updates on request</h3>
-          <p>Need text changes, a new page, or a redesign later? You ask. We handle the work. You never have to log into a builder or learn a new interface.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== WHAT YOU GET ========== -->
-  <section class="deliverables">
-    <div class="deliverables-header">
-      <p class="section-label">What’s included</p>
-      <h2>A finished site, not a half-built project</h2>
-      <p>You walk away with something live, polished, and ready for real visitors — not a template you still have to finish yourself.</p>
-    </div>
-
-    <div class="deliverables-grid">
-      <div class="deliverable">
-        <div class="deliverable-icon">01</div>
-        <div>
-          <h3>Custom mobile-first layout</h3>
-          <p>Designed around your business, not a generic multi-purpose template. Clean hierarchy, clear contact paths, and intentional spacing.</p>
-        </div>
-      </div>
-      <div class="deliverable">
-        <div class="deliverable-icon">02</div>
-        <div>
-          <h3>Clear structure & copy framework</h3>
-          <p>Sections that make sense for your audience — services, about, contact, location, whatever the site actually needs to do its job.</p>
-        </div>
-      </div>
-      <div class="deliverable">
-        <div class="deliverable-icon">03</div>
-        <div>
-          <h3>Contact paths that work</h3>
-          <p>Phone links, forms, or booking links set up correctly so people can actually reach you. No broken submission flows.</p>
-        </div>
-      </div>
-      <div class="deliverable">
-        <div class="deliverable-icon">04</div>
-        <div>
-          <h3>Private GitHub repository</h3>
-          <p>Your source files live in a repo you own. You can download it, move it, or leave it exactly as it is. Nothing is rented.</p>
-        </div>
-      </div>
-      <div class="deliverable">
-        <div class="deliverable-icon">05</div>
-        <div>
-          <h3>Cloudflare delivery + HTTPS</h3>
-          <p>Fast global delivery and secure connections included. No extra security add-ons or “upgrade for SSL” nonsense.</p>
-        </div>
-      </div>
-      <div class="deliverable">
-        <div class="deliverable-icon">06</div>
-        <div>
-          <h3>Launch support & refinements</h3>
-          <p>We keep refining until the site feels right. Text, photos, layout adjustments — handled before it goes live and available later on request.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== HOSTING + DOMAIN ========== -->
-  <section class="hosting">
-    <div class="hosting-inner">
-      <div class="hosting-header">
-        <p class="section-label">The ongoing cost</p>
-        <h2>Hosting is free. The domain is the only bill.</h2>
-        <p>This is the part most people get wrong when they compare “cheap” website platforms.</p>
-      </div>
-
-      <div class="hosting-cards">
-        <div class="hosting-card">
-          <h3>Where the files live</h3>
-          <p>Your site is stored in a private GitHub repository. From there it is published to a free hosting tier that does not charge monthly fees and does not expire.</p>
-          <ul>
-            <li>GitHub repository under your ownership</li>
-            <li>GitHub Pages or Cloudflare Pages for delivery</li>
-            <li>No platform subscription attached to the site</li>
-            <li>You can take the files and host them anywhere later</li>
-          </ul>
-        </div>
-        <div class="hosting-card">
-          <h3>What you still pay for</h3>
-          <p>Only the domain name. That is a real, unavoidable cost of having a professional web address. Everything else related to keeping the site online is covered by the free hosting path.</p>
-          <ul>
-            <li>Domain registration (roughly $10–15/year)</li>
-            <li>No monthly builder or platform fee</li>
-            <li>No “hosting plan” upgrade path</li>
-            <li>No surprise renewal pricing on the site itself</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="domain-recs">
-        <div>
-          <h3>Where to register the domain</h3>
-          <p>Use a registrar that charges fair prices and doesn’t bury you in upsells.</p>
-        </div>
-        <div>
-          <p class="recs">Recommended: <span>Porkbun</span> or <span>Cloudflare Registrar</span></p>
-          <p class="avoid">Avoid GoDaddy and similar registrars known for high markup and aggressive upselling.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== WHO IT'S FOR ========== -->
-  <section class="audience">
-    <div class="audience-header">
-      <p class="section-label">Who this is for</p>
-      <h2>People who just need a real website that works</h2>
-      <p>Not a full e-commerce platform. Not a complex app. A clean, professional presence that does its job without a monthly tax.</p>
-    </div>
-
-    <div class="audience-grid">
-      <div class="audience-card">
-        <h3>Solo professionals</h3>
-        <p>Coaches, therapists, designers, lawyers, tutors, trainers. You need credibility and a clear way for people to contact you.</p>
-      </div>
-      <div class="audience-card">
-        <h3>Local trades & services</h3>
-        <p>HVAC, plumbing, electrical, landscaping, cleaning, auto repair. Services, service area, trust signals, and a phone number that works.</p>
-      </div>
-      <div class="audience-card">
-        <h3>Cafés & restaurants</h3>
-        <p>Menu, hours, location, and links to the ordering platforms you already use. No need for a complex ordering system on the site itself.</p>
-      </div>
-      <div class="audience-card">
-        <h3>Local shops & retail</h3>
-        <p>Bookstores, boutiques, galleries, specialty stores. Atmosphere, story, location, and hours — without the overhead of full e-commerce.</p>
-      </div>
-      <div class="audience-card">
-        <h3>Creators & personal brands</h3>
-        <p>A polished home base that points to Instagram, YouTube, booking, or newsletter. More intentional than a link-in-bio tool.</p>
-      </div>
-      <div class="audience-card">
-        <h3>Small teams & nonprofits</h3>
-        <p>When a full agency site is overkill but a social profile isn’t enough. Clear information, mission, and contact without ongoing platform fees.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== PROCESS ========== -->
-  <section class="process">
-    <div class="process-inner">
-      <div class="process-header">
-        <p class="section-label">How it happens</p>
-        <h2>From conversation to live site</h2>
-        <p>No drag-and-drop builders. No learning curve. You talk, we build, you approve — then you own it.</p>
-      </div>
-
-      <div class="process-steps">
-        <div class="process-step">
-          <div class="process-num">01</div>
-          <h3>Tell us about you</h3>
-          <p>Share your business, audience, and what the site needs to do. A short call or a few notes is enough to start.</p>
-        </div>
-        <div class="process-step">
-          <div class="process-num">02</div>
-          <h3>We design & build</h3>
-          <p>Mobile-first layout, clear structure, and a site that fits your trade or practice — not a generic multi-purpose template.</p>
-        </div>
-        <div class="process-step">
-          <div class="process-num">03</div>
-          <h3>You review</h3>
-          <p>We refine text, photos, contact paths, and layout until it feels right. You’re not stuck with a “good enough” first draft.</p>
-        </div>
-        <div class="process-step">
-          <div class="process-num">04</div>
-          <h3>Live & yours</h3>
-          <p>Published from your GitHub repo to Cloudflare’s network. Files you own. No monthly platform fee attached to the hosting.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== FINAL CTA ========== -->
-  <section class="final-cta">
-    <h2>
-      Ready for a site you<br>
-      actually <em>own</em>?
-    </h2>
-    <p>
-      One permanent, mobile-first website. Free GitHub hosting. Cloudflare delivery. You only keep the domain.
-    </p>
-    <a href="#" class="btn btn-primary">
-      Start a project
-      <svg width="13" height="13" viewBox="0 0 12 12" fill="none">
-        <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-    <p class="final-note">Usually replied within one business day.</p>
   </section>
 
 </body>

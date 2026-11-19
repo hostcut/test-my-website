@@ -255,27 +255,38 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
       margin-top: 28px;
     }
 
     .problem-list li {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 14px;
       font-size: 15.5px;
       color: var(--ink);
-      line-height: 1.45;
+      line-height: 1.5;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .problem-list li:hover {
+      border-color: color-mix(in srgb, var(--orange) 35%, var(--card-border));
+      background: var(--orange-soft);
     }
 
     .problem-list li::before {
       content: "";
-      width: 7px;
-      height: 7px;
-      background: var(--orange);
-      border-radius: 50%;
-      margin-top: 7px;
+      width: 18px;
+      height: 18px;
       flex-shrink: 0;
+      margin-top: 1px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Ccircle cx='10' cy='10' r='9' stroke='%23f15a22' stroke-width='1.5'/%3E%3Cpath d='M6.5 10.2L8.8 12.5L13.5 7.5' stroke='%23f15a22' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
     }
 
     .cost-card {
@@ -384,14 +395,6 @@
     .solution-card:hover {
       background: rgba(255,255,255,0.06);
       border-color: rgba(241,90,34,0.3);
-    }
-
-    .solution-num {
-      font-family: var(--font-serif);
-      font-size: 28px;
-      color: var(--orange);
-      margin-bottom: 16px;
-      line-height: 1;
     }
 
     .solution-card h3 {
@@ -644,6 +647,7 @@
       flex-wrap: wrap;
       gap: 10px;
       margin-bottom: 48px;
+      justify-content: center;
     }
 
     .audience-tag {
@@ -699,18 +703,24 @@
       line-height: 1.55;
     }
 
-    /* ========== PROCESS — timeline ========== */
+    /* ========== PROCESS — stepped cards ========== */
     .process {
       background: var(--row-bg);
       padding: 100px 24px;
     }
 
     .process-inner {
-      max-width: 720px;
+      max-width: 960px;
       margin: 0 auto;
     }
 
-    .process-header { margin-bottom: 56px; }
+    .process-header {
+      margin-bottom: 48px;
+      text-align: center;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
     .process-header h2 {
       font-family: var(--font-serif);
@@ -725,70 +735,50 @@
       font-size: clamp(16px, 1.8vw, 18px);
       color: var(--muted);
       line-height: 1.6;
-      max-width: 480px;
     }
 
-    .timeline { position: relative; padding-left: 0; }
+    .process-steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
 
-    @media (min-width: 600px) {
-      .timeline { padding-left: 32px; }
-      .timeline::before {
-        content: "";
-        position: absolute;
-        left: 7px;
-        top: 12px;
-        bottom: 12px;
-        width: 2px;
-        background: var(--card-border);
+    @media (min-width: 700px) {
+      .process-steps {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
       }
     }
 
-    .timeline-step {
+    .process-step {
       position: relative;
-      padding-bottom: 40px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 32px 28px 28px;
+      overflow: hidden;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .timeline-step:last-child { padding-bottom: 0; }
-
-    @media (min-width: 600px) {
-      .timeline-step { padding-left: 36px; }
-      .timeline-step::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 10px;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background: var(--paper);
-        border: 2px solid var(--orange);
-        z-index: 1;
-      }
+    .process-step:hover {
+      border-color: color-mix(in srgb, var(--orange) 40%, var(--card-border));
+      box-shadow: 0 8px 28px rgba(20, 18, 14, 0.06);
     }
 
-    .timeline-step .step-num {
+    .process-step h3 {
       font-family: var(--font-serif);
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--orange);
-      letter-spacing: 0.04em;
-      margin-bottom: 8px;
-    }
-
-    .timeline-step h3 {
-      font-family: var(--font-serif);
-      font-size: clamp(22px, 2.8vw, 26px);
+      font-size: clamp(20px, 2.4vw, 24px);
       font-weight: 400;
       letter-spacing: -0.015em;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: var(--ink);
     }
 
-    .timeline-step p {
-      font-size: 15.5px;
+    .process-step p {
+      font-size: 15px;
       color: var(--muted);
       line-height: 1.55;
-      max-width: 460px;
+      max-width: 360px;
     }
 
     /* ========== FINAL CTA ========== */
@@ -891,9 +881,9 @@
     <div class="hero-inner">
       <p class="hero-eyebrow">Permanent website ownership</p>
       <h1>
-        A simple way to stop<br class="br-sm">
-        wasting money every month on<br class="br-md">
-        <em>your website</em>.
+        Stop paying for your<br class="br-sm">
+        website every month—<br class="br-md">
+        here’s how.
       </h1>
       <p class="hero-lead">
         HostCut builds a mobile-first site, puts the files in a free forever GitHub repository, and serves it from Cloudflare’s edge. After launch, the only thing you keep paying for is the domain.
@@ -981,32 +971,26 @@
 
       <div class="solution-grid">
         <div class="solution-card">
-          <div class="solution-num">01</div>
           <h3>Mobile-first design</h3>
           <p>Most of your visitors are on phones. Every HostCut site is structured, spaced, and typed for small screens first, then refined for larger ones. No afterthought mobile experience.</p>
         </div>
         <div class="solution-card">
-          <div class="solution-num">02</div>
           <h3>Real files you own</h3>
           <p>You receive clean HTML, CSS, and assets — not a locked project inside a proprietary platform. The source lives in a private GitHub repository under your control.</p>
         </div>
         <div class="solution-card">
-          <div class="solution-num">03</div>
           <h3>Free forever hosting</h3>
           <p>GitHub Pages or Cloudflare Pages serves the site at no cost. There is no monthly platform fee attached to keeping the pages online. The free tier doesn’t time out.</p>
         </div>
         <div class="solution-card">
-          <div class="solution-num">04</div>
           <h3>Cloudflare edge delivery</h3>
           <p>Your pages are pushed to Cloudflare’s global network — the same infrastructure used by major brands. Fast load times, HTTPS, and solid uptime from day one.</p>
         </div>
         <div class="solution-card">
-          <div class="solution-num">05</div>
           <h3>Only the domain costs money</h3>
           <p>After launch, the only recurring cost is the domain name itself. Register it somewhere fair (Porkbun or Cloudflare Registrar) and ignore the rest.</p>
         </div>
         <div class="solution-card">
-          <div class="solution-num">06</div>
           <h3>Updates on request</h3>
           <p>Need text changes, a new page, or a redesign later? You ask. We handle the work. You never have to log into a builder or learn a new interface.</p>
         </div>
@@ -1153,7 +1137,7 @@
     </div>
   </section>
 
-  <!-- ========== PROCESS — timeline ========== -->
+  <!-- ========== PROCESS — stepped cards ========== -->
   <section class="process">
     <div class="process-inner">
       <div class="process-header">
@@ -1161,24 +1145,20 @@
         <p>No drag-and-drop builders. No learning curve. You talk, we build, you approve — then you own it.</p>
       </div>
 
-      <div class="timeline">
-        <div class="timeline-step">
-          <div class="step-num">Step 01</div>
+      <div class="process-steps">
+        <div class="process-step">
           <h3>Tell us about you</h3>
           <p>Share your business, audience, and what the site needs to do. A short call or a few notes is enough to start.</p>
         </div>
-        <div class="timeline-step">
-          <div class="step-num">Step 02</div>
+        <div class="process-step">
           <h3>We design & build</h3>
           <p>Mobile-first layout, clear structure, and a site that fits your trade or practice — not a generic multi-purpose template.</p>
         </div>
-        <div class="timeline-step">
-          <div class="step-num">Step 03</div>
+        <div class="process-step">
           <h3>You review</h3>
           <p>We refine text, photos, contact paths, and layout until it feels right. You’re not stuck with a “good enough” first draft.</p>
         </div>
-        <div class="timeline-step">
-          <div class="step-num">Step 04</div>
+        <div class="process-step">
           <h3>Live & yours</h3>
           <p>Published from your GitHub repo to Cloudflare’s network. Files you own. No monthly platform fee attached to the hosting.</p>
         </div>

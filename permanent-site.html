@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>One permanent site. Zero monthly fees. – HostCut</title>
+  <title>Secure by default – HostCut</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,568 +34,1372 @@
       font-family: var(--font-sans);
       background: var(--paper);
       color: var(--ink);
-      overflow-x: hidden;
       line-height: 1.5;
+      overflow-x: hidden;
     }
 
-    /* ========== BLOCK 1: HERO ========== */
-    .hero {
-      padding: 96px 24px 64px;
-      max-width: 860px;
+    /* ========== BLOCK 1: DRAMATIC HERO ========== */
+    .hero-secure {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 24px 88px;
+      background: linear-gradient(165deg, #12100e 0%, #1a1612 42%, #1e1610 100%);
+      overflow: hidden;
+      color: #f4f0e8;
+    }
+
+    /* Soft orange glow */
+    .hero-secure::before {
+      content: "";
+      position: absolute;
+      top: -30%;
+      right: -15%;
+      width: 70vw;
+      max-width: 720px;
+      height: 70vw;
+      max-height: 720px;
+      background: radial-gradient(circle, rgba(241,90,34,0.28) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* Secondary softer glow bottom left */
+    .hero-secure::after {
+      content: "";
+      position: absolute;
+      bottom: -25%;
+      left: -10%;
+      width: 50vw;
+      max-width: 480px;
+      height: 50vw;
+      max-height: 480px;
+      background: radial-gradient(circle, rgba(241,90,34,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
       margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 56px;
+      align-items: center;
     }
 
-    .eyebrow {
-      font-size: 0.75rem;
+    @media (min-width: 960px) {
+      .hero-inner {
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 72px;
+      }
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--orange);
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-family: var(--font-serif);
-      font-size: clamp(36px, 5.8vw, 54px);
-      font-weight: 400;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
       margin-bottom: 22px;
-      color: var(--ink);
     }
 
-    .hero h1 em {
+    .hero-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1.5px;
+      background: var(--orange);
+      opacity: 0.85;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(44px, 6.2vw, 68px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #f4f0e8;
+      margin-bottom: 24px;
+      max-width: 11ch;
+    }
+
+    .hero-title .line2 {
+      display: block;
       font-style: italic;
       color: var(--orange);
     }
 
     .hero-lead {
-      font-size: clamp(16.5px, 2.1vw, 18.5px);
-      color: var(--muted);
-      max-width: 560px;
-      margin-bottom: 28px;
+      font-size: clamp(16.5px, 1.9vw, 18.5px);
       line-height: 1.65;
-    }
-
-    .hero-note {
-      font-size: 15px;
-      color: var(--soft);
-      max-width: 520px;
+      color: #b8b2a6;
+      max-width: 440px;
       margin-bottom: 36px;
-      line-height: 1.55;
-      padding-left: 14px;
-      border-left: 2px solid var(--orange);
     }
 
-    .cta-row {
+    .hero-lead strong {
+      color: #f4f0e8;
+      font-weight: 500;
+    }
+
+    .hero-stats {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 28px 40px;
     }
 
-    .btn {
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hero-stat-value {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 400;
+      color: #f4f0e8;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 13px;
+      color: #9c968c;
+      letter-spacing: 0.01em;
+    }
+
+    /* Visual panel on the right */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .shield-frame {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 1 / 1.05;
+      background: linear-gradient(160deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid rgba(244,240,232,0.1);
+      border-radius: 28px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.35);
+    }
+
+    .shield-frame::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      right: -30%;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(241,90,34,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .shield-top {
+      position: relative;
+      z-index: 1;
+    }
+
+    .shield-badge {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 8px;
-      height: 50px;
-      padding: 0 26px;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.18s ease;
-      border: none;
-      cursor: pointer;
+      padding: 7px 14px 7px 10px;
+      background: rgba(241,90,34,0.15);
+      border: 1px solid rgba(241,90,34,0.3);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #ff8a5c;
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
     }
 
-    .btn-primary {
-      background: var(--orange);
-      color: #fff;
+    .shield-badge svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
     }
 
-    .btn-primary:hover {
-      background: #d94e1a;
-      transform: translateY(-1px);
+    .shield-headline {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      line-height: 1.25;
+      color: #f4f0e8;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
     }
 
-    .btn-secondary {
-      background: transparent;
-      color: var(--ink);
-      border: 1.5px solid #d4cfc5;
+    .shield-sub {
+      font-size: 14.5px;
+      color: #a39e94;
+      line-height: 1.5;
+      max-width: 280px;
     }
 
-    .btn-secondary:hover {
-      background: #ebe6dc;
-      border-color: #c5bfb3;
+    .shield-layers {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 32px;
     }
 
-    /* ========== BLOCK 2: OWNERSHIP PRINCIPLES ========== */
-    .principles {
-      padding: 48px 24px 96px;
+    .layer {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: rgba(244,240,232,0.04);
+      border: 1px solid rgba(244,240,232,0.08);
+      border-radius: 12px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .layer:hover {
+      background: rgba(244,240,232,0.07);
+      border-color: rgba(241,90,34,0.25);
+    }
+
+    .layer-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: rgba(241,90,34,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .layer-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--orange);
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .layer-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .layer-text strong {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #f4f0e8;
+      margin-bottom: 1px;
+    }
+
+    .layer-text span {
+      font-size: 12.5px;
+      color: #9c968c;
+    }
+
+    .layer-status {
+      font-size: 11px;
+      font-weight: 600;
+      color: #2a9d5c;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    /* ========== NEW BLOCK: LAYERS OF PROTECTION ========== */
+    .layers-section {
+      background: var(--paper);
+      padding: 96px 24px 80px;
+    }
+
+    .layers-inner {
       max-width: 1100px;
       margin: 0 auto;
     }
 
-    .principles-header {
-      max-width: 640px;
-      margin-bottom: 48px;
+    .layers-header {
+      max-width: 620px;
+      margin-bottom: 52px;
     }
 
-    .principles-header h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(28px, 4.2vw, 40px);
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
+    .layers-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
       margin-bottom: 14px;
     }
 
-    .principles-header p {
-      font-size: 16.5px;
-      color: var(--muted);
-      line-height: 1.6;
+    .layers-title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 48px);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin-bottom: 16px;
     }
 
-    .principles-grid {
+    .layers-title em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .layers-lead {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 480px;
+    }
+
+    .protection-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 18px;
+      gap: 16px;
     }
 
     @media (min-width: 700px) {
-      .principles-grid {
+      .protection-grid {
         grid-template-columns: 1fr 1fr;
+        gap: 18px;
       }
     }
 
     @media (min-width: 1000px) {
-      .principles-grid {
-        grid-template-columns: 1fr 1fr 1fr;
+      .protection-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
       }
     }
 
-    .principle-card {
+    .prot-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 18px;
-      padding: 30px 26px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-    }
-
-    .principle-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(20, 18, 14, 0.07);
-      border-color: color-mix(in srgb, var(--orange) 22%, var(--card-border));
-    }
-
-    .principle-num {
-      font-family: var(--font-serif);
-      font-size: 26px;
-      color: var(--orange);
-      margin-bottom: 16px;
-      line-height: 1;
-    }
-
-    .principle-card h3 {
-      font-family: var(--font-serif);
-      font-size: 21px;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-      margin-bottom: 10px;
-    }
-
-    .principle-card p {
-      font-size: 14.5px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    /* Domain callout */
-    .domain-callout {
-      margin-top: 40px;
-      background: var(--orange-soft);
-      border: 1px solid #f0d9cc;
-      border-radius: 16px;
-      padding: 28px 30px;
-      display: grid;
-      gap: 12px;
-    }
-
-    @media (min-width: 700px) {
-      .domain-callout {
-        grid-template-columns: 1fr auto;
-        align-items: center;
-        gap: 32px;
-      }
-    }
-
-    .domain-callout h3 {
-      font-family: var(--font-serif);
-      font-size: 22px;
-      font-weight: 400;
-      margin-bottom: 6px;
-    }
-
-    .domain-callout p {
-      font-size: 15px;
-      color: var(--muted);
-      line-height: 1.55;
-      max-width: 520px;
-    }
-
-    .domain-callout .recs {
-      font-size: 14px;
-      color: var(--ink);
-      font-weight: 500;
-    }
-
-    .domain-callout .recs span {
-      color: var(--orange);
-    }
-
-    .domain-callout .avoid {
-      font-size: 13px;
-      color: var(--soft);
-      margin-top: 4px;
-    }
-
-    /* ========== BLOCK 3: COMPARISON + FINAL CTA ========== */
-    .comparison-section {
-      background: #14120e;
-      color: #f4f0e8;
-      padding: 88px 24px;
-    }
-
-    .comparison-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .comparison-header {
-      margin-bottom: 48px;
-      max-width: 580px;
-    }
-
-    .comparison-header .eyebrow {
-      color: var(--orange);
-    }
-
-    .comparison-header h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(28px, 4.2vw, 40px);
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 14px;
-      color: #f4f0e8;
-    }
-
-    .comparison-header p {
-      font-size: 16.5px;
-      color: #b8b2a6;
-      line-height: 1.6;
-    }
-
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-      margin-bottom: 56px;
-    }
-
-    @media (min-width: 800px) {
-      .comparison-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .compare-card {
-      border-radius: 18px;
-      padding: 32px 28px;
-    }
-
-    .compare-card.them {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .compare-card.us {
-      background: rgba(241, 90, 34, 0.12);
-      border: 1px solid rgba(241, 90, 34, 0.25);
-    }
-
-    .compare-label {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .them .compare-label {
-      color: #9c968c;
-    }
-
-    .us .compare-label {
-      color: var(--orange);
-    }
-
-    .compare-card h3 {
-      font-family: var(--font-serif);
-      font-size: 23px;
-      font-weight: 400;
-      margin-bottom: 18px;
-      letter-spacing: -0.01em;
-    }
-
-    .compare-list {
-      list-style: none;
+      padding: 28px 26px 26px;
       display: flex;
       flex-direction: column;
-      gap: 13px;
-    }
-
-    .compare-list li {
-      font-size: 14.5px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      line-height: 1.45;
-      color: #c9c3b8;
-    }
-
-    .us .compare-list li {
-      color: #f4f0e8;
-    }
-
-    .compare-list li::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      margin-top: 6px;
-      flex-shrink: 0;
-    }
-
-    .them .compare-list li::before {
-      background: #5c564e;
-    }
-
-    .us .compare-list li::before {
-      background: var(--orange);
-    }
-
-    /* Final CTA band */
-    .final-band {
-      background: linear-gradient(145deg, #1a1714 0%, #14120e 55%, #1c1510 100%);
-      border-radius: 22px;
-      padding: 44px 36px;
-      text-align: center;
+      gap: 18px;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.28s ease,
+                  border-color 0.28s ease;
       position: relative;
       overflow: hidden;
     }
 
-    .final-band::before {
+    .prot-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 40px rgba(20, 18, 14, 0.08);
+      border-color: color-mix(in srgb, var(--orange) 22%, var(--card-border));
+    }
+
+    .prot-card::after {
       content: "";
       position: absolute;
-      top: -40%;
-      right: -10%;
-      width: 360px;
-      height: 360px;
-      background: radial-gradient(circle, rgba(241, 90, 34, 0.22) 0%, transparent 65%);
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .prot-card:hover::after {
+      opacity: 1;
+    }
+
+    .prot-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--orange-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .prot-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--orange);
+      fill: none;
+      stroke-width: 1.7;
+    }
+
+    .prot-card h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.015em;
+      margin-bottom: 6px;
+    }
+
+    .prot-card p {
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .prot-tag {
+      margin-top: auto;
+      padding-top: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--orange);
+      opacity: 0.85;
+    }
+
+    /* Featured wide card */
+    .prot-card.wide {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      align-items: center;
+      gap: 32px;
+      padding: 32px 36px;
+      background: linear-gradient(135deg, #1a1714 0%, #14120e 100%);
+      border-color: #1a1714;
+      color: #f4f0e8;
+    }
+
+    @media (max-width: 699px) {
+      .prot-card.wide {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 28px 24px;
+      }
+    }
+
+    .prot-card.wide:hover {
+      border-color: #2a2420;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+    }
+
+    .prot-card.wide .prot-icon {
+      background: rgba(241,90,34,0.18);
+      flex-shrink: 0;
+    }
+
+    .prot-card.wide .prot-icon svg {
+      stroke: #ff8a5c;
+    }
+
+    .prot-card.wide h3 {
+      color: #f4f0e8;
+    }
+
+    .prot-card.wide p {
+      color: #b8b2a6;
+      max-width: 520px;
+    }
+
+    .prot-card.wide .prot-tag {
+      color: #ff8a5c;
+    }
+
+    .wide-content {
+      flex: 1;
+    }
+
+    .wide-meta {
+      display: flex;
+      gap: 28px;
+      flex-shrink: 0;
+    }
+
+    .wide-meta-item {
+      text-align: center;
+    }
+
+    .wide-meta-item strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 26px;
+      color: #f4f0e8;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .wide-meta-item span {
+      font-size: 12.5px;
+      color: #9c968c;
+    }
+
+    /* ========== BLOCK 3: CLOUDFLARE FEATURES BENTO ========== */
+    .features-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px 96px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      max-width: 780px;
+      margin-bottom: 48px;
+      color: var(--ink);
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .bento {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .row {
+      display: grid;
+      gap: 20px;
+    }
+
+    .row-1 {
+      grid-template-columns: 1.45fr 1fr;
+    }
+
+    .row-2 {
+      grid-template-columns: 1fr 1.45fr;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid #e5e0d6;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(20, 18, 14, 0.09);
+      border-color: #d9d2c6;
+    }
+
+    .card h3 {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    .card p {
+      font-size: 15.5px;
+      color: #5c564e;
+      line-height: 1.55;
+      max-width: 440px;
+    }
+
+    .card h3::after {
+      content: "";
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--orange);
+      margin-top: 14px;
+      border-radius: 1px;
+      transition: width 0.3s ease;
+    }
+
+    .card:hover h3::after {
+      width: 48px;
+    }
+
+    .card-1 {
+      min-height: 320px;
+      justify-content: space-between;
+    }
+
+    .card-1 .meta {
+      margin-top: 40px;
+      display: flex;
+      gap: 24px;
+    }
+
+    .meta-item {
+      font-size: 13px;
+      color: #8a857c;
+    }
+
+    .meta-item strong {
+      display: block;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .card-2 {
+      min-height: 320px;
+      background: #fff8f5;
+      border-color: #f5e6de;
+    }
+
+    .card-2:hover {
+      border-color: #efd5c8;
+    }
+
+    .card-2 .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 32px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--orange);
+    }
+
+    .card-2 .tag::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--orange);
+      border-radius: 50%;
+    }
+
+    .card-3 {
+      min-height: 300px;
+    }
+
+    .card-3 .version {
+      margin-top: auto;
+      padding-top: 36px;
+      font-family: var(--font-serif);
+      font-size: 48px;
+      font-weight: 400;
+      color: var(--orange);
+      letter-spacing: -0.03em;
+      transition: transform 0.3s ease;
+    }
+
+    .card-3:hover .version {
+      transform: scale(1.04);
+    }
+
+    .card-4 {
+      min-height: 300px;
+      background: #14120e;
+      border-color: #14120e;
+      color: #f4f0e8;
+    }
+
+    .card-4:hover {
+      border-color: #2a2622;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
+    }
+
+    .card-4 h3 {
+      color: #f4f0e8;
+    }
+
+    .card-4 h3::after {
+      background: var(--orange);
+    }
+
+    .card-4 p {
+      color: #b8b2a6;
+    }
+
+    .card-4 .locations {
+      margin-top: auto;
+      padding-top: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .location {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      background: rgba(244, 240, 232, 0.1);
+      border-radius: 6px;
+      color: #f4f0e8;
+      transition: background 0.2s ease;
+    }
+
+    .card-4:hover .location {
+      background: rgba(244, 240, 232, 0.16);
+    }
+
+    .bottom-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .card-5,
+    .card-6,
+    .card-7 {
+      min-height: 300px;
+    }
+
+    .card-5 .list,
+    .card-6 .list,
+    .card-7 .list {
+      margin-top: auto;
+      padding-top: 28px;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card-5 .list li,
+    .card-6 .list li,
+    .card-7 .list li {
+      font-size: 14px;
+      color: #5c564e;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .card-5:hover .list li,
+    .card-6:hover .list li,
+    .card-7:hover .list li {
+      transform: translateX(3px);
+    }
+
+    .card-5 .list li::before,
+    .card-6 .list li::before,
+    .card-7 .list li::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .card-6 {
+      background: #fffaf7;
+      border-color: #f0e6df;
+    }
+
+    .card-6:hover {
+      border-color: #e8d5c8;
+    }
+
+    .card-7 {
+      background: #faf8f4;
+    }
+
+    /* ========== BLOCK 4: WHAT THIS MEANS ========== */
+    .means-section {
+      background: var(--ink);
+      color: #f4f0e8;
+      padding: 96px 24px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .means-section::before {
+      content: "";
+      position: absolute;
+      top: -25%;
+      left: -10%;
+      width: 50vw;
+      max-width: 520px;
+      height: 50vw;
+      max-height: 520px;
+      background: radial-gradient(circle, rgba(241,90,34,0.18) 0%, transparent 68%);
       pointer-events: none;
     }
 
-    .final-band h3 {
+    .means-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .means-header {
+      max-width: 640px;
+      margin-bottom: 48px;
+    }
+
+    .means-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 14px;
+    }
+
+    .means-title {
       font-family: var(--font-serif);
-      font-size: clamp(24px, 3.6vw, 32px);
+      font-size: clamp(34px, 4.8vw, 46px);
       font-weight: 400;
+      line-height: 1.15;
       letter-spacing: -0.02em;
-      margin-bottom: 12px;
-      position: relative;
-      z-index: 1;
+      color: #f4f0e8;
+      margin-bottom: 16px;
     }
 
-    .final-band p {
-      font-size: 15.5px;
+    .means-lead {
+      font-size: 16.5px;
+      line-height: 1.6;
       color: #b8b2a6;
-      max-width: 400px;
-      margin: 0 auto 26px;
+      max-width: 520px;
+    }
+
+    .means-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 701px) {
+      .means-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+    }
+
+    @media (min-width: 1001px) {
+      .means-grid {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 18px;
+      }
+    }
+
+    .means-card {
+      background: rgba(244, 240, 232, 0.04);
+      border: 1px solid rgba(244, 240, 232, 0.1);
+      border-radius: 16px;
+      padding: 28px 24px;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .means-card:hover {
+      background: rgba(244, 240, 232, 0.07);
+      border-color: rgba(241, 90, 34, 0.35);
+      transform: translateY(-3px);
+    }
+
+    .means-num {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      color: var(--orange);
+      margin-bottom: 14px;
+      line-height: 1;
+    }
+
+    .means-card h3 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: #f4f0e8;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .means-card p {
+      font-size: 14.5px;
       line-height: 1.55;
-      position: relative;
-      z-index: 1;
+      color: #b8b2a6;
     }
 
-    .final-band .btn {
-      position: relative;
-      z-index: 1;
+    .assurance-bar {
+      margin-top: 48px;
+      padding: 28px 32px;
+      background: rgba(241, 90, 34, 0.12);
+      border: 1px solid rgba(241, 90, 34, 0.25);
+      border-radius: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
     }
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      .hero {
-        padding: 64px 20px 48px;
+    .assurance-text {
+      font-size: 16px;
+      color: #f4f0e8;
+      max-width: 520px;
+      line-height: 1.5;
+    }
+
+    .assurance-text strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .assurance-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 48px;
+      padding: 0 22px;
+      background: var(--orange);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.18s ease, transform 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .assurance-cta:hover {
+      background: #d94e1a;
+      transform: translateY(-1px);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      .row-1,
+      .row-2 {
+        grid-template-columns: 1fr;
       }
 
-      .hero h1 {
-        font-size: 32px;
+      .bottom-row {
+        grid-template-columns: 1fr;
       }
 
-      .cta-row {
+      .hero-secure {
+        min-height: auto;
+        padding: 80px 20px 64px;
+      }
+
+      .hero-title {
+        max-width: none;
+      }
+
+      .features-section {
+        padding: 24px 16px 72px;
+      }
+
+      .card {
+        padding: 28px 22px;
+        min-height: 0;
+      }
+
+      .card h3 {
+        font-size: 22px;
+      }
+
+      .card-3 .version {
+        font-size: 40px;
+        padding-top: 24px;
+      }
+
+      .means-section {
+        padding: 72px 20px 80px;
+      }
+
+      .assurance-bar {
         flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 22px;
       }
 
-      .btn {
-        width: 100%;
+      .layers-section {
+        padding: 72px 20px 64px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title {
+        font-size: 40px;
       }
 
-      .principles {
-        padding: 32px 16px 72px;
+      .hero-stats {
+        gap: 20px 28px;
       }
 
-      .principle-card {
-        padding: 26px 22px;
+      .hero-stat-value {
+        font-size: 24px;
       }
 
-      .domain-callout {
-        padding: 24px 20px;
+      .shield-frame {
+        max-width: 100%;
+        padding: 28px 22px;
       }
 
-      .comparison-section {
-        padding: 64px 16px;
+      .shield-headline {
+        font-size: 22px;
       }
 
-      .final-band {
-        padding: 36px 22px;
-        border-radius: 18px;
+      .wide-meta {
+        gap: 20px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- ========== BLOCK 1: HERO ========== -->
-  <section class="hero">
-    <p class="eyebrow">No monthly platform fee</p>
-    <h1>
-      You already know you need a website.<br>
-      You’re just tired of <em>renting</em> one.
-    </h1>
-    <p class="hero-lead">
-      HostCut builds a real, mobile-first site you own outright. The files live in a free forever GitHub repository and are served from Cloudflare’s edge network. Once it’s live, the only thing you keep paying for is the domain name.
-    </p>
-    <p class="hero-note">
-      Built for people who believe a website is the right call — but refuse to keep writing a check every month just so it stays online.
-    </p>
-    <div class="cta-row">
-      <a href="#" class="btn btn-primary">
-        Start a project
-        <svg width="13" height="13" viewBox="0 0 12 12" fill="none">
-          <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-      <a href="#how" class="btn btn-secondary">See how ownership works</a>
-    </div>
-  </section>
+  <!-- ========== BLOCK 1: DRAMATIC HERO ========== -->
+  <section class="hero-secure">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">Secure by default</p>
+        <h1 class="hero-title">
+          Protection that
+          <span class="line2">comes with the site</span>
+        </h1>
+        <p class="hero-lead">
+          HTTPS, modern hosting, and reliable uptime are included from day one.
+          <strong>Your site is protected without any extra setup or monthly security add-ons.</strong>
+        </p>
 
-  <!-- ========== BLOCK 2: OWNERSHIP PRINCIPLES ========== -->
-  <section class="principles" id="how">
-    <div class="principles-header">
-      <h2>What permanent ownership looks like</h2>
-      <p>No builder account. No “upgrade to unlock.” Just files you control, designed mobile-first, and hosted in a way that never bills you again for the privilege of existing online.</p>
-    </div>
-
-    <div class="principles-grid">
-      <div class="principle-card">
-        <div class="principle-num">01</div>
-        <h3>Mobile-first by default</h3>
-        <p>Every HostCut site is designed for the phone first. Layout, type, contact paths, and spacing are built so the majority of your visitors get a clean experience without extra work.</p>
-      </div>
-
-      <div class="principle-card">
-        <div class="principle-num">02</div>
-        <h3>Files in a free GitHub repo</h3>
-        <p>Your site lives in a private GitHub repository you own. GitHub Pages (or Cloudflare Pages) serves it at no cost — forever. No platform subscription is attached to the hosting.</p>
-      </div>
-
-      <div class="principle-card">
-        <div class="principle-num">03</div>
-        <h3>Cloudflare edge delivery</h3>
-        <p>Pages are pushed to Cloudflare’s global network — the same infrastructure used by major brands. Fast, reliable, and HTTPS from day one with zero extra setup.</p>
-      </div>
-
-      <div class="principle-card">
-        <div class="principle-num">04</div>
-        <h3>You own the source</h3>
-        <p>Real HTML, CSS, and assets — not locked inside a proprietary builder. You can download the repo, move it, or keep it exactly as it is. Nothing is rented.</p>
-      </div>
-
-      <div class="principle-card">
-        <div class="principle-num">05</div>
-        <h3>No lock-in, no surprise fees</h3>
-        <p>There is no account that can be suspended and no plan that quietly changes. Once the site is live, the ongoing cost is simply the domain name you already control.</p>
-      </div>
-
-      <div class="principle-card">
-        <div class="principle-num">06</div>
-        <h3>Updates when you need them</h3>
-        <p>Need a text change, new page, or redesign later? You request it. We handle the work. You stay out of any platform interface and never pay a monthly “builder” fee.</p>
-      </div>
-    </div>
-
-    <!-- Domain recommendation callout -->
-    <div class="domain-callout">
-      <div>
-        <h3>Only pay for the domain</h3>
-        <p>That’s the one recurring cost. Register it somewhere fair — not somewhere that marks everything up.</p>
-      </div>
-      <div>
-        <p class="recs">Recommended: <span>Porkbun</span> or <span>Cloudflare Registrar</span></p>
-        <p class="avoid">Avoid GoDaddy and similar registrars with high markup and upsell pressure.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== BLOCK 3: COMPARISON + CTA ========== -->
-  <section class="comparison-section">
-    <div class="comparison-inner">
-      <div class="comparison-header">
-        <p class="eyebrow">The difference</p>
-        <h2>Renting a platform vs owning the files</h2>
-        <p>Most “website” products are software subscriptions. HostCut is closer to hiring someone to build you a permanent asset that lives in a free GitHub repo.</p>
-      </div>
-
-      <div class="comparison-grid">
-        <div class="compare-card them">
-          <div class="compare-label">Typical builders & hosts</div>
-          <h3>Ongoing rent</h3>
-          <ul class="compare-list">
-            <li>Monthly or annual platform fee just to stay live</li>
-            <li>Site locked inside their system</li>
-            <li>Features and pricing can change under you</li>
-            <li>Export is often incomplete or awkward</li>
-            <li>You’re always one login away from “your” site</li>
-          </ul>
-        </div>
-
-        <div class="compare-card us">
-          <div class="compare-label">HostCut</div>
-          <h3>One-time ownership</h3>
-          <ul class="compare-list">
-            <li>Pay once for the build — mobile-first</li>
-            <li>Files live in a free forever GitHub repo</li>
-            <li>Served from Cloudflare’s edge network</li>
-            <li>Only ongoing cost is the domain name</li>
-            <li>Updates available when you actually need them</li>
-          </ul>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-value">HTTPS</span>
+            <span class="hero-stat-label">Forced from day one</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-value">Edge</span>
+            <span class="hero-stat-label">Cloudflare network</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-value">$0</span>
+            <span class="hero-stat-label">Security add-ons</span>
+          </div>
         </div>
       </div>
 
-      <div class="final-band">
-        <h3>Ready to stop renting?</h3>
-        <p>One permanent, mobile-first site. Free GitHub hosting. Cloudflare delivery. You only keep the domain.</p>
-        <a href="#" class="btn btn-primary">
+      <div class="hero-visual">
+        <div class="shield-frame">
+          <div class="shield-top">
+            <div class="shield-badge">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Always on
+            </div>
+            <h2 class="shield-headline">Four layers between the internet and your files</h2>
+            <p class="shield-sub">Everything below is active the moment the site goes live. No toggles to remember.</p>
+          </div>
+
+          <div class="shield-layers">
+            <div class="layer">
+              <div class="layer-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="layer-text">
+                <strong>TLS 1.3 + certificate</strong>
+                <span>Encrypted in transit, auto-renewed</span>
+              </div>
+              <span class="layer-status">On</span>
+            </div>
+            <div class="layer">
+              <div class="layer-icon">
+                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div class="layer-text">
+                <strong>Edge delivery</strong>
+                <span>Cached &amp; served from the network</span>
+              </div>
+              <span class="layer-status">On</span>
+            </div>
+            <div class="layer">
+              <div class="layer-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div class="layer-text">
+                <strong>DDoS &amp; bot mitigation</strong>
+                <span>Absorbed before it reaches origin</span>
+              </div>
+              <span class="layer-status">On</span>
+            </div>
+            <div class="layer">
+              <div class="layer-icon">
+                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+              <div class="layer-text">
+                <strong>Origin shielding</strong>
+                <span>Traffic filtered at the edge</span>
+              </div>
+              <span class="layer-status">On</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NEW BLOCK: WHAT’S INCLUDED ========== -->
+  <section class="layers-section">
+    <div class="layers-inner">
+      <div class="layers-header">
+        <p class="layers-eyebrow">Included from day one</p>
+        <h2 class="layers-title">
+          The protection most platforms<br>
+          charge for is <em>already on</em>
+        </h2>
+        <p class="layers-lead">
+          You don’t buy a security product. You get a site that lives on infrastructure built for it.
+        </p>
+      </div>
+
+      <div class="protection-grid">
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <h3>Universal SSL</h3>
+            <p>A valid certificate is issued and renewed automatically. Always Use HTTPS is enabled so every request is encrypted.</p>
+          </div>
+          <span class="prot-tag">No setup</span>
+        </div>
+
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div>
+            <h3>Edge network</h3>
+            <p>Static files are served from Cloudflare’s global network. Visitors hit a nearby edge location instead of a single distant server.</p>
+          </div>
+          <span class="prot-tag">Global by default</span>
+        </div>
+
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+          </div>
+          <div>
+            <h3>DDoS absorption</h3>
+            <p>Volumetric and protocol attacks are mitigated at the network level. Unmetered protection is part of the platform, not an upgrade.</p>
+          </div>
+          <span class="prot-tag">Always active</span>
+        </div>
+
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <h3>Bot Fight Mode</h3>
+            <p>Known malicious bots and simple automated traffic are challenged before they can reach your pages or forms.</p>
+          </div>
+          <span class="prot-tag">On by default</span>
+        </div>
+
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div>
+            <h3>Modern protocols</h3>
+            <p>TLS 1.3, HTTP/2, and HTTP/3 where available. Faster handshakes and stronger encryption without any configuration on your side.</p>
+          </div>
+          <span class="prot-tag">Latest standards</span>
+        </div>
+
+        <div class="prot-card">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div>
+            <h3>No monthly tax</h3>
+            <p>There is no security product to subscribe to. The protections above come with the hosting — they don’t generate a separate bill.</p>
+          </div>
+          <span class="prot-tag">Included</span>
+        </div>
+
+        <!-- Wide featured card -->
+        <div class="prot-card wide">
+          <div class="prot-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="wide-content">
+            <h3>Same network the brands you know already use</h3>
+            <p>Your site is files on Cloudflare’s edge — not a shared server with a security plugin bolted on. The infrastructure is the protection.</p>
+          </div>
+          <div class="wide-meta">
+            <div class="wide-meta-item">
+              <strong>330+</strong>
+              <span>edge cities</span>
+            </div>
+            <div class="wide-meta-item">
+              <strong>100%</strong>
+              <span>uptime focus</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BLOCK 3: CLOUDFLARE SECURITY FEATURES BENTO ========== -->
+  <section class="features-section">
+    <h2 class="section-title">
+      Protect, accelerate, and control<br>
+      every request to your <em>origin</em>
+    </h2>
+
+    <div class="bento">
+
+      <div class="row row-1">
+        <div class="card card-1">
+          <div>
+            <h3>Smart Shield</h3>
+            <p>Protect your origin server, improve content availability, and reduce network latency by intelligently shielding traffic at the edge.</p>
+          </div>
+          <div class="meta">
+            <div class="meta-item">
+              <strong>99.99%</strong>
+              origin uptime
+            </div>
+            <div class="meta-item">
+              <strong>−40%</strong>
+              origin load
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-2">
+          <div>
+            <h3>Bot Fight Mode</h3>
+            <p>Automatically detect and mitigate malicious bots before they reach your application — no complex configuration required.</p>
+          </div>
+          <div class="tag">Active protection</div>
+        </div>
+      </div>
+
+      <div class="row row-2">
+        <div class="card card-3">
+          <div>
+            <h3>TLS 1.3</h3>
+            <p>Enable the latest version of the TLS protocol for stronger encryption, faster handshakes, and improved overall performance.</p>
+          </div>
+          <div class="version">1.3</div>
+        </div>
+
+        <div class="card card-4">
+          <div>
+            <h3>Smart Tiered Cache</h3>
+            <p>Dynamically identify the optimal data centers closest to your origin to maximize cache hit ratios and reduce origin load.</p>
+          </div>
+          <div class="locations">
+            <span class="location">SFO</span>
+            <span class="location">LHR</span>
+            <span class="location">FRA</span>
+            <span class="location">NRT</span>
+            <span class="location">SYD</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-row">
+        <div class="card card-5">
+          <div>
+            <h3>Custom Security Rules</h3>
+            <p>Create precise rules based on IP, country, URI, headers, and more to block, challenge, or allow traffic exactly how you need.</p>
+          </div>
+          <ul class="list">
+            <li>Block known bad ASNs</li>
+            <li>Challenge high-risk regions</li>
+            <li>Protect sensitive paths</li>
+          </ul>
+        </div>
+
+        <div class="card card-6">
+          <div>
+            <h3>Custom Rate Limit Rules</h3>
+            <p>Define granular rate limits by path, method, IP, or header to stop abuse and protect critical endpoints.</p>
+          </div>
+          <ul class="list">
+            <li>Path-based thresholds</li>
+            <li>Method-specific limits</li>
+            <li>IP + header combinations</li>
+          </ul>
+        </div>
+
+        <div class="card card-7">
+          <div>
+            <h3>Custom Response Rules</h3>
+            <p>Return custom status codes, headers, or content when a rule matches — full control over how threats are handled.</p>
+          </div>
+          <ul class="list">
+            <li>Custom status codes</li>
+            <li>Inject response headers</li>
+            <li>Serve tailored content</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BLOCK 4: WHAT THIS MEANS ========== -->
+  <section class="means-section">
+    <div class="means-inner">
+      <div class="means-header">
+        <p class="means-eyebrow">What this means for you</p>
+        <h2 class="means-title">Security without the subscription tax</h2>
+        <p class="means-lead">
+          Most small-business platforms charge monthly for basic protection. With HostCut your site lives on Cloudflare’s network, so the essentials are already on.
+        </p>
+      </div>
+
+      <div class="means-grid">
+        <div class="means-card">
+          <div class="means-num">01</div>
+          <h3>No security upsell</h3>
+          <p>HTTPS, edge delivery, and baseline threat protection are part of the hosting. You don’t pay extra every month just to stay encrypted.</p>
+        </div>
+        <div class="means-card">
+          <div class="means-num">02</div>
+          <h3>Nothing to configure</h3>
+          <p>Certificates renew automatically. HTTPS is forced. Bot mitigation and caching run without you logging into a control panel.</p>
+        </div>
+        <div class="means-card">
+          <div class="means-num">03</div>
+          <h3>Same network as the big brands</h3>
+          <p>Your files are served from the same global edge that companies you recognize already trust for speed and resilience.</p>
+        </div>
+        <div class="means-card">
+          <div class="means-num">04</div>
+          <h3>You still own the site</h3>
+          <p>Security is infrastructure, not a lock-in. The site remains files you own — portable, permanent, and free of platform rent.</p>
+        </div>
+      </div>
+
+      <div class="assurance-bar">
+        <p class="assurance-text">
+          <strong>Ready for a site that stays protected without the monthly fee?</strong>
+          One permanent website on the edge network. No security add-on required.
+        </p>
+        <a href="#" class="assurance-cta">
           Start a project
           <svg width="13" height="13" viewBox="0 0 12 12" fill="none">
             <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>

@@ -781,6 +781,57 @@
       max-width: 360px;
     }
 
+    /* ========== SECURITY JUMP ========== */
+    .security-jump {
+      padding: 100px 24px;
+      background: #14120e;
+      color: #f4f0e8;
+    }
+
+    .security-jump-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .security-jump h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4.5vw, 44px);
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: #f4f0e8;
+    }
+
+    .security-jump h2 em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .security-jump > .security-jump-inner > p {
+      font-size: clamp(16px, 1.8vw, 18px);
+      color: #b8b2a6;
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto 32px;
+    }
+
+    .security-jump .btn {
+      margin-bottom: 0;
+    }
+
+    .security-jump .btn-secondary {
+      background: transparent;
+      color: #f4f0e8;
+      border: 1.5px solid rgba(244,240,232,0.22);
+    }
+
+    .security-jump .btn-secondary:hover {
+      background: rgba(244,240,232,0.08);
+      border-color: rgba(244,240,232,0.35);
+    }
+
     /* ========== FINAL CTA ========== */
     .final-cta {
       padding: 110px 24px 120px;
@@ -830,7 +881,7 @@
       .btn { width: 100%; }
 
       .problem, .deliverables, .audience, .final-cta { padding: 72px 16px; }
-      .solution, .hosting, .process { padding: 72px 16px; }
+      .solution, .hosting, .process, .security-jump { padding: 72px 16px; }
 
       .cost-card {
         padding: 28px 22px;
@@ -1163,6 +1214,22 @@
           <p>Published from your GitHub repo to Cloudflare’s network. Files you own. No monthly platform fee attached to the hosting.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ========== SECURITY JUMP ========== -->
+  <section class="security-jump">
+    <div class="security-jump-inner">
+      <h2>Security that comes with the site — <em>not</em> a monthly add-on</h2>
+      <p>
+        HTTPS, edge delivery, DDoS absorption, and bot mitigation are on from day one. No security product to buy, no extra bill.
+      </p>
+      <a href="secure.html" class="btn btn-secondary">
+        See how security works
+        <svg width="13" height="13" viewBox="0 0 12 12" fill="none">
+          <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
   </section>
 

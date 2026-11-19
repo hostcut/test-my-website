@@ -299,13 +299,13 @@
     .layer-slide-top {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
     .layer-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 11px;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
       background: rgba(241,90,34,0.15);
       display: flex;
       align-items: center;
@@ -321,10 +321,18 @@
       stroke-width: 1.8;
     }
 
+    .layer-title-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+      min-width: 0;
+      flex: 1;
+    }
+
     .layer-slide strong {
-      display: block;
       font-family: var(--font-serif);
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 400;
       color: #f4f0e8;
       letter-spacing: -0.015em;
@@ -335,23 +343,28 @@
       font-size: 13.5px;
       color: #a39e94;
       line-height: 1.5;
+      padding-left: 52px;
     }
 
     .layer-status {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-size: 11px;
+      gap: 5px;
+      font-size: 10.5px;
       font-weight: 600;
       color: #2a9d5c;
       letter-spacing: 0.04em;
       text-transform: uppercase;
+      flex-shrink: 0;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(42, 157, 92, 0.12);
     }
 
     .layer-status::before {
       content: "";
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       background: #2a9d5c;
     }
@@ -1216,7 +1229,11 @@
 
       .hero-secure {
         min-height: auto;
-        padding: 80px 20px 64px;
+        padding: 72px 20px 56px;
+      }
+
+      .hero-inner {
+        gap: 40px;
       }
 
       .hero-title {
@@ -1224,7 +1241,7 @@
       }
 
       .features-section {
-        padding: 24px 16px 72px;
+        padding: 24px 16px 64px;
       }
 
       .card {
@@ -1242,7 +1259,7 @@
       }
 
       .means-section {
-        padding: 72px 20px 80px;
+        padding: 64px 20px 72px;
       }
 
       .assurance-bar {
@@ -1252,42 +1269,149 @@
       }
 
       .hc-rules {
-        padding: 72px 20px 64px;
+        padding: 64px 20px 56px;
       }
 
       .cf-trust {
-        padding: 72px 20px 80px;
+        padding: 64px 20px 72px;
+      }
+
+      .section-title {
+        margin-bottom: 32px;
       }
     }
 
     @media (max-width: 600px) {
+      .hero-secure {
+        padding: 64px 16px 48px;
+      }
+
       .hero-title {
-        font-size: 40px;
+        font-size: 36px;
+        margin-bottom: 18px;
+      }
+
+      .hero-lead {
+        font-size: 15.5px;
+        margin-bottom: 28px;
       }
 
       .hero-stats {
-        gap: 20px 28px;
+        gap: 16px 24px;
       }
 
       .hero-stat-value {
-        font-size: 24px;
+        font-size: 22px;
+      }
+
+      .hero-stat-label {
+        font-size: 12px;
       }
 
       .shield-frame {
         max-width: 100%;
-        padding: 28px 22px;
+        min-height: 0;
+        padding: 24px 18px 20px;
+        border-radius: 20px;
+      }
+
+      .shield-badge {
+        margin-bottom: 18px;
+        font-size: 11px;
+        padding: 6px 12px 6px 9px;
       }
 
       .shield-headline {
-        font-size: 22px;
+        font-size: 20px;
+        margin-bottom: 8px;
       }
 
-      .layers-visual-caption {
+      .shield-sub {
+        font-size: 13.5px;
+      }
+
+      .shield-layers {
+        margin-top: 20px;
+      }
+
+      .layer-carousel {
+        height: 148px;
+        border-radius: 12px;
+      }
+
+      .layer-slide {
+        padding: 18px 16px;
+        gap: 10px;
+      }
+
+      .layer-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 9px;
+      }
+
+      .layer-icon svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .layer-slide strong {
+        font-size: 15.5px;
+      }
+
+      .layer-slide span.layer-desc {
+        font-size: 13px;
+        padding-left: 48px;
+      }
+
+      .layer-status {
+        font-size: 10px;
+        padding: 2px 7px;
+      }
+
+      .layer-dots {
+        margin-top: 12px;
+        gap: 7px;
+      }
+
+      .layer-dot {
+        width: 8px;
+        height: 8px;
+      }
+
+      .section-title {
+        font-size: 30px;
+        margin-bottom: 28px;
+      }
+
+      .hc-rules-header h2,
+      .means-title,
+      .cf-trust h2 {
+        font-size: 28px;
+      }
+
+      .hc-rule {
+        padding: 20px 18px;
+      }
+
+      .hc-rule h3 {
+        font-size: 17px;
+      }
+
+      .means-card {
         padding: 22px 18px;
       }
 
-      .layers-visual-caption strong {
-        font-size: 19px;
+      .bento {
+        gap: 14px;
+      }
+
+      .row {
+        gap: 14px;
+      }
+
+      .bottom-row {
+        gap: 14px;
       }
     }
   </style>
@@ -1343,40 +1467,48 @@
                     <div class="layer-icon">
                       <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    <strong>TLS 1.3 + certificate</strong>
+                    <div class="layer-title-row">
+                      <strong>TLS 1.3 + certificate</strong>
+                      <span class="layer-status">On</span>
+                    </div>
                   </div>
                   <span class="layer-desc">Encrypted in transit, auto-renewed. HTTPS forced from the first request.</span>
-                  <span class="layer-status">On</span>
                 </div>
                 <div class="layer-slide">
                   <div class="layer-slide-top">
                     <div class="layer-icon">
                       <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                     </div>
-                    <strong>Edge delivery</strong>
+                    <div class="layer-title-row">
+                      <strong>Edge delivery</strong>
+                      <span class="layer-status">On</span>
+                    </div>
                   </div>
                   <span class="layer-desc">Cached and served from Cloudflare’s global network — visitors hit a nearby location.</span>
-                  <span class="layer-status">On</span>
                 </div>
                 <div class="layer-slide">
                   <div class="layer-slide-top">
                     <div class="layer-icon">
                       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                     </div>
-                    <strong>DDoS &amp; bot mitigation</strong>
+                    <div class="layer-title-row">
+                      <strong>DDoS &amp; bot mitigation</strong>
+                      <span class="layer-status">On</span>
+                    </div>
                   </div>
                   <span class="layer-desc">Volumetric attacks and known bad bots are absorbed or challenged before they reach origin.</span>
-                  <span class="layer-status">On</span>
                 </div>
                 <div class="layer-slide">
                   <div class="layer-slide-top">
                     <div class="layer-icon">
                       <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                     </div>
-                    <strong>Origin shielding</strong>
+                    <div class="layer-title-row">
+                      <strong>Origin shielding</strong>
+                      <span class="layer-status">On</span>
+                    </div>
                   </div>
                   <span class="layer-desc">Traffic is filtered at the edge. Your origin stays protected and quieter.</span>
-                  <span class="layer-status">On</span>
                 </div>
               </div>
             </div>

@@ -906,100 +906,321 @@
     /* ========== HOSTCUT SECURITY RULES ========== */
     .hc-rules {
       background: var(--paper);
-      padding: 96px 24px 88px;
+      padding: 88px 24px 80px;
     }
 
     .hc-rules-inner {
-      max-width: 1100px;
+      max-width: 800px;
       margin: 0 auto;
     }
 
     .hc-rules-header {
-      max-width: 640px;
-      margin-bottom: 48px;
+      max-width: 560px;
+      margin-bottom: 36px;
     }
 
     .hc-rules-eyebrow {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--orange);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .hc-rules-header h2 {
       font-family: var(--font-serif);
-      font-size: clamp(32px, 4.5vw, 44px);
+      font-size: clamp(28px, 4vw, 40px);
       font-weight: 400;
       letter-spacing: -0.025em;
       line-height: 1.15;
       color: var(--ink);
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .hc-rules-lead {
-      font-size: 16.5px;
-      line-height: 1.6;
-      color: var(--muted);
-      max-width: 540px;
-    }
-
-    .hc-rules-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-
-    @media (min-width: 700px) {
-      .hc-rules-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-      }
-    }
-
-    @media (min-width: 1000px) {
-      .hc-rules-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .hc-rule {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 24px 22px;
-      transition: border-color 0.2s ease, background 0.2s ease;
-    }
-
-    .hc-rule:hover {
-      border-color: color-mix(in srgb, var(--orange) 28%, var(--card-border));
-      background: var(--orange-soft);
-    }
-
-    .hc-rule h3 {
-      font-family: var(--font-serif);
-      font-size: 19px;
-      font-weight: 400;
-      letter-spacing: -0.015em;
-      color: var(--ink);
-      margin-bottom: 10px;
-    }
-
-    .hc-rule p {
-      font-size: 14.5px;
+      font-size: 15.5px;
       line-height: 1.55;
       color: var(--muted);
-      margin-bottom: 14px;
     }
 
-    .hc-rule-action {
-      display: inline-block;
-      font-size: 12px;
+    /* Console-style rule list */
+    .rule-console {
+      background: #14120e;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid #1c1916;
+      box-shadow: 0 24px 48px rgba(20, 18, 14, 0.12);
+    }
+
+    .rule-console-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: #1a1714;
+      border-bottom: 1px solid rgba(244,240,232,0.08);
+    }
+
+    .rule-console-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #3d3832;
+    }
+
+    .rule-console-dot:nth-child(1) { background: #e25c4a; }
+    .rule-console-dot:nth-child(2) { background: #e0a84a; }
+    .rule-console-dot:nth-child(3) { background: #4caf6e; }
+
+    .rule-console-title {
+      margin-left: 8px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #b8b2a6;
+      letter-spacing: 0.02em;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    .rule-console-count {
+      margin-left: auto;
+      font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--orange);
+    }
+
+    .rule-rows {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rule-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(244,240,232,0.06);
+      transition: background 0.18s ease;
+    }
+
+    .rule-row:last-child {
+      border-bottom: none;
+    }
+
+    .rule-row:hover {
+      background: rgba(244,240,232,0.03);
+    }
+
+    .rule-tag {
+      flex-shrink: 0;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 5px 9px;
+      border-radius: 6px;
+      min-width: 88px;
+      text-align: center;
+      margin-top: 1px;
+    }
+
+    .rule-tag.block {
+      background: rgba(226, 92, 74, 0.15);
+      color: #f08070;
+    }
+
+    .rule-tag.challenge {
+      background: rgba(224, 168, 74, 0.15);
+      color: #e8b85a;
+    }
+
+    .rule-tag.rate {
+      background: rgba(241, 90, 34, 0.15);
+      color: #ff8a5c;
+    }
+
+    .rule-tag.response {
+      background: rgba(120, 160, 220, 0.15);
+      color: #8eb4e8;
+    }
+
+    .rule-body {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .rule-body strong {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #f4f0e8;
+      letter-spacing: -0.01em;
+    }
+
+    .rule-body span {
+      font-size: 13px;
+      color: #9c968c;
+      line-height: 1.45;
+    }
+
+    /* ========== WHAT THIS MEANS ========== */
+    .means-section {
+      background: var(--ink);
+      color: #f4f0e8;
+      padding: 88px 24px 96px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .means-section::before {
+      content: "";
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 45vw;
+      max-width: 480px;
+      height: 45vw;
+      max-height: 480px;
+      background: radial-gradient(circle, rgba(241,90,34,0.16) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .means-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .means-header {
+      max-width: 480px;
+      margin-bottom: 40px;
+    }
+
+    .means-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 12px;
+    }
+
+    .means-header h2,
+    .means-title {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: #f4f0e8;
+    }
+
+    .means-board {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    @media (min-width: 600px) {
+      .means-board {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+    }
+
+    .means-tile {
+      background: rgba(244,240,232,0.04);
+      border: 1px solid rgba(244,240,232,0.1);
+      border-radius: 16px;
+      padding: 26px 22px;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .means-tile:hover {
+      background: rgba(244,240,232,0.07);
+      border-color: rgba(241,90,34,0.35);
+      transform: translateY(-3px);
+    }
+
+    .means-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background: rgba(241,90,34,0.15);
+      color: var(--orange);
+      font-family: var(--font-serif);
+      font-size: 20px;
+      margin-bottom: 14px;
+      line-height: 1;
+    }
+
+    .means-tile h3 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      color: #f4f0e8;
+      margin-bottom: 8px;
+    }
+
+    .means-tile p {
+      font-size: 14px;
+      line-height: 1.55;
+      color: #b8b2a6;
+    }
+
+    .assurance-bar {
+      margin-top: 8px;
+      padding: 24px 26px;
+      background: rgba(241, 90, 34, 0.12);
+      border: 1px solid rgba(241, 90, 34, 0.25);
+      border-radius: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .assurance-text {
+      font-size: 15px;
+      color: #f4f0e8;
+      max-width: 480px;
+      line-height: 1.5;
+    }
+
+    .assurance-text strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .assurance-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 46px;
+      padding: 0 20px;
+      background: var(--orange);
+      color: #fff;
+      font-size: 14.5px;
+      font-weight: 600;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.18s ease, transform 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .assurance-cta:hover {
+      background: #d94e1a;
+      transform: translateY(-1px);
     }
 
     /* ========== CLOUDFLARE TRUST ========== */
@@ -1300,10 +1521,48 @@
         padding: 3px 8px;
       }
 
+      .hc-rules {
+        padding: 56px 16px 48px;
+      }
+
       .hc-rules-header h2,
+      .means-header h2,
       .means-title,
       .cf-trust h2 {
         font-size: 28px;
+      }
+
+      .rule-console {
+        border-radius: 14px;
+      }
+
+      .rule-row {
+        flex-direction: column;
+        gap: 8px;
+        padding: 14px 14px;
+      }
+
+      .rule-tag {
+        min-width: 0;
+        align-self: flex-start;
+      }
+
+      .means-section {
+        padding: 56px 16px 64px;
+      }
+
+      .means-tile {
+        padding: 20px 18px;
+      }
+
+      .means-tile h3 {
+        font-size: 18px;
+      }
+
+      .assurance-bar {
+        padding: 20px 18px;
+        flex-direction: column;
+        align-items: flex-start;
       }
 
       .hc-rule {
@@ -1545,60 +1804,77 @@
     <div class="hc-rules-inner">
       <div class="hc-rules-header">
         <p class="hc-rules-eyebrow">Configured for every HostCut site</p>
-        <h2>Custom rules we turn on so you don’t have to</h2>
-        <p class="hc-rules-lead">
-          Beyond the platform defaults, we apply a focused set of security, rate-limit, and response rules on Cloudflare. They block common probes, slow down abuse, and stop sensitive paths from ever serving a successful page.
-        </p>
+        <h2>Rules we turn on so you don’t have to</h2>
+        <p class="hc-rules-lead">Eight edge rules. Probes get blocked. Logins get limited. Sensitive paths never serve a happy “200”.</p>
       </div>
 
-      <div class="hc-rules-grid">
-        <article class="hc-rule">
-          <h3>Block AI crawlers that ignore robots</h3>
-          <p>Requests from known AI search bots are blocked when they hit anything other than robots.txt — so training crawlers don’t scrape your content by default.</p>
-          <span class="hc-rule-action">Action: Block</span>
-        </article>
+      <div class="rule-console">
+        <div class="rule-console-bar">
+          <span class="rule-console-dot"></span>
+          <span class="rule-console-dot"></span>
+          <span class="rule-console-dot"></span>
+          <span class="rule-console-title">security.rules · active</span>
+          <span class="rule-console-count">8 rules</span>
+        </div>
 
-        <article class="hc-rule">
-          <h3>Close off sensitive files and common exploits</h3>
-          <p>Paths like .env, .git, config files, phpinfo, adminer, AWS credential folders, backups, and server-status return nothing useful. Scanners looking for exposed secrets are stopped at the edge.</p>
-          <span class="hc-rule-action">Action: Block</span>
-        </article>
-
-        <article class="hc-rule">
-          <h3>Protect login and admin surfaces</h3>
-          <p>XML-RPC and WordPress-style login or admin URLs are challenged or blocked (while still allowing legitimate AJAX endpoints). Brute-force and automated login attempts are cut off early.</p>
-          <span class="hc-rule-action">Action: Managed challenge or block</span>
-        </article>
-
-        <article class="hc-rule">
-          <h3>Stop empty and tool-based user agents</h3>
-          <p>Empty user agents and well-known scanning tools (sqlmap, nikto, nmap, masscan, gobuster, and similar) are blocked. Scripted probes never reach your origin.</p>
-          <span class="hc-rule-action">Action: Block</span>
-        </article>
-
-        <article class="hc-rule">
-          <h3>Challenge high-risk networks and regions</h3>
-          <p>Traffic from selected high-risk hosting ASNs and certain high-abuse countries is challenged before it can interact with the site. Legitimate visitors pass; noisy sources are filtered.</p>
-          <span class="hc-rule-action">Action: Managed challenge</span>
-        </article>
-
-        <article class="hc-rule">
-          <h3>Rate limits that stop floods and login abuse</h3>
-          <p>General request volume is capped (for example 60 requests per 10 seconds). Login and XML-RPC style paths can be limited even tighter so credential stuffing dies quickly.</p>
-          <span class="hc-rule-action">Action: Block for a short window</span>
-        </article>
-
-        <article class="hc-rule">
-          <h3>Block successful hits on admin and sensitive pages</h3>
-          <p>If a request somehow reaches an admin, login, XML-RPC, or secret file path and would return a normal HTML page, the response is blocked. A “200 OK” on those paths never leaves the edge.</p>
-          <span class="hc-rule-action">Action: Block (response rule)</span>
-        </article>
-
-        <article class="hc-rule">
-          <h3>Never serve successful sensitive files</h3>
-          <p>Even if a sensitive file were somehow present, a successful (200) response for .env, .git, config, phpinfo, or backup paths is blocked. Accidental exposure is treated as a hard fail.</p>
-          <span class="hc-rule-action">Action: Block (response rule)</span>
-        </article>
+        <div class="rule-rows">
+          <div class="rule-row">
+            <span class="rule-tag block">Block</span>
+            <div class="rule-body">
+              <strong>AI crawlers</strong>
+              <span>Training bots stopped (except robots.txt)</span>
+            </div>
+          </div>
+          <div class="rule-row">
+            <span class="rule-tag block">Block</span>
+            <div class="rule-body">
+              <strong>Sensitive paths</strong>
+              <span>.env, .git, config, phpinfo, backups, server-status</span>
+            </div>
+          </div>
+          <div class="rule-row">
+            <span class="rule-tag challenge">Challenge</span>
+            <div class="rule-body">
+              <strong>Login &amp; admin</strong>
+              <span>XML-RPC / wp-login / admin surfaces filtered</span>
+            </div>
+          </div>
+          <div class="rule-row">
+            <span class="rule-tag block">Block</span>
+            <div class="rule-body">
+              <strong>Scanner agents</strong>
+              <span>Empty UA, sqlmap, nikto, nmap, gobuster…</span>
+            </div>
+          </div>
+          <div class="rule-row">
+            <span class="rule-tag challenge">Challenge</span>
+            <div class="rule-body">
+              <strong>Risky networks</strong>
+              <span>Selected high-risk ASNs &amp; regions challenged</span>
+            </div>
+          </div>
+          <div class="rule-row">
+            <span class="rule-tag rate">Rate limit</span>
+            <div class="rule-body">
+              <strong>Request floods</strong>
+              <span>Volume caps + tighter login / XML-RPC limits</span>
+            </div>
+          </div>
+          <div class="rule-row">
+            <span class="rule-tag response">Response</span>
+            <div class="rule-body">
+              <strong>Admin 200s</strong>
+              <span>Successful HTML on admin/login paths blocked</span>
+            </div>
+          </div>
+          <div class="rule-row">
+            <span class="rule-tag response">Response</span>
+            <div class="rule-body">
+              <strong>Secret files</strong>
+              <span>A 200 on .env / config / backup never leaves the edge</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1608,35 +1884,36 @@
     <div class="means-inner">
       <div class="means-header">
         <p class="means-eyebrow">What this means for you</p>
-        <h2 class="means-title">Security without the subscription tax</h2>
-        <p class="means-lead">
-          Most small-business platforms charge monthly for basic protection. With HostCut your site lives on Cloudflare’s network, so the essentials are already on.
-        </p>
+        <h2>Security without the subscription tax</h2>
       </div>
 
-      <div class="means-grid">
-        <div class="means-card">
+      <div class="means-board">
+        <article class="means-tile">
+          <span class="means-icon" aria-hidden="true">$</span>
           <h3>No security upsell</h3>
-          <p>HTTPS, edge delivery, and baseline threat protection are part of the hosting. You don’t pay extra every month just to stay encrypted.</p>
-        </div>
-        <div class="means-card">
+          <p>HTTPS and edge protection are part of hosting — not a monthly add-on.</p>
+        </article>
+        <article class="means-tile">
+          <span class="means-icon" aria-hidden="true">✓</span>
           <h3>Nothing to configure</h3>
-          <p>Certificates renew automatically. HTTPS is forced. Bot mitigation and caching run without you logging into a control panel.</p>
-        </div>
-        <div class="means-card">
-          <h3>Same network as the big brands</h3>
-          <p>Your files are served from the same global edge that companies you recognize already trust for speed and resilience.</p>
-        </div>
-        <div class="means-card">
+          <p>Certificates renew. HTTPS is forced. Rules run without a control panel login.</p>
+        </article>
+        <article class="means-tile">
+          <span class="means-icon" aria-hidden="true">◎</span>
+          <h3>Same network as big brands</h3>
+          <p>Your files ride the same global edge the companies you know already use.</p>
+        </article>
+        <article class="means-tile">
+          <span class="means-icon" aria-hidden="true">◇</span>
           <h3>You still own the site</h3>
-          <p>Security is infrastructure, not a lock-in. The site remains files you own — portable, permanent, and free of platform rent.</p>
-        </div>
+          <p>Security is infrastructure, not lock-in. Files stay yours and portable.</p>
+        </article>
       </div>
 
       <div class="assurance-bar">
         <p class="assurance-text">
           <strong>Ready for a site that stays protected without the monthly fee?</strong>
-          One permanent website on the edge network. No security add-on required.
+          One permanent website on the edge. No security add-on required.
         </p>
         <a href="#" class="assurance-cta">
           Start a project

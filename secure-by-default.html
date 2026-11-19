@@ -186,11 +186,11 @@
       position: relative;
       width: 100%;
       max-width: 420px;
-      aspect-ratio: 1 / 1.05;
+      min-height: 420px;
       background: linear-gradient(160deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
       border: 1px solid rgba(244,240,232,0.1);
       border-radius: 28px;
-      padding: 36px 32px;
+      padding: 32px 28px 28px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -253,36 +253,60 @@
       max-width: 280px;
     }
 
+    /* Layer carousel — conveyor belt, one full card at a time */
     .shield-layers {
       position: relative;
       z-index: 1;
+      margin-top: 28px;
+      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-top: 32px;
+      min-height: 0;
     }
 
-    .layer {
+    .layer-carousel {
+      position: relative;
+      width: 100%;
+      height: 168px;
+      overflow: hidden;
+      border-radius: 14px;
+      background: rgba(244,240,232,0.04);
+      border: 1px solid rgba(244,240,232,0.1);
+    }
+
+    .layer-track {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .layer-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+      height: 100%;
+      padding: 22px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+      box-sizing: border-box;
+    }
+
+    .layer-slide-top {
       display: flex;
       align-items: center;
       gap: 14px;
-      padding: 14px 16px;
-      background: rgba(244,240,232,0.04);
-      border: 1px solid rgba(244,240,232,0.08);
-      border-radius: 12px;
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .layer:hover {
-      background: rgba(244,240,232,0.07);
-      border-color: rgba(241,90,34,0.25);
     }
 
     .layer-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 9px;
-      background: rgba(241,90,34,0.12);
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      background: rgba(241,90,34,0.15);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -290,37 +314,73 @@
     }
 
     .layer-icon svg {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       stroke: var(--orange);
       fill: none;
       stroke-width: 1.8;
     }
 
-    .layer-text {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .layer-text strong {
+    .layer-slide strong {
       display: block;
-      font-size: 13.5px;
-      font-weight: 600;
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 400;
       color: #f4f0e8;
-      margin-bottom: 1px;
+      letter-spacing: -0.015em;
+      line-height: 1.25;
     }
 
-    .layer-text span {
-      font-size: 12.5px;
-      color: #9c968c;
+    .layer-slide span.layer-desc {
+      font-size: 13.5px;
+      color: #a39e94;
+      line-height: 1.5;
     }
 
     .layer-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-size: 11px;
       font-weight: 600;
       color: #2a9d5c;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
+    }
+
+    .layer-status::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #2a9d5c;
+    }
+
+    .layer-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .layer-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(244,240,232,0.2);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+
+    .layer-dot.is-active {
+      background: var(--orange);
+      transform: scale(1.2);
+    }
+
+    .layer-dot:hover {
+      background: rgba(244,240,232,0.45);
     }
 
     /* ========== BLOCK 3: INCLUDED FROM DAY ONE (image-led) ========== */
@@ -1276,45 +1336,55 @@
           </div>
 
           <div class="shield-layers">
-            <div class="layer">
-              <div class="layer-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <div class="layer-carousel" id="layerCarousel" aria-live="polite">
+              <div class="layer-track" id="layerTrack">
+                <div class="layer-slide">
+                  <div class="layer-slide-top">
+                    <div class="layer-icon">
+                      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <strong>TLS 1.3 + certificate</strong>
+                  </div>
+                  <span class="layer-desc">Encrypted in transit, auto-renewed. HTTPS forced from the first request.</span>
+                  <span class="layer-status">On</span>
+                </div>
+                <div class="layer-slide">
+                  <div class="layer-slide-top">
+                    <div class="layer-icon">
+                      <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
+                    <strong>Edge delivery</strong>
+                  </div>
+                  <span class="layer-desc">Cached and served from Cloudflare’s global network — visitors hit a nearby location.</span>
+                  <span class="layer-status">On</span>
+                </div>
+                <div class="layer-slide">
+                  <div class="layer-slide-top">
+                    <div class="layer-icon">
+                      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <strong>DDoS &amp; bot mitigation</strong>
+                  </div>
+                  <span class="layer-desc">Volumetric attacks and known bad bots are absorbed or challenged before they reach origin.</span>
+                  <span class="layer-status">On</span>
+                </div>
+                <div class="layer-slide">
+                  <div class="layer-slide-top">
+                    <div class="layer-icon">
+                      <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <strong>Origin shielding</strong>
+                  </div>
+                  <span class="layer-desc">Traffic is filtered at the edge. Your origin stays protected and quieter.</span>
+                  <span class="layer-status">On</span>
+                </div>
               </div>
-              <div class="layer-text">
-                <strong>TLS 1.3 + certificate</strong>
-                <span>Encrypted in transit, auto-renewed</span>
-              </div>
-              <span class="layer-status">On</span>
             </div>
-            <div class="layer">
-              <div class="layer-icon">
-                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-              </div>
-              <div class="layer-text">
-                <strong>Edge delivery</strong>
-                <span>Cached &amp; served from the network</span>
-              </div>
-              <span class="layer-status">On</span>
-            </div>
-            <div class="layer">
-              <div class="layer-icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              </div>
-              <div class="layer-text">
-                <strong>DDoS &amp; bot mitigation</strong>
-                <span>Absorbed before it reaches origin</span>
-              </div>
-              <span class="layer-status">On</span>
-            </div>
-            <div class="layer">
-              <div class="layer-icon">
-                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              </div>
-              <div class="layer-text">
-                <strong>Origin shielding</strong>
-                <span>Traffic filtered at the edge</span>
-              </div>
-              <span class="layer-status">On</span>
+            <div class="layer-dots" id="layerDots" role="tablist" aria-label="Protection layers">
+              <button type="button" class="layer-dot is-active" aria-label="Layer 1" data-index="0"></button>
+              <button type="button" class="layer-dot" aria-label="Layer 2" data-index="1"></button>
+              <button type="button" class="layer-dot" aria-label="Layer 3" data-index="2"></button>
+              <button type="button" class="layer-dot" aria-label="Layer 4" data-index="3"></button>
             </div>
           </div>
         </div>
@@ -1539,6 +1609,63 @@
       </div>
     </div>
   </section>
+
+
+  <script>
+    (function () {
+      var track = document.getElementById("layerTrack");
+      var dots = document.querySelectorAll("#layerDots .layer-dot");
+      if (!track || !dots.length) return;
+
+      var slides = track.querySelectorAll(".layer-slide");
+      var index = 0;
+      var total = slides.length || dots.length;
+      var timer = null;
+
+      function goTo(i) {
+        index = ((i % total) + total) % total;
+        track.style.transform = "translateX(-" + (index * 100) + "%)";
+        dots.forEach(function (d, n) {
+          d.classList.toggle("is-active", n === index);
+          d.setAttribute("aria-selected", n === index ? "true" : "false");
+        });
+      }
+
+      function next() {
+        goTo(index + 1);
+      }
+
+      function start() {
+        stop();
+        timer = setInterval(next, 3500);
+      }
+
+      function stop() {
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+      }
+
+      dots.forEach(function (dot) {
+        dot.addEventListener("click", function () {
+          goTo(parseInt(dot.getAttribute("data-index"), 10) || 0);
+          start();
+        });
+      });
+
+      var carousel = document.getElementById("layerCarousel");
+      if (carousel) {
+        carousel.addEventListener("mouseenter", stop);
+        carousel.addEventListener("mouseleave", start);
+        carousel.addEventListener("focusin", stop);
+        carousel.addEventListener("focusout", start);
+      }
+
+      goTo(0);
+      start();
+    })();
+  </script>
 
 </body>
 </html>

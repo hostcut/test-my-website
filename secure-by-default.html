@@ -599,484 +599,309 @@
       line-height: 1.5;
     }
 
-    /* ========== BLOCK 2: CLOUDFLARE FEATURES BENTO ========== */
+    /* ========== BLOCK 2: EDGE FEATURES ========== */
     .features-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 72px 24px 80px;
-    }
-
-    .section-title {
-      font-family: var(--font-serif);
-      font-size: clamp(36px, 5vw, 52px);
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      max-width: 780px;
-      margin-bottom: 48px;
-      color: var(--ink);
-    }
-
-    .section-title em {
-      font-style: italic;
-      color: var(--orange);
-    }
-
-    .bento {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .row {
-      display: grid;
-      gap: 20px;
-    }
-
-    .row-1 {
-      grid-template-columns: 1.45fr 1fr;
-    }
-
-    .row-2 {
-      grid-template-columns: 1fr 1.45fr;
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 18px;
-      border: 1px solid #e5e0d6;
-      padding: 36px 32px;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-                  box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-                  border-color 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 48px rgba(20, 18, 14, 0.09);
-      border-color: #d9d2c6;
-    }
-
-    .card h3 {
-      font-family: var(--font-serif);
-      font-size: 26px;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
-      color: var(--ink);
-    }
-
-    .card p {
-      font-size: 15.5px;
-      color: #5c564e;
-      line-height: 1.55;
-      max-width: 440px;
-    }
-
-    .card h3::after {
-      content: "";
-      display: block;
-      width: 32px;
-      height: 2px;
-      background: var(--orange);
-      margin-top: 14px;
-      border-radius: 1px;
-      transition: width 0.3s ease;
-    }
-
-    .card:hover h3::after {
-      width: 48px;
-    }
-
-    .card-1 {
-      min-height: 320px;
-      justify-content: space-between;
-    }
-
-    .card-1 .meta {
-      margin-top: 40px;
-      display: flex;
-      gap: 24px;
-    }
-
-    .meta-item {
-      font-size: 13px;
-      color: #8a857c;
-    }
-
-    .meta-item strong {
-      display: block;
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 2px;
-    }
-
-    .card-2 {
-      min-height: 320px;
-      background: #fff8f5;
-      border-color: #f5e6de;
-    }
-
-    .card-2:hover {
-      border-color: #efd5c8;
-    }
-
-    .card-2 .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: auto;
-      padding-top: 32px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--orange);
-    }
-
-    .card-2 .tag::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      background: var(--orange);
-      border-radius: 50%;
-    }
-
-    .card-3 {
-      min-height: 300px;
-    }
-
-    .card-3 .version {
-      margin-top: auto;
-      padding-top: 36px;
-      font-family: var(--font-serif);
-      font-size: 48px;
-      font-weight: 400;
-      color: var(--orange);
-      letter-spacing: -0.03em;
-      transition: transform 0.3s ease;
-    }
-
-    .card-3:hover .version {
-      transform: scale(1.04);
-    }
-
-    .card-4 {
-      min-height: 300px;
-      background: #14120e;
-      border-color: #14120e;
-      color: #f4f0e8;
-    }
-
-    .card-4:hover {
-      border-color: #2a2622;
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
-    }
-
-    .card-4 h3 {
-      color: #f4f0e8;
-    }
-
-    .card-4 h3::after {
-      background: var(--orange);
-    }
-
-    .card-4 p {
-      color: #b8b2a6;
-    }
-
-    .card-4 .locations {
-      margin-top: auto;
-      padding-top: 32px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .location {
-      font-size: 12px;
-      font-weight: 500;
-      padding: 5px 12px;
-      background: rgba(244, 240, 232, 0.1);
-      border-radius: 6px;
-      color: #f4f0e8;
-      transition: background 0.2s ease;
-    }
-
-    .card-4:hover .location {
-      background: rgba(244, 240, 232, 0.16);
-    }
-
-    .bottom-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 20px;
-    }
-
-    .card-5,
-    .card-6,
-    .card-7 {
-      min-height: 300px;
-    }
-
-    .card-5 .list,
-    .card-6 .list,
-    .card-7 .list {
-      margin-top: auto;
-      padding-top: 28px;
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .card-5 .list li,
-    .card-6 .list li,
-    .card-7 .list li {
-      font-size: 14px;
-      color: #5c564e;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: transform 0.2s ease;
-    }
-
-    .card-5:hover .list li,
-    .card-6:hover .list li,
-    .card-7:hover .list li {
-      transform: translateX(3px);
-    }
-
-    .card-5 .list li::before,
-    .card-6 .list li::before,
-    .card-7 .list li::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      background: var(--orange);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .card-6 {
-      background: #fffaf7;
-      border-color: #f0e6df;
-    }
-
-    .card-6:hover {
-      border-color: #e8d5c8;
-    }
-
-    .card-7 {
-      background: #faf8f4;
-    }
-
-    /* ========== BLOCK 4: WHAT THIS MEANS ========== */
-    .means-section {
-      background: var(--ink);
-      color: #f4f0e8;
-      padding: 96px 24px 100px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .means-section::before {
-      content: "";
-      position: absolute;
-      top: -25%;
-      left: -10%;
-      width: 50vw;
-      max-width: 520px;
-      height: 50vw;
-      max-height: 520px;
-      background: radial-gradient(circle, rgba(241,90,34,0.18) 0%, transparent 68%);
-      pointer-events: none;
-    }
-
-    .means-inner {
-      position: relative;
-      z-index: 1;
       max-width: 1100px;
       margin: 0 auto;
+      padding: 80px 24px 72px;
     }
 
-    .means-header {
-      max-width: 640px;
-      margin-bottom: 48px;
+    .features-header {
+      max-width: 520px;
+      margin-bottom: 36px;
     }
 
-    .means-eyebrow {
-      font-size: 0.75rem;
+    .features-eyebrow {
+      font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--orange);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
-    .means-title {
+    .features-header h2 {
       font-family: var(--font-serif);
-      font-size: clamp(34px, 4.8vw, 46px);
+      font-size: clamp(30px, 4.5vw, 42px);
       font-weight: 400;
+      letter-spacing: -0.025em;
       line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: #f4f0e8;
-      margin-bottom: 16px;
+      color: var(--ink);
+      margin-bottom: 12px;
     }
 
-    .means-lead {
-      font-size: 16.5px;
-      line-height: 1.6;
-      color: #b8b2a6;
-      max-width: 520px;
-    }
-
-    .means-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-
-    @media (min-width: 701px) {
-      .means-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 18px;
-      }
-    }
-
-    @media (min-width: 1001px) {
-      .means-grid {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 18px;
-      }
-    }
-
-    .means-card {
-      background: rgba(244, 240, 232, 0.04);
-      border: 1px solid rgba(244, 240, 232, 0.1);
-      border-radius: 16px;
-      padding: 28px 24px;
-      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
-    }
-
-    .means-card:hover {
-      background: rgba(244, 240, 232, 0.07);
-      border-color: rgba(241, 90, 34, 0.35);
-      transform: translateY(-3px);
-    }
-
-    .means-card h3 {
-      font-family: var(--font-serif);
-      font-size: 20px;
-      font-weight: 400;
-      color: #f4f0e8;
-      margin-bottom: 10px;
-      letter-spacing: -0.01em;
-    }
-
-    .means-card p {
-      font-size: 14.5px;
+    .features-header p {
+      font-size: 16px;
+      color: var(--muted);
       line-height: 1.55;
-      color: #b8b2a6;
     }
 
-    .assurance-bar {
-      margin-top: 48px;
-      padding: 28px 32px;
-      background: rgba(241, 90, 34, 0.12);
-      border: 1px solid rgba(241, 90, 34, 0.25);
-      border-radius: 16px;
+    .status-board {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .status-strip {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 10px 20px;
+      padding: 12px 18px;
+      background: #14120e;
+      border-radius: 12px;
+      color: #f4f0e8;
     }
 
-    .assurance-text {
-      font-size: 16px;
-      color: #f4f0e8;
-      max-width: 520px;
+    .status-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .status-live i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2a9d5c;
+      box-shadow: 0 0 0 0 rgba(42, 157, 92, 0.5);
+      animation: pulse-dot 2s ease-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0% { box-shadow: 0 0 0 0 rgba(42, 157, 92, 0.45); }
+      70% { box-shadow: 0 0 0 8px rgba(42, 157, 92, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(42, 157, 92, 0); }
+    }
+
+    .status-meta {
+      font-size: 12.5px;
+      color: #9c968c;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .board-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 640px) {
+      .board-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 960px) {
+      .board-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 14px;
+      }
+    }
+
+    .board-card {
+      position: relative;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+      min-height: 140px;
+    }
+
+    .board-card:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--orange) 30%, var(--card-border));
+      box-shadow: 0 14px 32px rgba(20, 18, 14, 0.07);
+    }
+
+    @media (min-width: 960px) {
+      .board-hero { grid-column: span 3; min-height: 180px; }
+      .board-dark { grid-column: span 3; min-height: 180px; }
+      .board-card:not(.board-hero):not(.board-dark):not(.board-wide):not(.board-headers) {
+        grid-column: span 2;
+      }
+      .board-wide { grid-column: span 4; }
+      .board-headers { grid-column: span 2; }
+    }
+
+    @media (min-width: 640px) and (max-width: 959px) {
+      .board-hero { grid-column: span 1; }
+      .board-dark { grid-column: span 1; }
+      .board-wide { grid-column: span 2; }
+      .board-headers { grid-column: span 2; }
+    }
+
+    .board-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .board-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--soft);
+    }
+
+    .board-badge {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--orange);
+      background: var(--orange-soft);
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    .board-card h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .board-card p {
+      font-size: 14px;
+      color: var(--muted);
       line-height: 1.5;
     }
 
-    .assurance-text strong {
-      color: #fff;
-      font-weight: 600;
+    .board-meter {
+      margin-top: auto;
+      height: 6px;
+      border-radius: 999px;
+      background: #ebe6dc;
+      overflow: hidden;
     }
 
-    .assurance-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      height: 48px;
-      padding: 0 22px;
-      background: var(--orange);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 600;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: background 0.18s ease, transform 0.18s ease;
-      white-space: nowrap;
+    .board-meter span {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--orange), #ff8a5c);
     }
 
-    .assurance-cta:hover {
-      background: #d94e1a;
-      transform: translateY(-1px);
+    .board-dark {
+      background: #14120e;
+      border-color: #1c1916;
+      color: #f4f0e8;
     }
 
-    /* ========== JUMP BACK TO MAIN ========== */
-    .back-jump {
-      padding: 88px 24px 100px;
-      background: var(--paper);
-      text-align: center;
+    .board-dark:hover {
+      border-color: #2a2520;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.25);
     }
 
-    .back-jump-inner {
-      max-width: 560px;
-      margin: 0 auto;
-    }
+    .board-dark .board-label { color: #9c968c; }
+    .board-dark p { color: #b8b2a6; }
 
-    .back-jump h2 {
+    .board-big {
       font-family: var(--font-serif);
-      font-size: clamp(28px, 4vw, 36px);
+      font-size: clamp(40px, 6vw, 52px);
       font-weight: 400;
-      letter-spacing: -0.025em;
-      line-height: 1.2;
-      color: var(--ink);
-      margin-bottom: 14px;
+      letter-spacing: -0.03em;
+      color: var(--orange);
+      line-height: 1;
+      margin: 6px 0 4px;
     }
 
-    .back-jump p {
-      font-size: 16px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 28px;
-    }
-
-    .btn-back {
-      display: inline-flex;
+    .board-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--orange-soft);
+      display: flex;
       align-items: center;
       justify-content: center;
+      margin-bottom: 4px;
+    }
+
+    .board-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--orange);
+      fill: none;
+      stroke-width: 1.7;
+    }
+
+    .board-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: auto;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #2a9d5c;
+    }
+
+    .board-dot.on::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #2a9d5c;
+    }
+
+    .board-cities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 8px;
+    }
+
+    .board-cities span {
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: #f0ebe3;
+      color: var(--ink);
+    }
+
+    .board-checks {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
       gap: 8px;
-      height: 50px;
-      padding: 0 26px;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: 500;
-      text-decoration: none;
+      margin-top: 4px;
+    }
+
+    .board-checks li {
+      font-size: 13.5px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.4;
+    }
+
+    .board-checks li::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
       background: var(--orange);
-      color: #fff;
-      transition: background 0.18s ease, transform 0.18s ease;
+      flex-shrink: 0;
     }
-
-    .btn-back:hover {
-      background: #d94e1a;
-      transform: translateY(-1px);
-    }
-
 
     /* ========== HOSTCUT SECURITY RULES ========== */
     .hc-rules {
@@ -1229,15 +1054,16 @@
 
       .hero-secure {
         min-height: auto;
-        padding: 72px 20px 56px;
+        padding: 64px 20px 48px;
       }
 
       .hero-inner {
-        gap: 40px;
+        gap: 36px;
       }
 
       .hero-title {
         max-width: none;
+        font-size: clamp(36px, 9vw, 48px);
       }
 
       .features-section {
@@ -1283,105 +1109,195 @@
 
     @media (max-width: 600px) {
       .hero-secure {
-        padding: 64px 16px 48px;
+        padding: 56px 16px 40px;
+      }
+
+      .hero-eyebrow {
+        font-size: 0.65rem;
+        margin-bottom: 14px;
       }
 
       .hero-title {
-        font-size: 36px;
-        margin-bottom: 18px;
+        font-size: 32px;
+        margin-bottom: 14px;
+        letter-spacing: -0.025em;
       }
 
       .hero-lead {
-        font-size: 15.5px;
-        margin-bottom: 28px;
+        font-size: 15px;
+        line-height: 1.55;
+        margin-bottom: 22px;
+        max-width: none;
       }
 
       .hero-stats {
-        gap: 16px 24px;
+        gap: 12px;
+        width: 100%;
+      }
+
+      .hero-stat {
+        flex: 1 1 calc(33.33% - 12px);
+        min-width: 90px;
       }
 
       .hero-stat-value {
-        font-size: 22px;
+        font-size: 20px;
       }
 
       .hero-stat-label {
-        font-size: 12px;
+        font-size: 11.5px;
+      }
+
+      .hero-inner {
+        gap: 28px;
       }
 
       .shield-frame {
         max-width: 100%;
         min-height: 0;
-        padding: 24px 18px 20px;
-        border-radius: 20px;
+        padding: 20px 16px 18px;
+        border-radius: 18px;
       }
 
       .shield-badge {
-        margin-bottom: 18px;
+        margin-bottom: 14px;
         font-size: 11px;
-        padding: 6px 12px 6px 9px;
+        padding: 5px 10px 5px 8px;
       }
 
       .shield-headline {
-        font-size: 20px;
-        margin-bottom: 8px;
+        font-size: 18px;
+        margin-bottom: 6px;
+        line-height: 1.3;
       }
 
       .shield-sub {
-        font-size: 13.5px;
+        font-size: 13px;
+        max-width: none;
       }
 
       .shield-layers {
-        margin-top: 20px;
+        margin-top: 16px;
       }
 
       .layer-carousel {
-        height: 148px;
+        height: auto;
+        min-height: 132px;
         border-radius: 12px;
       }
 
       .layer-slide {
-        padding: 18px 16px;
-        gap: 10px;
+        padding: 16px 14px;
+        gap: 8px;
+        height: auto;
+        min-height: 132px;
       }
 
       .layer-icon {
-        width: 36px;
-        height: 36px;
+        width: 34px;
+        height: 34px;
         border-radius: 9px;
       }
 
       .layer-icon svg {
-        width: 16px;
-        height: 16px;
+        width: 15px;
+        height: 15px;
       }
 
       .layer-slide strong {
-        font-size: 15.5px;
+        font-size: 14.5px;
       }
 
       .layer-slide span.layer-desc {
-        font-size: 13px;
-        padding-left: 48px;
+        font-size: 12.5px;
+        padding-left: 0;
+        line-height: 1.45;
       }
 
       .layer-status {
-        font-size: 10px;
-        padding: 2px 7px;
+        font-size: 9.5px;
+        padding: 2px 6px;
       }
 
       .layer-dots {
-        margin-top: 12px;
-        gap: 7px;
+        margin-top: 10px;
+        gap: 6px;
       }
 
       .layer-dot {
-        width: 8px;
-        height: 8px;
+        width: 7px;
+        height: 7px;
       }
 
-      .section-title {
-        font-size: 30px;
+      .features-section {
+        padding: 48px 16px 56px;
+      }
+
+      .features-header {
         margin-bottom: 28px;
+      }
+
+      .features-header h2 {
+        font-size: 28px;
+      }
+
+      .feat {
+        min-height: 0;
+        padding: 18px 16px;
+      }
+
+      .feat h3 {
+        font-size: 17px;
+      }
+
+      .feat.feat-dark {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 18px;
+      }
+
+      .feat.feat-dark .feat-pill {
+        margin-left: 0;
+      }
+
+      .features-section {
+        padding: 56px 16px 48px;
+      }
+
+      .features-header h2 {
+        font-size: 28px;
+      }
+
+      .status-strip {
+        padding: 11px 14px;
+        border-radius: 10px;
+      }
+
+      .status-live {
+        font-size: 12.5px;
+      }
+
+      .status-meta {
+        font-size: 11px;
+      }
+
+      .board-card {
+        min-height: 0;
+        padding: 18px 16px;
+        border-radius: 14px;
+      }
+
+      .board-card h3 {
+        font-size: 19px;
+      }
+
+      .board-big {
+        font-size: 40px;
+      }
+
+      .board-cities span {
+        font-size: 11px;
+        padding: 3px 8px;
       }
 
       .hc-rules-header h2,
@@ -1524,106 +1440,96 @@
     </div>
   </section>
 
-  <!-- ========== BLOCK 2: CLOUDFLARE SECURITY FEATURES BENTO (moved up) ========== -->
+  <!-- ========== BLOCK 2: EDGE FEATURES ========== -->
   <section class="features-section">
-    <h2 class="section-title">
-      Protect, accelerate, and control<br>
-      every request to your <em>origin</em>
-    </h2>
+    <div class="features-header">
+      <p class="features-eyebrow">At the edge</p>
+      <h2>Protect and speed up every request</h2>
+      <p>Cloudflare does the heavy lifting. Your site stays fast and locked down.</p>
+    </div>
 
-    <div class="bento">
-
-      <div class="row row-1">
-        <div class="card card-1">
-          <div>
-            <h3>Smart Shield</h3>
-            <p>Protect your origin server, improve content availability, and reduce network latency by intelligently shielding traffic at the edge.</p>
-          </div>
-          <div class="meta">
-            <div class="meta-item">
-              <strong>99.99%</strong>
-              origin uptime
-            </div>
-            <div class="meta-item">
-              <strong>−40%</strong>
-              origin load
-            </div>
-          </div>
-        </div>
-
-        <div class="card card-2">
-          <div>
-            <h3>Bot Fight Mode</h3>
-            <p>Automatically detect and mitigate malicious bots before they reach your application — no complex configuration required.</p>
-          </div>
-          <div class="tag">Active protection</div>
-        </div>
+    <div class="status-board">
+      <!-- Live strip -->
+      <div class="status-strip">
+        <span class="status-live"><i></i> All systems active</span>
+        <span class="status-meta">Edge · HTTPS · Cache · Bots</span>
       </div>
 
-      <div class="row row-2">
-        <div class="card card-3">
-          <div>
-            <h3>Always Online</h3>
-            <p>If your origin is temporarily unreachable, Cloudflare can serve a cached version of your site so visitors still see your pages instead of an error.</p>
+      <!-- Asymmetric bento -->
+      <div class="board-grid">
+        <article class="board-card board-hero">
+          <div class="board-card-top">
+            <span class="board-label">Origin shield</span>
+            <span class="board-badge">−40% load</span>
           </div>
-          <div class="version">On</div>
-        </div>
+          <h3>Smart Shield</h3>
+          <p>Absorbs spikes so your origin stays quiet and available.</p>
+          <div class="board-meter" aria-hidden="true">
+            <span style="width:62%"></span>
+          </div>
+        </article>
 
-        <div class="card card-4">
-          <div>
-            <h3>Smart Tiered Cache</h3>
-            <p>Dynamically identify the optimal data centers closest to your origin to maximize cache hit ratios and reduce origin load.</p>
+        <article class="board-card board-dark">
+          <div class="board-card-top">
+            <span class="board-label">Uptime</span>
           </div>
-          <div class="locations">
-            <span class="location">SFO</span>
-            <span class="location">LHR</span>
-            <span class="location">FRA</span>
-            <span class="location">NRT</span>
-            <span class="location">SYD</span>
-          </div>
-        </div>
-      </div>
+          <div class="board-big">99.99%</div>
+          <p>Focus on staying online — not patching plugins.</p>
+        </article>
 
-      <div class="bottom-row">
-        <div class="card card-5">
-          <div>
-            <h3>TLS 1.3</h3>
-            <p>The current standard for encrypted connections. Faster handshakes and stronger cryptography than older TLS versions — enabled by default on every HostCut site.</p>
+        <article class="board-card">
+          <div class="board-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
           </div>
-          <ul class="list">
-            <li>Stronger encryption</li>
-            <li>Faster TLS handshake</li>
-            <li>No configuration needed</li>
+          <h3>Bot Fight</h3>
+          <p>Known bad bots stopped at the door.</p>
+          <span class="board-dot on">On</span>
+        </article>
+
+        <article class="board-card">
+          <div class="board-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Always Online</h3>
+          <p>Cached pages if origin briefly drops.</p>
+          <span class="board-dot on">On</span>
+        </article>
+
+        <article class="board-card">
+          <div class="board-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3>TLS 1.3</h3>
+          <p>Modern encryption, faster handshakes.</p>
+          <span class="board-dot on">On</span>
+        </article>
+
+        <article class="board-card board-wide">
+          <div class="board-card-top">
+            <span class="board-label">Global cache</span>
+            <span class="board-badge">Edge first</span>
+          </div>
+          <h3>Smart Tiered Cache</h3>
+          <p>Served from the nearest city. Fewer trips to origin.</p>
+          <div class="board-cities">
+            <span>SFO</span><span>LHR</span><span>FRA</span><span>NRT</span><span>SYD</span><span>+300</span>
+          </div>
+        </article>
+
+        <article class="board-card board-headers">
+          <div class="board-card-top">
+            <span class="board-label">Headers</span>
+          </div>
+          <h3>Hardened responses</h3>
+          <ul class="board-checks">
+            <li>X-Powered-By removed</li>
+            <li>Security headers added</li>
+            <li>Managed transforms at the edge</li>
           </ul>
-        </div>
-
-        <div class="card card-6">
-          <div>
-            <h3>Managed response headers</h3>
-            <p>Cloudflare’s managed transforms let us set HTTP response headers once for the whole site. We use this path to harden headers without touching your files.</p>
-          </div>
-          <ul class="list">
-            <li>Rules → Settings → Managed Transforms</li>
-            <li>HTTP Response Header Modification</li>
-            <li>Applied at the edge for every request</li>
-          </ul>
-        </div>
-
-        <div class="card card-7">
-          <div>
-            <h3>Security headers on by default</h3>
-            <p>We remove the “X-Powered-By” header so the stack isn’t advertised, and we add standard security headers that browsers expect for safer browsing.</p>
-          </div>
-          <ul class="list">
-            <li>Strip X-Powered-By</li>
-            <li>Add security response headers</li>
-            <li>No extra plugins or code required</li>
-          </ul>
-        </div>
+        </article>
       </div>
     </div>
   </section>
-
 
   <!-- ========== CLOUDFLARE TRUST ========== -->
   <section class="cf-trust">

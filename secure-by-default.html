@@ -121,11 +121,11 @@
       font-family: var(--font-serif);
       font-size: clamp(40px, 5.5vw, 64px);
       font-weight: 400;
-      line-height: 1.06;
+      line-height: 1.08;
       letter-spacing: -0.03em;
       color: #f4f0e8;
-      margin-bottom: 22px;
-      max-width: 11ch;
+      margin-bottom: 28px;
+      max-width: 14ch;
     }
 
     .hero-title .line2 {
@@ -216,11 +216,16 @@
     .shield-top {
       position: relative;
       z-index: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .shield-badge {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       padding: 7px 14px 7px 10px;
       background: rgba(241,90,34,0.15);
@@ -230,7 +235,7 @@
       font-weight: 600;
       color: #ff8a5c;
       letter-spacing: 0.04em;
-      margin-bottom: 28px;
+      margin: 0 0 28px;
     }
 
     .shield-badge svg {
@@ -255,6 +260,9 @@
       color: #a39e94;
       line-height: 1.5;
       max-width: 280px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* Layer carousel — conveyor belt, one full card at a time */
@@ -1235,10 +1243,31 @@
     }
 
     .cf-trust-tagline {
-      font-size: clamp(18px, 2.2vw, 24px);
+      font-size: clamp(15px, 1.6vw, 18px);
       color: #b8b2a6;
       line-height: 1.45;
       margin-bottom: 0;
+    }
+
+
+    @media (min-width: 961px) {
+      .hero-title {
+        margin-top: 4px;
+        margin-bottom: 32px;
+        max-width: 14ch;
+      }
+
+      .hero-stats {
+        margin-top: 8px;
+      }
+
+      /* Compact small board cards — no extra bottom space */
+      .board-card:not(.board-hero):not(.board-dark):not(.board-wide):not(.board-headers) {
+        min-height: 0;
+        padding: 20px 18px;
+        gap: 6px;
+        justify-content: flex-start;
+      }
     }
 
     /* ========== RESPONSIVE ========== */
@@ -1396,6 +1425,47 @@
 
       .board-dot {
         justify-content: center;
+      }
+
+
+      /* means-section mobile center */
+      .means-section {
+        text-align: center;
+      }
+
+      .means-header {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+
+      .means-board {
+        justify-items: center;
+      }
+
+      .means-tile {
+        text-align: center;
+        width: 100%;
+      }
+
+      .assurance-bar {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .assurance-text {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .rule-console-bar {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .rule-tag {
+        margin-left: auto;
+        margin-right: auto;
       }
 
       /* Center rule console rows on mobile */
@@ -1708,11 +1778,6 @@
           Protection that
           <span class="line2">comes with the site</span>
         </h1>
-        <p class="hero-lead">
-          HTTPS, modern hosting, and reliable uptime are included from day one.
-          <strong>Your site is protected without any extra setup or monthly security add-ons.</strong>
-        </p>
-
         <div class="hero-stats">
           <div class="hero-stat">
             <span class="hero-stat-value">HTTPS</span>

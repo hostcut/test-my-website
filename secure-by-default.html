@@ -119,13 +119,13 @@
 
     .hero-title {
       font-family: var(--font-serif);
-      font-size: clamp(44px, 6.2vw, 68px);
+      font-size: clamp(36px, 4.5vw, 52px);
       font-weight: 400;
-      line-height: 1.05;
+      line-height: 1.08;
       letter-spacing: -0.03em;
       color: #f4f0e8;
-      margin-bottom: 24px;
-      max-width: 11ch;
+      margin-bottom: 20px;
+      max-width: 12ch;
     }
 
     .hero-title .line2 {
@@ -135,11 +135,11 @@
     }
 
     .hero-lead {
-      font-size: clamp(16.5px, 1.9vw, 18.5px);
-      line-height: 1.65;
+      font-size: clamp(15px, 1.5vw, 16.5px);
+      line-height: 1.6;
       color: #b8b2a6;
-      max-width: 440px;
-      margin-bottom: 36px;
+      max-width: 420px;
+      margin-bottom: 32px;
     }
 
     .hero-lead strong {
@@ -161,7 +161,7 @@
 
     .hero-stat-value {
       font-family: var(--font-serif);
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 400;
       color: #f4f0e8;
       letter-spacing: -0.02em;
@@ -169,7 +169,7 @@
     }
 
     .hero-stat-label {
-      font-size: 13px;
+      font-size: 12.5px;
       color: #9c968c;
       letter-spacing: 0.01em;
     }
@@ -308,22 +308,7 @@
     }
 
     .layer-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: rgba(241,90,34,0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .layer-icon svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--orange);
-      fill: none;
-      stroke-width: 1.8;
+      display: none;
     }
 
     .layer-title-row {
@@ -337,15 +322,15 @@
 
     .layer-slide strong {
       font-family: var(--font-serif);
-      font-size: 17px;
+      font-size: 22px;
       font-weight: 400;
       color: #f4f0e8;
-      letter-spacing: -0.015em;
-      line-height: 1.25;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
     }
 
     .layer-slide span.layer-desc {
-      font-size: 13.5px;
+      font-size: 14px;
       color: #a39e94;
       line-height: 1.5;
       padding-left: 0;
@@ -627,16 +612,16 @@
 
     .features-header h2 {
       font-family: var(--font-serif);
-      font-size: clamp(36px, 5.5vw, 52px);
+      font-size: clamp(28px, 3.5vw, 38px);
       font-weight: 400;
-      letter-spacing: -0.03em;
-      line-height: 1.12;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
       color: var(--ink);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .features-header p {
-      font-size: 16px;
+      font-size: 15px;
       color: var(--muted);
       line-height: 1.55;
     }
@@ -935,16 +920,16 @@
 
     .hc-rules-header h2 {
       font-family: var(--font-serif);
-      font-size: clamp(36px, 5.5vw, 52px);
+      font-size: clamp(28px, 3.5vw, 38px);
       font-weight: 400;
-      letter-spacing: -0.03em;
-      line-height: 1.12;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
       color: var(--ink);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .hc-rules-lead {
-      font-size: 15.5px;
+      font-size: 15px;
       line-height: 1.55;
       color: var(--muted);
     }
@@ -1117,10 +1102,10 @@
     .means-header h2,
     .means-title {
       font-family: var(--font-serif);
-      font-size: clamp(36px, 5.5vw, 52px);
+      font-size: clamp(28px, 3.5vw, 38px);
       font-weight: 400;
-      letter-spacing: -0.03em;
-      line-height: 1.12;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
       color: #f4f0e8;
     }
 
@@ -1252,11 +1237,11 @@
 
     .cf-trust h2 {
       font-family: var(--font-serif);
-      font-size: clamp(32px, 5vw, 46px);
+      font-size: clamp(28px, 3.8vw, 40px);
       font-weight: 400;
-      letter-spacing: -0.03em;
-      line-height: 1.12;
-      margin-bottom: 14px;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 12px;
       color: #f4f0e8;
     }
 
@@ -1357,13 +1342,14 @@
       }
 
       .hero-title {
-        font-size: 32px;
+        font-size: 36px;
         margin-bottom: 14px;
         letter-spacing: -0.025em;
+        max-width: none;
       }
 
       .hero-lead {
-        font-size: 15px;
+        font-size: 14.5px;
         line-height: 1.55;
         margin-bottom: 22px;
         max-width: none;
@@ -1434,18 +1420,11 @@
       }
 
       .layer-icon {
-        width: 34px;
-        height: 34px;
-        border-radius: 9px;
-      }
-
-      .layer-icon svg {
-        width: 15px;
-        height: 15px;
+        display: none;
       }
 
       .layer-slide strong {
-        font-size: 14.5px;
+        font-size: 19px;
       }
 
       .layer-slide span.layer-desc {
@@ -1478,7 +1457,7 @@
       }
 
       .features-header h2 {
-        font-size: 32px;
+        font-size: 34px;
       }
 
       .feat {
@@ -1505,7 +1484,7 @@
       }
 
       .features-header h2 {
-        font-size: 32px;
+        font-size: 34px;
       }
 
       .status-strip {
@@ -1547,11 +1526,11 @@
       .hc-rules-header h2,
       .means-header h2,
       .means-title {
-        font-size: 32px;
+        font-size: 34px;
       }
 
       .cf-trust h2 {
-        font-size: 28px;
+        font-size: 32px;
       }
 
       .rule-console {

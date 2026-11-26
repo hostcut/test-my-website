@@ -56,6 +56,7 @@
     }
 
     /* ========== HERO (Block 1) ========== */
+    /* ========== HERO (unique classes for full control) ========== */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -63,7 +64,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 100px 40px 56px;
+      padding: 72px 20px 40px;
       background: var(--paper);
       overflow: hidden;
       text-align: center;
@@ -78,122 +79,243 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 56px;
+      gap: 40px;
     }
 
-    @media (min-width: 901px) {
-      .hero-main {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 72px;
-        text-align: left;
-      }
-    }
-
-    .hero-content {
+    .hero-copy {
       position: relative;
       z-index: 1;
-      max-width: 500px;
       width: 100%;
+      max-width: 100%;
       margin: 0;
-      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
-    @media (min-width: 901px) {
-      .hero-content {
-        text-align: left;
-      }
-    }
-
-    .hero-eyebrow {
+    .hero-kicker {
       font-family: var(--font-sans);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.09em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--soft);
-      margin: 0 0 16px;
-      text-align: center;
+      margin: 0 0 14px;
       opacity: 0.85;
     }
 
-    @media (min-width: 901px) {
-      .hero-eyebrow {
-        text-align: left;
-      }
-    }
-
-    .hero-eyebrow-amount {
+    .hero-kicker-value {
       color: var(--muted);
       font-weight: 600;
       letter-spacing: 0.04em;
     }
 
-    .hero h1 {
+    .hero-title {
       font-family: var(--font-serif);
-      font-size: clamp(44px, 6.5vw, 68px);
+      font-size: 42px;
       font-weight: 400;
-      line-height: 1.06;
+      line-height: 1.08;
       letter-spacing: -0.03em;
       color: var(--ink);
-      margin-bottom: 18px;
+      margin: 0 0 16px;
     }
 
-    .hero h1 .highlight {
+    .hero-title-accent {
       font-style: italic;
       color: var(--orange);
     }
 
-    .hero-lead {
+    .hero-body {
       font-family: var(--font-sans);
-      font-size: clamp(16px, 1.9vw, 18px);
+      font-size: 15.5px;
       font-weight: 400;
-      line-height: 1.6;
+      line-height: 1.55;
       letter-spacing: -0.01em;
       color: var(--muted);
       margin: 0;
-      max-width: 420px;
+      max-width: 340px;
     }
 
-    .cta-row {
+    .hero-actions {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      width: 100%;
+      max-width: 260px;
+      margin: 24px 0 0;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
+      gap: 8px;
+      height: 48px;
+      padding: 0 22px;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.18s ease;
+      cursor: pointer;
+      border: none;
+      width: 100%;
     }
 
-    @media (min-width: 901px) {
-      .cta-row {
-        justify-content: flex-start;
-      }
+    .hero-btn-primary {
+      background: var(--orange);
+      color: #ffffff;
     }
 
-    .hero-visual {
+    .hero-btn-primary:hover {
+      background: #d94e1a;
+      transform: translateY(-1px);
+    }
+
+    .hero-btn-secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid #d4cfc5;
+    }
+
+    [data-theme="dark"] .hero-btn-secondary {
+      border-color: #3a3530;
+    }
+
+    .hero-btn-secondary:hover {
+      background: #ebe6dc;
+      border-color: #c5bfb3;
+    }
+
+    [data-theme="dark"] .hero-btn-secondary:hover {
+      background: #2a2622;
+      border-color: #4a4540;
+    }
+
+    .hero-figure {
       flex: 0 0 auto;
       width: 100%;
-      max-width: 400px;
+      max-width: 300px;
       display: flex;
       justify-content: center;
       align-items: center;
+      margin: 0;
     }
 
-    .hero-visual svg {
+    .hero-figure-svg {
       width: 100%;
       height: auto;
-      max-width: 380px;
-      filter: drop-shadow(0 20px 40px rgba(20, 18, 14, 0.09));
+      max-width: 280px;
+      filter: drop-shadow(0 16px 32px rgba(20, 18, 14, 0.08));
     }
 
+    /* Tablet */
+    @media (min-width: 601px) {
+      .hero {
+        padding: 88px 32px 52px;
+      }
+
+      .hero-main {
+        gap: 48px;
+        max-width: 640px;
+      }
+
+      .hero-kicker {
+        font-size: 12px;
+        margin-bottom: 16px;
+      }
+
+      .hero-title {
+        font-size: 52px;
+        line-height: 1.06;
+        margin-bottom: 18px;
+      }
+
+      .hero-body {
+        font-size: 17px;
+        line-height: 1.6;
+        max-width: 400px;
+      }
+
+      .hero-actions {
+        flex-direction: row;
+        max-width: none;
+        width: auto;
+        margin-top: 28px;
+        gap: 12px;
+      }
+
+      .hero-btn {
+        width: auto;
+      }
+
+      .hero-figure {
+        max-width: 340px;
+      }
+
+      .hero-figure-svg {
+        max-width: 320px;
+      }
+    }
+
+    /* Desktop */
     @media (min-width: 901px) {
-      .hero-visual {
+      .hero {
+        padding: 100px 40px 56px;
+        text-align: left;
+      }
+
+      .hero-main {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 72px;
+        max-width: 1120px;
+        text-align: left;
+      }
+
+      .hero-copy {
+        align-items: flex-start;
+        text-align: left;
+        max-width: 500px;
+        flex: 1 1 auto;
+      }
+
+      .hero-kicker {
+        font-size: 12px;
+        margin-bottom: 16px;
+        text-align: left;
+      }
+
+      .hero-title {
+        font-size: 64px;
+        line-height: 1.05;
+        margin-bottom: 18px;
+      }
+
+      .hero-body {
+        font-size: 18px;
+        line-height: 1.6;
+        max-width: 420px;
+      }
+
+      .hero-actions {
+        flex-direction: row;
+        margin-top: 28px;
+        max-width: none;
+      }
+
+      .hero-figure {
         max-width: 440px;
         flex: 0 0 440px;
       }
 
-      .hero-visual svg {
+      .hero-figure-svg {
         max-width: 420px;
+        filter: drop-shadow(0 20px 40px rgba(20, 18, 14, 0.09));
       }
     }
 
@@ -1916,60 +2038,7 @@
     /* Base styles already lean mobile; tighten further for small screens */
     @media (max-width: 600px) {
       .hero {
-        padding: 72px 20px 40px;
         min-height: auto;
-      }
-
-      .hero-main {
-        gap: 40px;
-      }
-
-      .hero-content {
-        max-width: 100%;
-        text-align: center;
-      }
-
-      .hero-eyebrow {
-        text-align: center;
-        font-size: 11px;
-        letter-spacing: 0.08em;
-        margin-bottom: 14px;
-      }
-
-      .hero h1 {
-        font-size: 40px;
-        line-height: 1.08;
-        margin-bottom: 14px;
-      }
-
-      .hero-lead {
-        font-size: 15.5px;
-        line-height: 1.55;
-        max-width: 320px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .cta-row {
-        flex-direction: column;
-        width: 100%;
-        max-width: 260px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 24px;
-        justify-content: center;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .hero-visual {
-        max-width: 300px;
-      }
-
-      .hero-visual svg {
-        max-width: 280px;
       }
 
       .marquee-section {
@@ -2272,34 +2341,6 @@
     }
 
     @media (min-width: 601px) and (max-width: 900px) {
-      .hero {
-        padding: 88px 32px 52px;
-      }
-
-      .hero-main {
-        gap: 48px;
-        max-width: 640px;
-      }
-
-      .hero h1 {
-        font-size: 50px;
-      }
-
-      .hero-lead {
-        font-size: 17px;
-        max-width: 380px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .hero-visual {
-        max-width: 340px;
-      }
-
-      .hero-visual svg {
-        max-width: 320px;
-      }
-
       .marquee-content {
         gap: 52px;
         padding-right: 52px;
@@ -2403,68 +2444,64 @@
   <!-- ========== BLOCK 1: HERO ========== -->
   <section class="hero">
     <div class="hero-main">
-      <div class="hero-content">
-        <p class="hero-eyebrow">
-          Average customer saves <span class="hero-eyebrow-amount">$29</span> / month
+      <div class="hero-copy">
+        <p class="hero-kicker">
+          Average customer saves <span class="hero-kicker-value">$29</span> / month
         </p>
 
-        <h1>
+        <h1 class="hero-title">
           A real website.<br>
-          <span class="highlight">No monthly fees.</span>
+          <span class="hero-title-accent">No monthly fees.</span>
         </h1>
 
-        <p class="hero-lead">
+        <p class="hero-body">
           HostCut builds and hosts a permanent site you own. Same edge network the big brands use — without the subscription.
         </p>
 
-        <div class="cta-row">
-          <a href="#" class="btn btn-primary">
+        <div class="hero-actions">
+          <a href="#" class="hero-btn hero-btn-primary">
             Get started
             <svg width="13" height="13" viewBox="0 0 12 12" fill="none">
               <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
 
-          <a href="#" class="btn btn-secondary">
+          <a href="#" class="hero-btn hero-btn-secondary">
             See how it works
           </a>
         </div>
       </div>
 
-      <div class="hero-visual" aria-hidden="true">
-        <svg viewBox="0 0 400 390" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div class="hero-figure" aria-hidden="true">
+        <svg class="hero-figure-svg" viewBox="0 0 400 390" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- Soft ground shadow -->
           <ellipse cx="200" cy="368" rx="120" ry="12" fill="var(--ink, #14120e)" opacity="0.055"/>
 
           <!-- Card 5 -->
           <g opacity="0.26" transform="translate(40, 40)">
             <rect x="0" y="0" width="292" height="58" rx="12" fill="var(--card-bg, #ffffff)" stroke="var(--card-border, #e5e0d6)" stroke-width="1.2"/>
-            <text x="18" y="26" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="500">Monthly hosting</text>
-            <text x="18" y="43" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="11.5">Jul 2026</text>
+            <text x="18" y="34" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500">Monthly hosting</text>
             <text x="272" y="36" text-anchor="end" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="600">$29</text>
           </g>
 
           <!-- Card 4 -->
           <g opacity="0.4" transform="translate(48, 66)">
             <rect x="0" y="0" width="292" height="58" rx="12" fill="var(--card-bg, #ffffff)" stroke="var(--card-border, #e5e0d6)" stroke-width="1.2"/>
-            <text x="18" y="26" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="500">Monthly hosting</text>
-            <text x="18" y="43" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="11.5">Aug 2026</text>
+            <text x="18" y="34" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500">Monthly hosting</text>
             <text x="272" y="36" text-anchor="end" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="600">$29</text>
           </g>
 
           <!-- Card 3 -->
           <g opacity="0.55" transform="translate(56, 92)">
             <rect x="0" y="0" width="292" height="58" rx="12" fill="var(--card-bg, #ffffff)" stroke="var(--card-border, #e5e0d6)" stroke-width="1.2"/>
-            <text x="18" y="26" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="500">Monthly hosting</text>
-            <text x="18" y="43" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="11.5">Sep 2026</text>
+            <text x="18" y="34" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500">Monthly hosting</text>
             <text x="272" y="36" text-anchor="end" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="600">$29</text>
           </g>
 
           <!-- Card 2 -->
           <g opacity="0.75" transform="translate(64, 118)">
             <rect x="0" y="0" width="292" height="58" rx="12" fill="var(--card-bg, #ffffff)" stroke="var(--card-border, #e5e0d6)" stroke-width="1.2"/>
-            <text x="18" y="26" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="500">Monthly hosting</text>
-            <text x="18" y="43" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="11.5">Oct 2026</text>
+            <text x="18" y="34" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500">Monthly hosting</text>
             <text x="272" y="36" text-anchor="end" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="600">$29</text>
           </g>
 

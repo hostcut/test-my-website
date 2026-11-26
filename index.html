@@ -63,7 +63,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 96px 24px 56px;
+      padding: 88px 32px 48px;
       background: var(--paper);
       overflow: hidden;
       text-align: center;
@@ -73,12 +73,12 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 1100px;
+      max-width: 1180px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 40px;
+      gap: 48px;
     }
 
     @media (min-width: 901px) {
@@ -86,7 +86,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        gap: 48px;
+        gap: 64px;
         text-align: left;
       }
     }
@@ -94,7 +94,7 @@
     .hero-content {
       position: relative;
       z-index: 1;
-      max-width: 520px;
+      max-width: 540px;
       width: 100%;
       margin: 0;
       flex: 1 1 auto;
@@ -103,6 +103,7 @@
     @media (min-width: 901px) {
       .hero-content {
         text-align: left;
+        padding-right: 12px;
       }
     }
 
@@ -113,9 +114,9 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--soft);
-      margin: 0 0 20px;
+      margin: 0 0 18px;
       text-align: center;
-      opacity: 0.85;
+      opacity: 0.9;
     }
 
     @media (min-width: 901px) {
@@ -132,12 +133,12 @@
 
     .hero h1 {
       font-family: var(--font-serif);
-      font-size: clamp(48px, 8vw, 80px);
+      font-size: clamp(46px, 7.2vw, 72px);
       font-weight: 400;
-      line-height: 1.06;
+      line-height: 1.05;
       letter-spacing: -0.03em;
       color: var(--ink);
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .hero h1 .highlight {
@@ -147,20 +148,20 @@
 
     .hero-lead {
       font-family: var(--font-sans);
-      font-size: clamp(16px, 2.2vw, 19px);
+      font-size: clamp(16px, 2vw, 18.5px);
       font-weight: 400;
-      line-height: 1.55;
+      line-height: 1.6;
       letter-spacing: -0.01em;
       color: var(--muted);
       margin: 0;
-      max-width: 480px;
+      max-width: 440px;
     }
 
     .cta-row {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 36px;
+      margin-top: 32px;
       justify-content: center;
     }
 
@@ -173,7 +174,7 @@
     .hero-visual {
       flex: 0 0 auto;
       width: 100%;
-      max-width: 380px;
+      max-width: 420px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -182,13 +183,18 @@
     .hero-visual svg {
       width: 100%;
       height: auto;
-      max-width: 340px;
-      filter: drop-shadow(0 20px 40px rgba(20, 18, 14, 0.08));
+      max-width: 400px;
+      filter: drop-shadow(0 24px 48px rgba(20, 18, 14, 0.1));
     }
 
     @media (min-width: 901px) {
       .hero-visual {
-        max-width: 400px;
+        max-width: 460px;
+        flex: 0 0 460px;
+      }
+
+      .hero-visual svg {
+        max-width: 440px;
       }
     }
 
@@ -1911,35 +1917,37 @@
     /* Base styles already lean mobile; tighten further for small screens */
     @media (max-width: 600px) {
       .hero {
-        padding: 72px 20px 40px;
+        padding: 64px 20px 36px;
         min-height: auto;
       }
 
       .hero-main {
-        gap: 32px;
+        gap: 36px;
       }
 
       .hero-content {
         max-width: 100%;
         text-align: center;
+        padding-right: 0;
       }
 
       .hero-eyebrow {
         text-align: center;
         font-size: 11px;
         letter-spacing: 0.07em;
-        margin-bottom: 16px;
-        padding: 0 12px;
+        margin-bottom: 14px;
+        padding: 0;
       }
 
       .hero h1 {
-        font-size: 44px;
+        font-size: 42px;
         line-height: 1.08;
+        margin-bottom: 16px;
       }
 
       .hero-lead {
         font-size: 15.5px;
-        line-height: 1.5;
+        line-height: 1.55;
         max-width: 340px;
         margin-left: auto;
         margin-right: auto;
@@ -1948,10 +1956,10 @@
       .cta-row {
         flex-direction: column;
         width: 100%;
-        max-width: 300px;
+        max-width: 280px;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 28px;
+        margin-top: 26px;
         justify-content: center;
       }
 
@@ -1960,11 +1968,11 @@
       }
 
       .hero-visual {
-        max-width: 280px;
+        max-width: 320px;
       }
 
       .hero-visual svg {
-        max-width: 260px;
+        max-width: 300px;
       }
 
       .marquee-section {
@@ -2268,15 +2276,30 @@
 
     @media (min-width: 601px) and (max-width: 900px) {
       .hero {
-        padding: 80px 24px 50px;
+        padding: 80px 28px 48px;
+      }
+
+      .hero-main {
+        gap: 40px;
       }
 
       .hero h1 {
-        font-size: 56px;
+        font-size: 52px;
       }
 
       .hero-lead {
         font-size: 17px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-visual {
+        max-width: 360px;
+      }
+
+      .hero-visual svg {
+        max-width: 340px;
       }
 
       .marquee-content {
@@ -2411,61 +2434,62 @@
       </div>
 
       <div class="hero-visual" aria-hidden="true">
-        <svg viewBox="0 0 360 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Stack of fee cards (oldest / bottom first, newest on top) -->
-          
+        <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Soft ground shadow under the stack -->
+          <ellipse cx="200" cy="372" rx="130" ry="14" fill="var(--ink, #14120e)" opacity="0.06"/>
+
           <!-- Card 5 (bottom, most faded) -->
-          <g opacity="0.35" transform="translate(28, 48)">
-            <rect x="0" y="0" width="280" height="58" rx="12" fill="var(--card-bg, #ffffff)" stroke="var(--card-border, #e5e0d6)" stroke-width="1.5"/>
-            <text x="18" y="26" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500">Monthly hosting</text>
-            <text x="18" y="44" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="11">Jul 2026</text>
-            <text x="260" y="36" text-anchor="end" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="600">$29</text>
+          <g opacity="0.28" transform="translate(36, 52)">
+            <rect x="0" y="0" width="300" height="62" rx="14" fill="var(--card-bg, #ffffff)" stroke="var(--card-border, #e5e0d6)" stroke-width="1.25"/>
+            <text x="20" y="28" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500">Monthly hosting</text>
+            <text x="20" y="46" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="12">Jul 2026</text>
+            <text x="278" y="38" text-anchor="end" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="600">$29</text>
           </g>
 
           <!-- Card 4 -->
-          <g opacity="0.5" transform="translate(36, 72)">
-            <rect x="0" y="0" width="280" height="58" rx="12" fill="var(--card-bg, #ffffff)" stroke="var(--card-border, #e5e0d6)" stroke-width="1.5"/>
-            <text x="18" y="26" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500">Monthly hosting</text>
-            <text x="18" y="44" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="11">Aug 2026</text>
-            <text x="260" y="36" text-anchor="end" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="600">$29</text>
+          <g opacity="0.42" transform="translate(44, 78)">
+            <rect x="0" y="0" width="300" height="62" rx="14" fill="var(--card-bg, #ffffff)" stroke="var(--card-border, #e5e0d6)" stroke-width="1.25"/>
+            <text x="20" y="28" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500">Monthly hosting</text>
+            <text x="20" y="46" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="12">Aug 2026</text>
+            <text x="278" y="38" text-anchor="end" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="600">$29</text>
           </g>
 
           <!-- Card 3 -->
-          <g opacity="0.65" transform="translate(44, 96)">
-            <rect x="0" y="0" width="280" height="58" rx="12" fill="var(--card-bg, #ffffff)" stroke="var(--card-border, #e5e0d6)" stroke-width="1.5"/>
-            <text x="18" y="26" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500">Monthly hosting</text>
-            <text x="18" y="44" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="11">Sep 2026</text>
-            <text x="260" y="36" text-anchor="end" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="600">$29</text>
+          <g opacity="0.58" transform="translate(52, 104)">
+            <rect x="0" y="0" width="300" height="62" rx="14" fill="var(--card-bg, #ffffff)" stroke="var(--card-border, #e5e0d6)" stroke-width="1.25"/>
+            <text x="20" y="28" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500">Monthly hosting</text>
+            <text x="20" y="46" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="12">Sep 2026</text>
+            <text x="278" y="38" text-anchor="end" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="600">$29</text>
           </g>
 
           <!-- Card 2 -->
-          <g opacity="0.82" transform="translate(52, 120)">
-            <rect x="0" y="0" width="280" height="58" rx="12" fill="var(--card-bg, #ffffff)" stroke="var(--card-border, #e5e0d6)" stroke-width="1.5"/>
-            <text x="18" y="26" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500">Monthly hosting</text>
-            <text x="18" y="44" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="11">Oct 2026</text>
-            <text x="260" y="36" text-anchor="end" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="600">$29</text>
+          <g opacity="0.78" transform="translate(60, 130)">
+            <rect x="0" y="0" width="300" height="62" rx="14" fill="var(--card-bg, #ffffff)" stroke="var(--card-border, #e5e0d6)" stroke-width="1.25"/>
+            <text x="20" y="28" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500">Monthly hosting</text>
+            <text x="20" y="46" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="12">Oct 2026</text>
+            <text x="278" y="38" text-anchor="end" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="600">$29</text>
           </g>
 
-          <!-- Card 1 (top / newest – fully opaque + orange accent) -->
-          <g transform="translate(60, 144)">
-            <rect x="0" y="0" width="280" height="64" rx="12" fill="var(--card-bg, #ffffff)" stroke="var(--orange, #f15a22)" stroke-width="2"/>
-            <rect x="0" y="0" width="6" height="64" rx="3" fill="var(--orange, #f15a22)"/>
-            <text x="22" y="28" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600">Monthly hosting</text>
-            <text x="22" y="48" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="11">Nov 2026 · due again</text>
-            <text x="258" y="40" text-anchor="end" fill="var(--orange, #f15a22)" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="700">$29</text>
+          <!-- Card 1 (top / newest) -->
+          <g transform="translate(68, 156)">
+            <rect x="0" y="0" width="300" height="70" rx="14" fill="var(--card-bg, #ffffff)" stroke="var(--orange, #f15a22)" stroke-width="2"/>
+            <rect x="0" y="0" width="7" height="70" rx="3.5" fill="var(--orange, #f15a22)"/>
+            <text x="24" y="30" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600">Monthly hosting</text>
+            <text x="24" y="50" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="12">Nov 2026 · due again</text>
+            <text x="276" y="42" text-anchor="end" fill="var(--orange, #f15a22)" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="700">$29</text>
           </g>
 
-          <!-- Running total / annoyance label -->
-          <g transform="translate(60, 230)">
-            <rect x="0" y="0" width="280" height="48" rx="10" fill="var(--ink, #14120e)"/>
-            <text x="18" y="22" fill="#b8b2a6" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="500">Already charged this year</text>
-            <text x="18" y="38" fill="#f4f0e8" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="600">$145 and counting…</text>
-            <text x="262" y="32" text-anchor="end" fill="var(--orange, #f15a22)" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600">+ $29</text>
+          <!-- Running total bar -->
+          <g transform="translate(68, 248)">
+            <rect x="0" y="0" width="300" height="54" rx="12" fill="var(--ink, #14120e)"/>
+            <text x="20" y="24" fill="#a39e94" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500">Already charged this year</text>
+            <text x="20" y="42" fill="#f4f0e8" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="600">$145 and counting…</text>
+            <text x="280" y="36" text-anchor="end" fill="var(--orange, #f15a22)" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600">+$29</text>
           </g>
 
-          <!-- Subtle “keeps coming” hint -->
-          <text x="180" y="310" text-anchor="middle" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" opacity="0.8">and next month…</text>
-          <text x="180" y="328" text-anchor="middle" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="12" opacity="0.5">and the month after…</text>
+          <!-- Quiet continuation line -->
+          <text x="200" y="340" text-anchor="middle" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" opacity="0.7">and next month…</text>
+          <text x="200" y="360" text-anchor="middle" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="13" opacity="0.4">and the month after…</text>
         </svg>
       </div>
     </div>

@@ -69,12 +69,41 @@
       text-align: center;
     }
 
+    .hero-main {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    @media (min-width: 901px) {
+      .hero-main {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 48px;
+        text-align: left;
+      }
+    }
+
     .hero-content {
       position: relative;
       z-index: 1;
-      max-width: 900px;
+      max-width: 520px;
       width: 100%;
-      margin: 0 auto;
+      margin: 0;
+      flex: 1 1 auto;
+    }
+
+    @media (min-width: 901px) {
+      .hero-content {
+        text-align: left;
+      }
     }
 
     .hero-eyebrow {
@@ -87,6 +116,12 @@
       margin: 0 0 20px;
       text-align: center;
       opacity: 0.85;
+    }
+
+    @media (min-width: 901px) {
+      .hero-eyebrow {
+        text-align: left;
+      }
     }
 
     .hero-eyebrow-amount {
@@ -117,8 +152,8 @@
       line-height: 1.55;
       letter-spacing: -0.01em;
       color: var(--muted);
-      margin: 0 auto;
-      max-width: 520px;
+      margin: 0;
+      max-width: 480px;
     }
 
     .cta-row {
@@ -127,6 +162,34 @@
       gap: 12px;
       margin-top: 36px;
       justify-content: center;
+    }
+
+    @media (min-width: 901px) {
+      .cta-row {
+        justify-content: flex-start;
+      }
+    }
+
+    .hero-visual {
+      flex: 0 0 auto;
+      width: 100%;
+      max-width: 380px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-visual svg {
+      width: 100%;
+      height: auto;
+      max-width: 340px;
+      filter: drop-shadow(0 20px 40px rgba(20, 18, 14, 0.08));
+    }
+
+    @media (min-width: 901px) {
+      .hero-visual {
+        max-width: 400px;
+      }
     }
 
     .btn {
@@ -1852,6 +1915,23 @@
         min-height: auto;
       }
 
+      .hero-main {
+        gap: 32px;
+      }
+
+      .hero-content {
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .hero-eyebrow {
+        text-align: center;
+        font-size: 11px;
+        letter-spacing: 0.07em;
+        margin-bottom: 16px;
+        padding: 0 12px;
+      }
+
       .hero h1 {
         font-size: 44px;
         line-height: 1.08;
@@ -1861,6 +1941,8 @@
         font-size: 15.5px;
         line-height: 1.5;
         max-width: 340px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .cta-row {
@@ -1870,17 +1952,19 @@
         margin-left: auto;
         margin-right: auto;
         margin-top: 28px;
+        justify-content: center;
       }
 
       .btn {
         width: 100%;
       }
 
-      .hero-eyebrow {
-        font-size: 11px;
-        letter-spacing: 0.07em;
-        margin-bottom: 16px;
-        padding: 0 12px;
+      .hero-visual {
+        max-width: 280px;
+      }
+
+      .hero-visual svg {
+        max-width: 260px;
       }
 
       .marquee-section {
@@ -2297,31 +2381,85 @@
 
   <!-- ========== BLOCK 1: HERO ========== -->
   <section class="hero">
-    <div class="hero-content">
-      <p class="hero-eyebrow">
-        Average customer saves <span class="hero-eyebrow-amount">$29</span> / month
-      </p>
+    <div class="hero-main">
+      <div class="hero-content">
+        <p class="hero-eyebrow">
+          Average customer saves <span class="hero-eyebrow-amount">$29</span> / month
+        </p>
 
-      <h1>
-        A real website.<br>
-        <span class="highlight">No monthly fees.</span>
-      </h1>
+        <h1>
+          A real website.<br>
+          <span class="highlight">No monthly fees.</span>
+        </h1>
 
-      <p class="hero-lead">
-        HostCut builds and hosts a permanent site you own. Same edge network the big brands use — without the subscription.
-      </p>
+        <p class="hero-lead">
+          HostCut builds and hosts a permanent site you own. Same edge network the big brands use — without the subscription.
+        </p>
 
-      <div class="cta-row">
-        <a href="#" class="btn btn-primary">
-          Get started
-          <svg width="13" height="13" viewBox="0 0 12 12" fill="none">
-            <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
+        <div class="cta-row">
+          <a href="#" class="btn btn-primary">
+            Get started
+            <svg width="13" height="13" viewBox="0 0 12 12" fill="none">
+              <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
 
-        <a href="#" class="btn btn-secondary">
-          See how it works
-        </a>
+          <a href="#" class="btn btn-secondary">
+            See how it works
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 360 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Invoice paper -->
+          <rect x="40" y="24" width="280" height="292" rx="14" fill="var(--card-bg, #ffffff)" stroke="var(--card-border, #e5e0d6)" stroke-width="1.5"/>
+          
+          <!-- Soft shadow edge -->
+          <rect x="44" y="28" width="272" height="284" rx="12" fill="none" stroke="var(--card-border, #e5e0d6)" stroke-width="0.5" opacity="0.4"/>
+
+          <!-- Header bar -->
+          <rect x="40" y="24" width="280" height="52" rx="14" fill="var(--row-bg, #faf8f4)"/>
+          <rect x="40" y="58" width="280" height="18" fill="var(--row-bg, #faf8f4)"/>
+
+          <!-- Company mark -->
+          <rect x="58" y="40" width="28" height="28" rx="7" fill="var(--orange, #f15a22)"/>
+          <text x="72" y="59" text-anchor="middle" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700">H</text>
+
+          <!-- Invoice label -->
+          <text x="100" y="52" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600">INVOICE</text>
+          <text x="100" y="68" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="11">#HC-2048 · Nov 2026</text>
+
+          <!-- Bill to -->
+          <text x="58" y="104" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" letter-spacing="0.06em">BILL TO</text>
+          <text x="58" y="122" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500">Your Business</text>
+          <text x="58" y="138" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="12">Permanent site ownership</text>
+
+          <!-- Divider -->
+          <line x1="58" y1="154" x2="302" y2="154" stroke="var(--card-border, #e5e0d6)" stroke-width="1"/>
+
+          <!-- Column headers -->
+          <text x="58" y="174" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" letter-spacing="0.04em">DESCRIPTION</text>
+          <text x="302" y="174" text-anchor="end" fill="var(--soft, #6b6760)" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" letter-spacing="0.04em">AMOUNT</text>
+
+          <!-- Line item 1 – the service charge (struck through) -->
+          <rect x="52" y="186" width="256" height="36" rx="8" fill="var(--orange-soft, #fff4ef)"/>
+          <text x="62" y="209" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500">Monthly platform fee</text>
+          <text x="292" y="209" text-anchor="end" fill="var(--ink, #14120e)" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600">$29.00</text>
+          
+          <!-- Big orange cut / strike through the charge -->
+          <line x1="58" y1="204" x2="296" y2="204" stroke="var(--orange, #f15a22)" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="62" y1="210" x2="290" y2="198" stroke="var(--orange, #f15a22)" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+
+          <!-- Line item 2 – zero / permanent -->
+          <text x="62" y="248" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="13">Hosting (edge network)</text>
+          <text x="292" y="248" text-anchor="end" fill="var(--muted, #5c564e)" font-family="Inter, system-ui, sans-serif" font-size="13">$0.00</text>
+
+          <!-- Total bar -->
+          <rect x="52" y="266" width="256" height="34" rx="8" fill="var(--ink, #14120e)"/>
+          <text x="66" y="288" fill="#f4f0e8" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500">TOTAL DUE</text>
+          <text x="288" y="288" text-anchor="end" fill="#f4f0e8" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="600">$0.00</text>
+        </svg>
       </div>
     </div>
 
